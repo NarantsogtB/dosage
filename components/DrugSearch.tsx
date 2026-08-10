@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { DRUGS, CATEGORY_LABELS, type DrugCategory } from "@/lib/drugs";
 
 interface DrugSelectorProps {
-  selectedDrugId: string | null;
+  selectedDrugIds: string[];
   onDrugSelect: (id: string) => void;
 }
 
@@ -14,20 +14,25 @@ type FilterCategory = DrugCategory | typeof ALL_CATEGORIES;
 const CATEGORY_ORDER: DrugCategory[] = [
   "analgesic",
   "antibiotic",
+  "antitb",
   "antihistamine",
   "corticosteroid",
   "antiemetic",
   "gi",
+  "mucolytic",
   "respiratory",
   "antifungal",
   "antiviral",
   "diuretic",
+  "antihypertensive",
+  "anticonvulsant",
   "cns",
   "iron",
+  "vitamin",
   "antiparasitic",
 ];
 
-export default function DrugSearch({ selectedDrugId, onDrugSelect }: DrugSelectorProps) {
+export default function DrugSearch({ selectedDrugIds, onDrugSelect }: DrugSelectorProps) {
   const [categoryFilter, setCategoryFilter] = useState<FilterCategory>(ALL_CATEGORIES);
   const [query, setQuery] = useState("");
 
@@ -93,7 +98,7 @@ export default function DrugSearch({ selectedDrugId, onDrugSelect }: DrugSelecto
           <p className="text-sm text-slate-400 text-center py-8">Хайлт олдсонгүй.</p>
         ) : (
           filteredDrugs.map((drug) => {
-            const isSelected = drug.id === selectedDrugId;
+            const isSelected = selectedDrugIds.includes(drug.id);
             const isIvIm = drug.route === "iv_im";
             const hasWarnings = drug.warnings.length > 0;
             return (

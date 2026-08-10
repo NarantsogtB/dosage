@@ -28,18 +28,67 @@ body {
   display: none;
 }
 
-/* Print styles */
+/* ── Print styles ─────────────────────────────────────────────────────────── */
+
+@page {
+  size: A4;
+  margin: 15mm 18mm 18mm 18mm;
+}
+
 @media print {
+  /* Hide screen-only elements */
   .print\:hidden {
     display: none !important;
   }
-  body {
-    background: white;
-    font-size: 12pt;
+
+  /* Show print-only elements */
+  .print-only {
+    display: block !important;
   }
+
+  body {
+    background: white !important;
+    font-size: 11pt;
+    color: #0f172a;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Reset page chrome */
   header {
-    border-bottom: 1pt solid #94a3b8;
-    padding: 8pt 0;
-    margin-bottom: 12pt;
+    position: static !important;
+    border-bottom: 1pt solid #cbd5e1;
+    padding-bottom: 8pt;
+    margin-bottom: 10pt;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Card styles */
+  .rounded-xl {
+    border-radius: 4pt !important;
+  }
+
+  /* Preserve background colors for print */
+  .bg-blue-50 {
+    background-color: #eff6ff !important;
+  }
+  .bg-amber-50 {
+    background-color: #fffbeb !important;
+  }
+  .bg-red-50 {
+    background-color: #fef2f2 !important;
+  }
+  .bg-slate-50 {
+    background-color: #f8fafc !important;
+  }
+
+  /* No page break inside the dosage card */
+  .print-no-break {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }

@@ -190,6 +190,7 @@ export default function DosageCard({ drug, result, weightKg, totalAgeMo }: Dosag
           <p className="text-sm text-slate-600 leading-relaxed">{data.notes}</p>
         </div>
       )}
+
     </div>
   );
 }
