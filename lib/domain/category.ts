@@ -1,0 +1,21 @@
+/** Эмийн ангилал. */
+export type DrugCategory =
+  | "analgesic"
+  | "antibiotic"
+  | "antihistamine"
+  | "corticosteroid"
+  | "antiemetic"
+  | "gi"
+  | "respiratory"
+  | "antifungal"
+  | "antiviral"
+  | "diuretic"
+  | "cns"
+  | "iron"
+  | "antiparasitic"
+  | "antitb"
+  | "mucolytic"
+  | "antihypertensive"
+  | "anticonvulsant"
+  | "vitamin"
+  | "emergency";
