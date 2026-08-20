@@ -318,6 +318,30 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn: "Чанартай, тогтмол шинэчлэгддэг, үнэ төлбөргүй. Cross-check-ийн гол хэрэгсэл.",
   },
 
+  "rch-melbourne-gastroenteritis": {
+    id: "rch-melbourne-gastroenteritis",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Gastroenteritis.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2025-08)",
+    year: 2025,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Gastroenteritis/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ Суулгалт/бөөлжилттэй хүүхдэд ондансетрон хэрэглэх стандарт " +
+      "заавар — жингийн мужаар анхны тунг, mg/кг томьёог хоёуланг нь " +
+      "өгдөг. MSF-тэй хамт хоёр дахь бие даасан баталгаажуулалт болно.",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",

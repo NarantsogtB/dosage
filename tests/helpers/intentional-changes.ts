@@ -88,6 +88,17 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "per_day cap-тай ижил байсан.",
     sourceId: "msf-essential-drugs",
   },
+  {
+    drugId: "ondansetron",
+    reason:
+      "Тогтмол 0.15 мг/кг/тун → 0.1–0.15 мг/кг/тун муж (MSF + RCH " +
+      "Gastroenteritis-ээр баталгаажив). frequency q8h (3 удаа) → bd " +
+      "(2 удаа, MSF-ийн 'up to 2 times daily'-г дагав). per_dose cap " +
+      "8мг → 4мг, per_day cap 24мг → 8мг (MSF-ийн 6 сар–11 насны " +
+      "бүлэгт заасан 4мг/тун хязгаарыг бүх насанд консерватив " +
+      "хэрэглэв). route 'oral_iv' → 'oral' (IV-д эх сурвалж олдоогүй).",
+    sourceId: "msf-essential-drugs",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));
