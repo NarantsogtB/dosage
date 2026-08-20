@@ -1,15 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { Drug } from "@/lib/domain/drug";
 import type { DrugCategory } from "@/lib/domain/category";
-import { filterDrugs } from "@/lib/search/filter-drugs";
 import { isVerified } from "@/lib/engine/rule/drug-evidence";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+import { Command } from "@/components/ui/command";
 import { Separator } from "@/components/ui/separator";
 import CategoryFilter from "./CategoryFilter";
-import DrugList from "./DrugList";
+import SearchFooter from "./SearchFooter";
 import SearchHeader from "./SearchHeader";
+import SearchResults from "./SearchResults";
+import { useDrugFilters } from "./use-drug-filters";
 
 interface Props {
   readonly drugs: readonly Drug[];
@@ -20,46 +22,57 @@ interface Props {
 const categoriesOf = (drugs: readonly Drug[]): readonly DrugCategory[] =>
   [...new Set(drugs.map((drug) => drug.category))].sort();
 
-/** Эм хайх, шүүх, сонгох хэсэг. */
+/**
+ * Эм хайх, шүүх, сонгох хэсэг. Алхам 2.
+ *
+ * `cmdk` дээр суусан. `shouldFilter={false}` нь САНААТАЙ: шүүлт бүхэлдээ
+ * `filterDrugs`-д үлдэнэ (латин↔кирилл дүйцүүлэлт, ангилал, баталгаажилт —
+ * бүгд тесттэй домэйн логик). cmdk-ээс авах нь ганцхан зүйл: хайлтын
+ * талбараас салалгүй ↑ ↓ Enter-ээр жагсаалтыг удирдах.
+ *
+ * `loop` — жагсаалтын төгсгөлд хүрээд эхэнд эргэнэ.
+ */
 export default function DrugSearch({ drugs, selectedIds, onToggle }: Props) {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<DrugCategory | undefined>();
-  const [verifiedOnly, setVerifiedOnly] = useState(false);
-
+  const filters = useDrugFilters(drugs);
   const categories = useMemo(() => categoriesOf(drugs), [drugs]);
   const verifiedCount = useMemo(() => drugs.filter(isVerified).length, [drugs]);
-  const visible = useMemo(
-    () => filterDrugs(drugs, { query, category, verifiedOnly }),
-    [drugs, query, category, verifiedOnly],
-  );
 
   return (
     <Card className="gap-0 overflow-hidden py-0">
-      <SearchHeader
-        query={query}
-        onQuery={setQuery}
-        verifiedOnly={verifiedOnly}
-        verifiedCount={verifiedCount}
-        onVerified={() => setVerifiedOnly((on) => !on)}
-      />
-
-      <CategoryFilter
-        categories={categories}
-        selected={category}
-        onSelect={setCategory}
-      />
-
-      <Separator />
-
-      <CardContent className="max-h-72 overflow-y-auto p-0">
-        <DrugList drugs={visible} selectedIds={selectedIds} onToggle={onToggle} />
-      </CardContent>
-
-      <Separator />
-
-      <div className="text-muted-foreground px-5 py-2 text-xs">
-        {visible.length} / {drugs.length} эм
-      </div>
+      {/*
+        `label` нь cmdk-д нуугдмал <label>-ээр орж, оролтын `aria-labelledby`
+        болно — тиймээс оролт дээр `aria-label` бичих нь ҮР ДҮНГҮЙ
+        (aria-labelledby давамгайлна). Нэрийг ЭНД өгнө.
+      */}
+      <Command
+        shouldFilter={false}
+        loop
+        label="Эмийн нэрээр хайх"
+        className="bg-transparent"
+      >
+        <SearchHeader
+          query={filters.query}
+          onQuery={filters.setQuery}
+          verifiedOnly={filters.verifiedOnly}
+          verifiedCount={verifiedCount}
+          selectedCount={selectedIds.length}
+          onVerified={filters.toggleVerified}
+        />
+        <CategoryFilter
+          categories={categories}
+          selected={filters.category}
+          onSelect={filters.setCategory}
+        />
+        <Separator />
+        <SearchResults
+          drugs={filters.visible}
+          selectedIds={selectedIds}
+          labels={filters.labels}
+          onToggle={onToggle}
+          onReset={filters.reset}
+        />
+        <SearchFooter shown={filters.visible.length} total={drugs.length} />
+      </Command>
     </Card>
   );
 }

@@ -9,15 +9,8 @@ interface Props {
   readonly onToggle: (id: string) => void;
 }
 
-/** Шүүгдсэн эмийн жагсаалт. */
+/** Шүүгдсэн эмийн жагсаалт. Хоосон тохиолдлыг DrugSearch хариуцна. */
 export default function DrugList({ drugs, selectedIds, onToggle }: Props) {
-  if (drugs.length === 0) {
-    return (
-      <p className="text-muted-foreground py-8 text-center text-sm">
-        Хайлт олдсонгүй.
-      </p>
-    );
-  }
   return (
     <>
       {drugs.map((drug) => (

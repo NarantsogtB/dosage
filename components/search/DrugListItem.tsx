@@ -1,12 +1,20 @@
 "use client";
 
-import { Check, TriangleAlert } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 import type { Drug } from "@/lib/domain/drug";
-import { CATEGORY_LABELS } from "@/lib/data/labels/category-labels";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { drugRowSummary } from "@/lib/search/drug-row-summary";
+import DrugRowIcon from "./DrugRowIcon";
+import { CommandItem } from "@/components/ui/command";
+import {
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemMedia,
+  ItemTitle,
+} from "@/components/ui/item";
 import EvidenceDot from "@/components/dosage/EvidenceDot";
 import DrugListItemIcon from "./DrugListItemIcon";
+import { rowClass, rowTitleClass } from "./drug-row-style";
 
 interface Props {
   readonly drug: Drug;
@@ -14,41 +22,46 @@ interface Props {
   readonly onToggle: (id: string) => void;
 }
 
-/** Жагсаалтын нэг мөр. Дарахад сонголт солигдоно. */
+/**
+ * Жагсаалтын нэг мөр. Дарах эсвэл Enter дарахад сонголт солигдоно.
+ *
+ * `cmdk`-ийн `CommandItem` тул хайлтын талбараас салалгүй ↑ ↓ Enter-ээр
+ * ажиллана. Өнгөний хоёр сувгийн тухай `drug-row-style.ts`-ыг үз.
+ *
+ * Тайлбар мөр нь кирилл нэрийн оронд ЗААЛТ + мг/кг (`drugRowSummary`)
+ * харуулна — Figma-гийн "Item" дүрмээр эмч мөр бүрээс шууд хэрэгтэй
+ * мэдээллээ (аль өвчинд, ямар тунгаар) 3 секундэд олно. Кирилл нэр нь
+ * хайлтын түлхүүр үг хэвээр (`keywords`), зөвхөн харагдахаа больсон.
+ */
 export default function DrugListItem({ drug, selected, onToggle }: Props) {
+  const summary = drugRowSummary(drug) ?? drug.innMn;
   return (
-    <button
-      type="button"
-      onClick={() => onToggle(drug.id)}
-      aria-pressed={selected}
-      className={cn(
-        "border-border/60 flex w-full items-center gap-3 border-b px-5 py-2.5 text-left transition-colors last:border-0",
-        selected ? "bg-primary/5" : "hover:bg-accent",
-      )}
+    <CommandItem
+      value={drug.id}
+      keywords={[drug.inn, drug.innMn]}
+      onSelect={() => onToggle(drug.id)}
+      aria-checked={selected}
+      className={rowClass(selected)}
     >
-      <DrugListItemIcon selected={selected} icon={Check} />
-      <EvidenceDot drug={drug} />
-      <span className="min-w-0 flex-1">
-        <span
-          className={cn(
-            "block truncate text-sm font-medium",
-            selected && "text-primary",
-          )}
-        >
-          {drug.inn}
-        </span>
-        <span className="text-muted-foreground block truncate text-xs">
-          {drug.innMn}
-        </span>
-      </span>
-      <DrugListItemIcon
-        selected={drug.warnings.length > 0}
-        icon={TriangleAlert}
-        className="text-warning"
-      />
-      <Badge variant="secondary" className="shrink-0">
-        {CATEGORY_LABELS[drug.category].split(" ")[0]}
-      </Badge>
-    </button>
+      <ItemMedia className="self-center">
+        <DrugRowIcon selected={selected} />
+      </ItemMedia>
+      <ItemContent className="min-w-0 gap-0">
+        <ItemTitle className={rowTitleClass(selected)}>{drug.inn}</ItemTitle>
+        <ItemDescription className="block truncate text-[13px] leading-5">
+          {summary}
+        </ItemDescription>
+      </ItemContent>
+      <ItemActions className="gap-2">
+        <EvidenceDot drug={drug} />
+        <DrugListItemIcon
+          show={drug.warnings.length > 0}
+          icon={TriangleAlert}
+          className="text-warning"
+          label={`${drug.inn}: анхааруулгатай`}
+        />
+      </ItemActions>
+      <span className="sr-only">{selected ? "сонгосон" : "сонгоогүй"}</span>
+    </CommandItem>
   );
 }
