@@ -383,6 +383,32 @@ export const SOURCES: Record<string, Source> = {
       "(known-gaps.ts-г үз).",
   },
 
+  "pch-phenobarbital-monograph": {
+    id: "pch-phenobarbital-monograph",
+    citation:
+      "Perth Children's Hospital, Child and Adolescent Health Service " +
+      "(WA Health). Medication Management Manual — Monograph: Phenobarbital.",
+    publisher: "Perth Children's Hospital (WA Health, Australia)",
+    edition: "сүүлд хянасан 2023-11, батлагдсан 2024-05, endorsed 2024-06, дараагийн review 2026-11",
+    year: 2024,
+    url: "https://www.pch.health.wa.gov.au/~/media/Files/Hospitals/PCH/General-documents/Health-professionals/MedicationMonographs/Phenobarbital.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Western Australia-ийн эрүүл мэндийн албаны албан ёсны заавар, " +
+        "үнэ төлбөргүй PDF. Тодорхой CC лиценз заагаагүй тул cite-only.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ Ерөнхий хүүхдийн (4 долоо хоногоос 18 нас хүртэл) фенобарбиталын " +
+      "уух/IV тунг заалт бүрээр нарийн зааж, эхлэх тун → аажим нэмэгдүүлэх " +
+      "→ ердийн барих тун гэсэн titration схемийг тодорхой заасан цорын " +
+      "ганц эх сурвалж. Нярайн (<4 долоо хоног) тунг тусад нь заасан " +
+      "'Neonatal Medication Protocols'-руу чиглүүлдэг тул нярайн тунг " +
+      "энд ОРУУЛААГҮЙ.",
+  },
+
   "msf-essential-drugs": {
     id: "msf-essential-drugs",
     citation:

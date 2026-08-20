@@ -76,6 +76,18 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "долоо хоног). Ганц эх сурвалж тул known-gaps.ts-д бүртгэсэн.",
     sourceId: "pch-medication-manual",
   },
+  {
+    drugId: "phenobarbital",
+    reason:
+      "Тогтмол 3–5 мг/кг/өдөр (ageMinMonths:0) → ердийн БАРИХ тун " +
+      "3–6 мг/кг/өдөр, ageMinMonths:1 (4 долоо хоног) — MSF + PCH " +
+      "Medication Management Manual-аар баталгаажив. Хоёулаа эхлэх тун " +
+      "бага (1–3 мг/кг/өдөр)-аас titration хийхийг зөвлөдөг тул " +
+      "тооцоолуур зөвхөн барих тунг харуулна, эхлэх тунг ГАРГАХГҮЙ. " +
+      "per_dose absolute cap (200мг) хассан — OD давтамжтай тул " +
+      "per_day cap-тай ижил байсан.",
+    sourceId: "msf-essential-drugs",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));
