@@ -1,0 +1,48 @@
+name: CI
+
+# Эмнэлгийн тооцоолуурт хамгийн аюултай хувилбар нь тест ЧИМЭЭГҮЙ унах
+# явдал. Доорх алхмууд хүн санахаас үл хамааран ажиллана.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Шинэ push ирвэл хуучин ажиллагааг зогсооно.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+
+      - name: Хамаарал суулгах
+        run: bun install --frozen-lockfile
+
+      # ── Хямд шалгалтууд эхэнд: эрт унавал эрт мэднэ ──────────────
+      - name: Lint (complexity 3, max-lines 160)
+        run: bun run lint
+
+      - name: Типүүд
+        run: bun run typecheck
+
+      # WCAG харьцаа. Light ба Dark хоёуланг шалгана; унавал exit 1.
+      - name: Өнгөний ялгарал
+        run: bun run contrast
+
+      # Хамгийн чухал нь: хоёр эх сурвалжийн дүрэм, engine-ийн
+      # тэнцвэр, танилцуулгын тоонууд бүгд энд шалгагдана.
+      - name: Тест
+        run: bun run test
+
+      - name: Build
+        run: bun run build
