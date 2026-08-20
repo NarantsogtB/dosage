@@ -32,6 +32,9 @@ jobs:
       - name: Lint (complexity 3, max-lines 160)
         run: bun run lint
 
+      # ⚠️ `next typegen`-ыг ЭХЛЭЭД ажиллуулна (typecheck script дотор).
+      # `LayoutProps` зэрэг типүүд .next/types-д build үед үүсдэг тул
+      # цэвэр checkout дээр tsc ганцаараа унана.
       - name: Типүүд
         run: bun run typecheck
 

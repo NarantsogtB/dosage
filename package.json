@@ -10,7 +10,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:update": "vitest run -u",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "contrast": "node scripts/contrast.mjs",
     "check": "bun run lint && bun run typecheck && bun run contrast && bun run test && bun run build"
   },
