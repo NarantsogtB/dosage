@@ -3,38 +3,135 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * ӨНГӨНИЙ ТОГТОЛЦОО
+ *
+ * Гурван суваг, гурван утга. Өнгө нь чимэглэл БИШ, мэдээлэл.
+ *   signal  (номин) — үйлдэл, идэвхтэй төлөв
+ *   alert   (улаан) — эмнэлзүйн аюул. Хэзээ ч чимэглэлээр хэрэглэхгүй.
+ *   caution (шар)   — баталгаажаагүй эх сурвалж, дээд хязгаарт хүрсэн
+ *
+ * Дэвсгэр нь номингийн өнгөт өчүүхэн хазайлттай (chroma 0.004) — цэнхэр-
+ * цагаан биш. Карт нь цэвэр цагаан тул дэвсгэрээс өргөгдөж харагдана.
+ *
+ * Бүх утгыг WCAG-аар хэмжсэн (scripts/contrast.mjs):
+ *   ink/paper 16.7 · muted/card 5.8 · white/primary 6.1 · white/alert 5.5
+ */
 :root {
-  --radius: 0.625rem;
+  --radius: 0.5rem;
 
-  --background: oklch(0.984 0.003 247.858);
-  --foreground: oklch(0.208 0.042 265.755);
+  --background: oklch(0.976 0.004 197);
+  --foreground: oklch(0.205 0.021 235);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.205 0.021 235);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.205 0.021 235);
 
-  /* Эмнэлгийн хэрэглээнд тохирсон нам гүм хөх */
-  --primary: oklch(0.424 0.153 265.638);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  /* Номин — эмнэлгийн хэрэгслийн өнгө. Хар хөх БИШ. */
+  --primary: oklch(0.48 0.098 207);
+  --primary-foreground: oklch(0.995 0.002 197);
 
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.279 0.041 260.031);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.279 0.041 260.031);
+  --secondary: oklch(0.965 0.008 205);
+  --secondary-foreground: oklch(0.32 0.03 225);
+  --muted: oklch(0.965 0.008 205);
+  --muted-foreground: oklch(0.505 0.028 225);
+  --accent: oklch(0.965 0.014 200);
+  --accent-foreground: oklch(0.42 0.1 207);
 
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.545 0.196 28);
+  --destructive-foreground: oklch(0.995 0.002 197);
+  --destructive-muted: oklch(0.968 0.018 25);
 
-  /* Анхааруулга — эмнэлзүйн аюулгүй байдалд зориулав */
-  --warning: oklch(0.554 0.135 66.442);
-  --warning-foreground: oklch(0.984 0.003 247.858);
-  --warning-muted: oklch(0.973 0.043 92.5);
+  /*
+   * Анхааруулга. Текстэд --warning-text, дэвсгэрт --warning-muted.
+   * --warning-foreground нь ХАР: цагаан бичвэр шар дээр 3.74:1 болж
+   * AA-д унана, хар бэх 4.78:1 өгнө (scripts/contrast.mjs).
+   */
+  --warning: oklch(0.62 0.135 72);
+  --warning-text: oklch(0.5 0.115 68);
+  --warning-foreground: oklch(0.205 0.021 235);
+  --warning-muted: oklch(0.968 0.032 88);
 
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.424 0.153 265.638);
+  --success: oklch(0.55 0.13 158);
+  --success-text: oklch(0.46 0.11 158);
+  --success-muted: oklch(0.965 0.035 160);
+
+  /*
+   * --border нь чимэглэлийн шугам (карт, тусгаарлагч) — WCAG 1.4.11
+   * хамаарахгүй тул цайвар хэвээр.
+   *
+   * --input бол ӨӨР. Энэ нь оролтын талбайг таних цорын ганц заагч
+   * бөгөөд WCAG 2.2 SC 1.4.11 дор хаяж 3:1 шаардана. Хуучин утга
+   * (#D5DEDF) цагаан картан дээр 1.36:1 буюу бараг үл ялиг байв —
+   * гэрэл муутай өрөө, ор дэргэд жингийн талбарыг олоход бодит саад.
+   * Одоо 3.32:1 (карт), 3.10:1 (дэвсгэр). Талбар илт бараан харагдана; энэ бол алдаа биш.
+   */
+  --border: oklch(0.912 0.008 205);
+  --input: oklch(0.64 0.018 207);
+  --ring: oklch(0.55 0.11 207);
+
+  /*
+   * Нотолгооны түвшний суваг. Эрэмбэ нь ханалтаар илэрнэ: батлагдсан нь
+   * тод, баталгаажаагүй нь шар. Өнгө нь ЗӨВХӨН хамт бичсэн шошготой
+   * хослон утга илэрхийлнэ — өнгө ялгах чадваргүй эмчид ч ажиллана.
+   */
+  --evidence-a: oklch(0.55 0.13 158);
+  --evidence-b: oklch(0.48 0.098 207);
+  --evidence-c: oklch(0.6 0.095 232);
+  --evidence-d: oklch(0.6 0.012 240);
+  --evidence-e: oklch(0.62 0.135 72);
+}
+
+/*
+ * ШӨНИЙН ЭЭЛЖ
+ *
+ * Утга бүрийг картан дээр хэмжсэн (доод тал нь 5.8:1):
+ *   foreground 14.6 · muted-foreground 7.12 · primary 7.47 · destructive 5.81
+ *   warning-text 10.1 · success-text 8.69 · evidence A–E 6.23–8.80
+ *
+ * Семантик нэр өөрчлөгдөөгүй тул компонент бүр өөрчлөлтгүйгээр ажиллана.
+ */
+.dark {
+  --background: oklch(0.19 0.014 220);
+  --foreground: oklch(0.955 0.006 200);
+  --card: oklch(0.235 0.016 222);
+  --card-foreground: oklch(0.955 0.006 200);
+  --popover: oklch(0.255 0.016 222);
+  --popover-foreground: oklch(0.955 0.006 200);
+
+  --primary: oklch(0.74 0.09 200);
+  --primary-foreground: oklch(0.18 0.02 220);
+
+  --secondary: oklch(0.3 0.018 215);
+  --secondary-foreground: oklch(0.9 0.008 210);
+  --muted: oklch(0.3 0.018 215);
+  --muted-foreground: oklch(0.735 0.02 215);
+  --accent: oklch(0.31 0.032 205);
+  --accent-foreground: oklch(0.82 0.075 205);
+
+  --destructive: oklch(0.7 0.155 25);
+  --destructive-foreground: oklch(0.17 0.02 25);
+  --destructive-muted: oklch(0.31 0.055 25);
+
+  --warning: oklch(0.8 0.12 80);
+  --warning-text: oklch(0.84 0.11 82);
+  --warning-foreground: oklch(0.18 0.02 80);
+  --warning-muted: oklch(0.32 0.05 80);
+
+  --success: oklch(0.74 0.12 158);
+  --success-text: oklch(0.78 0.11 158);
+  --success-muted: oklch(0.3 0.05 160);
+
+  --border: oklch(0.345 0.018 220);
+  /* Картан дээр 3.16:1 — light горимтой ижил дүрэм. */
+  --input: oklch(0.53 0.02 220);
+  --ring: oklch(0.72 0.1 205);
+
+  --evidence-a: oklch(0.74 0.12 158);
+  --evidence-b: oklch(0.74 0.09 200);
+  --evidence-c: oklch(0.75 0.085 232);
+  --evidence-d: oklch(0.7 0.012 240);
+  --evidence-e: oklch(0.8 0.12 80);
 }
 
 @theme inline {
@@ -54,20 +151,29 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-muted: var(--destructive-muted);
   --color-warning: var(--warning);
+  --color-warning-text: var(--warning-text);
   --color-warning-foreground: var(--warning-foreground);
   --color-warning-muted: var(--warning-muted);
+  --color-success: var(--success);
+  --color-success-text: var(--success-text);
+  --color-success-muted: var(--success-muted);
+  --color-evidence-a: var(--evidence-a);
+  --color-evidence-b: var(--evidence-b);
+  --color-evidence-c: var(--evidence-c);
+  --color-evidence-d: var(--evidence-d);
+  --color-evidence-e: var(--evidence-e);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 1px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
 }
 
 @layer base {
@@ -77,6 +183,23 @@
   body {
     @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
+  }
+  /*
+   * Эмнэлзүйн ач холбогдол бүхий БҮХ тоог өргөнөөр нь тэгшилнэ.
+   * Гоо зүйн биш, аюулгүй байдлын шийдэл: дөрвөн эмийн тунг дээр
+   * дооргүй жагсаахад 2.5 ба 25 хоёр ӨӨР УРТТАЙ харагдана.
+   *
+   * Өмнө нь үүнийг Mono бичиглэлээр хийдэг байсан. Mono нь зорилгодоо
+   * хүрдэг ч бүтээгдэхүүнийг терминал шиг харагдуулдаг байв. Одоо
+   * үндсэн бичиглэлийн `tabular-nums` фигурыг ашиглаж байна — өргөн нь
+   * адилхан тогтмол, гэхдээ эмчийн хэрэгсэл шиг харагдана.
+   *
+   * `lining-nums` нь тоог үсгийн өндөртэй жигд болгоно (Source Sans-ийн
+   * анхдагч аль хэдийн lining боловч ирээдүйд фонт солигдоход хамгаална).
+   */
+  .num {
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.005em;
   }
 }
 
