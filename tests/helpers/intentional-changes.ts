@@ -67,6 +67,15 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "энэ санаатай, учир нь хуучин 5мг/кг нь баталгаажаагүй тоо байсан.",
     sourceId: "msf-essential-drugs",
   },
+  {
+    drugId: "diazepam",
+    reason:
+      "Уух диазепамын 'ерөнхий' дүрмийг Perth Children's Hospital-ийн " +
+      "'Muscle spasms' заалтаар шинэчлэв: 0.1–0.3 мг/кг муж → тогтмол " +
+      "0.1 мг/кг, өдрийн дээд 30мг → 15мг, ageMinMonths 6 → 1 (4 " +
+      "долоо хоног). Ганц эх сурвалж тул known-gaps.ts-д бүртгэсэн.",
+    sourceId: "pch-medication-manual",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));

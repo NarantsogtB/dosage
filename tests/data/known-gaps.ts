@@ -24,6 +24,17 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     gap: "Ганц эх сурвалж (RCH Melbourne). Хоёр дахь нь дутуу.",
     next: "Starship NZ-ийн астмын зааврыг Chrome-оор нээж дексаметазоны тунг шалгах.",
   },
+  {
+    ruleId: "diazepam-general",
+    gap:
+      "Ганц эх сурвалж (Perth Children's Hospital Medication Management " +
+      "Manual). MSF зөвхөн насанд хүрэгчийн уух диазепамын тунтай; RCH-ийн " +
+      "premedication заавар midazolam-ыг илүүд үздэг тул хүүхдийн уух " +
+      "диазепамын тунг өөр эх сурвалжаас олоход хүндрэлтэй байна.",
+    next:
+      "AMH Children's Dosing Companion эсвэл BNF for Children (лицензтэй " +
+      "лавлах) -аас 'muscle spasm' заалтын хүүхдийн тунг олж баталгаажуулах.",
+  },
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));

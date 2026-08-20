@@ -358,6 +358,31 @@ export const SOURCES: Record<string, Source> = {
       "хоёр дахь баталгаажуулалт болно.",
   },
 
+  "pch-medication-manual": {
+    id: "pch-medication-manual",
+    citation:
+      "Perth Children's Hospital, Child and Adolescent Health Service " +
+      "(WA Health). Medication Management Manual — Monograph: Diazepam.",
+    publisher: "Perth Children's Hospital (WA Health, Australia)",
+    edition: "сүүлд хянасан 2026-01, батлагдсан 2026-03, дараагийн review 2029-02",
+    year: 2026,
+    url: "https://pch.health.wa.gov.au/~/media/Files/Hospitals/PCH/General-documents/Health-professionals/MedicationMonographs/Diazepam.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Western Australia-ийн эрүүл мэндийн албаны албан ёсны заавар, " +
+        "үнэ төлбөргүй PDF. Тодорхой CC лиценз заагаагүй тул cite-only.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ Австралийн хүүхдийн эмнэлгийн эмийн зааврын дэлгэрэнгүй " +
+      "monograph — заалт тус бүрээр (булчингийн таталт, түгшүүр, " +
+      "premedication, эпилепсийн статус) ялгаатай mg/kg тунтай. " +
+      "⚠️ Одоогоор энэ эм дээр ганц эх сурвалж — хоёр дахь нь дутуу " +
+      "(known-gaps.ts-г үз).",
+  },
+
   "msf-essential-drugs": {
     id: "msf-essential-drugs",
     citation:
