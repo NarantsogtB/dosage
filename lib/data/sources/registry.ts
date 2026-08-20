@@ -433,6 +433,34 @@ export const SOURCES: Record<string, Source> = {
       "энд ОРУУЛААГҮЙ.",
   },
 
+  "qcg-neonatal-omeprazole": {
+    id: "qcg-neonatal-omeprazole",
+    citation:
+      "Queensland Clinical Guidelines. Neonatal monograph: Omeprazole. " +
+      "ID NMedQ23.105-V1-R28. Queensland Health.",
+    publisher: "Queensland Health (Clinical Excellence Queensland)",
+    edition: "V1 (хүчинтэй 2023-06-13, дараагийн review 2028-06-13)",
+    year: 2023,
+    url: "https://www.health.qld.gov.au/__data/assets/pdf_file/0027/1225485/nmq-omeprazole.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Queensland Health-ийн албан ёсны эмнэлзүйн заавар, үнэ төлбөргүй " +
+        "PDF. Тодорхой CC лиценз заагаагүй тул cite-only гэж үзэв — " +
+        "хүснэгт хуулахгүй, тунгийн утгыг гаргаж авч ишлэнэ.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ НЯРАЙН тунгийн монограф — эхлэх 1 мг/кг/өдөр, 7–14 хоногийн дараа " +
+      "хариу үнэлж, шаардлагатай бол 0.5 мг/кг/өдрөөр нэмэгдүүлж, дээд " +
+      "2.5 мг/кг/өдөр хүртэл titration хийдэг. MSF-ийн <5кг бүлгийн " +
+      "0.7–1.4 мг/кг (дээд 2.8 мг/кг)-тэй хэмжээгээрээ нийцнэ — жижиг " +
+      "нярай/өвчтөнд хоёр дахь бие даасан баталгаажуулалт болно. " +
+      "⚠️ ≥5кг жинтэй хүүхдийн тогтмол мг тунг (5/10/20мг) баталгаажуулахгүй " +
+      "— зөвхөн нярайн mg/kg titration схемийг л хамарна.",
+  },
+
   "msf-essential-drugs": {
     id: "msf-essential-drugs",
     citation:

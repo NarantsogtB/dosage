@@ -35,6 +35,16 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "AMH Children's Dosing Companion эсвэл BNF for Children (лицензтэй " +
       "лавлах) -аас 'muscle spasm' заалтын хүүхдийн тунг олж баталгаажуулах.",
   },
+  {
+    ruleId: "omeprazole-weightband",
+    gap:
+      "Ганц эх сурвалж (MSF). ≥5кг жинтэй хүүхдийн тогтмол мг тунг " +
+      "(5–10кг→5мг, 10–20кг→10мг, ≥20кг→20мг) хоёр дахь эх сурвалжтай " +
+      "хараахан баталгаажуулаагүй.",
+    next:
+      "BNF for Children эсвэл AMH Children's Dosing Companion (лицензтэй " +
+      "лавлах) -аас ижил жингийн мужийн тунг олж баталгаажуулах.",
+  },
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));

@@ -99,6 +99,17 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "хэрэглэв). route 'oral_iv' → 'oral' (IV-д эх сурвалж олдоогүй).",
     sourceId: "msf-essential-drugs",
   },
+  {
+    drugId: "omeprazole",
+    reason:
+      "Ганц дүрэм (0.7–3.5 мг/кг/өдөр, ageMinMonths:12) → жингийн мужаар " +
+      "хоёр дүрэг болгов: <5кг (per_kg_per_day 0.7–1.4, дээд 2.8 мг/кг) " +
+      "MSF + QCG Neonatal monograph-аар баталгаажив; ≥5кг (weight_band " +
+      "5/10/20мг) MSF-ээр ганц эх сурвалжтай, known-gaps.ts-д бүртгэв. " +
+      "ageMinMonths 12→0 (MSF нярайг ч хамардаг). caps өөрчлөгдсөн — " +
+      "absolute 40мг → weight_band-д cap алга, infant-д per_kg cap 2.8.",
+    sourceId: "msf-essential-drugs",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));
