@@ -9,4 +9,8 @@ export const DO_NOT_COPY = [
   "UpToDate / Lexicomp — Wolters Kluwer, захиалгат",
   "eTG complete (Australia) — захиалгат",
   "Micromedex — Merative, захиалгат",
+  "dokumen.pub, libgen, Sci-Hub зэрэг shadow library-ээс татсан ном — " +
+    "эх хэвлэлийн зохиогчийн эрх хэвээр. Springer-ийн Handbook of Burns-ийг " +
+    "тэндээс авч ашиглахгүй; оронд нь түүнийг иш татсан хууль ёсны " +
+    "эх сурвалжаар (mn-burns-2015) дамжуулан ишлэнэ.",
 ] as const;

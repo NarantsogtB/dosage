@@ -23,6 +23,11 @@ export interface DosageOutcome {
   readonly amounts: readonly FormulationAmount[];
   /** Дээд хязгаарт хүрсэн эсэх. */
   readonly cappedAtMax: boolean;
+  /**
+   * Идэвхтэй дээд хязгаар, НЭГ УДААГИЙН тунгийн нэгжээр (мг).
+   * Хязгааргүй бол Infinity — харуулахдаа Number.isFinite-ээр шалгана.
+   */
+  readonly limitMg: number;
   readonly warnings: readonly Warning[];
   readonly trace: readonly TraceStep[];
   readonly sources: readonly SourceRef[];

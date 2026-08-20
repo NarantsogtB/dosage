@@ -44,7 +44,11 @@ const eslintConfig = defineConfig([
     // үйлчлэхгүй. `bunx shadcn add …` дахин бичихэд зөрчил гарахгүй.
     name: "dosage/shadcn-ui",
     files: ["components/ui/**/*.tsx"],
-    rules: { "max-lines": "off", "max-lines-per-function": "off" },
+    rules: {
+      "max-lines": "off",
+      "max-lines-per-function": "off",
+      complexity: "off",
+    },
   },
 
   {

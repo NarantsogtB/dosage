@@ -65,3 +65,24 @@ describe("calculateDosage", () => {
     expect(out.type).toBe("ineligible");
   });
 });
+
+describe("calculateDosage — limitMg", () => {
+  it("идэвхтэй хязгаарыг (limitMg) буцаана", () => {
+    const out = calculateDosage(amoxicillin, { weightKg: 10, ageMonths: 24 });
+    if (out.type !== "dosage") throw new Error("тооцоолол амжилтгүй");
+    // Нэг удаагийн тунгийн хязгаар 1000 мг (caps[0].maxMg), 10кг × 40мг/кг = 400 мг,
+    // 400 < 1000 тул тасалгаагүй.
+    expect(out.data.limitMg).toBe(1000);
+    expect(out.data.cappedAtMax).toBe(false);
+  });
+
+  it("хязгааргүй дүрэмд limitMg Infinity байна", () => {
+    const noCapDrug: Drug = {
+      ...amoxicillin,
+      rules: [{ ...amoxicillin.rules[0], caps: [] }],
+    };
+    const out = calculateDosage(noCapDrug, { weightKg: 10, ageMonths: 24 });
+    if (out.type !== "dosage") throw new Error("тооцоолол амжилтгүй");
+    expect(Number.isFinite(out.data.limitMg)).toBe(false);
+  });
+});

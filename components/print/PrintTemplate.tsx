@@ -17,7 +17,7 @@ const NOTE =
 export default function PrintTemplate({ drugs, results, patient }: Props) {
   if (drugs.length === 0) return null;
   return (
-    <section className="hidden print:block p-10">
+    <section className="hidden print:block">
       <PrintHeader patient={patient} />
       {drugs.map((drug) => (
         <PrintRow key={drug.id} drug={drug} result={results.get(drug.id)} />

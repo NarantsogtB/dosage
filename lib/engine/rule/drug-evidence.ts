@@ -2,7 +2,7 @@ import type { Drug } from "../../domain/drug";
 import type { EvidenceLevel } from "../../domain/source";
 
 /** Хамгийн хүчтэйгээс сул руу. Индекс бага нь илүү хүчтэй. */
-const RANK: readonly EvidenceLevel[] = [
+export const EVIDENCE_ORDER: readonly EvidenceLevel[] = [
   "A_mn_approved",
   "B_who",
   "C_international",
@@ -10,7 +10,7 @@ const RANK: readonly EvidenceLevel[] = [
   "E_unverified",
 ];
 
-const rankOf = (level: EvidenceLevel): number => RANK.indexOf(level);
+const rankOf = (level: EvidenceLevel): number => EVIDENCE_ORDER.indexOf(level);
 
 const strongest = (a: EvidenceLevel, b: EvidenceLevel): EvidenceLevel =>
   rankOf(a) <= rankOf(b) ? a : b;

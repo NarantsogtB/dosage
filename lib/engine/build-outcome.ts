@@ -32,6 +32,7 @@ export const buildOutcome = (input: OutcomeInput): DosageOutcome => {
     dosesPerDay,
     amounts: calculateAmounts(drug.formulations, perDose),
     cappedAtMax: capped.cappedAtMax,
+    limitMg: capped.limitMg,
     warnings: drug.warnings,
     trace: buildTrace({ rule, patient, capped, perDose, perDay, dosesPerDay }),
     sources: [...drug.sources, ...rule.sources],
