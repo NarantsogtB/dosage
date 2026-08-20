@@ -17,13 +17,13 @@ export default function HeroCopy() {
       <h1 className="mt-3 text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl">
         Жин оруулна.
         <br />
-        Тун гарна.
+        Тунг тооцоолно.
         <br />
-        <span className="text-primary">Эх сурвалж нь хамт.</span>
+        <span className="text-primary">Эх сурвалжтай</span>
       </h1>
       <p className="text-muted-foreground mt-4 max-w-md leading-relaxed">
         Монголын эмч, эмнэлгийн мэргэжилтэнд зориулсан хүүхдийн эмийн тунгийн
-        тооцоолуур. Монгол хэл дээр, бүртгэлгүй, үнэгүй.
+        тооцоолуур. Монгол хэл дээр, үнэгүй.
       </p>
       <div className="mt-6 flex flex-wrap gap-2.5">
         <Button asChild size="lg">
@@ -35,7 +35,10 @@ export default function HeroCopy() {
       </div>
       <p className="text-muted-foreground mt-5 text-xs">
         <span className="num text-foreground font-medium">{DRUG_COUNT}</span> эм
-        · <span className="num text-foreground font-medium">{VERIFIED_COUNT}</span>{" "}
+        ·{" "}
+        <span className="num text-foreground font-medium">
+          {VERIFIED_COUNT}
+        </span>{" "}
         нь эх сурвалж заасан
       </p>
     </div>

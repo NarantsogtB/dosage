@@ -10,11 +10,11 @@ export default function LandingFooter() {
     <footer className="py-14">
       <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
         <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-          Жингээ оруулаад эхлээрэй
+          Туршаад үз
         </h2>
         <p className="text-muted-foreground mx-auto mt-2 max-w-md text-sm leading-relaxed">
-          Бүртгэл шаардлагагүй. Утсан дээр ажиллана. Тооцоолол бүрийн ард
-          эх сурвалж харагдана.
+          Бүртгэл шаардлагагүй. Утсан дээр ажиллана. Тооцоолол бүрийн ард эх
+          сурвалж харагдана.
         </p>
         <div className="mt-6 flex justify-center">
           <Button asChild size="lg">

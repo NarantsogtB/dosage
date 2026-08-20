@@ -21,8 +21,8 @@ export default function Home() {
 
       <Section
         eyebrow="Хэрэгслүүд"
-        title="Одоо ажиллаж байгаа тооцоолуурууд"
-        lede="Тус бүр нь тусдаа хаягтай — хуваалцах, хавчуурга хийх, хэвлэх бүгд ажиллана."
+        title="Одоо ажиллаж байгаа тооцоолол"
+        lede="Хуваалцах, хэвлэж авах боломжтой."
         raised
       >
         <ToolGrid />
@@ -30,17 +30,13 @@ export default function Home() {
 
       <Section
         eyebrow="Эх сурвалж"
-        title="Тун бүр хаанаас гарсныг заана"
+        title="Тун бүр эх сурвалжтай"
         lede="Эм тус бүрд эх сурвалжийн түвшин харагдана. Энэ нь эх сурвалжийн чанарыг заана — эмнэлзүйн хяналтыг биш."
       >
         <EvidenceLadder />
       </Section>
 
-      <Section
-        eyebrow="Хязгаарлалт"
-        title="Энэ хэрэгсэл юу хийхгүй вэ"
-        raised
-      >
+      <Section eyebrow="Хязгаарлалт" title="Энэ хэрэгсэл юу хийхгүй вэ" raised>
         <SafetyPoints />
       </Section>
 
