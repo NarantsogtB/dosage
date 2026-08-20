@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/nav/SiteHeader";
@@ -65,6 +65,20 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   formatDetection: { telephone: false },
+};
+
+/**
+ * Хөтчийн UI-ийн өнгө (Android Chrome-ийн хаягийн мөр, iOS PWA).
+ *
+ * Номин БИШ, толгойн дэвсгэрийн өнгө: хаягийн мөр толгойтойгоо
+ * үргэлжилж харагдана. Гэрэл, харанхуй хоёрт өөр утга — эсрэг
+ * тохиолдолд харанхуй горимд цагаан судал гялсхийнэ.
+ */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#162024" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

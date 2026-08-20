@@ -1,16 +1,23 @@
 import Link from "next/link";
 import CalculatorNav from "./CalculatorNav";
+import Logo from "@/components/brand/Logo";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 
 /**
  * Сайтын толгой + тооцоолуурын таб. Бүх хуудсанд нийтлэг.
  *
- * Тэмдэг нь домэйн нэр өөрөө. Стетоскопын дүрсийг АВСАН: эмнэлгийн
- * клипарт нь энэ бүтээгдэхүүний тухай юу ч хэлэхгүй. Домэйн нэр
- * өөрөө хамгийн богино тайлбар.
+ * Өмнө нь энд зөвхөн домэйн нэр байсан: стетоскопын дүрсийг АВСАН,
+ * учир нь ерөнхий эмнэлгийн клипарт энэ бүтээгдэхүүний тухай юу ч
+ * хэлэхгүй байв. Тэр шийдвэр хүчинтэй хэвээр.
  *
- * `.num` энд үлдсэн нь фонт солихын тулд БИШ — tabular фигурууд нь
- * "dosage.mn"-ийн бичиглэлийг бүх хуудсанд яг ижил өргөнтэй байлгана.
+ * Одоо тэмдэг эргэж ирсэн шалтгаан өөр: favicon, PWA, апп дүрс нь
+ * ЯМАРЧ ТОХИОЛДОЛД тэмдэг шаарддаг — таб дээр "dosage.mn" гэсэн текст
+ * багтахгүй. Тиймээс тэмдэг байх ёстой бол нэг л тэмдэг байх нь зүйтэй:
+ * толгой дээрх нь favicon-той яг ижил зураг (`components/brand/BrandMark`).
+ * Энэ нь клипарт биш — хэмжээсийн зураастай дусал, өөрөөр хэлбэл
+ * "хэмжсэн тун" гэсэн санаа.
+ *
+ * Бичиглэл, өнгө, `.num`-ийн шалтгааныг `components/brand/Logo`-оос үз.
  */
 export default function SiteHeader() {
   return (
@@ -18,9 +25,10 @@ export default function SiteHeader() {
       <div className="mx-auto flex max-w-4xl items-center gap-3 px-4 py-1.5 sm:px-6">
         <Link
           href="/"
-          className="num focus-visible:ring-ring rounded-sm text-lg font-semibold tracking-tight focus-visible:ring-2 focus-visible:outline-none"
+          aria-label="dosage.mn — нүүр хуудас"
+          className="focus-visible:ring-ring rounded-sm focus-visible:ring-2 focus-visible:outline-none"
         >
-          dosage<span className="text-primary">.mn</span>
+          <Logo />
         </Link>
         <p className="text-muted-foreground hidden truncate text-xs sm:block">
           Монгол эмчийн эмнэлзүйн тооцоолуур
