@@ -56,6 +56,17 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "болсон тул тоон утга харьцуулалт өөрчлөгдөнө.",
     sourceId: "msf-essential-drugs",
   },
+  {
+    drugId: "gentamicin",
+    reason:
+      "Тогтмол 5 мг/кг (ageMinMonths:0) → муж 4.5–7.5 мг/кг, " +
+      "ageMinMonths:1 (MSF + CHQ Antibiocard-аар >1 сартай хүүхдэд " +
+      "баталгаажсан). Нярайн (<1 сар) тунг архитектур ба эх сурвалжийн " +
+      "хязгаарлалтаас болж ОРУУЛААГҮЙ тул <1 сартай өвчтөнд өмнө нь " +
+      "буруу тогтмол 5мг/кг гарч байсан бол одоо 'дүрэм алга' болно — " +
+      "энэ санаатай, учир нь хуучин 5мг/кг нь баталгаажаагүй тоо байсан.",
+    sourceId: "msf-essential-drugs",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));
