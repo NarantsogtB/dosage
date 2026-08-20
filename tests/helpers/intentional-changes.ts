@@ -46,6 +46,16 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "гарсан бөгөөд MSF-ийн 10 мг/кг-ийг дагасан тул doseMax багасна.",
     sourceId: "rch-melbourne-cpg",
   },
+  {
+    drugId: "metronidazole",
+    reason:
+      "Ганц 'ерөнхий' 30–50 мг/кг/өдөр (per_kg_per_day) дүрмийг MSF + CHQ " +
+      "Antibiocard-д тулгуурлан ЗААЛТААР 2 дүрэг болгов: анаэроб халдвар " +
+      "(7.5–10 мг/кг/тун, tds) ба Giardia (30 мг/кг/тун, өдөрт 1 удаа, " +
+      "3 хоног). basis-ийн төрөл нь per_kg_per_day → per_kg_per_dose " +
+      "болсон тул тоон утга харьцуулалт өөрчлөгдөнө.",
+    sourceId: "msf-essential-drugs",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));

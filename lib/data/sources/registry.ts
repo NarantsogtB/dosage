@@ -331,6 +331,33 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn: "RCH-тэй хамт хоёр дахь бие даасан баталгаажуулалт болно.",
   },
 
+  "chq-antibiocard": {
+    id: "chq-antibiocard",
+    citation:
+      "Children's Health Queensland Hospital and Health Service. " +
+      "Paediatric Antibiocard: Empirical Antibiotic Guidelines. " +
+      "CHQ-GDL-01202, V12.0.",
+    publisher: "Children's Health Queensland (Queensland Health)",
+    edition: "V12.0 (батлагдсан 2026-06-23, хүчинтэй 2026-07-30 — 2031 хүртэл)",
+    year: 2026,
+    url: "https://www.childrens.health.qld.gov.au/__data/assets/pdf_file/0037/176878/Antibiocard.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Queensland Health-ийн албан ёсны эмнэлзүйн заавар, үнэ төлбөргүй " +
+        "PDF. Тодорхой CC лиценз заагаагүй тул cite-only гэж үзэв — " +
+        "хүснэгт хуулахгүй, тунгийн утгыг гаргаж авч ишлэнэ.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ Австралийн муж улсын хүүхдийн эмнэлгийн сүлжээний эмпирик " +
+      "антибиотикийн заавар — жил бүр шинэчлэгддэг, өвчлөлөөр " +
+      "индексэлсэн, mg/kg тунгаа тодорхой заасан. RCH-тэй ижил зэрэглэлийн " +
+      "Австралийн эх сурвалж боловч ӨӨР байгууллага тул бие даасан " +
+      "хоёр дахь баталгаажуулалт болно.",
+  },
+
   "msf-essential-drugs": {
     id: "msf-essential-drugs",
     citation:
