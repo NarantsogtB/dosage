@@ -8,11 +8,14 @@ import BrandMark from "./BrandMark";
  *
  * `.mn` нь номин өнгөтэй: домэйныг нэрнээс ялгаж, монгол бүтээгдэхүүн
  * гэдгийг чимэглэлгүйгээр хэлнэ.
+ *
+ * BrandMark одоо `currentColor` авахгүй (өөрийн teal+цагаан өнгөтэй) тул
+ * энд зөвхөн хэмжээг (`size`) удирдана, өнгийг БИШ.
  */
 export default function Logo() {
   return (
     <span className="flex items-center gap-2">
-      <BrandMark className="text-primary size-[1.35rem] shrink-0" />
+      <BrandMark className="size-[1.35rem] shrink-0" />
       <span className="num text-lg leading-none font-semibold tracking-tight">
         dosage<span className="text-primary">.mn</span>
       </span>
