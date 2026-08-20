@@ -1,43 +1,81 @@
 "use client";
 
 import { useId } from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field, FieldLabel } from "@/components/ui/field";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+  InputGroupText,
+} from "@/components/ui/input-group";
+import FieldNote, { noteKindOf, shownError } from "./FieldNote";
 
 interface Props {
   readonly label: string;
   readonly suffix: string;
+  readonly step: string;
   readonly value: string;
   readonly onChange: (value: string) => void;
   readonly invalid?: boolean;
+  /** Талбайн ДООР улаанаар. Зөвхөн `invalid` үед харагдана. */
+  readonly error?: string;
+  /** Талбайн ДООР саарлаар. Алдаа гарахад түр нуугдана. */
+  readonly description?: React.ReactNode;
   readonly placeholder?: string;
-  readonly step?: string;
 }
 
-/** Нэгжийн тэмдэглэгээтэй тоон оролт. */
+/**
+ * Нэгжийн дагавартай тоон оролт — Figma "Field" (node 11:94).
+ *
+ * shadcn-ийн `field` + `input-group` дээр суусан. Дөрвөн шалтгаан:
+ *
+ * 1. Дагаварыг `absolute` span-аар биш, `InputGroupAddon`-оор тавьсан тул
+ *    урт тоо (жишээ нь 105.5) дагаварын доогуур ОРОХГҮЙ — flex мөр өөрөө
+ *    зай хуваарилна.
+ * 2. Дагавар дээр дарахад талбар фокус авна — хуруугаараа "кг" рүү оносон
+ *    эмчид ажиллана.
+ * 3. Алдаа/тайлбарыг `aria-describedby`-аар холбоно.
+ * 4. Утга нь Numeric/L (22/28 semibold) — Figma-гийн "Field" яг үүнийг
+ *    заасан: bedside-д хол зайнаас, гэрэл муутайд ч тоог унших ёстой.
+ *    `input-group.tsx`-ийн 56px өндөр нь мөн энэ л зорилготой.
+ *
+ * Шошго placeholder БИШ: `FieldLabel` үргэлж харагдана.
+ */
 export default function NumberField(props: Props) {
-  const { label, suffix, value, onChange, invalid, placeholder, step } = props;
   const id = useId();
+  const error = shownError(props.invalid, props.error);
+  const kind = noteKindOf(error, props.description);
+  const noteId = kind === "none" ? undefined : `${id}-note`;
+
   return (
-    <div className="space-y-1.5">
-      <Label htmlFor={id}>{label}</Label>
-      <div className="relative">
-        <Input
+    <Field data-invalid={props.invalid}>
+      <FieldLabel htmlFor={id}>{props.label}</FieldLabel>
+      <InputGroup>
+        <InputGroupInput
           id={id}
           type="number"
           inputMode="decimal"
           min="0"
-          step={step ?? "1"}
-          placeholder={placeholder}
-          value={value}
-          aria-invalid={invalid}
-          onChange={(event) => onChange(event.target.value)}
-          className="pr-12 tabular-nums"
+          step={props.step}
+          placeholder={props.placeholder}
+          value={props.value}
+          aria-invalid={props.invalid}
+          aria-describedby={noteId}
+          onChange={(event) => props.onChange(event.target.value)}
+          className="num text-[22px] leading-7 font-semibold tracking-[-0.006em] md:text-[22px]"
         />
-        <span className="text-muted-foreground pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm">
-          {suffix}
-        </span>
-      </div>
-    </div>
+        <InputGroupAddon align="inline-end">
+          <InputGroupText className="text-xs font-medium tracking-wider">
+            {props.suffix}
+          </InputGroupText>
+        </InputGroupAddon>
+      </InputGroup>
+      <FieldNote
+        kind={kind}
+        id={noteId}
+        error={error}
+        description={props.description}
+      />
+    </Field>
   );
 }

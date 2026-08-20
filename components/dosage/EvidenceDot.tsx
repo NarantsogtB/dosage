@@ -1,30 +1,34 @@
 import type { Drug } from "@/lib/domain/drug";
-import type { EvidenceLevel } from "@/lib/domain/source";
 import { EVIDENCE_LABELS } from "@/lib/domain/source";
 import { drugEvidence } from "@/lib/engine/rule/drug-evidence";
 import { cn } from "@/lib/utils";
-
-const TONES: Record<EvidenceLevel, string> = {
-  A_mn_approved: "bg-emerald-500",
-  B_who: "bg-primary",
-  C_international: "bg-sky-400",
-  D_label_only: "bg-slate-400",
-  E_unverified: "bg-warning/50",
-};
+import { EVIDENCE_LETTERS, EVIDENCE_TONES } from "./evidence-tone";
 
 /**
- * Нотолгооны түвшний жижиг цэг.
+ * Нотолгооны түвшний цэг + үсэг.
  *
  * Эмчид СОНГОХООС ӨМНӨ аль эм эх сурвалжтайг харуулна — карт нээж
- * байж мэдэх нь оройтсон.
+ * байж мэдэх нь оройтсон. Figma-гийн "Evidence badge" дүрмээр цэг
+ * ХЭЗЭЭ Ч дангаараа биш, үсэгтэйгээ хамт бичигдэнэ.
  */
 export default function EvidenceDot({ drug }: { readonly drug: Drug }) {
   const level = drugEvidence(drug);
   return (
     <span
-      title={EVIDENCE_LABELS[level]}
+      role="img"
       aria-label={EVIDENCE_LABELS[level]}
-      className={cn("size-2 shrink-0 rounded-full", TONES[level])}
-    />
+      className="inline-flex shrink-0 items-center gap-1.5"
+    >
+      <span
+        aria-hidden
+        className={cn("size-2 rounded-full", EVIDENCE_TONES[level].dot)}
+      />
+      <span
+        aria-hidden
+        className="text-muted-foreground text-xs font-medium tracking-[0.04em]"
+      >
+        {EVIDENCE_LETTERS[level]}
+      </span>
+    </span>
   );
 }

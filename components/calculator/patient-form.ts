@@ -1,5 +1,6 @@
 import type { Patient } from "@/lib/domain/patient";
 import { MAX_WEIGHT_KG, MIN_WEIGHT_KG } from "@/lib/engine/eligibility/limits";
+import type { InputStatus } from "./blocker";
 
 /** Хэлбэрийн түүхий утга. Хоосон байж болно. */
 export interface PatientForm {
@@ -26,6 +27,33 @@ export const isWeightInvalid = (form: PatientForm): boolean => {
   return weight < MIN_WEIGHT_KG || weight > MAX_WEIGHT_KG;
 };
 
+/**
+ * Насыг ЯЛГААТАЙ оруулсан эсэх.
+ *
+ * ⚠️ Энэ шалгалт байхгүй үед хоосон нас нь `0 сар` болж хувирдаг
+ * байсан бөгөөд нярайгаас ялгагдахгүй байв. Эмийн 50-аас 30 гаруй нь
+ * насны доод хязгаартай (жишээ нь Amoxicillin ≥2 сар) тул 5 настай
+ * хүүхдэд «тооцоолол боломжгүй» гэж чимээгүй хариулах эрсдэлтэй.
+ *
+ * Хоосон утга ба тэг хоёрыг хольж болохгүй.
+ */
+export const hasAge = (form: PatientForm): boolean =>
+  form.years !== "" || form.months !== "";
+
+/** Жинг оруулсан бөгөөд хүчинтэй эсэх. */
+export const hasWeight = (form: PatientForm): boolean =>
+  form.weight !== "" && !isWeightInvalid(form);
+
 /** Тооцоолол эхлүүлэхэд хангалттай эсэх. */
 export const isReady = (form: PatientForm): boolean =>
-  form.weight !== "" && !isWeightInvalid(form);
+  hasWeight(form) && hasAge(form);
+
+/** Хоосон төлөвийн шалтгааныг тодорхойлоход хэрэглэнэ. */
+export const inputStatus = (
+  form: PatientForm,
+  hasDrugs: boolean,
+): InputStatus => ({
+  hasWeight: hasWeight(form),
+  hasAge: hasAge(form),
+  hasDrugs,
+});

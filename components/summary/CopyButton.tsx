@@ -1,26 +1,44 @@
 "use client";
 
-import { useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Copy } from "lucide-react";
+import { toast } from "sonner";
+import type { ComponentProps } from "react";
 import { Button } from "@/components/ui/button";
 
-const RESET_MS = 1600;
+interface Props {
+  readonly text: string;
+  readonly variant: ComponentProps<typeof Button>["variant"];
+  readonly size: ComponentProps<typeof Button>["size"];
+  readonly label: string;
+}
 
-/** Жорын текстийг санах ойд хуулна. */
-export default function CopyButton({ text }: { readonly text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const copy = () => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), RESET_MS);
-    });
+/**
+ * Жорын текстийг санах ойд хуулна.
+ *
+ * Өмнө нь товч өөрөө "Хуулагдлаа" болж 1.6 секунд хойшилдог байв. Энэ нь
+ * хоёр асуудалтай: (1) товчны өргөн үсрэхэд хажуугийн зүйл хөдөлнө,
+ * (2) эмч аль хэдийн нүдээ жор руу шилжүүлсэн байхад товчин дээрх өөрчлөлт
+ * харагдахгүй. Одоо баталгаа нь дэлгэцийн доод талд toast-оор гарна —
+ * screen reader-т `aria-live`-аар мөн уншигдана.
+ *
+ * Алдааг ЧИМЭЭГҮЙ өнгөрөөхгүй: HTTPS биш эсвэл зөвшөөрөлгүй үед
+ * clipboard API унана. Эмч хуулагдсан гэж бодоод буруу жор тавихаас
+ * сэргийлж алдааг ил хэлнэ.
+ */
+export default function CopyButton({ text, variant, size, label }: Props) {
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Хуулагдлаа");
+    } catch {
+      toast.error("Хуулж чадсангүй — гараар сонгож хуулна уу");
+    }
   };
 
   return (
-    <Button type="button" variant="ghost" size="sm" onClick={copy}>
-      {copied ? <Check className="text-emerald-600" /> : <Copy />}
-      {copied ? "Хуулагдлаа" : "Хуулах"}
+    <Button type="button" variant={variant} size={size} onClick={copy}>
+      <Copy aria-hidden />
+      {label}
     </Button>
   );
 }

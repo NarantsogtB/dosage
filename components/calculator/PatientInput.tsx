@@ -1,8 +1,11 @@
 "use client";
 
 import type { PatientForm } from "./patient-form";
-import { isWeightInvalid } from "./patient-form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { hasAge, isWeightInvalid, toPatient } from "./patient-form";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { FieldGroup } from "@/components/ui/field";
+import StepHeader from "@/components/step/StepHeader";
+import AgeEcho from "./AgeEcho";
 import AgeFields from "./AgeFields";
 import WeightField from "./WeightField";
 
@@ -11,32 +14,34 @@ interface Props {
   readonly onChange: (form: PatientForm) => void;
 }
 
-/** Өвчтөний жин, нас оруулах хэсэг. */
+/** Өвчтөний жин, нас оруулах хэсэг. Алхам 1. */
 export default function PatientInput({ form, onChange }: Props) {
   const set = (patch: Partial<PatientForm>) => onChange({ ...form, ...patch });
+  const weightOk = form.weight !== "" && !isWeightInvalid(form);
+  const ageOk = hasAge(form);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-muted-foreground text-xs uppercase tracking-widest">
-          Өвчтөний мэдээлэл
-        </CardTitle>
+        <StepHeader step={1} label="Өвчтөн" done={weightOk && ageOk} />
       </CardHeader>
-      <CardContent className="space-y-4 pb-5">
-        <WeightField
-          value={form.weight}
-          invalid={isWeightInvalid(form)}
-          onChange={(weight) => set({ weight })}
-        />
-        <AgeFields
-          years={form.years}
-          months={form.months}
-          onYears={(years) => set({ years })}
-          onMonths={(months) => set({ months })}
-        />
-        <p className="text-muted-foreground text-xs">
-          Нярайд: нас = 0, сарыг оруулна уу.
-        </p>
+      <CardContent className="pb-5">
+        <FieldGroup className="gap-4">
+          <WeightField
+            value={form.weight}
+            invalid={isWeightInvalid(form)}
+            onChange={(weight) => set({ weight })}
+          />
+          <AgeFields
+            years={form.years}
+            months={form.months}
+            onYears={(years) => set({ years })}
+            onMonths={(months) => set({ months })}
+            echo={
+              <AgeEcho ageMonths={toPatient(form).ageMonths} entered={ageOk} />
+            }
+          />
+        </FieldGroup>
       </CardContent>
     </Card>
   );

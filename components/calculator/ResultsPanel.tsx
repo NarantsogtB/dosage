@@ -1,36 +1,27 @@
 import type { CalculationResult } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
+import type { InputStatus } from "./blocker";
 import type { IndicationMap } from "./use-indications";
 import DosageCard from "@/components/dosage/DosageCard";
+import { blockerFor } from "./blocker";
 import EmptyState from "./EmptyState";
 
 interface Props {
   readonly drugs: readonly Drug[];
   readonly results: ReadonlyMap<string, CalculationResult>;
   readonly patient: Patient;
-  readonly ready: boolean;
+  readonly status: InputStatus;
   readonly indications: IndicationMap;
   readonly onRemove: (id: string) => void;
   readonly onIndication: (drugId: string, code?: string) => void;
 }
 
-const EMPTY = {
-  noDrug: {
-    title: "Тун харагдахгүй байна",
-    hint: "Өвчтөний жин оруулж, эм сонгоно уу.",
-  },
-  noWeight: {
-    title: "Жин оруулаагүй байна",
-    hint: "Тун тооцоолохын тулд өвчтөний жинг оруулна уу.",
-  },
-};
-
-/** Сонгосон эмүүдийн үр дүн, эсвэл хоосон төлөв. */
+/** Сонгосон эмүүдийн үр дүн, эсвэл дутуу зүйлийг нэрлэсэн хоосон төлөв. */
 export default function ResultsPanel(props: Props) {
-  const { drugs, results, patient, ready } = props;
-  if (drugs.length === 0) return <EmptyState {...EMPTY.noDrug} />;
-  if (!ready) return <EmptyState {...EMPTY.noWeight} />;
+  const { drugs, results, patient, status } = props;
+  const blocker = blockerFor(status);
+  if (blocker) return <EmptyState {...blocker} />;
 
   return (
     <div className="space-y-4">

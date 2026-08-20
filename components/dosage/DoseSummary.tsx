@@ -1,48 +1,32 @@
 import type { DosageOutcome } from "@/lib/domain/calculation-result";
-import { FREQUENCY_LABELS } from "@/lib/data/labels/frequency-labels";
-import { formatDose } from "@/lib/format/format-dose";
 import { CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import CapNotice from "./CapNotice";
-import DurationBlock from "./DurationBlock";
-import SectionLabel from "./SectionLabel";
+import CapAlert from "./CapAlert";
+import DoseBand from "./DoseBand";
+import MaxDoseIndicator from "./MaxDoseIndicator";
 
-/** Нэг удаагийн тун, давтамж, өдрийн нийт тун. */
+/**
+ * Тунгийн хэсэг: зурвас + анхааруулга.
+ *
+ * Бодитоор тасалсан бол CapAlert (хатуу анхааруулга), эс бөгөөс
+ * идэвхтэй хязгаар байвал MaxDoseIndicator (хувиар мэдээлэх) харагдана —
+ * хоёуланг зэрэг харуулбал 100%-ийг давхардуулна.
+ */
+const doseAlertOf = (outcome: DosageOutcome) => {
+  if (outcome.cappedAtMax) return <CapAlert outcome={outcome} />;
+  if (Number.isFinite(outcome.limitMg)) return <MaxDoseIndicator outcome={outcome} />;
+  return null;
+};
+
 export default function DoseSummary({
   outcome,
 }: {
   readonly outcome: DosageOutcome;
 }) {
+  const alert = doseAlertOf(outcome);
   return (
-    <CardContent className="p-0">
-      <div className="px-5 py-3.5">
-        <SectionLabel>Нэг удаагийн тун</SectionLabel>
-        <p className="mt-1 text-3xl font-bold tracking-tight tabular-nums">
-          {formatDose(outcome.perDose)}
-        </p>
-        <CapNotice capped={outcome.cappedAtMax} />
-      </div>
-
-      <Separator />
-
-      <div className="flex items-center justify-between px-5 py-3.5">
-        <div>
-          <SectionLabel>Давтамж</SectionLabel>
-          <p className="mt-1 text-base font-semibold">
-            {FREQUENCY_LABELS[outcome.frequency]}
-          </p>
-        </div>
-        <DurationBlock duration={outcome.rule.duration} />
-      </div>
-
-      <Separator />
-
-      <div className="px-5 py-3.5">
-        <SectionLabel>Өдрийн нийт тун</SectionLabel>
-        <p className="mt-1 text-base font-semibold tabular-nums">
-          {formatDose(outcome.perDay)}
-        </p>
-      </div>
+    <CardContent className="space-y-3 p-0 pb-1">
+      <DoseBand outcome={outcome} />
+      {alert ? <div className="px-5">{alert}</div> : null}
     </CardContent>
   );
 }

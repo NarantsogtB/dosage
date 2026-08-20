@@ -24,7 +24,7 @@ export default function FormulationList({ amounts }: Props) {
               <dt className="text-muted-foreground">
                 {amount.formulation.labelMn}
               </dt>
-              <dd className="text-right font-semibold tabular-nums">
+              <dd className="num text-right font-semibold">
                 {formatAmount(amount)}
               </dd>
             </div>

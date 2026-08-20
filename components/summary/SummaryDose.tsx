@@ -4,6 +4,6 @@ export default function SummaryDose({ text }: { readonly text: string | null }) 
     return <span className="text-muted-foreground shrink-0 text-xs">—</span>;
   }
   return (
-    <span className="shrink-0 text-xs font-semibold tabular-nums">{text}</span>
+    <span className="num shrink-0 text-xs font-semibold">{text}</span>
   );
 }

@@ -39,10 +39,15 @@ export default function SelectedSummary({
     <Card className="bg-card/95 supports-[backdrop-filter]:bg-card/85 sticky top-16 z-[5] gap-0 py-0 backdrop-blur print:hidden">
       <div className="flex items-center justify-between gap-2 px-3 py-1.5">
         <span className="text-muted-foreground pl-1 text-xs font-semibold uppercase tracking-widest">
-          Сонгосон · {drugs.length}
+          Сонгосон · <span className="num">{drugs.length}</span>
         </span>
         <span className="flex items-center gap-0.5">
-          <CopyButton text={prescriptionText(drugs, results, patient)} />
+          <CopyButton
+            text={prescriptionText(drugs, results, patient)}
+            variant="ghost"
+            size="sm"
+            label="Хуулах"
+          />
           <Button type="button" variant="ghost" size="sm" onClick={onClear}>
             Цэвэрлэх
           </Button>

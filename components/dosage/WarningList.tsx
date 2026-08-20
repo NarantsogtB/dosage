@@ -14,13 +14,13 @@ export default function WarningList({ warnings }: Props) {
     <>
       <Separator />
       <div className="bg-warning-muted/60 px-5 py-4">
-        <SectionLabel className="text-warning">
+        <SectionLabel className="text-warning-text">
           <TriangleAlert className="size-3.5" />
           Анхааруулга
         </SectionLabel>
         <ul className="mt-2 space-y-1.5">
           {warnings.map((warning) => (
-            <li key={warning.messageMn} className="text-warning flex gap-2 text-sm">
+            <li key={warning.messageMn} className="text-warning-text flex gap-2 text-sm">
               <span className="mt-0.5 shrink-0 opacity-60">•</span>
               <span>{warning.messageMn}</span>
             </li>

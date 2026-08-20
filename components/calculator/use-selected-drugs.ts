@@ -12,26 +12,60 @@ const without = (ids: readonly string[], id: string): readonly string[] =>
 const toggleId = (ids: readonly string[], id: string): readonly string[] =>
   ids.includes(id) ? without(ids, id) : [...ids, id];
 
-/** Сонгосон эмийн id-уудыг хадгалж, Drug объект болгон буцаана. */
+/**
+ * Сонгосон эмийн id-уудыг хадгалж, Drug объект болгон буцаана.
+ *
+ * БУЦААХ боломжтой. «Цэвэрлэх» нь нэг дарахад бүх сонголтыг устгадаг
+ * бөгөөд өмнө нь сэргээх арга байгаагүй — эмч 6 эм сонгосны дараа
+ * санамсаргүй дарвал бүгдийг дахин хайх шаардлагатай болдог байв
+ * (Nielsen H3: хэрэглэгчийн хяналт, эрх чөлөө).
+ *
+ * Баталгаажуулах цонх БИШ, буцаах товч сонгосон шалтгаан: баталгаа
+ * нь ЗӨВ үйлдэл бүрийг удаашруулдаг, буцаах нь зөвхөн БУРУУ
+ * үйлдлийг засдаг.
+ */
 export const useSelectedDrugs = () => {
   const [selectedIds, setSelectedIds] = useState<readonly string[]>([]);
+  const [undoable, setUndoable] = useState<readonly string[]>([]);
 
   const toggle = useCallback(
-    (id: string) => setSelectedIds((ids) => toggleId(ids, id)),
-    [],
+    (id: string) => {
+      setUndoable([]);
+      setSelectedIds(toggleId(selectedIds, id));
+    },
+    [selectedIds],
   );
 
   const remove = useCallback(
-    (id: string) => setSelectedIds((ids) => without(ids, id)),
-    [],
+    (id: string) => {
+      setUndoable(selectedIds);
+      setSelectedIds(without(selectedIds, id));
+    },
+    [selectedIds],
   );
 
-  const clear = useCallback(() => setSelectedIds([]), []);
+  const clear = useCallback(() => {
+    setUndoable(selectedIds);
+    setSelectedIds([]);
+  }, [selectedIds]);
+
+  const undo = useCallback(() => {
+    setSelectedIds(undoable);
+    setUndoable([]);
+  }, [undoable]);
 
   const drugs = useMemo(
     () => selectedIds.map((id) => DRUG_BY_ID.get(id)).filter(isDrug),
     [selectedIds],
   );
 
-  return { selectedIds, drugs, toggle, remove, clear };
+  return {
+    selectedIds,
+    drugs,
+    toggle,
+    remove,
+    clear,
+    undo,
+    undoCount: undoable.length - selectedIds.length,
+  };
 };

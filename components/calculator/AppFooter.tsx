@@ -11,9 +11,10 @@ export default function AppFooter() {
   return (
     <div className="text-muted-foreground flex flex-col items-center justify-center gap-3 pt-2 text-xs sm:flex-row print:hidden">
       <p>
-        {DRUGS.length} эм · Олон улсын нэршил (INN) ·{" "}
+        <span className="num">{DRUGS.length}</span> эм · Олон улсын нэршил
+        (INN) ·{" "}
         <span className="text-foreground font-medium">
-          {verifiedCount} эх сурвалжтай
+          <span className="num">{verifiedCount}</span> эх сурвалжтай
         </span>
       </p>
       <Separator orientation="vertical" className="hidden h-4 sm:block" />

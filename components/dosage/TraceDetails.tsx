@@ -27,7 +27,7 @@ export default function TraceDetails({ trace }: Props) {
           {trace.map((step) => (
             <div key={step.labelMn} className="flex justify-between gap-3 text-sm">
               <dt className="text-muted-foreground">{step.labelMn}</dt>
-              <dd className="text-right font-mono text-xs tabular-nums">
+              <dd className="num text-right text-xs">
                 {step.expression}
               </dd>
             </div>
