@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/nav/SiteHeader";
+import {
+  SITE_DESCRIPTION_MN,
+  SITE_NAME,
+  SITE_TAGLINE_MN,
+  SITE_URL,
+} from "@/lib/site";
 import ThemeProvider from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -26,13 +32,39 @@ const sans = Source_Sans_3({
   display: "swap",
 });
 
+const TITLE = `${SITE_NAME} — ${SITE_TAGLINE_MN}`;
+
+/**
+ * `metadataBase` нь ЗААВАЛ хэрэгтэй: үүнгүйгээр og:image харьцангуй
+ * замтай гарч, Facebook дээр урьдчилан харах зураг эвдэрнэ. Сошиал
+ * нь энэ бүтээгдэхүүний хамгийн үр дүнтэй суваг тул энэ нь жижиг
+ * алдаа биш.
+ *
+ * og:image өөрөө `app/opengraph-image.png`-ээс автоматаар холбогдоно.
+ */
 export const metadata: Metadata = {
-  title: {
-    default: "dosage.mn — Монгол эмчийн эмнэлзүйн тооцоолуур",
-    template: "%s · dosage.mn",
+  metadataBase: new URL(SITE_URL),
+  title: { default: TITLE, template: `%s · ${SITE_NAME}` },
+  description: SITE_DESCRIPTION_MN,
+  applicationName: SITE_NAME,
+  /*
+   * canonical болон og:url-ыг ЭНД БИЧИХГҮЙ — хуудас бүр өөрийнхөө
+   * хаягийг зарлана. Учрыг lib/page-meta.ts-ээс үз.
+   */
+  openGraph: {
+    type: "website",
+    locale: "mn_MN",
+    siteName: SITE_NAME,
+    title: TITLE,
+    description: SITE_DESCRIPTION_MN,
   },
-  description:
-    "Хүүхдийн жинд суурилсан эмийн тун, түлэгдэлтийн шингэн сэлбэлтийг эх сурвалж заасан хэлбэрээр тооцоолно. Эмнэлгийн мэргэжилтэнд зориулав.",
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: SITE_DESCRIPTION_MN,
+  },
+  robots: { index: true, follow: true },
+  formatDetection: { telephone: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

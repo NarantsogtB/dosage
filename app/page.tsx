@@ -6,8 +6,10 @@ import EvidenceLadder from "@/components/landing/EvidenceLadder";
 import SafetyPoints from "@/components/landing/SafetyPoints";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { DRUG_COUNT } from "@/components/landing/landing-stats";
+import { pageMeta } from "@/lib/page-meta";
 
 export const metadata: Metadata = {
+  ...pageMeta("/"),
   title: "dosage.mn — Монгол эмчийн эмнэлзүйн тооцоолуур",
   description: `Хүүхдийн жинд суурилсан эмийн тун, түлэгдэлтийн шингэн сэлбэлтийг эх сурвалж заасан хэлбэрээр тооцоолно. ${DRUG_COUNT} эм, монгол хэл дээр, үнэгүй.`,
 };
