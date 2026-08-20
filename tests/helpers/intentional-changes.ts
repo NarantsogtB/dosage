@@ -34,6 +34,18 @@ export const INTENTIONAL_CHANGES: readonly IntentionalChange[] = [
       "Астмын заалтад 1 мг/кг (дээд 40 мг), 2–3 хоног. RCH + Starship нийцэв.",
     sourceId: "rch-melbourne-cpg",
   },
+  {
+    drugId: "paracetamol",
+    reason:
+      "10–15 мг/кг (муж) → 15 мг/кг (>1 сар), 10 мг/кг (нярай, <1 сар) " +
+      "тогтмол утга. RCH Melbourne + MSF Essential drugs хоёулаа >1 сартай " +
+      "хүүхдэд 15 мг/кг/тун (дээд 60 мг/кг/өдөр) зөвшөөрдөг тул MVP-ийн " +
+      "хуучин 10–15 мг/кг мужийн доод хязгаар (10) орхигдож, 15-аар " +
+      "тогтов — энэ нь өдрийн нийт тунг нэмэгдүүлнэ (жишээ: 6 сартай, " +
+      "6кг хүүхдийн doseMin 60мг → 90мг). Нярайн (<1 сар) branch шинээр " +
+      "гарсан бөгөөд MSF-ийн 10 мг/кг-ийг дагасан тул doseMax багасна.",
+    sourceId: "rch-melbourne-cpg",
+  },
 ];
 
 const CHANGED_IDS = new Set(INTENTIONAL_CHANGES.map((item) => item.drugId));

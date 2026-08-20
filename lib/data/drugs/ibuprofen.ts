@@ -3,17 +3,9 @@ import type { Drug } from "../../domain/drug";
 /**
  * Ibuprofen — Ибупрофен
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
- *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * ✅ БАТАЛГААЖСАН — RCH Melbourne (2024-10) + MSF Essential drugs (2026-01,
+ * шинэчилсэн 2026-06). Хоёр бие даасан, 2020+ эх сурвалж тохирч байна;
+ * зөрчил илрээгүй.
  */
 
 export const ibuprofen: Drug = {
@@ -40,13 +32,29 @@ export const ibuprofen: Drug = {
           maxMg: 400
         },
         {
+          kind: "per_kg",
+          scope: "per_day",
+          maxMgPerKg: 30
+        },
+        {
           kind: "absolute",
           scope: "per_day",
           maxMg: 2400
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "rch-melbourne-cpg",
+          locator: "Acute pain management — Systemic analgesia, Ibuprofen PO (2024 оны 10 сард шинэчилсэн)",
+          quotedValue: ">3 months: 10 mg/kg (max 400 mg) 6-8 hourly with food ... 30 mg/kg/day (max 2.4 g)"
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "IBUPROFEN oral — Dosage, Pain/fever (2026 оны 1 сарын хэвлэл, 2026-06 шинэчилсэн)",
+          quotedValue: "Child over 3 months: 5 to 10 mg/kg 3 to 4 times daily (max. 30 mg/kg daily)"
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true
     }
   ],

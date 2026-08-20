@@ -299,11 +299,12 @@ export const SOURCES: Record<string, Source> = {
   "rch-melbourne-cpg": {
     id: "rch-melbourne-cpg",
     citation:
-      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines.",
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Acute pain management.",
     publisher: "RCH Melbourne",
-    edition: "цахим, тогтмол шинэчлэгддэг (2025-10 сард шалгасан)",
-    year: 2025,
-    url: "https://www.rch.org.au/clinicalguide/",
+    edition: "цахим, тогтмол шинэчлэгддэг (Acute pain management: 2024 оны 10 сард шинэчилсэн)",
+    year: 2024,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Analgesia_and_Sedation/",
     tier: "cite-only",
     reuse: {
       kind: "cite-only",
@@ -313,7 +314,7 @@ export const SOURCES: Record<string, Source> = {
         "монгол текстээр бичиж, эх сурвалжийг ишлэнэ. Тоо нь баримт тул " +
         "зохиогчийн эрхээр хамгаалагддаггүй.",
     },
-    lastVerified: "2026-08-17",
+    lastVerified: "2026-08-20",
     relevanceMn: "Чанартай, тогтмол шинэчлэгддэг, үнэ төлбөргүй. Cross-check-ийн гол хэрэгсэл.",
   },
 
@@ -328,5 +329,34 @@ export const SOURCES: Record<string, Source> = {
     reuse: { kind: "cite-only", note: "Зохиогчийн эрхтэй. Зөвхөн cross-check." },
     lastVerified: "2026-08-17",
     relevanceMn: "RCH-тэй хамт хоёр дахь бие даасан баталгаажуулалт болно.",
+  },
+
+  "msf-essential-drugs": {
+    id: "msf-essential-drugs",
+    citation:
+      "Médecins Sans Frontières. Essential drugs — practical guidelines.",
+    publisher: "Médecins Sans Frontières (MSF)",
+    edition: "2026 оны 1 сарын хэвлэл (сүүлд шинэчилсэн: 2026 оны 6 сар)",
+    year: 2026,
+    url: "https://medicalguidelines.msf.org/en/viewport/EssDr/english/essential-drugs-16682376.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ MSF-ийн зохиогчийн эрхтэй " +
+        "(«No reproduction, translation and adaptation may be done without " +
+        "the prior permission of the Copyright owner»). Хүснэгт, өгүүлбэр " +
+        "ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн монгол текстээр бичиж, " +
+        "эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ Олон улсын гуманитар анагаах ухааны байгууллагын эмнэлзүйн " +
+      "зааврын гарын авлага. Эм тус бүрийн хуудсанд «Last updated» огноотой. " +
+      "RCH-тэй хамт хоёр дахь бие даасан баталгаажуулалт болно. Насны " +
+      "мужаар (жишээ нь <1 сар / ≥1 сар / >3 сар) тунгийн ялгааг тодорхой " +
+      "заасан тул хүүхдийн тунгийн эх сурвалж болгоход тохиромжтой. " +
+      "⚠️ Retracted WHO 2012 «Persisting pain in children» зааврыг ОРЛУУЛАХ " +
+      "зорилгоор сонгосон (тэр эх сурвалжийг ДЭМБ 2020 онд буцаан татсан).",
   },
 };
