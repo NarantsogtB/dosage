@@ -58,6 +58,28 @@ sources[] → evidenceLevel → lastReviewed → reviewedBy
 | ondansetron | 0.1–0.15 мг/кг, bd, cap 4/8 мг, зөвхөн уух | `msf-essential-drugs` |
 | omeprazole | <5 кг per_kg_per_day, ≥5 кг weight_band; насны доод 12 → 0 | `msf-essential-drugs` |
 
+### Эмчийн шийдвэрээр өөрчилсөн тун (2026-10-30, roadmap 0b)
+
+«Монголын удирдамжтай хамгийн ойр» → ЭМЯ-ны хүүхдийн удирдамж байхгүй тул
+ДЭМБ. Дэлгэрэнгүй: `docs/sources/pending-decisions-2026-10.md`.
+
+| Дүрэм | Өмнө | Дараа |
+|---|---|---|
+| amoxicillin-general | 40–90 мг/кг/хон × 3, дээд 1 г / 3 г | 80–90 мг/кг/хон × 2, дээд 1 г / 2 г |
+| amoxicillin-clavulanate-general | 40–90 мг/кг/хон × 2 | 80–90 мг/кг/хон × 2 |
+| ceftriaxone-general | 50–100 мг/кг, дээд 4 г, 0 сар | 80–100 мг/кг, дээд 3 г, 1 сар |
+| cephalexin-general | 25–50 мг/кг/хон × 4, дээд 500 мг | 25 мг/кг × 2, дээд 1 г |
+| ciprofloxacin-general | 10–15 мг/кг × 2, 12 сар | 15 мг/кг × 2, 1 сар |
+| doxycycline-general | 2–4 мг/кг/хон × 2 | 2 мг/кг × 2 |
+| nitrofurantoin-general | 5–7 мг/кг/хон × 4, дээд 400 мг/хон | 1 мг/кг × 4, дээд 200 мг/хон |
+| albendazole-general | <20 кг 200 мг, ≥20 кг 400 мг | <10 кг 200 мг, ≥10 кг 400 мг |
+| fluconazole-general | 3–12 мг/кг, дээд 400 мг | 3–6 мг/кг, дээд 200 мг |
+| furosemide-general | 1–2 мг/кг амаар/IV, дээд 600 мг/хон, 0 сар | 0.5–2 мг/кг амаар, дээд 80 мг/хон, 1 сар |
+| spironolactone-general | 0 сараас | 1 сараас |
+| sodium-valproate-general | 15–40 мг/кг/хон × 3, 0 сар | 12.5–15 мг/кг × 2, 1 сар |
+| enalapril-general | 0.08–0.5 мг/кг | 0.1–0.5 мг/кг, хоногт ≤1 мг/кг |
+| hydrocortisone | active | draft (нуусан) |
+
 ### Эм бүр нэг файл — яагаад
 
 `lib/data/drugs/paracetamol.ts` (~40 мөр) хэлбэрээр. Шалтгаан:

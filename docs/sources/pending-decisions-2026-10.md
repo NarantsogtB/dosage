@@ -8,7 +8,40 @@ Roadmap шат 0b. Одоогийн дүрэм эх сурвалжаас **зө�
 Тэмдэглэгээ: «/тун» = нэг удаагийн тун, «/хон» = хоногийн нийт тун.
 Ишлэл нь эх хуудаснаас үгчлэн. BNFc — зөвхөн зөрүү шийдэх (DECISIONS 2026-10-30).
 
-## Хураангуй (2026-10-30)
+## ✅ Эмчийн шийдвэр (2026-10-30)
+
+> «Монголын удирдамжуудад заагдсан дүрэмтэй хамгийн ойрыг нь сонго.» ЭМЯ-ны
+> онлайн удирдамжуудыг (hdc.gov.mn) шалгав: уушгины хатгаа (2021) болон ШЗХ —
+> **насанд хүрэгчийн**; хүүхдийн яаралтай тусламж (2018) — ETAT, эдгээр эмгүй;
+> ХӨЦМ 2019 онлайнд байхгүй. Тиймээс эмчийн сонголтоор **ДЭМБ-ын утга**
+> (AWaRe 2022, TB 2022, Formulary 2010), ДЭМБ-д байхгүй бол MSF.
+
+| Дүрэм | Шийдвэр | Үр дүн |
+|---|---|---|
+| hydrocortisone | `status: "draft"` — тооцоолуураас нуув | E, мг/м² basis (S4) хүлээнэ |
+| amoxicillin-general | 80–90 мг/кг/хон × 2, дээд 1 г/тун | B (AWaRe + Children's Minnesota) |
+| amoxicillin-clavulanate | 80–90 мг/кг/хон × 2 | B (AWaRe, known-gap) |
+| ceftriaxone-general | 80–100 мг/кг × 1, дээд 3 г, 1 сараас | B (AWaRe + MSF) |
+| cephalexin | 25 мг/кг × 2, дээд 1 г/тун | B (AWaRe + MSF) |
+| ciprofloxacin-general | 15 мг/кг × 2, дээд 500 мг, 1 сараас | B (AWaRe + MSF) |
+| nitrofurantoin | 1 мг/кг × 4, хоногт дээд 200 мг | B (AWaRe, known-gap) |
+| doxycycline | 2 мг/кг × 2 | C (Formulary + MSF) |
+| albendazole | <10 кг 200 мг, ≥10 кг 400 мг | C (Formulary + MSF) |
+| fluconazole | 3–6 мг/кг × 1, дээд 200 мг (криптококк тусдаа) | C (Formulary + MSF) |
+| furosemide | амаар 0.5–2 мг/кг × 2, хоногт ≤80 мг, 1 сараас | E (Formulary 2010 л) |
+| spironolactone | 1 сараас | E |
+| sodium-valproate | 12.5–15 мг/кг × 2, 1 сараас | E |
+| enalapril | 0.1–0.5 мг/кг, хоногт ≤1 мг/кг | E |
+
+**Хэвээр (ДЭМБ-ын эх сурвалж олдоогүй эсвэл заалт тодорхойгүй):** aciclovir
+(ДЭМБ насаар тогтмол мг — дүрмийн бүтэц өөрчлөх), carbamazepine, metoclopramide
+(одоогийнх ДЭМБ-тэй ойролцоо), propranolol, dexamethasone, methylprednisolone,
+salbutamol (амаар), clonazepam, captopril, famotidine, cetirizine, loratadine,
+diphenhydramine, acetylcysteine, эрсдэлтэй 5 эм.
+
+Өмнөх утгууд: дүрэм бүрийн `conflictNote`, `docs/architecture/migration-history.md`.
+
+## Хураангуй (2026-10-30, шийдвэрээс өмнө)
 
 - 41 дүрмээс **8 баталгаажив** (тун өөрчлөгдөөгүй): azithromycin, erythromycin,
   isoniazid, rifampicin, clarithromycin (B_who); mebendazole, prednisolone-general,
