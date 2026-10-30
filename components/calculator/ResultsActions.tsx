@@ -29,8 +29,8 @@ export default function ResultsActions({ drugs, results, patient }: Props) {
         text={prescriptionText(drugs, results, patient)}
         drugIds={drugs.map((drug) => drug.id)}
         variant="default"
-        size="sm"
-        label="Жороо хуулах"
+        size="default"
+        label="Жор хуулах"
       />
       <PrintButton visible onPrint={() => window.print()} />
     </div>

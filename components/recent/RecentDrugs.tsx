@@ -25,8 +25,9 @@ interface ChipProps {
 const RecentChip = ({ drug, selected, onPick }: ChipProps) => (
   <Button
     type="button"
-    size="xs"
+    size="sm"
     variant="outline"
+    className="rounded-full aria-pressed:border-primary aria-pressed:bg-primary/10 aria-pressed:text-primary"
     aria-pressed={selected}
     onClick={() => onPick(drug.id)}
   >
@@ -38,6 +39,8 @@ const RecentChip = ({ drug, selected, onPick }: ChipProps) => (
 /**
  * «Сүүлд хэрэглэсэн» эмүүд — эргэж ирсэн эмч хайлтгүйгээр нэг товшилтоор
  * сонгоно. Төхөөрөмж дээр (localStorage) л хадгалагдана, серверт явахгүй.
+ *
+ * Чип 36px (V3.1): 28px нь хуруугаар онох хамгийн бага хэмжээнээс доош байв.
  */
 export default function RecentDrugs({ selectedIds, onToggle, hidden }: Props) {
   const drugs = useRecentDrugIds().map((id) => DRUG_BY_ID.get(id)).filter(isDrug);
@@ -50,7 +53,8 @@ export default function RecentDrugs({ selectedIds, onToggle, hidden }: Props) {
 
   return (
     <div className="flex items-center gap-1.5 overflow-x-auto px-5 pb-3">
-      <History aria-label="Сүүлд хэрэглэсэн" className="text-muted-foreground size-3.5 shrink-0" />
+      <History aria-hidden className="text-muted-foreground size-3.5 shrink-0" />
+      <span className="text-muted-foreground shrink-0 text-xs">Сүүлд</span>
       {drugs.map((drug) => (
         <RecentChip
           key={drug.id}

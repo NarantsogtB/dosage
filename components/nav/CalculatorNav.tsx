@@ -2,14 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import NavTab from "./NavTab";
+import { isActive } from "./active-route";
 import { ROUTES } from "./routes";
 
-/** `/dose/amoxicillin` дээр «Эмийн тун» таб идэвхтэй хэвээр. */
-const isActive = (pathname: string, href: string): boolean =>
-  pathname === href || pathname.startsWith(`${href}/`);
-
 /**
- * Тооцоолуур хооронд шилжих таб.
+ * Тооцоолуур хооронд шилжих таб — desktop-д толгойн мөрөнд (V3).
+ * Mobile-д `BottomNav` хариуцна: эрхий хурууны бүс.
  *
  * Client-ийн төлөв биш, ЗАМД суурилсан: URL хуваалцах, хэвлэх, буцах
  * товч бүгд ажиллана.
@@ -17,16 +15,10 @@ const isActive = (pathname: string, href: string): boolean =>
 export default function CalculatorNav() {
   const pathname = usePathname();
   return (
-    <nav className="border-b print:hidden">
-      <div className="mx-auto flex max-w-4xl gap-5 px-4 sm:px-6">
-        {ROUTES.map((route) => (
-          <NavTab
-            key={route.href}
-            route={route}
-            active={isActive(pathname, route.href)}
-          />
-        ))}
-      </div>
+    <nav aria-label="Тооцоолуур" className="hidden self-stretch md:flex md:gap-1">
+      {ROUTES.map((route) => (
+        <NavTab key={route.href} route={route} active={isActive(pathname, route.href)} />
+      ))}
     </nav>
   );
 }

@@ -13,6 +13,8 @@ import FieldNote, { noteKindOf, shownError } from "./FieldNote";
 interface Props {
   readonly label: string;
   readonly suffix: string;
+  /** Дагаварын оронд — жишээ нь нэгж сонгогч. Байвал `suffix`-ийг дэлгэцэнд харуулахгүй. */
+  readonly addon?: React.ReactNode;
   readonly step: string;
   readonly value: string;
   readonly onChange: (value: string) => void;
@@ -65,9 +67,11 @@ export default function NumberField(props: Props) {
           className="num text-[22px] leading-7 font-semibold tracking-[-0.006em] md:text-[22px]"
         />
         <InputGroupAddon align="inline-end">
-          <InputGroupText className="text-xs font-medium tracking-wider">
-            {props.suffix}
-          </InputGroupText>
+          {props.addon ?? (
+            <InputGroupText className="text-xs font-medium tracking-wider">
+              {props.suffix}
+            </InputGroupText>
+          )}
         </InputGroupAddon>
       </InputGroup>
       <FieldNote

@@ -30,7 +30,7 @@ const toggleId = (ids: readonly string[], id: string): readonly string[] =>
  *
  * Баталгаажуулах цонх БИШ, буцаах товч сонгосон шалтгаан: баталгаа
  * нь ЗӨВ үйлдэл бүрийг удаашруулдаг, буцаах нь зөвхөн БУРУУ
- * үйлдлийг засдаг.
+ * үйлдлийг засдаг. Буцаах toast нь `use-undoable-removal.ts`-д.
  *
  * `initialIds` — эмийн хуудас (`/dose/[slug]`) тухайн эмийг урьдчилан
  * сонгоно. Урьдчилсан сонголт `drug_selected` event үүсгэхгүй,
@@ -38,47 +38,29 @@ const toggleId = (ids: readonly string[], id: string): readonly string[] =>
  */
 export const useSelectedDrugs = (initialIds: readonly string[] = []) => {
   const [selectedIds, setSelectedIds] = useState<readonly string[]>(initialIds);
-  const [undoable, setUndoable] = useState<readonly string[]>([]);
 
   const toggle = useCallback(
     (id: string) => {
       if (!selectedIds.includes(id)) onAdded(id);
-      setUndoable([]);
       setSelectedIds(toggleId(selectedIds, id));
     },
     [selectedIds],
   );
 
   const remove = useCallback(
-    (id: string) => {
-      setUndoable(selectedIds);
-      setSelectedIds(without(selectedIds, id));
-    },
+    (id: string) => setSelectedIds(without(selectedIds, id)),
     [selectedIds],
   );
 
-  const clear = useCallback(() => {
-    setUndoable(selectedIds);
-    setSelectedIds([]);
-  }, [selectedIds]);
+  const clear = useCallback(() => setSelectedIds([]), []);
 
-  const undo = useCallback(() => {
-    setSelectedIds(undoable);
-    setUndoable([]);
-  }, [undoable]);
+  /** Буцаах: хасахаас өмнөх жагсаалтыг сэргээнэ (`useUndoableRemoval`). */
+  const restore = useCallback((ids: readonly string[]) => setSelectedIds(ids), []);
 
   const drugs = useMemo(
     () => selectedIds.map((id) => DRUG_BY_ID.get(id)).filter(isDrug),
     [selectedIds],
   );
 
-  return {
-    selectedIds,
-    drugs,
-    toggle,
-    remove,
-    clear,
-    undo,
-    undoCount: undoable.length - selectedIds.length,
-  };
+  return { selectedIds, drugs, toggle, remove, clear, restore };
 };
