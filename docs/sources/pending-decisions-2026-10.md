@@ -8,6 +8,21 @@ Roadmap шат 0b. Одоогийн дүрэм эх сурвалжаас **зө�
 Тэмдэглэгээ: «/тун» = нэг удаагийн тун, «/хон» = хоногийн нийт тун.
 Ишлэл нь эх хуудаснаас үгчлэн. BNFc — зөвхөн зөрүү шийдэх (DECISIONS 2026-10-30).
 
+## Хураангуй (2026-10-30)
+
+- 41 дүрмээс **8 баталгаажив** (тун өөрчлөгдөөгүй): azithromycin, erythromycin,
+  isoniazid, rifampicin, clarithromycin (B_who); mebendazole, prednisolone-general,
+  ferrous-sulfate (C).
+- **33 шийдвэр хүлээж байна** (доор). Эрэмбэ:
+  1. ⚠️ **hydrocortisone-general** — орлуулгын тун хэт өндөр байж болзошгүй (багц 4).
+  2. Хоёр эх сурвалж НИЙЦСЭН, зөвхөн одоогийн тоо зөрсөн — шийдвэр гармагц
+     шууд баталгаажих: **cephalexin** (MSF + AWaRe 25 мг/кг × 2), **ceftriaxone**
+     (зөвхөн нас 0 → 1 сар), **ciprofloxacin** (15 мг/кг × 2, нас), **albendazole**
+     (2 наснаас 400 мг).
+  3. «Ерөнхий» заалтыг заалтаар хуваах шаардлагатай: fluconazole, propranolol,
+     methylprednisolone, dexamethasone, furosemide (амаар/IV).
+  4. Эх сурвалж олдоогүй: мэдрэл/зүрх, антигистамин, эрсдэлтэй 5 эм.
+
 Эх сурвалж:
 - **MSF** — Essential drugs, medicalguidelines.msf.org (хуудас бүрийн «Last updated»)
 - **RCH** — Antimicrobial guidelines, rch.org.au/clinicalguide (2026-10)

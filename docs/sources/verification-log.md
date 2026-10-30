@@ -116,3 +116,32 @@ Amoxicillin-ийн зөрчлийг шалгасны дараа хэрэглэг
 зөвхөн сонголтоор хүрнэ. Шалтгаан: эмчийн харж буй тунг чимээгүйхэн
 өөрчлөхгүй. Баталгаажсан дүрэм рүү шилжихийг эмч өөрөө сонгоно.
 5. **Ciprofloxacin-ийн насны хязгаар** — хүүхдийн эмчийн шийдвэр
+
+### 2026-10-30 — Шат 0b: 41 баталгаажаагүй дүрмийг тулгав
+
+Эх сурвалж: WHO AWaRe antibiotic book (2022, Table 50.1), WHO TB Module 5
+(2022), WHO Model Formulary for Children (2010), MSF Essential drugs, RCH
+Melbourne Antimicrobial guidelines (2026-10). BNFc — зөвхөн зөрүү шийдэх
+(DECISIONS 2026-10-30).
+
+**Тоо таарсан → баталгаажсан (8):** azithromycin, erythromycin, isoniazid,
+rifampicin (B_who); clarithromycin (B_who, ганц эх сурвалж — known-gaps);
+mebendazole, prednisolone-general, ferrous-sulfate (C). **Тун нэг ч
+утгаар өөрчлөгдөөгүй** — зөвхөн `sources`, `evidenceLevel`, файлын толгой.
+
+**Зөрсөн / эх сурвалжгүй / эрсдэлтэй (33):** өөрчлөөгүй, `E` хэвээр —
+`pending-decisions-2026-10.md`-д эм бүрийн одоогийн утга, ишлэл, санал.
+⚠️ **hydrocortisone-general**: орлуулгын тун 8–20 дахин өндөр байж болзошгүй —
+хамгийн өндөр эрэмбэ.
+
+`bun run evidence:report`: баталгаажсан эм 14 → 21, E дүрэм 41 → 33
+(B 4 → 9, C 13 → 16).
+
+Сургамж:
+- «Ерөнхий заалт» дүрмүүдийн ихэнх нь хэд хэдэн заалтын тунг нэг мужид
+  нэгтгэсэн (fluconazole, propranolol, methylprednisolone) — эх сурвалжууд
+  заалтаар тун өгдөг тул тулгах боломжгүй. Заалтаар хуваах нь шийдэл.
+- WHO Formulary 2010 олон эмийг хамардаг ч 2020-оос өмнөх тул ганцаараа
+  хангалтгүй; MSF-д мэдрэл/зүрх, антигистамины хүүхдийн тун бараг байхгүй.
+  Дараагийн эх сурвалж: RCH/PCH-ийн тусдаа monograph, Starship.
+- CHQ Antibiocard PDF одоо автоматаар татахад 403 буцаана.
