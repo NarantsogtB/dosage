@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SOURCE_COUNT } from "./landing-stats";
 
-const FEEDBACK_URL = "https://www.facebook.com/profile.php?id=61592793974106";
+const FEEDBACK_URL = "https://www.instagram.com/natso_010/";
 
 /** Хаалтын үйлдэл ба холбоо барих. */
 export default function LandingFooter() {
@@ -30,7 +30,7 @@ export default function LandingFooter() {
             rel="noopener noreferrer"
             className="text-primary hover:underline"
           >
-            Санал хүсэлт
+            Санал хүсэлт · Instagram
           </a>
         </p>
       </div>
