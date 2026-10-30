@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import BottomNav from "@/components/nav/BottomNav";
 import SiteHeader from "@/components/nav/SiteHeader";
 import {
   SITE_DESCRIPTION_MN,
@@ -97,7 +98,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeProvider>
           <SiteHeader />
           {children}
-          <Toaster position="bottom-center" duration={2400} />
+          <BottomNav />
+          {/* Mobile-д доод навигац + action bar-аас дээш. */}
+          <Toaster
+            position="bottom-center"
+            duration={2400}
+            mobileOffset={{ bottom: "calc(9.5rem + env(safe-area-inset-bottom))" }}
+          />
         </ThemeProvider>
       </body>
     </html>
