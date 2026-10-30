@@ -1,7 +1,12 @@
 "use client";
 
 import type { PatientForm } from "./patient-form";
-import { hasAge, isWeightInvalid, toPatient } from "./patient-form";
+import {
+  hasValidAge,
+  isAgeInvalid,
+  isWeightInvalid,
+  toPatient,
+} from "./patient-form";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { FieldGroup } from "@/components/ui/field";
 import StepHeader from "@/components/step/StepHeader";
@@ -18,7 +23,8 @@ interface Props {
 export default function PatientInput({ form, onChange }: Props) {
   const set = (patch: Partial<PatientForm>) => onChange({ ...form, ...patch });
   const weightOk = form.weight !== "" && !isWeightInvalid(form);
-  const ageOk = hasAge(form);
+  const ageInvalid = isAgeInvalid(form);
+  const ageOk = hasValidAge(form);
 
   return (
     <Card>
@@ -37,6 +43,8 @@ export default function PatientInput({ form, onChange }: Props) {
             months={form.months}
             onYears={(years) => set({ years })}
             onMonths={(months) => set({ months })}
+            invalid={ageInvalid}
+            error="dosage.mn зөвхөн 0–18 насны хүүхдийн жинд суурилсан тунг тооцоолдог."
             echo={
               <AgeEcho ageMonths={toPatient(form).ageMonths} entered={ageOk} />
             }

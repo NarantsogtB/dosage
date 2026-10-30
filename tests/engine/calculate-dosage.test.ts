@@ -64,6 +64,18 @@ describe("calculateDosage", () => {
     const out = calculateDosage(amoxicillin, { weightKg: 0, ageMonths: 24 });
     expect(out.type).toBe("ineligible");
   });
+
+  it("18-аас дээш нас (насанд хүрэгч) тооцоолохгүй", () => {
+    const out = calculateDosage(amoxicillin, { weightKg: 70, ageMonths: 480 });
+    expect(out.type).toBe("ineligible");
+    if (out.type !== "ineligible") return;
+    expect(out.data.code).toBe("age_out_of_range");
+  });
+
+  it("яг 18 нас (216 сар) хүртэл зөвшөөрнө", () => {
+    const out = calculateDosage(amoxicillin, { weightKg: 60, ageMonths: 216 });
+    expect(out.type).toBe("dosage");
+  });
 });
 
 describe("calculateDosage — limitMg", () => {

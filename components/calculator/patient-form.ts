@@ -1,5 +1,9 @@
 import type { Patient } from "@/lib/domain/patient";
-import { MAX_WEIGHT_KG, MIN_WEIGHT_KG } from "@/lib/engine/eligibility/limits";
+import {
+  MAX_AGE_MONTHS,
+  MAX_WEIGHT_KG,
+  MIN_WEIGHT_KG,
+} from "@/lib/engine/eligibility/limits";
 import type { InputStatus } from "./blocker";
 
 /** Хэлбэрийн түүхий утга. Хоосон байж болно. */
@@ -40,13 +44,27 @@ export const isWeightInvalid = (form: PatientForm): boolean => {
 export const hasAge = (form: PatientForm): boolean =>
   form.years !== "" || form.months !== "";
 
+/**
+ * Оруулсан нас ЗӨВШӨӨРӨГДСӨН (хүүхдийн, 0–18) хязгаараас гарсан эсэх.
+ *
+ * dosage.mn зөвхөн хүүхдийн жинд суурилсан тун тооцоолдог тул насанд
+ * хүрэгчийн нас оруулбал энд ЗОГСООХ ёстой — жингийн `isWeightInvalid`-тэй
+ * ижил зарчим.
+ */
+export const isAgeInvalid = (form: PatientForm): boolean =>
+  hasAge(form) && toPatient(form).ageMonths > MAX_AGE_MONTHS;
+
+/** Нас оруулсан бөгөөд хүчинтэй эсэх. */
+export const hasValidAge = (form: PatientForm): boolean =>
+  hasAge(form) && !isAgeInvalid(form);
+
 /** Жинг оруулсан бөгөөд хүчинтэй эсэх. */
 export const hasWeight = (form: PatientForm): boolean =>
   form.weight !== "" && !isWeightInvalid(form);
 
 /** Тооцоолол эхлүүлэхэд хангалттай эсэх. */
 export const isReady = (form: PatientForm): boolean =>
-  hasWeight(form) && hasAge(form);
+  hasWeight(form) && hasValidAge(form);
 
 /** Хоосон төлөвийн шалтгааныг тодорхойлоход хэрэглэнэ. */
 export const inputStatus = (
@@ -55,5 +73,6 @@ export const inputStatus = (
 ): InputStatus => ({
   hasWeight: hasWeight(form),
   hasAge: hasAge(form),
+  ageInvalid: isAgeInvalid(form),
   hasDrugs,
 });

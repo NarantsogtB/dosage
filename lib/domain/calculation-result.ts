@@ -41,6 +41,7 @@ export interface IneligibleOutcome {
 
 export type IneligibleCode =
   | "weight_out_of_range"
+  | "age_out_of_range"
   | "below_minimum_age"
   | "no_matching_rule"
   | "no_matching_weight_band";

@@ -1,8 +1,9 @@
 "use client";
 
 import { useId } from "react";
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import AgeInput from "./AgeInput";
+import FieldNote, { noteKindOf, shownError } from "./FieldNote";
 
 interface Props {
   readonly years: string;
@@ -11,6 +12,10 @@ interface Props {
   readonly onMonths: (value: string) => void;
   /** Оруулсан насыг эргүүлж хэлэх мөр. Талбайн доор. */
   readonly echo: React.ReactNode;
+  /** 18-аас дээш нас оруулсан эсэх — dosage.mn зөвхөн хүүхдэд зориулагдсан. */
+  readonly invalid: boolean;
+  /** Талбайн ДООР улаанаар. Зөвхөн `invalid` үед харагдана. */
+  readonly error: string;
 }
 
 /**
@@ -27,9 +32,11 @@ interface Props {
 export default function AgeFields(props: Props) {
   const id = useId();
   const echoId = `${id}-echo`;
+  const error = shownError(props.invalid, props.error);
+  const kind = noteKindOf(error, props.echo);
 
   return (
-    <Field>
+    <Field data-invalid={props.invalid}>
       <FieldLabel htmlFor={`${id}-years`}>Нас</FieldLabel>
       <div className="flex gap-2">
         <AgeInput
@@ -38,6 +45,7 @@ export default function AgeFields(props: Props) {
           label="Нас — бүтэн жил"
           value={props.years}
           describedBy={echoId}
+          invalid={props.invalid}
           onChange={props.onYears}
         />
         <AgeInput
@@ -46,10 +54,11 @@ export default function AgeFields(props: Props) {
           label="Нас — нэмэлт сар"
           value={props.months}
           describedBy={echoId}
+          invalid={props.invalid}
           onChange={props.onMonths}
         />
       </div>
-      <FieldDescription id={echoId}>{props.echo}</FieldDescription>
+      <FieldNote kind={kind} id={echoId} error={error} description={props.echo} />
     </Field>
   );
 }

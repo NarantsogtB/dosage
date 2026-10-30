@@ -11,6 +11,7 @@
 export interface InputStatus {
   readonly hasWeight: boolean;
   readonly hasAge: boolean;
+  readonly ageInvalid: boolean;
   readonly hasDrugs: boolean;
 }
 
@@ -34,6 +35,13 @@ const RULES: readonly Rule[] = [
     {
       title: "Нас оруулаагүй байна",
       hint: "Нас нь аль заавар хамаарахыг тодорхойлно. Хоосон орхивол нярай гэж тооцогдоно.",
+    },
+  ],
+  [
+    (status) => status.ageInvalid,
+    {
+      title: "Нас 18-аас дээш байна",
+      hint: "dosage.mn зөвхөн хүүхдийн (0–18 нас) жинд суурилсан тунг тооцоолдог. Насанд хүрэгчийн тун ихэвчлэн ФИКС байдаг тул энд тооцоологдохгүй.",
     },
   ],
   [

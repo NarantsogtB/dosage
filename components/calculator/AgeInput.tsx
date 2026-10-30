@@ -13,6 +13,7 @@ interface Props {
   readonly label: string;
   readonly value: string;
   readonly describedBy: string;
+  readonly invalid?: boolean;
   readonly onChange: (value: string) => void;
 }
 
@@ -30,6 +31,7 @@ export default function AgeInput(props: Props) {
         value={props.value}
         aria-label={props.label}
         aria-describedby={props.describedBy}
+        aria-invalid={props.invalid}
         onChange={(event) => props.onChange(event.target.value)}
         className="num text-[22px] leading-[28px] font-semibold tracking-[-0.006em]"
       />

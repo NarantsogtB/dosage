@@ -92,6 +92,7 @@ lib/
 │   ├── eligibility/           Тооцоолох эрх
 │   │   ├── check-eligibility.ts
 │   │   ├── check-weight-range.ts
+│   │   ├── check-age-range.ts   18-с дээш (насанд хүрэгч) — зогсооно
 │   │   └── limits.ts
 │   │
 │   ├── formulation/           Тун → мл / шахмал
@@ -277,8 +278,12 @@ Bundle-ийн жин нь bedside workflow-д шууд нөлөөтэй тул R
 ```
 calculateDosage(drug, patient, options)
   │
-  ├─ checkEligibility(patient)          жин хязгаарт байна уу
+  ├─ checkEligibility(patient)          жин хязгаарт байна уу, 18-с доош уу
   │    └─ ineligible → зогсоно
+  │       ⚠️ 2026-08-20: дэлхийн 18 насны (216 сар) хязгаар нэмсэн.
+  │       dosage.mn ЗӨВХӨН хүүхдийн мг/кг тун тооцоолдог — насанд
+  │       хүрэгчид ихэнх эм ФИКС тунтай (жингээс үл хамаарна) тул мг/кг
+  │       томьёог үргэлжлүүлж болохгүй (жишээ: captopril).
   │
   ├─ selectRule(drug, patient, code)    нас · жин · заалтаар шүүх
   │    ├─ matchRule → matchAge + matchWeight + matchIndication
