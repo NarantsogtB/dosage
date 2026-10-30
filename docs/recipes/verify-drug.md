@@ -9,7 +9,8 @@
    - нярай 0–59 хоног → WHO SBI 2024
    - ЭМЯ/ЭМХТ заавар байвал давуу (`A_mn_approved`)
    - бусад → MSF, PCH, RCH, Starship, CHQ (`C_international`)
-   - **Хориотой:** BNFc, Nelson, Harriet Lane, UpToDate, Lexicomp
+   - **Хориотой:** Nelson, Harriet Lane, UpToDate, Lexicomp, Medscape, drugs.com
+   - **BNFc** — зөвхөн зөрүү шийдэх tie-breaker, хоёр эх сурвалжийн нэг болгож тоолохгүй
 3. Дүрэм бүрд ≥2 бие даасан эх сурвалж, тус бүр `locator` (бүлэг/хуудас/хүснэгт)
    + `quotedValue` (эх утга үгчлэн), ≥1 нь 2020+. Шинэ эх сурвалж →
    `lib/data/sources/registry.ts`.

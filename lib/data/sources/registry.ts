@@ -520,4 +520,33 @@ export const SOURCES: Record<string, Source> = {
       "⚠️ Retracted WHO 2012 «Persisting pain in children» зааврыг ОРЛУУЛАХ " +
       "зорилгоор сонгосон (тэр эх сурвалжийг ДЭМБ 2020 онд буцаан татсан).",
   },
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // ЗӨВХӨН ЗӨРҮҮ ШИЙДЭХ (tie-breaker) — ердийн баталгаажуулалтад тоолохгүй.
+  // ───────────────────────────────────────────────────────────────────────────
+
+  "bnfc": {
+    id: "bnfc",
+    citation:
+      "Joint Formulary Committee. BNF for Children. BMJ Group, " +
+      "Pharmaceutical Press and RCPCH Publications (NICE BNFC online).",
+    publisher: "BMJ / Pharmaceutical Press / RCPCH (NICE)",
+    edition: "цахим, сар бүр шинэчлэгддэг",
+    year: 2026,
+    url: "https://bnfc.nice.org.uk/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Зохиогчийн эрхтэй, эмхэтгэл нь хамгаалагдсан. ЗӨВХӨН зөрүү шийдэхэд " +
+        "(хоёр эх сурвалж хоорондоо эсвэл одоогийн тоотой зөрөхөд) ганц утгыг " +
+        "ишлэнэ. Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ, системтэйгээр татахгүй.",
+    },
+    lastVerified: "2026-10-30",
+    relevanceMn:
+      "Хүүхдийн formulary-ийн хамгийн бүрэн эх сурвалж. Хэрэглэгчийн " +
+      "шийдвэрээр (2026-10-30) зөвхөн tie-breaker — `conflictNote` болон " +
+      "docs/sources/pending-decisions-2026-10.md-д ишлэнэ, ердийн «тоо " +
+      "таарсан» баталгаажуулалтын хоёр эх сурвалжийн нэг болгож тоолохгүй.",
+  },
 };
