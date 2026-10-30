@@ -3,17 +3,16 @@ import type { Drug } from "../../domain/drug";
 /**
  * Erythromycin — Эритромицин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — MSF Essential drugs (2024-01) + WHO AWaRe
+ * antibiotic book (2022). 30–50 мг/кг/хон, 4 хуваана, дээд 500 мг/тун — тохирч
+ * байна. Тун өөрчлөгдөөгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * ⚠️ MSF: 6 сараас доош, ялангуяа 2 долоо хоногоос доош нярайд хэрэглэхгүй
+ * эсвэл болгоомжтой (пилорын гипертрофийн нарийсал). AWaRe-ийн 50 мг/кг/хон
+ * нь нярайн хламидийн конъюнктивитэд — тиймээс насны доод 0 хэвээр.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const erythromycin: Drug = {
@@ -45,8 +44,19 @@ export const erythromycin: Drug = {
           maxMg: 2000
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "ERYTHROMYCIN oral — Dosage (2024-01)",
+          quotedValue: "Child: 30 to 50 mg/kg daily in divided doses"
+        },
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 19 Chlamydial urogenital infection, Table 19.3 footnote f, p. 240 (PDF p. 256)",
+          quotedValue: "erythromycin (oral): 50 mg/kg per day divided in 4 doses for 14 days."
+        }
+      ],
+      evidenceLevel: "B_who",
       isDefault: true
     }
   ],

@@ -3,9 +3,9 @@ import type { Drug } from "../../domain/drug";
 /**
  * Azithromycin — Азитромицин
  *
- * ✅ БАТАЛГААЖСАН, ГАНЦ ЭХ СУРВАЛЖ (2026-10-30) — MSF Essential drugs
- * (2025-06): 10 мг/кг өдөрт 1 удаа, дээд 500 мг (M. pneumoniae хатгаа,
- * дунд чихний үрэвсэл). Тун өөрчлөгдөөгүй. `tests/data/known-gaps.ts`.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO AWaRe antibiotic book (2022, Table
+ * 50.1 «lower dose») + MSF Essential drugs (2025-06): 10 мг/кг өдөрт 1 удаа,
+ * хоногт дээд 500 мг. Тун өөрчлөгдөөгүй.
  *
  * RCH Melbourne (2026-10) уух горим өөр: ≥6 сар — эхний өдөр 10 мг/кг,
  * дараа нь 5 мг/кг (pertussis); 10 мг/кг өдөр бүр нь зөвхөн IV. Насны
@@ -50,9 +50,14 @@ export const azithromycin: Drug = {
           sourceId: "msf-essential-drugs",
           locator: "AZITHROMYCIN oral — Pneumonia due to M. pneumoniae and C. pneumoniae; Acute otitis media (2025-06)",
           quotedValue: "Child: 10 mg/kg (max. 500 mg) once daily for 5 days"
+        },
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 642 (PDF p. 658)",
+          quotedValue: "Azithromycin Oral: Lower dose: 10 mg/kg/dose given every 24 hours ... Up to a maximum daily dose of 500 mg"
         }
       ],
-      evidenceLevel: "C_international",
+      evidenceLevel: "B_who",
       isDefault: true
     }
   ],

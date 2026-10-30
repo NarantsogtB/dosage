@@ -3,17 +3,16 @@ import type { Drug } from "../../domain/drug";
 /**
  * Clarithromycin — Кларитромицин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН, ГАНЦ ЭХ СУРВАЛЖ (2026-10-30) — WHO AWaRe antibiotic book
+ * (2022), Table 50.1: 7.5 мг/кг/тун 12 цаг тутам, хоногт дээд 1 г. Тун
+ * өөрчлөгдөөгүй. `tests/data/known-gaps.ts`.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * MSF Essential drugs-д зөвхөн насанд хүрэгчийн тун (H. pylori), RCH-ийн
+ * Antimicrobial guidelines-д байхгүй. Насны доод 6 сар — эх сурвалжаас
+ * хатуу (AWaRe нас заагаагүй).
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const clarithromycin: Drug = {
@@ -45,8 +44,14 @@ export const clarithromycin: Drug = {
           maxMg: 1000
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 646 (PDF p. 662)",
+          quotedValue: "Clarithromycin Oral: 7.5 mg/kg/dose given every 12 hours Up to a maximum daily dose of 1 g"
+        }
+      ],
+      evidenceLevel: "B_who",
       isDefault: true
     }
   ],
