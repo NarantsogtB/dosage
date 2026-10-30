@@ -86,6 +86,40 @@ Analytics Engine-ийг нэг удаа идэвхжүүлнэ. Дэлгэрэн
 
 ---
 
+## 4b. Offline — service worker
+
+`bun run build` = `next build` + `scripts/build-sw.ts` → `out/sw.js`.
+`deploy`, `preview` хоёулаа `bun run build`-ийг дууддаг — `next build`-ийг
+шууд ажиллуулбал `sw.js` үүсэхгүй (хуучин SW хэвээр үлдэнэ).
+
+| Хүсэлт | Стратеги |
+|---|---|
+| HTML, RSC `.txt` | network-first, 3 сек-ээс удаан эсвэл offline → кэш |
+| `/_next/static/*`, дүрс | cache-first (нэр нь hash-тай) |
+| `/api/*` | хэзээ ч кэшлэхгүй — analytics offline үед чимээгүй алдагдана |
+
+- **Урьдчилан кэшлэх** (`lib/pwa/precache.ts`): `/`, `/dose`, `/burns`, 404,
+  `_next/static`, дүрс — ~0.6MB gzip. Эмийн SEO хуудас (`/dose/<slug>`,
+  HTML бүр ~200KB) **урьдчилан кэшлэгдэхгүй**, зочилсон үед кэшлэгдэнэ.
+  `/dose` тооцоолуур 50 эмийг бүгдийг агуулдаг тул offline-д бүрэн ажиллана.
+- **Хувилбар** = `.next/BUILD_ID` → deploy бүр шинэ кэш, хуучин нь `activate`
+  үед устна. Шинэ SW автоматаар идэвхжихгүй: «Шинэ хувилбар бэлэн —
+  Шинэчлэх» toast (хаагдахгүй) → `SKIP_WAITING` → нэг удаа reload.
+- `public/_headers`: `/sw.js` `no-cache` — эс бөгөөс шинэ deploy хүрэхгүй.
+- SW зөвхөн production build-д бүртгэгдэнэ (`next dev`-д бүртгэгдэхгүй).
+
+**Гараар шалгах** (`bun run preview` → http://localhost:8788):
+1. `/dose`-ийг нээж DevTools → Application → Service Workers: `activated`.
+2. Network → **Offline** → `/dose`, `/burns`, өмнө нь нээсэн `/dose/<slug>`
+   reload хийхэд нээгдэнэ, толгойд «Офлайн»; жин/нас/эм оруулж тун гарна.
+3. Online болгоод дахин build/deploy → reload → «Шинэ хувилбар бэлэн» toast
+   → «Шинэчлэх» → Application → Cache Storage-д зөвхөн шинэ `dosage-<id>`.
+
+⚠️ Playwright-ийн `setOffline` нь SW-ийн `fetch`-д үйлчлэхгүй — автомат
+шалгалтад серверийг бүр зогсоож шалгана.
+
+---
+
 ## 5. ⚠️ Статик экспортоос хэзээ гарах вэ
 
 Одоогийн тохиргоо дараах зүйлсийг **боломжгүй** болгоно:

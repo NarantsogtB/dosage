@@ -18,6 +18,27 @@
 
 ---
 
+## 2026-10-30 — Offline: гараар бичсэн service worker, эмийн хуудас lazy
+
+**Context:** Интернэтгүй тасаг, сумын эмнэлэгт хэрэгсэл ажиллах ёстой
+(roadmap шат 1). Static export тул сервер талын шийдэл байхгүй.
+**Decision:** Workbox/Serwist-гүй ~70 мөр `scripts/sw.template.js` +
+`out/`-ээс precache жагсаалт гаргадаг тесттэй цэвэр функц
+(`lib/pwa/precache.ts`). Кэш = BUILD_ID. HTML network-first (3 сек),
+static cache-first, `/api/*` кэшгүй. Эмийн 50 SEO хуудсыг урьдчилан
+кэшлэхгүй (~10MB → 0.6MB gzip). Шинэ SW-ийг хэрэглэгч «Шинэчлэх»-ээр
+идэвхжүүлнэ. Analytics-ийг offline үед queue хийхгүй.
+**Why:** Dependency нэмэхгүйгээр бүрэн хяналттай, шалгаж болохуйц.
+`/dose` 50 эмийг бүгдийг агуулдаг тул эмийн хуудсыг урьдчилан татах нь
+анхны ачаалалтыг 20 дахин хүндрүүлээд offline-д шинэ боломж өгөхгүй.
+Автомат `skipWaiting` нь эмч тун бодож байхад хуудсыг сольж болзошгүй;
+харин хаагдахгүй toast нь хуучин өгөгдөл дээр удаан үлдэхээс сэргийлнэ.
+Analytics queue нь хувийн нууцын хүрээг (`ANALYTICS.md`) тэлэх ба
+offline хэрэглээний хэмжээ бага.
+**Status:** accepted
+
+---
+
 ## 2026-10-30 — Хуучин engine ба тэнцвэрийн тестийг зогсоох
 
 **Context:** `lib/drugs.ts` (1496 мөр), `lib/calculations.ts`, 492KB snapshot,
