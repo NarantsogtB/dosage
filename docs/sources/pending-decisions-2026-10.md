@@ -94,7 +94,7 @@ Roadmap шат 0b. Одоогийн дүрэм эх сурвалжаас **зө�
 
 ### aciclovir-general ☐
 - **Одоо:** 20 мг/кг/тун, өдөрт 4 удаа, дээд 800 мг/тун, 4 г/хон, 3 сараас (тэмдэглэл: салхин цэцэг).
-- **WHO Formulary 2010 (p. 150):** салхин цэцэг (ихэвчлэн дархлал дарангуйлагдсан үед): «Child less than 2 years 200 mg four times daily; 2–5 years 400 mg four times daily; over 5 years 800 mg four times daily.» Энгийн герпес: «Child less than 2 years 100 mg five times daily; 2 years and over 200 mg five times daily.»
+- **WHO Formulary 2010 (p. 149):** салхин цэцэг (ихэвчлэн дархлал дарангуйлагдсан үед): «Child less than 2 years 200 mg four times daily; 2–5 years 400 mg four times daily; over 5 years 800 mg four times daily.» Энгийн герпес: «Child less than 2 years 100 mg five times daily; 2 years and over 200 mg five times daily.»
 - **RCH:** уух салхин цэцгийн мг/кг тун хуудсанд алга; ам хөндийн герпес: «Consider Aciclovir 10 mg/kg (400 mg) oral five times daily».
 - **MSF:** зөвхөн энгийн герпес — тогтмол мг (200–400 мг, өдөрт 3–5 удаа).
 - **Зөрүү:** эх сурвалжууд насны мужаар тогтмол мг өгдөг, мг/кг хэлбэргүй; давтамж заалтаас хамаарна (4 vs 5).
