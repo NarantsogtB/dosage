@@ -1,5 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "dosage",
-  "pages_build_output_dir": "out"
+  "pages_build_output_dir": "out",
+  // functions/api/e.ts → үйлдлийн analytics. docs/ANALYTICS.md
+  "analytics_engine_datasets": [
+    { "binding": "EVENTS", "dataset": "dosage_events" }
+  ]
 }
