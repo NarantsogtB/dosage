@@ -123,7 +123,7 @@ Roadmap шат 0b. Одоогийн дүрэм эх сурвалжаас **зө�
 ### ⚠️ hydrocortisone-general — АЮУЛГҮЙ БАЙДЛЫН ЭРЭМБЭ: ӨНДӨР ☐
 - **Одоо:** 5–10 мг/кг/хон, өдөрт 2 удаа (2.5–5 мг/кг/тун), дээд 200 мг/тун, 400 мг/хон, амаар/судсаар, 0 сараас. Тэмдэглэл: «Бөөрний дайврын булчирхайн дутмагшлын орлуулга эмчилгээ».
 - **RCH «Adrenal crisis and acute adrenal insufficiency» (2024-10):** «Usual replacement requirements are ~10-15 mg/m2/day for children with primary adrenal insufficiency»; өвчтэй өдөр «Give hydrocortisone 30 mg/m2/day»; хямралд насаар тогтмол IV/IM тун (жишээ нь 3–12 нас: эхлээд 50 мг).
-- **WHO Formulary 2010 (p. 32):** анафилакси IM/IV: «Infant or Child 6 months–6 years initially 50 mg up to four times daily».
+- **WHO Formulary 2010 (p. 31):** анафилакси IM/IV: «Infant or Child 6 months–6 years initially 50 mg up to four times daily».
 - **Зөрүү:** орлуулах эмчилгээнд одоогийн тун **хэт өндөр**. 20 кг (≈0.8 м²) хүүхдэд 100–200 мг/хон гарна; RCH-ийн хэвийн орлуулга ≈8–12 мг/хон, өвчтэй өдөр ≈24 мг/хон — **8–20 дахин их**. Мг/кг нь стресс/шокийн тунгийн хэлбэр, орлуулгын биш. Эх сурвалжууд мг/м² эсвэл насаар тогтмол тун өгдөг.
 - **Санал (яаралтай):** энэ дүрмийг идэвхгүй болгох (`status: "draft"`) эсвэл тэмдэглэлийг засах хүртэл тооцоолуураас нуух. Орлуулгын тунг мг/м² basis шаардана (одоогийн engine-д байхгүй — `docs/roadmap/phase-S4-units.md`).
 
