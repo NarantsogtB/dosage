@@ -5,7 +5,10 @@ import type { Drug } from "../../domain/drug";
  *
  * ✅ Астмын дүрэм БАТАЛГААЖСАН — RCH Melbourne + Starship NZ нийцэв.
  *    Хоёулаа 1 мг/кг. Дээд хязгаар зөрүүтэй (50 vs 40) — conflictNote үз.
- * ⚠️ Ерөнхий дүрэм баталгаажаагүй.
+ * ✅ Ерөнхий дүрэм БАТАЛГААЖСАН (2026-10-30) — WHO Model Formulary for
+ *    Children (2010): 1–2 мг/кг өдөрт 1 удаа (ердийн дээд 60 мг) + MSF
+ *    Essential drugs (2023-09): 0.5–2 мг/кг (хоногт дээд 80 мг). Тун
+ *    өөрчлөгдөөгүй; дээд 60 мг нь MSF-ийн 80-аас хатуу.
  */
 
 export const prednisolone: Drug = {
@@ -78,8 +81,19 @@ export const prednisolone: Drug = {
           maxMg: 60
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "3 Antiallergics — Prednisolone, Dose (oral), p. 33",
+          quotedValue: "Infant or Child 1–2 mg/kg once daily (usual maximum 60 mg), reducing after a few days if appropriate."
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "PREDNISOLONE and PREDNISONE oral — Dosage (2023-09)",
+          quotedValue: "Child and adult: 0.5 to 2 mg/kg once daily in the morning or in 2 divided doses (max. 80 mg daily)"
+        }
+      ],
+      evidenceLevel: "C_international",
       conflictNote: "⚠️ Эх сурвалжгүй. Астмын заалт сонговол баталгаажсан дүрэм үйлчилнэ."
     }
   ],
