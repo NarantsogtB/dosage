@@ -2,6 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "dosage",
   "pages_build_output_dir": "out",
+  // Заавал: байхгүй бол Function-ийн deploy "No such module node:stream"-ээр унана.
+  "compatibility_date": "2026-10-01",
   // functions/api/e.ts → үйлдлийн analytics. docs/ANALYTICS.md
   "analytics_engine_datasets": [
     { "binding": "EVENTS", "dataset": "dosage_events" }
