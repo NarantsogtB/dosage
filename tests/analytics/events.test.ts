@@ -3,7 +3,7 @@ import type { AnalyticsEvent } from "@/lib/analytics/events";
 import { parseEvent, toBlobs } from "@/lib/analytics/events";
 
 const VALID: readonly AnalyticsEvent[] = [
-  { name: "calculator_opened", calculator: "dose" },
+  { name: "calculator_opened", calculator: "dose", mode: "standalone" },
   { name: "drug_selected", drugId: "amoxicillin" },
   { name: "search_no_result", query: "азитромицин" },
   { name: "weight_entered", bucket: "10-20" },
@@ -32,7 +32,8 @@ describe("parseEvent", () => {
     ["хоосон хайлт", { name: "search_no_result", query: "" }],
     ["тоон жин", { name: "weight_entered", bucket: 15 }],
     ["буруу bucket", { name: "weight_entered", bucket: "15" }],
-    ["буруу тооцоолуур", { name: "calculator_opened", calculator: "x" }],
+    ["буруу тооцоолуур", { name: "calculator_opened", calculator: "x", mode: "browser" }],
+    ["mode байхгүй", { name: "calculator_opened", calculator: "dose" }],
     ["буруу платформ", { name: "install_prompt_shown", platform: "windows" }],
     ["object биш", "drug_selected"],
     ["null", null],

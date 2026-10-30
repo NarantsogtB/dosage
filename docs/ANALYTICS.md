@@ -32,6 +32,10 @@ UI hook / handler ──► lib/analytics/track.ts ──sendBeacon──► POS
 | Хайлтын үг (normalize, ≤ 40 тэмдэгт) | Нас |
 | Улсын код (`request.cf.country`) | IP, User-Agent, cookie, хэрэглэгчийн ID |
 
+«Сүүлд хэрэглэсэн» эм (`dosage.recent.v1`) болон сануулгыг хаасан
+тэмдэг (`dosage.install-prompt.v1`) нь зөвхөн төхөөрөмжийн localStorage-д
+— серверт явахгүй, хэрэглэгчийг танихад ашиглахгүй.
+
 Сервер schema-д байхгүй талбарыг **хаядаг** (`parseEvent` → `pick`) —
 client алдаагаар жин илгээсэн ч хадгалагдахгүй.
 
@@ -39,12 +43,15 @@ client алдаагаар жин илгээсэн ч хадгалагдахгү�
 
 | Event | Хэзээ | Талбар |
 |---|---|---|
-| `calculator_opened` | `/dose` эсвэл `/burns` нээгдэх | `calculator` |
+| `calculator_opened` | `/dose` (эмийн хуудас орно) эсвэл `/burns` нээгдэх | `calculator`, `mode` (`browser` / `standalone` — нүүр дэлгэцээс) |
 | `drug_selected` | эм жагсаалтад НЭМЭХ (хасах биш) | `drugId` |
 | `search_no_result` | хайлтын үгнээс болж хоосон, 1.2 сек тогтсон (ангилал / «баталгаажсан» шүүлттэй үед тоолохгүй) | `query` |
 | `weight_entered` | хүчинтэй жин, 1 сек тогтсон | `bucket` |
 | `calc_completed` | эмийн тун амжилттай гарч 1.5 сек тогтсон | `drugId`, `formulationId` (анхдагч бэлдмэл — эхний шингэн), `bucket` |
 | `copy_result` | «Хуулах» амжилттай — хуулсан эм бүрд нэг | `drugId` |
+| `recent_drug_used` | «Сүүлд хэрэглэсэн» chip-ээр эм НЭМЭХ | `drugId` |
+| `install_prompt_shown` | «Нүүр дэлгэцэд нэмэх» сануулга гарах (нэг удаа) | `platform` (`android` / `ios`) |
+| `install_prompt_result` | сануулгад хариулах | `platform`, `outcome` (`accepted` / `dismissed` — Android; `acknowledged` — iOS «Ойлголоо», суусныг мэдэх боломжгүй) |
 
 Ижил агуулгатай event-ийг нэг хуудас нээлтэд **нэг л удаа** илгээнэ
 (`components/analytics/use-track-settled.ts`).
@@ -55,8 +62,8 @@ client алдаагаар жин илгээсэн ч хадгалагдахгү�
 |---|---|
 | `index1` | event-ийн нэр |
 | `blob1` | event-ийн нэр |
-| `blob2` | `calculator` / `drugId` / `query` / `bucket` (эхний талбар) |
-| `blob3` | `formulationId` (`calc_completed`) |
+| `blob2` | `calculator` / `drugId` / `query` / `bucket` / `platform` (эхний талбар) |
+| `blob3` | `formulationId` (`calc_completed`), `mode` (`calculator_opened`), `outcome` (`install_prompt_result`) |
 | `blob4` | `bucket` (`calc_completed`) |
 | `blob5` | улсын код |
 | `double1` | 1 |
@@ -141,6 +148,39 @@ WHERE blob1 = 'weight_entered'
 GROUP BY bucket
 ORDER BY n DESC;
 ```
+
+### Эргэж ирэлт (Ажил 3)
+
+```sql
+-- Нүүр дэлгэцээс нээсэн хувь (суулгасан аппын хэрэглээ), 7 хоногоор
+SELECT blob3 AS mode, SUM(_sample_interval) AS n
+FROM dosage_events
+WHERE blob1 = 'calculator_opened'
+  AND timestamp > NOW() - INTERVAL '7' DAY
+GROUP BY mode;
+```
+
+```sql
+-- Суулгалтын юүлүүр: харсан → хариулт (платформоор)
+SELECT blob1 AS step, blob2 AS platform, blob3 AS outcome, SUM(_sample_interval) AS n
+FROM dosage_events
+WHERE blob1 IN ('install_prompt_shown', 'install_prompt_result')
+  AND timestamp > NOW() - INTERVAL '30' DAY
+GROUP BY step, platform, outcome
+ORDER BY platform, step;
+```
+
+```sql
+-- «Сүүлд хэрэглэсэн»-ээр сонголт нийт сонголтын хэдэн хувь вэ
+SELECT blob1 AS event, SUM(_sample_interval) AS n
+FROM dosage_events
+WHERE blob1 IN ('drug_selected', 'recent_drug_used')
+  AND timestamp > NOW() - INTERVAL '30' DAY
+GROUP BY event;
+```
+
+`recent_drug_used` нь `drug_selected`-ийн ДЭД олонлог — chip-ээр сонгосон
+эм хоёуланг нь үүсгэнэ.
 
 ## 6. Локалд шалгах
 

@@ -17,6 +17,10 @@ export type WeightBucket = (typeof WEIGHT_BUCKETS)[number];
 export const CALCULATORS = ["dose", "burns"] as const;
 export type CalculatorName = (typeof CALCULATORS)[number];
 
+/** Нүүр дэлгэцээс (суулгасан апп) эсвэл хөтчөөс нээсэн. */
+export const DISPLAY_MODES = ["browser", "standalone"] as const;
+export type DisplayMode = (typeof DISPLAY_MODES)[number];
+
 export const INSTALL_PLATFORMS = ["android", "ios"] as const;
 export type InstallPlatform = (typeof INSTALL_PLATFORMS)[number];
 
@@ -28,7 +32,11 @@ export type InstallOutcome = (typeof INSTALL_OUTCOMES)[number];
 export const MAX_QUERY_LENGTH = 40;
 
 export type AnalyticsEvent =
-  | { readonly name: "calculator_opened"; readonly calculator: CalculatorName }
+  | {
+      readonly name: "calculator_opened";
+      readonly calculator: CalculatorName;
+      readonly mode: DisplayMode;
+    }
   | { readonly name: "drug_selected"; readonly drugId: string }
   | { readonly name: "search_no_result"; readonly query: string }
   | { readonly name: "weight_entered"; readonly bucket: WeightBucket }
@@ -68,7 +76,10 @@ const isFormulationId: Check = (value) =>
 
 /** Event бүрийн талбар, ДАРААЛАЛ нь blob-ийн байрлалыг тодорхойлно. */
 const SCHEMA: Record<EventName, Record<string, Check>> = {
-  calculator_opened: { calculator: oneOf(CALCULATORS) },
+  calculator_opened: {
+    calculator: oneOf(CALCULATORS),
+    mode: oneOf(DISPLAY_MODES),
+  },
   drug_selected: { drugId: isDrugId },
   search_no_result: { query: isQuery },
   weight_entered: { bucket: oneOf(WEIGHT_BUCKETS) },

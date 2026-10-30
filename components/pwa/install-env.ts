@@ -17,7 +17,8 @@ export const SERVER_ENV: InstallEnv = { standalone: false, dismissed: true };
 let env: InstallEnv | undefined;
 const listeners = new Set<() => void>();
 
-const isStandalone = (): boolean =>
+/** Нүүр дэлгэцээс (суулгасан PWA) нээгдсэн эсэх. */
+export const isStandalone = (): boolean =>
   window.matchMedia("(display-mode: standalone)").matches ||
   (navigator as { standalone?: boolean }).standalone === true;
 
