@@ -461,6 +461,37 @@ export const SOURCES: Record<string, Source> = {
       "— зөвхөн нярайн mg/kg titration схемийг л хамарна.",
   },
 
+  "childrens-mn-cap-2025": {
+    id: "childrens-mn-cap-2025",
+    citation:
+      "Children's Minnesota. Clinical Guideline — Community Acquired " +
+      "Pneumonia (CAP), Age 2 months–17 years.",
+    publisher: "Children's Minnesota",
+    edition: "Rev 10/25 (хянасан: Herring), дараагийн review 2028-10",
+    year: 2025,
+    url: "https://www.childrensmn.org/references/cds/community-acquired-pneumonia-guidelines.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "АНУ-ын хүүхдийн эмнэлгийн албан ёсны заавар, үнэ төлбөргүй PDF. " +
+        "Тодорхой CC лиценз заагаагүй тул cite-only гэж үзэв — хүснэгт " +
+        "хуулахгүй, тунгийн утгыг гаргаж авч ишлэнэ.",
+    },
+    lastVerified: "2026-08-20",
+    relevanceMn:
+      "★ WHO 2024-ийн 40мг/кг/тун bd (=80мг/кг/өдөр)-той ХОЛБООТОЙ бие " +
+      "даасан баталгаажуулалт: АНУ-ын CAP заавар 45мг/кг/тун bd " +
+      "(=90мг/кг/өдөр, дээд 2000мг/тун) зөвлөдөг. Тайлбар (beta-lactam " +
+      "note 1): «pneumococcus-ийн пенициллинд тэсвэржилт орон нутагт бага " +
+      "тул өндөр тунгийн амоксициллин хангалттай» — өөрөөр хэлбэл 90мг/кг " +
+      "нь АНУ-ын тэсвэржилтийн нөхцөл дэх зөвлөмж, WHO-ийн 80мг/кг нь бүх " +
+      "орны (Монгол зэрэг) нөхцөлд зориулсан зөвлөмж. Хоёулаа ХӨЦМ/бүртгэлийн " +
+      "хуучин 40мг/кг/ӨДӨР-ийн зэрэгцээ өндөр тунгийн парадигмд нийцэж " +
+      "байгаа нь чухал — тоо ойролцоо (80 vs 90), зөвхөн эх сурвалж, орон " +
+      "өөр.",
+  },
+
   "msf-essential-drugs": {
     id: "msf-essential-drugs",
     citation:
