@@ -8,7 +8,7 @@
 | Хийх ажил | Унших |
 |---|---|
 | Шинэ эм нэмэх | `recipes/add-drug.md` |
-| Эм баталгаажуулах | `recipes/verify-drug.md` → шаардлагатай бол `sources/tiers.md` |
+| Эм баталгаажуулах | `EVIDENCE-STATUS.md` (аль нь дутуу) → `recipes/verify-drug.md` → шаардлагатай бол `sources/tiers.md` |
 | Шинэ тооцоолуур/хуудас | `recipes/add-calculator.md` |
 | Roadmap-ийн шат хэрэгжүүлэх | `roadmap/README.md` → тухайн `roadmap/phase-*.md` |
 | Engine өөрчлөх | `lib/engine/CLAUDE.md` (+ `architecture/calculation-flow.md`) |
@@ -33,6 +33,7 @@
 | `ANALYTICS.md` | 9KB | Event schema, хувийн нууц, SQL |
 | `DEPLOY.md` | 6KB | Cloudflare Pages, redirect |
 | `DECISIONS.md` | 8KB | ADR лог |
+| `EVIDENCE-STATUS.md` | генерацлагдсан | Дүрэм бүрийн нотолгооны түвшин — `bun run evidence:report`, гараар засахгүй |
 | `BURNS-SOURCE-NOTES.md` | 10KB | Түлэгдэлтийн номын хуудас тус бүрийн тэмдэглэл |
 
 `SOURCES.md`, `ARCHITECTURE.md`, `DESIGN-SYSTEM.md`, `ROADMAP-NEXT.md` нь

@@ -17,7 +17,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | # | Файл | Ажил | Хугацаа | Хамаарал | Төлөв |
 |---|---|---|---|---|---|
 | 1 | `phase-S1-retire-legacy.md` | Хуучин engine, 492KB snapshot устгах | 0.5 өдөр | — | ☑ |
-| 2 | `phase-0-verification.md` | Эх сурвалж: статус тайлан + 7 хоног бүрийн batch | тасралтгүй | — | ☐ |
+| 2 | `phase-0-verification.md` | Эх сурвалж: статус тайлан + 7 хоног бүрийн batch | тасралтгүй | — | 0a ☑ · 0b ☐ |
 | 3 | `phase-1-offline.md` | Service worker, offline | 1–2 өдөр | — | ☐ |
 | 4 | `phase-2a-patient-bar.md` | V3: patient bar, кг/г | 3–4 өдөр | — | ☐ |
 | 5 | `phase-2b-result-card.md` | V3: нэгдсэн үр дүнгийн карт | 4–5 өдөр | 2a | ☐ |
@@ -41,5 +41,6 @@ Analytics-ийн 2–3 долоо хоногийн өгөгдлөөр 8–15-ы�
 
 ## Төлөв (2026-10-30)
 
-51 эм, 94 дүрэм: 77 `E_unverified`, 13 C, 4 B, A = 0. Бүх эм `oral`.
+50 эм, 58 дүрэм: 41 `E_unverified`, 13 C, 4 B, A = 0 (`bun run evidence:report`
+→ `docs/EVIDENCE-STATUS.md`). Бүх эм `oral`.
 Хэрэгсэл: `/dose`, `/burns`. Service worker байхгүй. V3 Figma-д бэлэн.
