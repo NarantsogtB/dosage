@@ -4,6 +4,10 @@ import { usePathname } from "next/navigation";
 import NavTab from "./NavTab";
 import { ROUTES } from "./routes";
 
+/** `/dose/amoxicillin` дээр «Эмийн тун» таб идэвхтэй хэвээр. */
+const isActive = (pathname: string, href: string): boolean =>
+  pathname === href || pathname.startsWith(`${href}/`);
+
 /**
  * Тооцоолуур хооронд шилжих таб.
  *
@@ -19,7 +23,7 @@ export default function CalculatorNav() {
           <NavTab
             key={route.href}
             route={route}
-            active={pathname === route.href}
+            active={isActive(pathname, route.href)}
           />
         ))}
       </div>

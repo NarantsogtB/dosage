@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_ROUTES, SITE_URL } from "@/lib/site";
+import { DRUG_ROUTES } from "@/lib/drug-page/drug-routes";
 
 /**
  * `output: "export"` үед ЗААВАЛ хэрэгтэй.
@@ -14,11 +15,13 @@ export const dynamic = "force-static";
  *
  * `lastModified` нь build хийсэн огноо. Хуудас бүрийн жинхэнэ
  * өөрчлөлтийн огноог хөтлөх нь өгөгдлийн сан гарч ирэх хүртэл
- * хэт эрт — гурван хуудсанд илүүц нарийвчлал.
+ * хэт эрт.
+ *
+ * Эмийн хуудсууд (`DRUG_ROUTES`) — зөвхөн эх сурвалжтай эмүүд.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return SITE_ROUTES.map((route) => ({
+  return [...SITE_ROUTES, ...DRUG_ROUTES].map((route) => ({
     url: `${SITE_URL}${route.path}`,
     lastModified: now,
     changeFrequency: "weekly" as const,
