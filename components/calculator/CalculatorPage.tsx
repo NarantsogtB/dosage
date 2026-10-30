@@ -1,19 +1,19 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Disclaimer from "@/components/Disclaimer";
 import PrintTemplate from "@/components/print/PrintTemplate";
 import AppFooter from "./AppFooter";
 import InputColumn from "./InputColumn";
 import ResultsColumn from "./ResultsColumn";
 import {
-  EMPTY_FORM,
   hasWeight,
   inputStatus,
   isReady,
   toPatient,
 } from "./patient-form";
+import { usePatientForm } from "./patient-store";
 import { useCalculatorTracking } from "./use-calculator-tracking";
 import { useDosageResults } from "./use-dosage-results";
 import { useIndications } from "./use-indications";
@@ -30,7 +30,7 @@ interface Props {
 
 /** Тооцоолуурын үндсэн хуудас. Төлөвийг эзэмшиж, хэсгүүдийг угсарна. */
 export default function CalculatorPage({ initialDrugIds, intro, children }: Props) {
-  const [form, setForm] = useState(EMPTY_FORM);
+  const [form, setForm] = usePatientForm();
   const selection = useSelectedDrugs(initialDrugIds);
   const { drugs } = selection;
   const { indications, select } = useIndications();
