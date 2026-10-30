@@ -8,10 +8,17 @@ export const primaryOf = (
   amounts.find((amount) => amount.formulation.kind === "liquid") ??
   amounts[0];
 
-const concentrationOf = (amount: FormulationAmount): string | undefined =>
+export const concentrationOf = (amount: FormulationAmount): string | undefined =>
   amount.formulation.kind === "liquid"
     ? `${formatNumber(amount.formulation.mgPerMl * 5)} мг / 5 мл`
     : undefined;
+
+/** Нэг хэлбэрийн хөрвүүлгийн мөр: "= 7.5 мл · 250 мг / 5 мл". */
+export const formulationLine = (amount: FormulationAmount): string => {
+  const amountText = formatAmount(amount);
+  const concentration = concentrationOf(amount);
+  return concentration ? `= ${amountText} · ${concentration}` : `= ${amountText}`;
+};
 
 /**
  * Тунгийн зурвасын доор гарах хөрвүүлгийн мөр: "= 7.5 мл · 250 мг / 5 мл".
@@ -25,9 +32,5 @@ export const primaryFormulationLine = (
   amounts: readonly FormulationAmount[],
 ): string | undefined => {
   const primary = primaryOf(amounts);
-  if (!primary) return undefined;
-
-  const amountText = formatAmount(primary);
-  const concentration = concentrationOf(primary);
-  return concentration ? `= ${amountText} · ${concentration}` : `= ${amountText}`;
+  return primary ? formulationLine(primary) : undefined;
 };

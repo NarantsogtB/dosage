@@ -31,15 +31,19 @@ const IosBody = ({ onDone }: { readonly onDone: () => void }) => (
 
 /**
  * «Нүүр дэлгэцэд нэмэх» сануулга. Нэг удаа, хаах боломжтой, анхны
- * амжилттай тооцооллын дараа. Үр дүнг дарахгүйн тулд жижиг, доод талд.
+ * амжилттай тооцооллын дараа.
+ *
+ * V3.1: дэлгэцийн доод талд `fixed` байхаа больж, үр дүнгийн урсгалд
+ * орсон — mobile-д доод навигац, action bar хоёртой давхцаж, тунг
+ * дардаг байв.
  */
 export default function InstallPrompt({ hasCalculated }: { readonly hasCalculated: boolean }) {
   const prompt = useInstallPrompt(hasCalculated);
   if (!prompt.platform) return null;
 
   return (
-    <aside aria-live="polite" className="fixed inset-x-4 bottom-4 z-40 mx-auto max-w-md print:hidden">
-      <Card className="relative gap-0 p-4 pr-12 shadow-lg">
+    <aside aria-live="polite" className="print:hidden">
+      <Card className="relative gap-0 p-4 pr-12 shadow-none">
         <p className="text-sm font-semibold">dosage.mn-ийг утсандаа нэмэх үү?</p>
         {prompt.platform === "android" ? (
           <AndroidBody onInstall={prompt.install} />
