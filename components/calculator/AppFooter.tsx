@@ -2,7 +2,7 @@ import { DRUGS } from "@/lib/data/drugs";
 import { isVerified } from "@/lib/engine/rule/drug-evidence";
 import { Separator } from "@/components/ui/separator";
 
-const FEEDBACK_URL = "https://www.facebook.com/profile.php?id=61592793974106";
+const FEEDBACK_URL = "https://www.instagram.com/natso_010/";
 
 const verifiedCount = DRUGS.filter(isVerified).length;
 
@@ -24,7 +24,7 @@ export default function AppFooter() {
         rel="noopener noreferrer"
         className="text-primary hover:underline"
       >
-        Санал хүсэлт · Facebook
+        Санал хүсэлт · Instagram
       </a>
     </div>
   );
