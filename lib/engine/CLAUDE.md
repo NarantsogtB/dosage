@@ -25,5 +25,3 @@ calculateDosage(drug, patient, options)
   тайлбар. `switch` бичихгүй (complexity 3).
 - Тоо бүр trace-д харагдах ёстой — black box болгохгүй.
 - Тест: `tests/engine/`. Туслах: `tests/fixtures/make-drug.ts`, `patients.ts`.
-- `lib/drugs.ts`, `lib/calculations.ts` = хуучин engine, зөвхөн
-  `tests/legacy-engine.test.ts`, `tests/equivalence.test.ts`-д. Энд хэрэглэхгүй.

@@ -16,7 +16,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 
 | # | Файл | Ажил | Хугацаа | Хамаарал | Төлөв |
 |---|---|---|---|---|---|
-| 1 | `phase-S1-retire-legacy.md` | Хуучин engine, 492KB snapshot устгах | 0.5 өдөр | — | ☐ |
+| 1 | `phase-S1-retire-legacy.md` | Хуучин engine, 492KB snapshot устгах | 0.5 өдөр | — | ☑ |
 | 2 | `phase-0-verification.md` | Эх сурвалж: статус тайлан + 7 хоног бүрийн batch | тасралтгүй | — | ☐ |
 | 3 | `phase-1-offline.md` | Service worker, offline | 1–2 өдөр | — | ☐ |
 | 4 | `phase-2a-patient-bar.md` | V3: patient bar, кг/г | 3–4 өдөр | — | ☐ |

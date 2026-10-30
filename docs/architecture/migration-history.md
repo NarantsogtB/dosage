@@ -35,6 +35,29 @@ sources[] → evidenceLevel → lastReviewed → reviewedBy
 
 Файл бүрийн толгойд энэ 6 алхмын жагсаалт тайлбар болгон байгаа.
 
+### Тэнцвэрийн тест зогссон (2026-10-30, roadmap S1)
+
+Хуучин engine (`lib/drugs.ts`, `lib/calculations.ts`), `equivalence.test.ts`,
+492KB snapshot, codemod устгагдсан. Хамгаалж байсан basis/cap/хэлбэрийн
+салаа нь `tests/engine/`-д fixture тест болж, бодит өгөгдөлд тоо биш
+инвариант (`real-drug-invariants.test.ts`) үлдсэн. Шийдвэр: `docs/DECISIONS.md`.
+
+**Тэнцвэрээс санаатай салсан эмүүд** (`tests/helpers/intentional-changes.ts`-ээс,
+дэлгэрэнгүй шалтгаан git түүхэнд):
+
+| Эм | Өөрчлөлт | Эх сурвалж |
+|---|---|---|
+| zinc-sulfate | 1–2 мг/кг (дээд 20) → тогтмол 5 мг | `who-pneumonia-diarrhoea-2024` |
+| ciprofloxacin | Цусан суулга: 15 мг/кг/тун, 3 хоног; насны доод 12 → 0 сар ⚠️ эмчийн баталгаа хүлээж буй | `who-pneumonia-diarrhoea-2024` |
+| prednisolone | Астма: 1 мг/кг (дээд 40), 2–3 хоног | `rch-melbourne-cpg` |
+| paracetamol | 10–15 мг/кг → 15 мг/кг (>1 сар), 10 мг/кг (<1 сар) | `rch-melbourne-cpg` |
+| metronidazole | Нэг дүрэм → анаэроб (7.5–10 мг/кг tds) ба Giardia (30 мг/кг od, 3 хоног) | `msf-essential-drugs` |
+| gentamicin | 5 мг/кг → 4.5–7.5 мг/кг, ≥1 сар; нярайн тун ороогүй | `msf-essential-drugs` |
+| diazepam | Уух: 0.1 мг/кг, өдрийн дээд 15 мг, ≥1 сар | `pch-medication-manual` |
+| phenobarbital | Барих тун 3–6 мг/кг/өдөр, ≥1 сар; per_dose cap хасав | `msf-essential-drugs` |
+| ondansetron | 0.1–0.15 мг/кг, bd, cap 4/8 мг, зөвхөн уух | `msf-essential-drugs` |
+| omeprazole | <5 кг per_kg_per_day, ≥5 кг weight_band; насны доод 12 → 0 | `msf-essential-drugs` |
+
 ### Эм бүр нэг файл — яагаад
 
 `lib/data/drugs/paracetamol.ts` (~40 мөр) хэлбэрээр. Шалтгаан:

@@ -94,11 +94,8 @@ lib/
 ├── validation/                Build үеийн шалгалт
 │   └── validate-source-refs.ts
 │
-├── search/                    Хайлт. Латин + кирилл INN.
-│   ├── filter-drugs.ts · match-drug-query.ts · normalize.ts
-│
-├── drugs.ts        ⚠️ ЗӨВХӨН ТЕСТЭД — тэнцвэр шалгах лавлагаа
-└── calculations.ts ⚠️ ЗӨВХӨН ТЕСТЭД — хуучин engine
+└── search/                    Хайлт. Латин + кирилл INN.
+    ├── filter-drugs.ts · match-drug-query.ts · normalize.ts
 
 components/
 ├── ui/                        shadcn/ui. Vendored эх код — гар хүрэхгүй.
@@ -143,15 +140,16 @@ components/
 
 
 tests/
-├── legacy-engine.test.ts      ★ ХАМГААЛАЛТЫН ТОР (snapshot)
-├── equivalence.test.ts        ★ Хуучин vs шинэ engine ижил үр дүн
 ├── search/filter-drugs.test.ts
-├── helpers/compare-engines.ts
 ├── engine/
 │   ├── calculate-dosage.test.ts
 │   ├── select-rule.test.ts    Заалтын эрэмбэ
-│   └── dose-cap.test.ts
+│   ├── dose-cap.test.ts       applyCaps нэгж
+│   ├── cap-outcome.test.ts    Таслалт бүхэл гаралтад
+│   ├── basis.test.ts          per_kg_per_day · weight_band · fixed
+│   ├── formulation-amounts.test.ts
+│   └── real-drug-invariants.test.ts  ★ Бодит эм × SAMPLE_PATIENTS, тоо биш шинж
 └── fixtures/
-    ├── patients.ts
+    ├── patients.ts            Төлөөлөх өвчтөнүүд (хилийн утгатай)
     └── make-drug.ts           Тестийн эм/дүрэм үүсгэгч
 ```

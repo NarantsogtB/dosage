@@ -15,9 +15,8 @@ Next.js 16 статик export → Cloudflare Pages. Bun, Vitest, Tailwind 4, sh
 3. Grep/Glob-ийг үргэлж хавтсаар хязгаарла (`lib/engine`, `components/dosage` г.м.).
 4. Энэ газрын зураг дээр байгаа зүйлийг кодоос дахин бүү баталгаажуул.
 5. **Бүү унш** (том, хуучирсан эсвэл генерацлагдсан):
-   `tests/__snapshots__/` (492KB), `lib/drugs.ts`, `lib/calculations.ts`
-   (зөвхөн legacy тест), `out/`, `.next/`, `graphify-out/`, `bun.lock`,
-   `tsconfig.tsbuildinfo`, `scripts/inn-mn.json`, `node_modules/`
+   `out/`, `.next/`, `graphify-out/`, `bun.lock`,
+   `tsconfig.tsbuildinfo`, `node_modules/`
    (Next-ийн баримтаас бусад).
 6. `graphify` суусан бол `graphify query "<асуулт>"` хэрэглэж болно; суугаагүй
    бол алгас — заавал биш.
