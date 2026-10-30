@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build && bun scripts/build-sw.ts",
     "dev": "rm -rf .next && next dev --port 3002",
     "start": "next start",
     "lint": "eslint",
@@ -14,8 +14,8 @@
     "contrast": "node scripts/contrast.mjs",
     "evidence:report": "bun scripts/evidence-report.ts",
     "check": "bun run lint && bun run typecheck && bun run contrast && bun run test && bun run build",
-    "preview": "next build && wrangler pages dev out",
-    "deploy": "next build && wrangler pages deploy"
+    "preview": "bun run build && wrangler pages dev out",
+    "deploy": "bun run build && wrangler pages deploy"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.7",
