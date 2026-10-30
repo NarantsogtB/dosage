@@ -318,6 +318,30 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn: "Чанартай, тогтмол шинэчлэгддэг, үнэ төлбөргүй. Cross-check-ийн гол хэрэгсэл.",
   },
 
+  "rch-melbourne-antimicrobial": {
+    id: "rch-melbourne-antimicrobial",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Antimicrobial guidelines.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2026-10)",
+    year: 2026,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Antimicrobial_guidelines/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-10-30",
+    relevanceMn:
+      "★ Хүүхдийн эмнэлгийн эмпирик антибиотикийн заавар — заалт бүрд " +
+      "мг/кг, дээд тун, давтамжийг нэг хүснэгтэд өгнө. MSF-тэй хамт " +
+      "антибиотикийн хоёр дахь бие даасан баталгаажуулалт болно.",
+  },
+
   "rch-melbourne-gastroenteritis": {
     id: "rch-melbourne-gastroenteritis",
     citation:

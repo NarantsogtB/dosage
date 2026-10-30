@@ -3,17 +3,17 @@ import type { Drug } from "../../domain/drug";
 /**
  * Azithromycin — Азитромицин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН, ГАНЦ ЭХ СУРВАЛЖ (2026-10-30) — MSF Essential drugs
+ * (2025-06): 10 мг/кг өдөрт 1 удаа, дээд 500 мг (M. pneumoniae хатгаа,
+ * дунд чихний үрэвсэл). Тун өөрчлөгдөөгүй. `tests/data/known-gaps.ts`.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * RCH Melbourne (2026-10) уух горим өөр: ≥6 сар — эхний өдөр 10 мг/кг,
+ * дараа нь 5 мг/кг (pertussis); 10 мг/кг өдөр бүр нь зөвхөн IV. Насны
+ * доод хязгаар 6 сар нь эх сурвалжаас хатуу. Хоёулаа эмчийн шийдвэр —
+ * docs/sources/pending-decisions-2026-10.md.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const azithromycin: Drug = {
@@ -45,8 +45,14 @@ export const azithromycin: Drug = {
           maxMg: 500
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "AZITHROMYCIN oral — Pneumonia due to M. pneumoniae and C. pneumoniae; Acute otitis media (2025-06)",
+          quotedValue: "Child: 10 mg/kg (max. 500 mg) once daily for 5 days"
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true
     }
   ],

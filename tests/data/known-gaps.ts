@@ -45,6 +45,16 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "BNF for Children эсвэл AMH Children's Dosing Companion (лицензтэй " +
       "лавлах) -аас ижил жингийн мужийн тунг олж баталгаажуулах.",
   },
+  {
+    ruleId: "azithromycin-general",
+    gap:
+      "Ганц эх сурвалж (MSF 2025-06): 10 мг/кг өдөрт 1 удаа (дээд 500 мг). " +
+      "RCH Melbourne-ийн уух горим (≥6 сар) нь 10 мг/кг → 5 мг/кг тул " +
+      "хоёр дахь эх сурвалж болохгүй.",
+    next:
+      "WHO AWaRe 2022 эсвэл Starship-ийн CAP/AOM зааврыг шалгах; эсвэл " +
+      "эмч RCH-ийн 10→5 мг/кг горимыг сонгох (pending-decisions-2026-10.md).",
+  },
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));
