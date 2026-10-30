@@ -17,6 +17,13 @@ export type WeightBucket = (typeof WEIGHT_BUCKETS)[number];
 export const CALCULATORS = ["dose", "burns"] as const;
 export type CalculatorName = (typeof CALCULATORS)[number];
 
+export const INSTALL_PLATFORMS = ["android", "ios"] as const;
+export type InstallPlatform = (typeof INSTALL_PLATFORMS)[number];
+
+/** iOS-д суусан эсэхийг мэдэх боломжгүй — «Ойлголоо» = acknowledged. */
+export const INSTALL_OUTCOMES = ["accepted", "dismissed", "acknowledged"] as const;
+export type InstallOutcome = (typeof INSTALL_OUTCOMES)[number];
+
 /** Хайлтын үгийн дээд урт. Урт текст нь хувийн мэдээлэл агуулах эрсдэлтэй. */
 export const MAX_QUERY_LENGTH = 40;
 
@@ -32,7 +39,13 @@ export type AnalyticsEvent =
       readonly bucket: WeightBucket;
     }
   | { readonly name: "copy_result"; readonly drugId: string }
-  | { readonly name: "recent_drug_used"; readonly drugId: string };
+  | { readonly name: "recent_drug_used"; readonly drugId: string }
+  | { readonly name: "install_prompt_shown"; readonly platform: InstallPlatform }
+  | {
+      readonly name: "install_prompt_result";
+      readonly platform: InstallPlatform;
+      readonly outcome: InstallOutcome;
+    };
 
 export type EventName = AnalyticsEvent["name"];
 
@@ -66,6 +79,11 @@ const SCHEMA: Record<EventName, Record<string, Check>> = {
   },
   copy_result: { drugId: isDrugId },
   recent_drug_used: { drugId: isDrugId },
+  install_prompt_shown: { platform: oneOf(INSTALL_PLATFORMS) },
+  install_prompt_result: {
+    platform: oneOf(INSTALL_PLATFORMS),
+    outcome: oneOf(INSTALL_OUTCOMES),
+  },
 };
 
 type Fields = Record<string, Check>;

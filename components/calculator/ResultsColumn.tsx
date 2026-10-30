@@ -7,6 +7,7 @@ import type { InputStatus } from "./blocker";
 import type { IndicationMap } from "./use-indications";
 import SelectedSummary from "@/components/summary/SelectedSummary";
 import UndoBar from "@/components/summary/UndoBar";
+import InstallPrompt from "@/components/pwa/InstallPrompt";
 import StepHeader from "@/components/step/StepHeader";
 import ResultsActions from "./ResultsActions";
 import ResultsPanel from "./ResultsPanel";
@@ -25,6 +26,10 @@ interface Props {
 }
 
 /** Баруун багана: наалдамхай хураангуй + дэлгэрэнгүй картууд. Алхам 3. */
+/** Ядаж нэг эмийн тун амжилттай гарсан эсэх — сануулгын нөхцөл. */
+const hasDosage = (results: ReadonlyMap<string, CalculationResult>) =>
+  [...results.values()].some((result) => result.type === "dosage");
+
 export default function ResultsColumn(props: Props) {
   const { drugs, results, patient, status } = props;
   const done = status.hasWeight && status.hasAge && status.hasDrugs;
@@ -43,6 +48,7 @@ export default function ResultsColumn(props: Props) {
         onClear={props.onClear}
       />
       <UndoBar count={props.undoCount} onUndo={props.onUndo} />
+      <InstallPrompt hasCalculated={hasDosage(results)} />
       <ResultsPanel
         drugs={drugs}
         results={results}

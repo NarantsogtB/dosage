@@ -15,6 +15,8 @@ const VALID: readonly AnalyticsEvent[] = [
   },
   { name: "copy_result", drugId: "amoxicillin" },
   { name: "recent_drug_used", drugId: "amoxicillin" },
+  { name: "install_prompt_shown", platform: "ios" },
+  { name: "install_prompt_result", platform: "android", outcome: "accepted" },
 ];
 
 describe("parseEvent", () => {
@@ -31,6 +33,7 @@ describe("parseEvent", () => {
     ["тоон жин", { name: "weight_entered", bucket: 15 }],
     ["буруу bucket", { name: "weight_entered", bucket: "15" }],
     ["буруу тооцоолуур", { name: "calculator_opened", calculator: "x" }],
+    ["буруу платформ", { name: "install_prompt_shown", platform: "windows" }],
     ["object биш", "drug_selected"],
     ["null", null],
   ])("%s → null", (_, input) => {
