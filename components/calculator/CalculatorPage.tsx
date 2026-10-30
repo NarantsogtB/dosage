@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import Disclaimer from "@/components/Disclaimer";
 import PrintTemplate from "@/components/print/PrintTemplate";
@@ -18,10 +19,19 @@ import { useDosageResults } from "./use-dosage-results";
 import { useIndications } from "./use-indications";
 import { useSelectedDrugs } from "./use-selected-drugs";
 
+interface Props {
+  /** Урьдчилан сонгох эмүүд (эмийн хуудаснаас). */
+  readonly initialDrugIds?: readonly string[];
+  /** Тооцоолуурын дээр — эмийн хуудасны гарчиг. */
+  readonly intro?: ReactNode;
+  /** Тооцоолуурын доор, footer-ийн өмнө — статик мэдээлэл. */
+  readonly children?: ReactNode;
+}
+
 /** Тооцоолуурын үндсэн хуудас. Төлөвийг эзэмшиж, хэсгүүдийг угсарна. */
-export default function CalculatorPage() {
+export default function CalculatorPage({ initialDrugIds, intro, children }: Props) {
   const [form, setForm] = useState(EMPTY_FORM);
-  const selection = useSelectedDrugs();
+  const selection = useSelectedDrugs(initialDrugIds);
   const { drugs } = selection;
   const { indications, select } = useIndications();
 
@@ -33,6 +43,7 @@ export default function CalculatorPage() {
 
   return (
     <main className="mx-auto max-w-4xl space-y-4 px-4 py-6 sm:px-6">
+      {intro}
       <Disclaimer />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start print:hidden">
         <InputColumn
@@ -56,6 +67,7 @@ export default function CalculatorPage() {
       </div>
 
       <PrintTemplate drugs={drugs} results={results} patient={patient} />
+      {children}
       <AppFooter />
     </main>
   );

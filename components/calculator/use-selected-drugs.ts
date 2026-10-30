@@ -24,9 +24,12 @@ const toggleId = (ids: readonly string[], id: string): readonly string[] =>
  * Баталгаажуулах цонх БИШ, буцаах товч сонгосон шалтгаан: баталгаа
  * нь ЗӨВ үйлдэл бүрийг удаашруулдаг, буцаах нь зөвхөн БУРУУ
  * үйлдлийг засдаг.
+ *
+ * `initialIds` — эмийн хуудас (`/dose/[slug]`) тухайн эмийг урьдчилан
+ * сонгоно. Урьдчилсан сонголт `drug_selected` event үүсгэхгүй.
  */
-export const useSelectedDrugs = () => {
-  const [selectedIds, setSelectedIds] = useState<readonly string[]>([]);
+export const useSelectedDrugs = (initialIds: readonly string[] = []) => {
+  const [selectedIds, setSelectedIds] = useState<readonly string[]>(initialIds);
   const [undoable, setUndoable] = useState<readonly string[]>([]);
 
   const toggle = useCallback(
