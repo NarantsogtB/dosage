@@ -9,6 +9,7 @@ import {
   SITE_URL,
 } from "@/lib/site";
 import ThemeProvider from "@/components/theme/ThemeProvider";
+import ServiceWorkerUpdate from "@/components/pwa/ServiceWorkerUpdate";
 import { Toaster } from "@/components/ui/sonner";
 
 /**
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteHeader />
           {children}
           <Toaster position="bottom-center" duration={2400} />
+          <ServiceWorkerUpdate />
         </ThemeProvider>
       </body>
     </html>

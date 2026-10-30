@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CalculatorNav from "./CalculatorNav";
+import OfflineBadge from "./OfflineBadge";
 import Logo from "@/components/brand/Logo";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 
@@ -33,7 +34,10 @@ export default function SiteHeader() {
         <p className="text-muted-foreground hidden truncate text-xs sm:block">
           Монгол эмчийн эмнэлзүйн тооцоолуур
         </p>
-        <ThemeToggle />
+        <div className="ml-auto flex items-center gap-2">
+          <OfflineBadge />
+          <ThemeToggle />
+        </div>
       </div>
       <CalculatorNav />
     </header>
