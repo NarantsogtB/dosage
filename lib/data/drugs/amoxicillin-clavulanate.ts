@@ -3,17 +3,12 @@ import type { Drug } from "../../domain/drug";
 /**
  * Amoxicillin-clavulanate — Амоксициллин + Клавуланат
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН, ГАНЦ ЭХ СУРВАЛЖ (2026-10-30) — WHO AWaRe (2022): 80–90 мг/кг/хон
+ * (амоксициллин), өдөрт 2 удаа. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө 40–90 мг/кг/хон.
+ * Эмчийн шийдвэр — ДЭМБ-ыг сонгов (conflictNote, known-gaps).
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const amoxicillinClavulanate: Drug = {
@@ -29,7 +24,7 @@ export const amoxicillinClavulanate: Drug = {
       ageMinMonths: 3,
       basis: {
         kind: "per_kg_per_day",
-        minMgPerKg: 40,
+        minMgPerKg: 80,
         maxMgPerKg: 90
       },
       frequency: "bd",
@@ -45,9 +40,16 @@ export const amoxicillinClavulanate: Drug = {
           maxMg: 1750
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 641 (PDF p. 657)",
+          quotedValue: "Oral: 80–90 mg/kg/day (amoxicillin component) ... ≥ 20 kg: 500 mg of amoxicillin/dose given every 8 hours or 1 g of amoxicillin/ dose given every 12 hours"
+        }
+      ],
+      evidenceLevel: "B_who",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 40–90 мг/кг/хон. MSF (25 мг/кг × 2), RCH (22.5 мг/кг × 2) бага тунтай — ДЭМБ-ын 80–90 мг/кг/хон-ыг сонгов. Дээд 875 мг/тун хэвээр (875/125 мг шахмал); AWaRe ≥20 кг-д 1 г."
     }
   ],
   formulations: [

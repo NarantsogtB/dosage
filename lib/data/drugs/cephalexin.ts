@@ -3,17 +3,12 @@ import type { Drug } from "../../domain/drug";
 /**
  * Cephalexin — Цефалексин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO AWaRe (2022) + MSF: 25 мг/кг/тун, өдөрт 2
+ * удаа. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө 25–50 мг/кг/хон × 4, дээд 500 мг/тун.
+ * Эмчийн шийдвэр — ДЭМБ-ыг сонгов (conflictNote).
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const cephalexin: Drug = {
@@ -28,26 +23,38 @@ export const cephalexin: Drug = {
       route: "oral",
       ageMinMonths: 1,
       basis: {
-        kind: "per_kg_per_day",
+        kind: "per_kg_per_dose",
         minMgPerKg: 25,
-        maxMgPerKg: 50
+        maxMgPerKg: 25
       },
-      frequency: "qds",
+      frequency: "bd",
       caps: [
         {
           kind: "absolute",
           scope: "per_dose",
-          maxMg: 500
+          maxMg: 1000
         },
         {
           kind: "absolute",
           scope: "per_day",
-          maxMg: 4000
+          maxMg: 2000
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 643 (PDF p. 659)",
+          quotedValue: "Cefalexin Oral: 25 mg/kg/dose given every 12 hours Maximum daily dose: use adult dosing"
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "CEFALEXIN oral — Dosage (2024-01)",
+          quotedValue: "Child 1 month to under 12 years: 12.5 to 25 mg/kg 2 times daily"
+        }
+      ],
+      evidenceLevel: "B_who",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 25–50 мг/кг/хон, өдөрт 4 удаа, дээд 500 мг/тун. Дээд 1 г/тун: MSF «Child 12 years and over and adult: 1 g 2 times daily». RCH өөр горимтой (20 мг/кг × 3)."
     }
   ],
   formulations: [

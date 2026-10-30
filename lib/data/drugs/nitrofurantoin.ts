@@ -3,17 +3,12 @@ import type { Drug } from "../../domain/drug";
 /**
  * Nitrofurantoin — Нитрофурантоин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН, ГАНЦ ЭХ СУРВАЛЖ (2026-10-30) — WHO AWaRe (2022): 1 мг/кг/тун
+ * 6 цаг тутам, хоногт дээд 200 мг. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө 5–7 мг/кг/хон,
+ * дээд 400 мг/хон. Эмчийн шийдвэр — ДЭМБ-ыг сонгов (conflictNote, known-gaps).
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const nitrofurantoin: Drug = {
@@ -28,26 +23,33 @@ export const nitrofurantoin: Drug = {
       route: "oral",
       ageMinMonths: 3,
       basis: {
-        kind: "per_kg_per_day",
-        minMgPerKg: 5,
-        maxMgPerKg: 7
+        kind: "per_kg_per_dose",
+        minMgPerKg: 1,
+        maxMgPerKg: 1
       },
       frequency: "qds",
       caps: [
         {
           kind: "absolute",
           scope: "per_dose",
-          maxMg: 100
+          maxMg: 50
         },
         {
           kind: "absolute",
           scope: "per_day",
-          maxMg: 400
+          maxMg: 200
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 650 (PDF p. 666)",
+          quotedValue: "Nitrofurantoin Oral: 2 mg/kg/dose given every 12 hours; or 1 mg/kg/dose given every 6 hours (immediate release formulation) Up to a maximum daily dose of 200 mg"
+        }
+      ],
+      evidenceLevel: "B_who",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 5–7 мг/кг/хон × 4, дээд 400 мг/хон. ДЭМБ-ын 1 мг/кг × 4 (шууд ялгардаг хэлбэр), хоногт дээд 200 мг."
     }
   ],
   formulations: [

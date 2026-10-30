@@ -3,17 +3,12 @@ import type { Drug } from "../../domain/drug";
 /**
  * Albendazole — Албендазол
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO Model Formulary for Children (2010) + MSF:
+ * 2 наснаас дээш 400 мг нэг удаа, <10 кг — 200 мг. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө
+ * <20 кг — 200 мг. Эмчийн шийдвэр — ДЭМБ-ыг сонгов (conflictNote).
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const albendazole: Drug = {
@@ -32,11 +27,11 @@ export const albendazole: Drug = {
         bands: [
           {
             minWeightKg: 0,
-            maxWeightKg: 20,
+            maxWeightKg: 10,
             doseMg: 200
           },
           {
-            minWeightKg: 20,
+            minWeightKg: 10,
             doseMg: 400
           }
         ]
@@ -47,9 +42,21 @@ export const albendazole: Drug = {
         maxDays: 1
       },
       caps: [],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "6.1 Anthelminthics — Albendazole, hookworms, roundworms, pinworms, threadworms, p. 64",
+          quotedValue: "Child 12 months–2 years 200 mg as a single dose; greater than 2 years or < 10 kg 400 mg as a single dose before food."
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "ALBENDAZOLE oral — Ascariasis, enterobiasis, hookworm infections",
+          quotedValue: "Adult and child over 6 months: 400 mg single dose; Child over 6 months but under 10 kg: 200 mg single dose"
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь <20 кг — 200 мг. 2 наснаас дээш 400 мг (ДЭМБ, MSF); <10 кг-д 200 мг (MSF) хэвээр."
     }
   ],
   formulations: [

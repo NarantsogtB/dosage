@@ -3,17 +3,13 @@ import type { Drug } from "../../domain/drug";
 /**
  * Fluconazole — Флуконазол
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO Model Formulary for Children (2010) + MSF:
+ * кандидоз/системийн микоз 3–6 мг/кг өдөрт 1 удаа, дээд 200 мг. ⚠️ ТУН
+ * ӨӨРЧЛӨГДСӨН: өмнө 3–12 мг/кг, дээд 400 мг (олон заалтын нийлбэр). Криптококк
+ * менингит тусдаа заалт — хараахан ороогүй. Эмчийн шийдвэр (conflictNote).
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const fluconazole: Drug = {
@@ -30,24 +26,36 @@ export const fluconazole: Drug = {
       basis: {
         kind: "per_kg_per_dose",
         minMgPerKg: 3,
-        maxMgPerKg: 12
+        maxMgPerKg: 6
       },
       frequency: "od",
       caps: [
         {
           kind: "absolute",
           scope: "per_dose",
-          maxMg: 400
+          maxMg: 200
         },
         {
           kind: "absolute",
           scope: "per_day",
-          maxMg: 400
+          maxMg: 200
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "6.3 Antifungal medicines — Fluconazole, Systemic mycoses, p. 139",
+          quotedValue: "Child over 2 years 3–6 mg/kg (maximum 200 mg) daily for at least 6 months."
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "FLUCONAZOLE oral — Oesophageal/oropharyngeal candidiasis (2023-09)",
+          quotedValue: "Child 1 month and over: 3 to 6 mg/kg (max. 200 mg) once daily"
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 3–12 мг/кг, дээд 400 мг (олон заалтын нийлбэр). Одоо кандидоз/системийн микоз 3–6 мг/кг (дээд 200). Криптококк менингит (6–12 мг/кг, дээд 800) — тусдаа заалт, тооцоолуурт хараахан ороогүй."
     }
   ],
   formulations: [
@@ -89,7 +97,7 @@ export const fluconazole: Drug = {
     }
   ],
   contraindicationsMn: [],
-  notesMn: "Кандидоз: 6 мг/кг. Криптококк менингит: 12 мг/кг. Хэвлийн кандидоз: 6–12 мг/кг.",
+  notesMn: "Кандидоз, системийн микоз: 3–6 мг/кг (дээд 200 мг). Криптококк менингит (6–12 мг/кг, дээд 800 мг) — тусдаа горим, энэ тооцоолол хамаарахгүй.",
   sources: [],
   lastReviewed: "1970-01-01",
   status: "active"

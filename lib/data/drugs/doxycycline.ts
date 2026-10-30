@@ -3,17 +3,12 @@ import type { Drug } from "../../domain/drug";
 /**
  * Doxycycline — Доксициклин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO Model Formulary for Children (2010) + MSF:
+ * 2 мг/кг/тун, өдөрт 2 удаа, дээд 100 мг. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө 2–4 мг/кг/хон.
+ * Эмчийн шийдвэр — ДЭМБ-ыг сонгов (conflictNote).
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const doxycycline: Drug = {
@@ -28,9 +23,9 @@ export const doxycycline: Drug = {
       route: "oral",
       ageMinMonths: 96,
       basis: {
-        kind: "per_kg_per_day",
+        kind: "per_kg_per_dose",
         minMgPerKg: 2,
-        maxMgPerKg: 4
+        maxMgPerKg: 2
       },
       frequency: "bd",
       caps: [
@@ -45,9 +40,21 @@ export const doxycycline: Drug = {
           maxMg: 200
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "6.2 Antibacterials — Doxycycline, Dose, p. 104",
+          quotedValue: "Child over 8 years 2 mg/kg (maximum 100 mg) twice daily on day 1, then 2 mg/kg (maximum 100 mg) daily, or twice daily in severe infections such as rickettsia. Maximum daily dose 200 mg."
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "DOXYCYCLINE oral — Other indications (2023-09)",
+          quotedValue: "Child under 45 kg: 2 to 2.2 mg/kg (max. 100 mg) 2 times daily"
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 2–4 мг/кг/хон (1–2 мг/кг/тун). ДЭМБ-ын 2 мг/кг/тун × 2 (хүнд халдварт); MSF 2–2.2."
     }
   ],
   formulations: [

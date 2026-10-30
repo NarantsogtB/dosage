@@ -54,6 +54,20 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "Starship эсвэл PCH-ийн хүүхдийн кларитромицины тунг олох; эсвэл " +
       "зөрүү гарвал BNFc-ээр tie-break (DECISIONS 2026-10-30).",
   },
+  {
+    ruleId: "amoxicillin-clavulanate-general",
+    gap:
+      "Ганц эх сурвалж (WHO AWaRe 2022: 80–90 мг/кг/хон). MSF (25 мг/кг × 2), " +
+      "RCH (22.5 мг/кг × 2) бага тунтай — эмч ДЭМБ-ыг сонгосон (2026-10-30).",
+    next: "AWaRe-тэй нийцэх хоёр дахь 2020+ эх сурвалж (Starship, PCH) олох.",
+  },
+  {
+    ruleId: "nitrofurantoin-general",
+    gap:
+      "Ганц эх сурвалж (WHO AWaRe 2022: 1 мг/кг × 4, хоногт дээд 200 мг). MSF-д " +
+      "зөвхөн насанд хүрэгчийн тун, RCH-д байхгүй.",
+    next: "RCH UTI CPG эсвэл Starship-ийн нитрофурантоины хүүхдийн тунг олох.",
+  },
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));

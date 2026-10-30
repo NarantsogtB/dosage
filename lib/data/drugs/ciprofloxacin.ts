@@ -4,7 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Ciprofloxacin — Ципрофлоксацин
  *
  * ✅ Цусан суулгын дүрэм БАТАЛГААЖСАН — WHO 2024 (1-р эгнээ).
- * ⚠️ Ерөнхий дүрэм хараахан баталгаажаагүй.
+ * ✅ Ерөнхий дүрэм БАТАЛГААЖСАН (2026-10-30) — WHO AWaRe (2022) + MSF: 15 мг/кг
+ *    өдөрт 2 удаа, дээд 500 мг/тун, 1 сараас. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө 10–15
+ *    мг/кг, 12 сараас. Эмчийн шийдвэр — ДЭМБ (conflictNote).
  */
 
 export const ciprofloxacin: Drug = {
@@ -60,13 +62,12 @@ export const ciprofloxacin: Drug = {
     },
     {
       id: "ciprofloxacin-general",
-      isDefault: true,
       indication: "general",
       route: "oral",
-      ageMinMonths: 12,
+      ageMinMonths: 1,
       basis: {
         kind: "per_kg_per_dose",
-        minMgPerKg: 10,
+        minMgPerKg: 15,
         maxMgPerKg: 15
       },
       frequency: "bd",
@@ -82,9 +83,21 @@ export const ciprofloxacin: Drug = {
           maxMg: 1500
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      conflictNote: "⚠️ Эх сурвалжгүй. Цусан суулгад WHO 2024-ийн дүрэм давуу."
+      sources: [
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 646 (PDF p. 662)",
+          quotedValue: "Oral: 15 mg/kg/dose given every 12 hours ... Up to a maximum daily dose of 1.5 g (oral)"
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "CIPROFLOXACIN oral — Shigellosis, uncomplicated cutaneous anthrax (2023-09)",
+          quotedValue: "Child 1 month and over: 15 mg/kg (max. 500 mg) 2 times daily"
+        }
+      ],
+      evidenceLevel: "B_who",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 10–15 мг/кг, 12 сараас. Насны доод хязгаар 1 сар (MSF); AWaRe нас заагаагүй."
     }
   ],
   formulations: [

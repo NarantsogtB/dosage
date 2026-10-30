@@ -4,7 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Amoxicillin — Амоксициллин
  *
  * ✅ Уушгины хатгааны дүрэм БАТАЛГААЖСАН — WHO 2024 + Children's Minnesota 2025.
- * ⚠️ Ерөнхий дүрэм ХАРААХАН БАТАЛГААЖААГҮЙ.
+ * ✅ Ерөнхий дүрэм БАТАЛГААЖСАН (2026-10-30) — WHO AWaRe (2022) + Children's
+ *    Minnesota: 80–90 мг/кг/хон, өдөрт 2 удаа, дээд 1 г/тун. ⚠️ ТУН
+ *    ӨӨРЧЛӨГДСӨН: өмнө 40–90 мг/кг/хон × 3. Эмчийн шийдвэр — ДЭМБ (conflictNote).
  *
  * WHO 2024: "at least 40 mg/kg per dose twice daily (80 mg/kg per day)
  * for five days". Энэ нь ДАВТАМЖААР ялгаатай — өдөрт 2 удаа, 3 биш.
@@ -93,10 +95,10 @@ export const amoxicillin: Drug = {
       ageMinMonths: 0,
       basis: {
         kind: "per_kg_per_day",
-        minMgPerKg: 40,
+        minMgPerKg: 80,
         maxMgPerKg: 90
       },
-      frequency: "tds",
+      frequency: "bd",
       caps: [
         {
           kind: "absolute",
@@ -106,20 +108,24 @@ export const amoxicillin: Drug = {
         {
           kind: "absolute",
           scope: "per_day",
-          maxMg: 3000
+          maxMg: 2000
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-aware-2022",
+          locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 640 (PDF p. 656)",
+          quotedValue: "Amoxicillin Oral: 80–90 mg/kg/day Up to a maximum daily dose of 1.5 g but can be higher for serious bacterial infections ... ≥ 20 kg: 500 mg given every 8 hours or 1 g given every 12 hours"
+        },
+        {
+          sourceId: "childrens-mn-cap-2025",
+          locator: "Table 1 (Antimicrobials), p.4",
+          quotedValue: "Amoxicillin (PO) 45 mg/kg/dose BID, max single dose 2,000 mg."
+        }
+      ],
+      evidenceLevel: "B_who",
       isDefault: true,
-      conflictNote:
-        "⚠️ Эх сурвалжгүй — энэ бол ЗААЛТГҮЙ (ерөнхий) дүрэм, зөвхөн " +
-        "заалт тодорхойгүй үед л ашиглана. УУШГИНЫ ХАТГАА бол доорх " +
-        "'Уушгины хатгаа (2–59 сар)' заалтыг ЗААВАЛ сонгож WHO 2024-ийн " +
-        "баталгаажсан 40мг/кг/тун bd (=80мг/кг/өдөр) дүрмээр тооцоол — " +
-        "энэ ерөнхий дүрмийн 40–90мг/кг/өдөр tds муж нь баталгаажаагүй " +
-        "бөгөөд өдөрт 3 удаагийн давтамж нь WHO 2024-ийн шинэ зөвлөмжтэй " +
-        "(bd) нийцэхгүй байж болзошгүй."
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов. Өмнө нь 40–90 мг/кг/хон, өдөрт 3 удаа (эх сурвалжгүй). Дээд нэг удаагийн тун 1 г (AWaRe ≥20 кг: 1 г × 2); Children's Minnesota 2 г. MSF/RCH бага тун (25–30 мг/кг/тун) — ДЭМБ-ын өндөр тунг сонгов."
     }
   ],
   formulations: [

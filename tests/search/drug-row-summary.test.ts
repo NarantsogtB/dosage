@@ -11,7 +11,7 @@ const byId = (id: string) => {
 describe("drugRowSummary", () => {
   it("заалт + мг/кг/хон хэлбэрээр буцаана", () => {
     expect(drugRowSummary(byId("amoxicillin-clavulanate"))).toBe(
-      "Ерөнхий заалт · 40–90 мг/кг/хон",
+      "Ерөнхий заалт · 80–90 мг/кг/хон", // 2026-10-30: ДЭМБ AWaRe (эмчийн шийдвэр)
     );
   });
 
