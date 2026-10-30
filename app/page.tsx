@@ -7,6 +7,8 @@ import SafetyPoints from "@/components/landing/SafetyPoints";
 import LandingFooter from "@/components/landing/LandingFooter";
 import { DRUG_COUNT } from "@/components/landing/landing-stats";
 import { pageMeta } from "@/lib/page-meta";
+import { siteJsonLd } from "@/lib/seo/json-ld";
+import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   ...pageMeta("/"),
@@ -17,6 +19,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
+      <JsonLd data={siteJsonLd()} />
       <Hero />
 
       <Section

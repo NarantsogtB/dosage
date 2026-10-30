@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import CalculatorPage from "@/components/calculator/CalculatorPage";
 import DrugInfo from "@/components/drug-page/DrugInfo";
 import DrugPageHeader from "@/components/drug-page/DrugPageHeader";
+import JsonLd from "@/components/seo/JsonLd";
 import { DRUG_BY_ID, DRUGS } from "@/lib/data/drugs";
 import { drugPageMeta, drugSlug } from "@/lib/drug-page/drug-page-meta";
+import { drugPageJsonLd } from "@/lib/seo/json-ld";
 
 /** Статик экспорт: зөвхөн build үед үүссэн slug — бусад нь 404. */
 export const dynamicParams = false;
@@ -35,6 +37,7 @@ export default async function DrugPage({ params }: PageProps<"/dose/[slug]">) {
       intro={<DrugPageHeader drug={drug} />}
     >
       <DrugInfo drug={drug} />
+      <JsonLd data={drugPageJsonLd(drug)} />
     </CalculatorPage>
   );
 }
