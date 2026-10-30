@@ -63,8 +63,14 @@ bunx serve out         # локалд шалгах (next start энэ горим
 Cloudflare руу:
 
 ```bash
-bunx wrangler@latest deploy   # эсвэл Pages: bunx wrangler pages deploy out
+bun run deploy   # next build && wrangler pages deploy (wrangler.jsonc → out/)
 ```
+
+`wrangler pages deploy` нь root-ийн `functions/`-г (одоогоор зөвхөн
+`functions/api/e.ts` — analytics) автоматаар хамт байршуулна.
+`wrangler.jsonc`-ийн `analytics_engine_datasets` binding шаардлагатай —
+Analytics Engine идэвхгүй гэж алдаа өгвөл dashboard → Workers & Pages →
+Analytics Engine-ийг нэг удаа идэвхжүүлнэ. Дэлгэрэнгүй: `docs/ANALYTICS.md`.
 
 ---
 
@@ -85,7 +91,8 @@ bunx wrangler@latest deploy   # эсвэл Pages: bunx wrangler pages deploy out
 Одоогийн тохиргоо дараах зүйлсийг **боломжгүй** болгоно:
 
 - Зургийн оновчлол (`next/image`)
-- Route handler / API зам
+- Route handler / API зам (Next-ийн дотор — оронд нь Cloudflare Pages
+  Function `functions/`-д бичнэ, жишээ нь `/api/e`)
 - ISR, incremental шинэчлэл
 - Middleware
 - Server action
@@ -113,7 +120,7 @@ Roadmap-ийн дараах цэгт эдгээр хэрэгтэй болно:
 - [x] Create Next App-ийн үлдэгдэл зургууд устгасан
 - [ ] Домэйн холбох
 - [ ] УБ-аас latency хэмжих
-- [ ] Analytics (одоогоор юу ч хэмжигдэхгүй байна)
+- [x] Analytics — үйлдлийн түвшинд, `docs/ANALYTICS.md`
 
 ---
 
