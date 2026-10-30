@@ -4,6 +4,8 @@ import type { Drug } from "../../domain/drug";
  * Ambroxol — Амброксол
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⚠️ Олон улсын хүүхдийн зааварт (WHO Formulary 2010, MSF, RCH) байхгүй (2026-10-30).
+ * Жагсаалтад үлдээх эсэх — эмчийн шийдвэр (docs/sources/pending-decisions-2026-10.md, багц 7).
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *

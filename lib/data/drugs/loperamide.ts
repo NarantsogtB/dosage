@@ -4,6 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Loperamide — Лоперамид
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⚠️ Зөвшөөрөгдсөн эх сурвалжид (WHO Formulary 2010, MSF, RCH, AWaRe) хүүхдийн тун
+ * олдсонгүй (2026-10-30). Жагсаалтад үлдээх эсэх — эмчийн шийдвэр
+ * (docs/sources/pending-decisions-2026-10.md, багц 7).
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *
