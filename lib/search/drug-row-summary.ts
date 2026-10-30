@@ -2,7 +2,7 @@ import type { Drug } from "@/lib/domain/drug";
 import type { DosingRule } from "@/lib/domain/dosing-rule";
 import { formatRange } from "@/lib/format/format-range";
 
-const defaultRuleOf = (drug: Drug): DosingRule | undefined =>
+export const defaultRuleOf = (drug: Drug): DosingRule | undefined =>
   drug.rules.find((rule) => rule.isDefault) ?? drug.rules[0];
 
 const indicationLabel = (rule: DosingRule): string =>
@@ -30,7 +30,11 @@ const basisLabel = (rule: DosingRule): string | undefined => {
  */
 export const drugRowSummary = (drug: Drug): string | undefined => {
   const rule = defaultRuleOf(drug);
-  if (!rule) return undefined;
+  return rule ? ruleSummary(rule) : undefined;
+};
+
+/** Нэг дүрмийн тайлбар — "Заалт · мг/кг/хон". Эмийн хуудас ч ашиглана. */
+export const ruleSummary = (rule: DosingRule): string => {
   const basis = basisLabel(rule);
   return basis ? `${indicationLabel(rule)} · ${basis}` : indicationLabel(rule);
 };

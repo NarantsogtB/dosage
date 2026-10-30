@@ -18,6 +18,22 @@
 
 ---
 
+## 2026-10-30 — Эмийн SEO хуудас: эх сурвалжгүй эм `noindex`
+
+**Context:** `/dose/[slug]` — эм бүрт статик хуудас (Google-ээс ~21% ирдэг,
+51 эм `/dose` дотор нуугдсан байсан). 50 эмийн 36 нь эх сурвалжгүй
+(`E_unverified`).
+**Decision:** 50 эм бүгд хуудастай. Эх сурвалжтай (`isVerified`) нь
+sitemap-д орж индексжүүлэгдэнэ; эх сурвалжгүй нь `noindex, follow`,
+sitemap-д орохгүй. Эх сурвалж нэмэгдмэгц автоматаар индексжүүлэгдэнэ
+(`lib/drug-page/drug-page-meta.ts` → `isIndexable`).
+**Why:** Баталгаажаагүй тунг Google-ийн үр дүнд гаргах нь эмнэлзүйн
+эрсдэл. Хуудсыг огт үүсгэхгүй байх нь `/dose`-оос холбоос, хуваалцах
+URL-ыг эвдэнэ — `noindex` нь хоёуланг нь хадгална.
+**Status:** accepted
+
+---
+
 ## 2026-08-18 — Typography: Source Sans 3 (IBM Plex-ийг эргүүлэн авав)
 
 **Context:** Figma design system дээр эхэндээ IBM Plex Sans + IBM Plex Mono сонгосон,
