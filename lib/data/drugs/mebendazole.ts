@@ -3,17 +3,16 @@ import type { Drug } from "../../domain/drug";
 /**
  * Mebendazole — Мебендазол
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — MSF Essential drugs + WHO Model Formulary
+ * for Children (2010): 100 мг өдөрт 2 удаа, 3 хоног (аскарид, трихоцефал,
+ * анкилостом) — тохирч байна. Тун өөрчлөгдөөгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Тэмдэглэл: эх сурвалжууд 6 сараас (10 кг-аас доош 50 мг). Насны доод 24
+ * сар нь илүү хатуу — хэвээр. Enterobius-д нэг удаагийн 100 мг (notesMn).
+ * ДЭМБ-ын 2022+ эх сурвалж биш тул C.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const mebendazole: Drug = {
@@ -42,8 +41,19 @@ export const mebendazole: Drug = {
         maxDays: 3
       },
       caps: [],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "MEBENDAZOLE oral — Ascariasis, trichuriasis, hookworm",
+          quotedValue: "Child over 6 months and adult: 100 mg 2 times daily for 3 days"
+        },
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "6.1 Anthelminthics — Mebendazole, Whipworms, roundworms, hookworms, p. 67",
+          quotedValue: "greater than 10 kg or from 1 year 100 mg twice daily for 3 days."
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true
     }
   ],

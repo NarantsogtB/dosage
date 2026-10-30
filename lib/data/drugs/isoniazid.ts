@@ -3,17 +3,16 @@ import type { Drug } from "../../domain/drug";
 /**
  * Isoniazid — Изониазид
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO TB Module 5 (2022, хавсралт) + WHO
+ * Model Formulary for Children (2010): 10 мг/кг өдөрт 1 удаа, дээд 300 мг —
+ * тохирч байна. Тун өөрчлөгдөөгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Тэмдэглэл: эх сурвалжууд муж өгдөг (2022: 7–15, 2010: 10–15 мг/кг; бага
+ * насанд дээд тал). Энд дунд утга 10 мг/кг. Формуляр «3 сараас дээш» гэсэн,
+ * TB 2022 бүх хүүхдэд — насны доод 0 хэвээр.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const isoniazid: Drug = {
@@ -45,8 +44,19 @@ export const isoniazid: Drug = {
           maxMg: 300
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-tb-module5-2022",
+          locator: "Annex — recommendations carried over, p. 111 (PDF)",
+          quotedValue: "Isoniazid (H) 10 mg/kg (range 7–15 mg/kg);maximum dose 300 mg/day"
+        },
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "6.2 Antibacterials — Isoniazid, Dose, p. 125",
+          quotedValue: "Infant or Child greater than 3 months 10 mg/kg (range 10–15 mg/kg) once daily (maximum 300 mg daily)."
+        }
+      ],
+      evidenceLevel: "B_who",
       isDefault: true
     }
   ],

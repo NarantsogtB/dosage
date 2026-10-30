@@ -67,6 +67,25 @@ export const SOURCES: Record<string, Source> = {
       "зааврын дагуу дахин шалгах.",
   },
 
+  "who-tb-module5-2022": {
+    id: "who-tb-module5-2022",
+    citation:
+      "World Health Organization. WHO consolidated guidelines on tuberculosis: " +
+      "module 5: management of tuberculosis in children and adolescents. " +
+      "Geneva: WHO; 2022.",
+    publisher: "World Health Organization",
+    edition: "2022 (ISBN 9789240046764)",
+    year: 2022,
+    url: "https://iris.who.int/handle/10665/352522",
+    tier: "open",
+    reuse: { kind: "cc-by-nc-sa-3.0-igo" },
+    lastVerified: "2026-10-30",
+    relevanceMn:
+      "★ Хүүхдийн сүрьеэгийн эмийн тунгийн ДЭМБ-ын одоогийн заавар. " +
+      "Хавсралтад өмнөх зөвлөмжүүдийг (изониазид, рифампицины мг/кг, дээд " +
+      "тун) үгчлэн хадгалсан.",
+  },
+
   "who-emlc-2025": {
     id: "who-emlc-2025",
     citation:

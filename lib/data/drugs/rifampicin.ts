@@ -3,17 +3,15 @@ import type { Drug } from "../../domain/drug";
 /**
  * Rifampicin — Рифампицин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-10-30) — WHO TB Module 5 (2022, хавсралт) + WHO
+ * Model Formulary for Children (2010): 15 мг/кг (10–20) өдөрт 1 удаа, дээд
+ * 600 мг — тохирч байна. Тун өөрчлөгдөөгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Тэмдэглэл: сүрьеэгийн менингитын богино эрчимтэй горимд 22.5–30 мг/кг
+ * (TB 2022) — энд хамаарахгүй.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const rifampicin: Drug = {
@@ -45,8 +43,19 @@ export const rifampicin: Drug = {
           maxMg: 600
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-tb-module5-2022",
+          locator: "Annex — recommendations carried over, p. 111 (PDF)",
+          quotedValue: "Rifampicin (R) 15 mg/kg (range 10–20 mg/kg);maximum dose 600 mg/day"
+        },
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "6.2 Antibacterials — Rifampicin, Dose, p. 127",
+          quotedValue: "Infant or Child 15 mg/kg (range 10–20 mg) once daily. Maximum 600 mg daily."
+        }
+      ],
+      evidenceLevel: "B_who",
       isDefault: true
     }
   ],
