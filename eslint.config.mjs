@@ -51,22 +51,6 @@ const eslintConfig = defineConfig([
     },
   },
 
-  {
-    // TODO: шилжүүлэлт дуусахад энэ блокийг устгана. docs/ARCHITECTURE.md үз.
-    name: "dosage/legacy",
-    files: [
-      "lib/drugs.ts",
-      "lib/calculations.ts",
-      "components/PrintTemplate.tsx",
-      "components/CalculatorPage.tsx",
-    ],
-    rules: {
-      "max-lines": "off",
-      "max-lines-per-function": "off",
-      complexity: "off",
-    },
-  },
-
   globalIgnores([".next/**", ".wrangler/**", "out/**", "build/**", "next-env.d.ts"]),
 ]);
 
