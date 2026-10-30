@@ -2,7 +2,7 @@ import type { FormulationAmount } from "../domain/calculation-result";
 import { formatAmount } from "./format-amount";
 import { formatNumber } from "./format-number";
 
-const primaryOf = (
+export const primaryOf = (
   amounts: readonly FormulationAmount[],
 ): FormulationAmount | undefined =>
   amounts.find((amount) => amount.formulation.kind === "liquid") ??
