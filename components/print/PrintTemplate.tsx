@@ -13,9 +13,16 @@ interface Props {
 const NOTE =
   "Энэ тооцоолол нь эмнэлгийн мэргэжилтний эмнэлзүйн шийдвэрийг орлохгүй.";
 
-/** Зөвхөн хэвлэх үед харагдах хураангуй. */
+/**
+ * Зөвхөн хэвлэх үед харагдах хураангуй.
+ *
+ * `results` нь жин, нас хүчинтэй үед л дүүрнэ. Түүнээс өмнө render
+ * хийхгүй: эмийн хуудас (`/dose/[slug]`) эмийг урьдчилан сонгодог тул
+ * эс бөгөөс «Жин: 0 кг» гэсэн хоосон хуудас статик HTML-д орж, Google
+ * үүнийг хуудасны агуулга гэж уншина.
+ */
 export default function PrintTemplate({ drugs, results, patient }: Props) {
-  if (drugs.length === 0) return null;
+  if (results.size === 0) return null;
   return (
     <section className="hidden print:block">
       <PrintHeader patient={patient} />
