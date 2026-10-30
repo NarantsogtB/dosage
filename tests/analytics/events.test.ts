@@ -14,10 +14,11 @@ const VALID: readonly AnalyticsEvent[] = [
     bucket: "<10",
   },
   { name: "copy_result", drugId: "amoxicillin" },
+  { name: "recent_drug_used", drugId: "amoxicillin" },
 ];
 
 describe("parseEvent", () => {
-  it("6 event бүгд хүчинтэй", () => {
+  it("бүх event хүчинтэй", () => {
     for (const event of VALID) expect(parseEvent(event)).toEqual(event);
   });
 

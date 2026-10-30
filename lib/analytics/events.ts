@@ -31,7 +31,8 @@ export type AnalyticsEvent =
       readonly formulationId: string;
       readonly bucket: WeightBucket;
     }
-  | { readonly name: "copy_result"; readonly drugId: string };
+  | { readonly name: "copy_result"; readonly drugId: string }
+  | { readonly name: "recent_drug_used"; readonly drugId: string };
 
 export type EventName = AnalyticsEvent["name"];
 
@@ -64,6 +65,7 @@ const SCHEMA: Record<EventName, Record<string, Check>> = {
     bucket: oneOf(WEIGHT_BUCKETS),
   },
   copy_result: { drugId: isDrugId },
+  recent_drug_used: { drugId: isDrugId },
 };
 
 type Fields = Record<string, Check>;

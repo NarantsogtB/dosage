@@ -7,6 +7,7 @@ import { isVerified } from "@/lib/engine/rule/drug-evidence";
 import { Card } from "@/components/ui/card";
 import { Command } from "@/components/ui/command";
 import { Separator } from "@/components/ui/separator";
+import RecentDrugs from "@/components/recent/RecentDrugs";
 import CategoryFilter from "./CategoryFilter";
 import SearchFooter from "./SearchFooter";
 import SearchHeader from "./SearchHeader";
@@ -22,6 +23,16 @@ interface Props {
 const categoriesOf = (drugs: readonly Drug[]): readonly DrugCategory[] =>
   [...new Set(drugs.map((drug) => drug.category))].sort();
 
+/** Ангиллын жагсаалт ба баталгаажсан эмийн тоо — эмийн жагсаалтаас. */
+const useDrugStats = (drugs: readonly Drug[]) =>
+  useMemo(
+    () => ({
+      categories: categoriesOf(drugs),
+      verifiedCount: drugs.filter(isVerified).length,
+    }),
+    [drugs],
+  );
+
 /**
  * Эм хайх, шүүх, сонгох хэсэг. Алхам 2.
  *
@@ -34,8 +45,7 @@ const categoriesOf = (drugs: readonly Drug[]): readonly DrugCategory[] =>
  */
 export default function DrugSearch({ drugs, selectedIds, onToggle }: Props) {
   const filters = useDrugFilters(drugs);
-  const categories = useMemo(() => categoriesOf(drugs), [drugs]);
-  const verifiedCount = useMemo(() => drugs.filter(isVerified).length, [drugs]);
+  const { categories, verifiedCount } = useDrugStats(drugs);
 
   return (
     <Card className="gap-0 overflow-hidden py-0">
@@ -58,6 +68,7 @@ export default function DrugSearch({ drugs, selectedIds, onToggle }: Props) {
           selectedCount={selectedIds.length}
           onVerified={filters.toggleVerified}
         />
+        <RecentDrugs {...{ selectedIds, onToggle }} hidden={filters.query !== ""} />
         <CategoryFilter
           categories={categories}
           selected={filters.category}

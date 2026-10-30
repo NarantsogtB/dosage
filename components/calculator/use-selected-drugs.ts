@@ -4,11 +4,18 @@ import { useCallback, useMemo, useState } from "react";
 import type { Drug } from "@/lib/domain/drug";
 import { DRUG_BY_ID } from "@/lib/data/drugs";
 import { track } from "@/lib/analytics/track";
+import { rememberDrug } from "@/components/recent/recent-store";
 
 const isDrug = (drug?: Drug): drug is Drug => drug !== undefined;
 
 const without = (ids: readonly string[], id: string): readonly string[] =>
   ids.filter((item) => item !== id);
+
+/** Эмч өөрөө НЭМСЭН үед: analytics + «сүүлд хэрэглэсэн». */
+const onAdded = (id: string): void => {
+  track({ name: "drug_selected", drugId: id });
+  rememberDrug(id);
+};
 
 const toggleId = (ids: readonly string[], id: string): readonly string[] =>
   ids.includes(id) ? without(ids, id) : [...ids, id];
@@ -26,7 +33,8 @@ const toggleId = (ids: readonly string[], id: string): readonly string[] =>
  * үйлдлийг засдаг.
  *
  * `initialIds` — эмийн хуудас (`/dose/[slug]`) тухайн эмийг урьдчилан
- * сонгоно. Урьдчилсан сонголт `drug_selected` event үүсгэхгүй.
+ * сонгоно. Урьдчилсан сонголт `drug_selected` event үүсгэхгүй,
+ * «сүүлд хэрэглэсэн»-д ч нэмэгдэхгүй.
  */
 export const useSelectedDrugs = (initialIds: readonly string[] = []) => {
   const [selectedIds, setSelectedIds] = useState<readonly string[]>(initialIds);
@@ -34,7 +42,7 @@ export const useSelectedDrugs = (initialIds: readonly string[] = []) => {
 
   const toggle = useCallback(
     (id: string) => {
-      if (!selectedIds.includes(id)) track({ name: "drug_selected", drugId: id });
+      if (!selectedIds.includes(id)) onAdded(id);
       setUndoable([]);
       setSelectedIds(toggleId(selectedIds, id));
     },
