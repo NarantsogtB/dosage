@@ -4,6 +4,10 @@ import type { Drug } from "../../domain/drug";
  * Hydrocortisone — Гидрокортизон
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⛔ DRAFT (2026-10-30) — тооцоолуураас НУУСАН. Тэмдэглэлд «орлуулга
+ * эмчилгээ» гэсэн боловч 5–10 мг/кг/хон нь RCH-ийн орлуулгын тун
+ * (~10–15 мг/м²/хон)-аас 8–20 дахин их. Зөв тун мг/м² basis шаардана
+ * (roadmap S4). docs/sources/pending-decisions-2026-10.md, багц 4.
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *
@@ -82,5 +86,5 @@ export const hydrocortisone: Drug = {
   notesMn: "Бөөрний дайврын булчирхайн дутмагшлын орлуулга эмчилгээнд ашиглана. Өглөө 2/3, орой 1/3 хуваарилна.",
   sources: [],
   lastReviewed: "1970-01-01",
-  status: "active"
+  status: "draft"
 };

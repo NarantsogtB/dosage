@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import type { DosingRule } from "@/lib/domain/dosing-rule";
-import { DRUGS } from "@/lib/data/drugs";
+import { ALL_DRUGS, DRUGS } from "@/lib/data/drugs";
 import { validateSourceRefs } from "@/lib/validation/validate-source-refs";
 import { KNOWN_GAPS, isKnownGap } from "./known-gaps";
 
 const allRules = (): readonly DosingRule[] =>
-  DRUGS.flatMap((drug) => [...drug.rules]);
+  ALL_DRUGS.flatMap((drug) => [...drug.rules]);
 
 const verified = (): readonly DosingRule[] =>
   allRules().filter((rule) => rule.evidenceLevel !== "E_unverified");
@@ -23,6 +23,15 @@ const idsOf = (rules: readonly DosingRule[]): readonly string[] =>
 const ruleIdOf = (gap: { ruleId: string }): string => gap.ruleId;
 const isDocumented = (gap: { gap: string; next: string }): boolean =>
   gap.gap.trim() === "" || gap.next.trim() === "";
+
+const isActive = (drug: { status: string }): boolean => drug.status === "active";
+
+describe("Эмийн төлөв", () => {
+  it("тооцоолуурт зөвхөн active эм орно, draft өгөгдөлд үлдэнэ", () => {
+    expect(DRUGS.every(isActive)).toBe(true);
+    expect(ALL_DRUGS.filter(isActive)).toEqual(DRUGS);
+  });
+});
 
 describe("Баталгаажсан дүрмүүд", () => {
   it("эх сурвалжтай байх", () => {

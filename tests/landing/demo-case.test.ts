@@ -59,7 +59,8 @@ describe("танилцуулгын жишээ тохиолдол", () => {
   });
 
   it("танилцуулгын тоо өгөгдлөөс гарна", () => {
-    expect(DRUG_COUNT).toBe(50);
+    // 50 эмээс hydrocortisone `draft` (2026-10-30) — тооцоолуурт харагдахгүй.
+    expect(DRUG_COUNT).toBe(49);
     expect(VERIFIED_COUNT).toBeGreaterThan(0);
     expect(VERIFIED_COUNT).toBeLessThanOrEqual(DRUG_COUNT);
   });

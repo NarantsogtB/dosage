@@ -50,8 +50,11 @@ import { spironolactone } from "./spironolactone";
 import { tramadol } from "./tramadol";
 import { zincSulfate } from "./zinc-sulfate";
 
-/** Бүх эмийн жагсаалт. Шинэ эм нэмэхэд энд импорт + мөр нэмнэ. */
-export const DRUGS: readonly Drug[] = [
+/**
+ * БҮХ эм, `status`-аас үл хамааран. Шинэ эм нэмэхэд энд импорт + мөр нэмнэ.
+ * Зөвхөн өгөгдлийн тест, эх сурвалжийн тайланд — тооцоолуурт `DRUGS`.
+ */
+export const ALL_DRUGS: readonly Drug[] = [
   acetylcysteine,
   aciclovir,
   albendazole,
@@ -103,6 +106,18 @@ export const DRUGS: readonly Drug[] = [
   tramadol,
   zincSulfate,
 ];
+
+/**
+ * Тооцоолуурт харагдах эмүүд — зөвхөн `active`.
+ *
+ * `draft` нь өгөгдөлд үлдэнэ (эх сурвалжийн тайланд харагдана), гэхдээ
+ * хайлт, эмийн хуудас, sitemap, «сүүлд хэрэглэсэн»-д ОРОХГҮЙ. Тунгийн
+ * дүрэм аюултай байж болзошгүй үед эмийг устгалгүйгээр нуух арга
+ * (жишээ: hydrocortisone, docs/sources/pending-decisions-2026-10.md).
+ */
+export const DRUGS: readonly Drug[] = ALL_DRUGS.filter(
+  (drug) => drug.status === "active",
+);
 
 /** id-гаар хурдан хайх хүснэгт. */
 export const DRUG_BY_ID: ReadonlyMap<string, Drug> = new Map(
