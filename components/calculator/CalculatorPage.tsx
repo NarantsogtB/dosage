@@ -6,7 +6,14 @@ import PrintTemplate from "@/components/print/PrintTemplate";
 import AppFooter from "./AppFooter";
 import InputColumn from "./InputColumn";
 import ResultsColumn from "./ResultsColumn";
-import { EMPTY_FORM, inputStatus, isReady, toPatient } from "./patient-form";
+import {
+  EMPTY_FORM,
+  hasWeight,
+  inputStatus,
+  isReady,
+  toPatient,
+} from "./patient-form";
+import { useCalculatorTracking } from "./use-calculator-tracking";
 import { useDosageResults } from "./use-dosage-results";
 import { useIndications } from "./use-indications";
 import { useSelectedDrugs } from "./use-selected-drugs";
@@ -22,6 +29,7 @@ export default function CalculatorPage() {
   const ready = isReady(form);
   const results = useDosageResults({ drugs, patient, indications, ready });
   const status = inputStatus(form, drugs.length > 0);
+  useCalculatorTracking({ patient, hasWeight: hasWeight(form), results });
 
   return (
     <main className="mx-auto max-w-4xl space-y-4 px-4 py-6 sm:px-6">

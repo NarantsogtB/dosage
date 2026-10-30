@@ -4,13 +4,19 @@ import { Copy } from "lucide-react";
 import { toast } from "sonner";
 import type { ComponentProps } from "react";
 import { Button } from "@/components/ui/button";
+import { track } from "@/lib/analytics/track";
 
 interface Props {
   readonly text: string;
+  /** Хуулсан текстэд орсон эмүүд — analytics-д. */
+  readonly drugIds: readonly string[];
   readonly variant: ComponentProps<typeof Button>["variant"];
   readonly size: ComponentProps<typeof Button>["size"];
   readonly label: string;
 }
+
+const trackCopied = (drugIds: readonly string[]) =>
+  drugIds.forEach((drugId) => track({ name: "copy_result", drugId }));
 
 /**
  * Жорын текстийг санах ойд хуулна.
@@ -25,11 +31,18 @@ interface Props {
  * clipboard API унана. Эмч хуулагдсан гэж бодоод буруу жор тавихаас
  * сэргийлж алдааг ил хэлнэ.
  */
-export default function CopyButton({ text, variant, size, label }: Props) {
+export default function CopyButton({
+  text,
+  drugIds,
+  variant,
+  size,
+  label,
+}: Props) {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(text);
       toast.success("Хуулагдлаа");
+      trackCopied(drugIds);
     } catch {
       toast.error("Хуулж чадсангүй — гараар сонгож хуулна уу");
     }

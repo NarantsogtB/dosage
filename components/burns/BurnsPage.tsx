@@ -12,6 +12,7 @@ import BurnsDisclaimer from "./BurnsDisclaimer";
 import BurnsInputs from "./BurnsInputs";
 import BurnsResults from "./BurnsResults";
 import { useBurnSelections } from "./use-burn-selections";
+import { useTrackOpened } from "@/components/analytics/use-track-opened";
 
 const NeedWeight = () => (
   <p className="text-muted-foreground rounded-xl border border-dashed p-8 text-center text-sm">
@@ -27,6 +28,7 @@ const NeedWeight = () => (
  * ХЭРЭГЛЭХГҮЙ: тэр нь 14 настайг нярайн харьцаагаар тооцдог байсан.
  */
 export default function BurnsPage() {
+  useTrackOpened("burns");
   const [form, setForm] = useState(EMPTY_FORM);
   const [heightCm, setHeightCm] = useState("");
   const { map, selections, setDepth, clear } = useBurnSelections();

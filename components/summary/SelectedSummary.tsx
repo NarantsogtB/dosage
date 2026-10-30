@@ -18,6 +18,27 @@ interface Props {
   readonly onClear: () => void;
 }
 
+/** Хураангуйн толгойн товчууд: бүх жорыг хуулах, цэвэрлэх. */
+const SummaryActions = ({
+  drugs,
+  results,
+  patient,
+  onClear,
+}: Omit<Props, "onRemove">) => (
+  <span className="flex items-center gap-0.5">
+    <CopyButton
+      text={prescriptionText(drugs, results, patient)}
+      drugIds={drugs.map((drug) => drug.id)}
+      variant="ghost"
+      size="sm"
+      label="Хуулах"
+    />
+    <Button type="button" variant="ghost" size="sm" onClick={onClear}>
+      Цэвэрлэх
+    </Button>
+  </span>
+);
+
 /**
  * Сонгосон эмийн наалдамхай хураангуй.
  *
@@ -41,17 +62,12 @@ export default function SelectedSummary({
         <span className="text-muted-foreground pl-1 text-xs font-semibold uppercase tracking-widest">
           Сонгосон · <span className="num">{drugs.length}</span>
         </span>
-        <span className="flex items-center gap-0.5">
-          <CopyButton
-            text={prescriptionText(drugs, results, patient)}
-            variant="ghost"
-            size="sm"
-            label="Хуулах"
-          />
-          <Button type="button" variant="ghost" size="sm" onClick={onClear}>
-            Цэвэрлэх
-          </Button>
-        </span>
+        <SummaryActions
+          drugs={drugs}
+          results={results}
+          patient={patient}
+          onClear={onClear}
+        />
       </div>
       <Separator />
       <ul className="max-h-52 overflow-y-auto p-1">

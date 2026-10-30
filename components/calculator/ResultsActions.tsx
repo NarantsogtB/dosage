@@ -27,6 +27,7 @@ export default function ResultsActions({ drugs, results, patient }: Props) {
     <div className="flex items-center gap-2 print:hidden">
       <CopyButton
         text={prescriptionText(drugs, results, patient)}
+        drugIds={drugs.map((drug) => drug.id)}
         variant="default"
         size="sm"
         label="Жороо хуулах"
