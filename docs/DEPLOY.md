@@ -114,3 +114,19 @@ Roadmap-ийн дараах цэгт эдгээр хэрэгтэй болно:
 - [ ] Домэйн холбох
 - [ ] УБ-аас latency хэмжих
 - [ ] Analytics (одоогоор юу ч хэмжигдэхгүй байна)
+
+---
+
+## 7. Хуучин домэйн — `dosage-doc.vercel.app`
+
+Сошиалд анх тархсан холбоос нь `dosage-doc.vercel.app`. Vercel төсөл
+`main`-аас автоматаар deploy хийсээр байгаа тул `vercel.json` дотор
+**зөвхөн тэр host-оос** `https://dosage.mn/:path*` руу 308 redirect
+хийнэ (зам, query хадгалагдана).
+
+- `has: host` нөхцөлтэй тул Vercel-ийн preview URL-ууд хэвийн ажиллана.
+- Cloudflare Pages `vercel.json`-г үл тоомсорлоно — `dosage.mn`-д нөлөөгүй.
+- Шалтгаан: хэрэглэгч, холбоосын SEO жин, analytics хоёр домэйнд
+  хуваагдаж байсан (2026-10, Cloudflare + Vercel usage-ийн харьцуулалт).
+- Redirect нь хуудас ачаалагдахаас өмнө болдог тул Vercel Web
+  Analytics цаашид бараг юу ч бүртгэхгүй — хэмжилт Cloudflare дээр.
