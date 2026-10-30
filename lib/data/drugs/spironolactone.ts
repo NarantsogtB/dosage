@@ -4,6 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Spironolactone — Спиронолактон
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
+ * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
+ * олдоогүй тул E хэвээр.
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *
@@ -26,7 +29,7 @@ export const spironolactone: Drug = {
       id: "spironolactone-general",
       indication: "general",
       route: "oral",
-      ageMinMonths: 0,
+      ageMinMonths: 1,
       basis: {
         kind: "per_kg_per_day",
         minMgPerKg: 1,
@@ -47,7 +50,8 @@ export const spironolactone: Drug = {
       ],
       sources: [],
       evidenceLevel: "E_unverified",
-      isDefault: true
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 356: «Infant or Child 1 month–12 years 1–3 mg/kg daily in 1–2 divided doses (maximum 100 mg daily)». Өмнө нь 0 сараас — нярайд (1–2 мг/кг/хон) өөр тул 1 сараас. 2020+ хоёр дахь эх сурвалжгүй — E."
     }
   ],
   formulations: [

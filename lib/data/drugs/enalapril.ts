@@ -4,6 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Enalapril — Эналаприл
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
+ * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
+ * олдоогүй тул E хэвээр.
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *
@@ -29,7 +32,7 @@ export const enalapril: Drug = {
       ageMinMonths: 1,
       basis: {
         kind: "per_kg_per_dose",
-        minMgPerKg: 0.08,
+        minMgPerKg: 0.1,
         maxMgPerKg: 0.5
       },
       frequency: "od",
@@ -40,6 +43,11 @@ export const enalapril: Drug = {
           maxMg: 40
         },
         {
+          kind: "per_kg",
+          scope: "per_day",
+          maxMgPerKg: 1
+        },
+        {
           kind: "absolute",
           scope: "per_day",
           maxMg: 40
@@ -47,7 +55,8 @@ export const enalapril: Drug = {
       ],
       sources: [],
       evidenceLevel: "E_unverified",
-      isDefault: true
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 314: «Infant or Child initially 100 micrograms/kg once daily ... increased as necessary up to a maximum of 1 mg/kg daily in 1–2 divided doses». Өмнө нь доод 0.08 мг/кг. Дээд 40 мг/хон-ыг эх сурвалж заагаагүй (хэвээр). 2020+ хоёр дахь эх сурвалжгүй — E."
     }
   ],
   formulations: [

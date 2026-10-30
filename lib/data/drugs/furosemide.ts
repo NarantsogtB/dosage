@@ -4,6 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Furosemide — Фуросемид
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
+ * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
+ * олдоогүй тул E хэвээр.
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *
@@ -41,11 +44,11 @@ export const furosemide: Drug = {
     {
       id: "furosemide-general",
       indication: "general",
-      route: "oral_iv",
-      ageMinMonths: 0,
+      route: "oral",
+      ageMinMonths: 1,
       basis: {
         kind: "per_kg_per_dose",
-        minMgPerKg: 1,
+        minMgPerKg: 0.5,
         maxMgPerKg: 2
       },
       frequency: "bd",
@@ -53,17 +56,23 @@ export const furosemide: Drug = {
         {
           kind: "absolute",
           scope: "per_dose",
-          maxMg: 80
+          maxMg: 40
+        },
+        {
+          kind: "per_kg",
+          scope: "per_day",
+          maxMgPerKg: 12
         },
         {
           kind: "absolute",
           scope: "per_day",
-          maxMg: 600
+          maxMg: 80
         }
       ],
       sources: [],
       evidenceLevel: "E_unverified",
-      isDefault: true
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 318 (амаар): «Infant or Child 0.5–2 mg/kg 2–3 times daily; ... maximum 12 mg/kg (80 mg) daily». Өмнө нь 1–2 мг/кг, амаар/судсаар, хоногт дээд 600 мг, 0 сараас. Судсаар (0.5–1 мг/кг 8 цаг тутам) ба нярайн (12–24 цаг тутам) тун өөр тул энэ дүрмээс хасав. 2020+ хоёр дахь эх сурвалжгүй — E."
     }
   ],
   formulations: [

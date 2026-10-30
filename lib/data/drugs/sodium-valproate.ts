@@ -4,6 +4,9 @@ import type { Drug } from "../../domain/drug";
  * Sodium valproate — Натрийн вальпроат
  *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
+ * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
+ * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
+ * олдоогүй тул E хэвээр.
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
  *
@@ -26,13 +29,13 @@ export const sodiumValproate: Drug = {
       id: "sodium-valproate-general",
       indication: "general",
       route: "oral",
-      ageMinMonths: 0,
+      ageMinMonths: 1,
       basis: {
-        kind: "per_kg_per_day",
-        minMgPerKg: 15,
-        maxMgPerKg: 40
+        kind: "per_kg_per_dose",
+        minMgPerKg: 12.5,
+        maxMgPerKg: 15
       },
-      frequency: "tds",
+      frequency: "bd",
       caps: [
         {
           kind: "absolute",
@@ -47,7 +50,8 @@ export const sodiumValproate: Drug = {
       ],
       sources: [],
       evidenceLevel: "E_unverified",
-      isDefault: true
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 60: «Infant or Child initially 5–7.5 mg/kg twice daily. Usual maintenance dose is 12.5–15 mg/kg twice daily. Up to 30 mg/kg twice daily in infantile spasms may be required.» Өмнө нь 15–40 мг/кг/хон × 3, 0 сараас. Барих тун л тооцоолно (эхлэх тун, титраци — эмч). 2020+ хоёр дахь эх сурвалжгүй — E."
     }
   ],
   formulations: [
