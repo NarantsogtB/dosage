@@ -29,10 +29,10 @@
 | Captopril | Ерөнхий заалт · 0.1–0.5 мг/кг/тун | Амаар | C | pch-captopril-monograph | 1970-01-01 | ⚠️ |
 | Carbamazepine | Ерөнхий заалт · 10–20 мг/кг/хон | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
 | Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
-| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
+| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria, aemps-cetirizine-solution-smpc | 1970-01-01 |  |
 | Cetirizine | Ерөнхий заалт · 0.25 мг/кг/тун | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
-| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria, rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
-| Dexamethasone | Цочмог астма · 0.3 мг/кг/тун | Амаар | C | rch-melbourne-cpg, rch-melbourne-cpg | 1970-01-01 | ⚠️ |
+| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria, rch-melbourne-urticaria, aemps-cetirizine-solution-smpc | 1970-01-01 |  |
+| Dexamethasone | Цочмог астма · 0.3 мг/кг/тун | Амаар | C | rch-melbourne-cpg, rch-melbourne-cpg, msf-clinical-guidelines | 1970-01-01 |  |
 | Dexamethasone | Круп (ларинготрахеит) · 0.15–0.6 мг/кг/тун | Амаар | C | msf-clinical-guidelines, rch-melbourne-croup | 1970-01-01 |  |
 | Diazepam | Ерөнхий заалт · 0.1 мг/кг/тун | Амаар | C | pch-medication-manual, who-formulary-children-2010 | 1970-01-01 |  |
 | Doxycycline | Ерөнхий заалт · 2 мг/кг/тун | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
@@ -42,7 +42,7 @@
 | Furosemide | Ерөнхий заалт · 0.5–2 мг/кг/тун | Амаар | C | who-formulary-children-2010, pch-furosemide-monograph | 1970-01-01 |  |
 | Gentamicin | Ерөнхий заалт · 4.5–7.5 мг/кг/тун | Судсаар / Булчинд (IV/IM) | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
 | Ibuprofen | Ерөнхий заалт · 5–10 мг/кг/тун | Амаар | C | rch-melbourne-cpg, msf-essential-drugs | 1970-01-01 |  |
-| Loratadine | Ерөнхий заалт | Амаар | C | msf-essential-drugs | 1970-01-01 | ⚠️ |
+| Loratadine | Ерөнхий заалт | Амаар | C | msf-essential-drugs, aemps-loratadine-syrup-smpc | 1970-01-01 |  |
 | Mebendazole | Ерөнхий заалт | Амаар | C | msf-essential-drugs, who-formulary-children-2010 | 1970-01-01 |  |
 | Metoclopramide | Ерөнхий заалт · 0.15 мг/кг/тун | Амаар эсвэл судсаар | C | ema-metoclopramide-referral-2013 | 1970-01-01 | ⚠️ |
 | Metronidazole | Анаэроб бактерийн халдвар · 7.5–10 мг/кг/тун | Амаар эсвэл судсаар | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
@@ -66,7 +66,7 @@
 | Cephalexin | Ерөнхий заалт · 25 мг/кг/тун | Амаар | B | who-aware-2022, msf-essential-drugs | 1970-01-01 |  |
 | Ciprofloxacin | Цусан суулга (баасанд цус) · 15 мг/кг/тун | Амаар | B | who-pneumonia-diarrhoea-2024, who-imci-chartbook-2014 | 1970-01-01 |  |
 | Ciprofloxacin | Ерөнхий заалт · 15 мг/кг/тун | Амаар | B | who-aware-2022, msf-essential-drugs | 1970-01-01 |  |
-| Clarithromycin | Ерөнхий заалт · 15 мг/кг/хон | Амаар | B | who-aware-2022 | 1970-01-01 | ⚠️ |
+| Clarithromycin | Ерөнхий заалт · 15 мг/кг/хон | Амаар | B | who-aware-2022, rch-melbourne-whooping-cough | 1970-01-01 |  |
 | Erythromycin | Ерөнхий заалт · 30–50 мг/кг/хон | Амаар | B | msf-essential-drugs, who-aware-2022 | 1970-01-01 |  |
 | Isoniazid | Ерөнхий заалт · 10 мг/кг/тун | Амаар | B | who-tb-module5-2022, who-formulary-children-2010 | 1970-01-01 |  |
 | Nitrofurantoin | Ерөнхий заалт · 1 мг/кг/тун | Амаар | B | who-aware-2022 | 1970-01-01 | ⚠️ |
