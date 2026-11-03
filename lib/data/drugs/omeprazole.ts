@@ -11,10 +11,11 @@ import type { Drug } from "../../domain/drug";
  * monograph (эхлэх 1 мг/кг/өдөр → titration → дээд 2.5 мг/кг/өдөр).
  * Хэмжээгээрээ нийцдэг (1–2.8 мг/кг мужид багтана).
  *
- * ⚠️ ≥5кг: ГАНЦ эх сурвалж (MSF-ийн тогтмол мг тунгийн хүснэгт:
- * 5–10кг→5мг, 10–20кг→10мг, ≥20кг→20мг, өдөрт 1 удаа). Хоёр дахь бие
- * даасан эх сурвалж (жишээ нь BNFC/AMH Children's Dosing Companion,
- * лиценз шаардана) хараахан олдоогүй тул known-gaps.ts-д бүртгэв.
+ * ✅ ≥5кг (2026-11-04): MSF-ийн тогтмол мг тунгийн хүснэгт (5–10кг→5мг,
+ * 10–20кг→10мг, ≥20кг→20мг, өдөрт 1 удаа) + WHO Formulary 2010 (p. 363:
+ * 1 сар–2 нас 0.7 мг/кг → 3 мг/кг хүртэл, 2–12 нас 1 мг/кг 1–2 удаа).
+ * MSF-ийн мужууд ≈0.5–1 мг/кг — WHO-гийн мужийн доод хэсэгт нийцнэ.
+ * Known-gap-аас хасав.
  * ⚠️ Энэ мужид <5кг-ийн 0.7–1.4мг/кг томьёог ШУУД сунгаж болохгүй —
  * MSF-ийн өөрийнх нь тогтмол тун (жишээ 15кг→10мг ≈ 0.67мг/кг) нь
  * <5кг-ийн мг/кг-аас багасдаг тул томьёогоор сунгавал МСФ-ийн зөвлөснөөс
@@ -59,6 +60,11 @@ export const omeprazole: Drug = {
           sourceId: "msf-essential-drugs",
           locator: "OMEPRAZOLE oral — Dosage, Gastro-oesophageal reflux",
           quotedValue: "Child 5 to 10 kg: 5 mg once daily in the morning. Child 10 to 20 kg: 10 mg once daily in the morning. Child over 20 kg and adult: 20 mg once daily in the morning."
+        },
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "17.1 Omeprazole — Dose, p. 363",
+          quotedValue: "Infant or Child 1 month–2 years 700 micrograms/kg once daily, increased if necessary to 3 mg/kg (maximum 20 mg) once daily; 2–12 years 1 mg/kg once or twice daily (maximum 40 mg/day)."
         }
       ],
       evidenceLevel: "C_international",
