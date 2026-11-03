@@ -1,4 +1,5 @@
 import type { DoseCap } from "./dose-cap";
+import type { DoseUnit } from "./dose-unit";
 import type { DosingBasis } from "./dosing-basis";
 import type { EvidenceLevel, SourceRef } from "./source";
 import type { FrequencyCode } from "./frequency";
@@ -23,6 +24,11 @@ export interface DosingRule {
   readonly ageMaxMonths?: number;
   readonly weightMinKg?: number;
   readonly weightMaxKg?: number;
+  /**
+   * Энэ дүрмийн basis, cap-ийн БҮХ тооны нэгж (анхдагч мг). Талбарын нэр
+   * (`minMgPerKg`, `maxMg`) түүхэн — утга нь энэ нэгжээр (Шат S4).
+   */
+  readonly doseUnit?: DoseUnit;
   readonly basis: DosingBasis;
   readonly frequency: FrequencyCode;
   readonly duration?: Duration;

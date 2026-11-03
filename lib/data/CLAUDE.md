@@ -13,8 +13,10 @@
   бүртгэлтэй, labelMn бүртгэлийн нэрээр эхэлнэ), нас (сар), жин, `basis`
   (`per_kg_per_dose` | `per_kg_per_day` | `weight_band` | `fixed`), `frequency`,
   `duration`, `caps`, `route`, `evidenceLevel`, `sources`, `isDefault`, `conflictNote`.
-- Нэгж: одоогоор **зөвхөн мг**. мкг/ED/ммоль хэрэгтэй бол зогсоод асуу
-  (`docs/roadmap/phase-S4-units.md`).
+- Нэгж (Шат S4): дүрэмд `doseUnit` (`mg` | `mcg` | `g` | `units` | `mmol` | `mL`),
+  бэлдмэлд `strengthUnit` — анхдагч мг. Дүрмийн basis/cap-ийн БҮХ тоо `doseUnit`-ээр
+  (талбарын нэр `minMgPerKg` түүхэн). Бэлдмэл дүрмийн нэгж рүү хөрвөх ёстой
+  (`tests/data/units.test.ts`). Бодит эмд мг-ээс өөр нэгж нэмэхийн өмнө эмчээс асуу.
 - Худалдааны нэр (brand) ОРУУЛАХГҮЙ — зөвхөн INN (`inn`, `innMn`).
 - `status`: `active` | `draft` | `retired`.
 

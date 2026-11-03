@@ -19,8 +19,8 @@ export const prescriptionLine = (
   result?: CalculationResult,
 ): string | null => {
   if (result?.type !== "dosage") return null;
-  const { perDose, frequency } = result.data;
-  return `${drug.inn} — ${formatDose(perDose)}, ${FREQUENCY_LABELS[frequency]}`;
+  const { perDose, frequency, doseUnit } = result.data;
+  return `${drug.inn} — ${formatDose(perDose, doseUnit)}, ${FREQUENCY_LABELS[frequency]}`;
 };
 
 /** Бүх сонгосон эмийн хуулж болох текст. */

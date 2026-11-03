@@ -49,7 +49,7 @@ const editPatient = () => {
 
 const doseText = (result?: CalculationResult): string =>
   result?.type === "dosage"
-    ? `${formatDose(result.data.perDose)} · ${FREQUENCY_SHORT[result.data.frequency]}`
+    ? `${formatDose(result.data.perDose, result.data.doseUnit)} · ${FREQUENCY_SHORT[result.data.frequency]}`
     : "тооцоолол боломжгүй";
 
 const DrugMenu = ({

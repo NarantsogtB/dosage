@@ -8,6 +8,7 @@ import { buildTrace } from "./trace/build-trace";
 import { calculateAmounts } from "./formulation/calculate-amounts";
 import { roundRange } from "./math/round-range";
 import { scaleRange } from "./math/scale-range";
+import { doseUnitOf } from "./units/convert-unit";
 
 export interface OutcomeInput {
   readonly drug: Drug;
@@ -23,18 +24,20 @@ export const buildOutcome = (input: OutcomeInput): DosageOutcome => {
   const capped = applyCaps(base, rule.caps, patient, dosesPerDay);
   const perDose = roundRange(capped.range);
   const perDay = roundRange(scaleRange(perDose, dosesPerDay));
+  const doseUnit = doseUnitOf(rule);
 
   return {
     rule,
+    doseUnit,
     perDose,
     perDay,
     frequency: rule.frequency,
     dosesPerDay,
-    amounts: calculateAmounts(drug.formulations, perDose),
+    amounts: calculateAmounts(drug.formulations, perDose, doseUnit),
     cappedAtMax: capped.cappedAtMax,
     limitMg: capped.limitMg,
     warnings: drug.warnings,
-    trace: buildTrace({ rule, patient, capped, perDose, perDay, dosesPerDay }),
+    trace: buildTrace({ rule, patient, capped, perDose, perDay, dosesPerDay, doseUnit }),
     sources: [...drug.sources, ...rule.sources],
   };
 };
