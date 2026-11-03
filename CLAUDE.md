@@ -38,7 +38,7 @@ Next.js 16 статик export → Cloudflare Pages. Bun, Vitest, Tailwind 4, sh
 | `lib/drug-page/`, `app/dose/[slug]` | Эм бүрийн SEO хуудас | — |
 | `lib/site.ts` | Сайтын route (бүртгэлээс) + sitemap | — |
 | `components/` | UI (client). `ui/` = shadcn vendored | `components/CLAUDE.md` |
-| `app/` | Route-ууд: `/`, `/dose`, `/dose/[slug]`, `/burns` | — |
+| `app/` | Route-ууд: `/`, `/dose`, `/dose/[slug]`, `/burns`, `/fluids` | — |
 | `functions/api/e.ts` | Analytics хүлээн авагч (Pages Function) | `docs/ANALYTICS.md` |
 | `tests/` | Vitest | `tests/CLAUDE.md` |
 | `docs/` | Баримт — `docs/README.md`-ээс эхэл | — |

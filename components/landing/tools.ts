@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Calculator, Droplets } from "lucide-react";
+import { Calculator, Droplet, Droplets } from "lucide-react";
 
 export interface Tool {
   readonly href: string;
@@ -27,6 +27,13 @@ export const TOOLS: readonly Tool[] = [
     titleMn: "Түлэгдэлтийн шингэн",
     bodyMn: "Биеийн гадаргуугийн талбай, Паркланд ба Гальвестоны томьёо, шээсний гарцын зорилт, шингэн хэтрэлтийн хязгаар.",
     icon: Droplets,
+    live: true,
+  },
+  {
+    href: "/fluids",
+    titleMn: "Шингэн",
+    bodyMn: "Тэтгэх шингэн (мл/хон, мл/цаг, ⅔), шокийн болюс, шингэний дутагдлыг 24 цаг тутам нөхөх хурд.",
+    icon: Droplet,
     live: true,
   },
 ];

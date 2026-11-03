@@ -9,6 +9,7 @@
 | `summary/` | Сонгосон эмийн наалдамхай хураангуй, хуулах |
 | `print/` | Зөвхөн хэвлэх загвар |
 | `burns/` | `/burns` бүхэлдээ |
+| `fluids/` | `/fluids` (FluidRow, burn-format-ийг burns-ээс ашиглана) |
 | `landing/`, `nav/`, `drug-page/`, `recent/`, `pwa/`, `theme/`, `brand/`, `analytics/` | нэрээрээ |
 
 ## Дүрэм

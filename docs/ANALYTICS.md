@@ -43,7 +43,7 @@ client алдаагаар жин илгээсэн ч хадгалагдахгү�
 
 | Event | Хэзээ | Талбар |
 |---|---|---|
-| `calculator_opened` | Тооцоолуурын хуудас нээгдэх (`/dose` — эмийн хуудас орно, `/burns` г.м.) | `calculator` (`lib/calculators/registry.ts`-ийн `id`), `mode` (`browser` / `standalone` — нүүр дэлгэцээс) |
+| `calculator_opened` | Тооцоолуурын хуудас нээгдэх (`/dose` — эмийн хуудас орно, `/burns`, `/fluids`) | `calculator` (`lib/calculators/registry.ts`-ийн `id`), `mode` (`browser` / `standalone` — нүүр дэлгэцээс) |
 | `drug_selected` | эм жагсаалтад НЭМЭХ (хасах биш) | `drugId` |
 | `search_no_result` | хайлтын үгнээс болж хоосон, 1.2 сек тогтсон (ангилал / «баталгаажсан» шүүлттэй үед тоолохгүй) | `query` |
 | `weight_entered` | хүчинтэй жин, 1 сек тогтсон | `bucket` |

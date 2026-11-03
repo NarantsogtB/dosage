@@ -40,6 +40,14 @@ export const CALCULATOR_REGISTRY = [
     group: "fluids",
     priority: 0.9,
   },
+  {
+    id: "fluids",
+    path: "/fluids",
+    labelMn: "Шингэн",
+    shortMn: "Шингэн",
+    group: "fluids",
+    priority: 0.9,
+  },
 ] as const satisfies readonly CalculatorEntry[];
 
 export type CalculatorId = (typeof CALCULATOR_REGISTRY)[number]["id"];
