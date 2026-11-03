@@ -27,7 +27,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | 9 | `phase-S2-indications.md` | Заалтын бүртгэл + синоним | 1 өдөр | — | ☑ |
 | 10 | `phase-4-indication-search.md` | Өвчин/заалтаар хайх | 1–2 өдөр | S2 | ☑ |
 | 11 | `phase-5-share-link.md` | Линкээр хуваалцах | 1–2 өдөр | — | ☑ |
-| 12 | `phase-S4-units.md` | Тунгийн нэгж (мкг, ED, ммоль, г) + хурд | 2–3 өдөр | — | ☐ |
+| 12 | `phase-S4-units.md` | Тунгийн нэгж (мкг, ED, ммоль, г) + хурд | 2–3 өдөр | — | ☑ (хурд — зөвхөн төрөл) |
 | 13 | `phase-6-iv-im.md` | IV/IM + нунтаг найруулах | ~1.5 долоо хоног | S4 | ☐ |
 | 14 | `phase-7-emergency.md` | `/emergency` | ~2 долоо хоног | 1, 6 | ☐ |
 | 15 | `phase-8-scores.md` | GCS, Schwartz, corrected Na/Ca, AG | ~1 долоо хоног | S3 | ☐ |
