@@ -20,16 +20,6 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     next: "Starship NZ-ийн астмын зааврыг Chrome-оор нээж дексаметазоны тунг шалгах.",
   },
   {
-    ruleId: "omeprazole-weightband",
-    gap:
-      "Ганц эх сурвалж (MSF). ≥5кг жинтэй хүүхдийн тогтмол мг тунг " +
-      "(5–10кг→5мг, 10–20кг→10мг, ≥20кг→20мг) хоёр дахь эх сурвалжтай " +
-      "хараахан баталгаажуулаагүй.",
-    next:
-      "BNF for Children эсвэл AMH Children's Dosing Companion (лицензтэй " +
-      "лавлах) -аас ижил жингийн мужийн тунг олж баталгаажуулах.",
-  },
-  {
     ruleId: "clarithromycin-general",
     gap:
       "Ганц эх сурвалж (WHO AWaRe 2022, Table 50.1: 7.5 мг/кг 12 цаг тутам, " +
