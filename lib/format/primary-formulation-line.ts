@@ -1,14 +1,23 @@
 import type { FormulationAmount } from "../domain/calculation-result";
 import { formatAmount } from "./format-amount";
 import { formatNumber } from "./format-number";
+import { isMeasurable } from "./measurable";
 import { DEFAULT_DOSE_UNIT } from "../domain/dose-unit";
 import { DOSE_UNIT_LABELS } from "./dose-unit-label";
+
+const isLiquid = (amount: FormulationAmount): boolean => amount.formulation.kind === "liquid";
+
+/**
+ * Анхдагч хэлбэр: хэмжиж өгөх боломжтой шингэн → боломжтой бусад → эхний
+ * шингэн → эхнийх. Хэмжих боломжгүй хэлбэр анхдагч болохгүй.
+ */
+const preferLiquid = (amounts: readonly FormulationAmount[]): FormulationAmount | undefined =>
+  amounts.find(isLiquid) ?? amounts[0];
 
 export const primaryOf = (
   amounts: readonly FormulationAmount[],
 ): FormulationAmount | undefined =>
-  amounts.find((amount) => amount.formulation.kind === "liquid") ??
-  amounts[0];
+  preferLiquid(amounts.filter(isMeasurable)) ?? preferLiquid(amounts);
 
 export const concentrationOf = (amount: FormulationAmount): string | undefined =>
   amount.formulation.kind === "liquid"
