@@ -3,20 +3,17 @@ import type { Drug } from "../../domain/drug";
 /**
  * Spironolactone — Спиронолактон
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
- * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
- * олдоогүй тул E хэвээр.
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-11-03) — WHO Model Formulary for Children (2010) +
+ * MSF Essential drugs (SPIRONOLACTONE oral, Remarks): хаван/шингэн
+ * хуримтлалтай хүүхдэд 1–3 мг/кг/хон, 1–2 хувааж. ⚠️ ТУН ӨӨРЧЛӨГДСӨН
+ * (2026-10-30, эмчийн шийдвэр): WHO 2010-ийн утгаар засав — conflictNote.
+ * 2026-11-03-нд тунд гар хүрээгүй, зөвхөн эх сурвалж нэмэв.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * MSF хүүхдийн дээд тун заагаагүй — дээд 100 мг/хон нь WHO 2010-оос.
+ * MSF-ийн хуудсанд «Last updated» огноо байхгүй (2026 оны хэвлэл).
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const spironolactone: Drug = {
@@ -48,10 +45,21 @@ export const spironolactone: Drug = {
           maxMg: 100
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Spironolactone — oral, p. 356",
+          quotedValue: "Infant or Child 1 month–12 years 1–3 mg/kg daily in 1–2 divided doses (maximum 100 mg daily)"
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "SPIRONOLACTONE oral — Remarks (2026 оны хэвлэл)",
+          quotedValue: "In children with oedema, the daily dose is 1 to 3 mg/kg once daily or 0.5 to 1.5 mg/kg 2 times daily."
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 356: «Infant or Child 1 month–12 years 1–3 mg/kg daily in 1–2 divided doses (maximum 100 mg daily)». Өмнө нь 0 сараас — нярайд (1–2 мг/кг/хон) өөр тул 1 сараас. 2020+ хоёр дахь эх сурвалжгүй — E."
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 356: «Infant or Child 1 month–12 years 1–3 mg/kg daily in 1–2 divided doses (maximum 100 mg daily)». Өмнө нь 0 сараас — нярайд (1–2 мг/кг/хон) өөр тул 1 сараас. 2026-11-03: MSF Essential drugs (1–3 мг/кг/хон) хоёр дахь эх сурвалжаар баталгаажуулав; MSF дээд тун заагаагүй."
     }
   ],
   formulations: [
