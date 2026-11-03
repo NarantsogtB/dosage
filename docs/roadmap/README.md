@@ -17,12 +17,12 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | # | Файл | Ажил | Хугацаа | Хамаарал | Төлөв |
 |---|---|---|---|---|---|
 | 1 | `phase-S1-retire-legacy.md` | Хуучин engine, 492KB snapshot устгах | 0.5 өдөр | — | ☑ |
-| 2 | `phase-0-verification.md` | Эх сурвалж: статус тайлан + 7 хоног бүрийн batch | тасралтгүй | — | 0a ☑ · 0b ☑ 41 → 24 E (үлдсэн нь эх сурвалжгүй) |
+| 2 | `phase-0-verification.md` | Эх сурвалж: статус тайлан + 7 хоног бүрийн batch | тасралтгүй | — | Бүлэг 1, 2, 4 ☑ · 3 E, 9 known-gap үлдсэн (PR #2–#7) |
 | 3 | `phase-1-offline.md` | Service worker, offline | 1–2 өдөр | — | ☑ |
-| 4 | `phase-2a-patient-bar.md` | V3: patient bar, кг/г | 3–4 өдөр | — | ☐ |
-| 5 | `phase-2b-result-card.md` | V3: нэгдсэн үр дүнгийн карт | 4–5 өдөр | 2a | ☐ |
-| 6 | `phase-2c-navigation.md` | V3: bottom nav, action bar, ⌘K | 2–3 өдөр | 2b | ☐ |
-| 7 | `phase-S3-calculator-registry.md` | Тооцоолуурын нэг бүртгэл | 0.5–1 өдөр | — | ☐ |
+| 4 | `phase-2a-patient-bar.md` | V3: patient bar, кг/г | 3–4 өдөр | — | ☑ (PR #1) |
+| 5 | `phase-2b-result-card.md` | V3: нэгдсэн үр дүнгийн карт | 4–5 өдөр | 2a | ☑ (PR #1) |
+| 6 | `phase-2c-navigation.md` | V3: bottom nav, action bar, ⌘K | 2–3 өдөр | 2b | ☑ (PR #1; «Бусад» — route 4-өөс олон болоход) |
+| 7 | `phase-S3-calculator-registry.md` | Тооцоолуурын нэг бүртгэл | 0.5–1 өдөр | — | ☑ |
 | 8 | `phase-3-fluids.md` | `/fluids` | 2–3 өдөр | S3 | ☐ |
 | 9 | `phase-S2-indications.md` | Заалтын бүртгэл + синоним | 1 өдөр | — | ☐ |
 | 10 | `phase-4-indication-search.md` | Өвчин/заалтаар хайх | 1–2 өдөр | S2 | ☐ |
@@ -39,10 +39,9 @@ S-шатууд = бүтэц тэлэх засвар. Үндэслэл: `docs/arc
 infusion (мкг/кг/мин) хуудас, насанд хүрэгчийн хүрээ, account/admin/DB.
 Analytics-ийн 2–3 долоо хоногийн өгөгдлөөр 8–15-ыг дахин эрэмбэлж болно.
 
-## Төлөв (2026-10-30)
+## Төлөв (2026-11-04)
 
-50 эм (49 active, hydrocortisone draft), 58 дүрэм: 24 `E_unverified`, 19 C, 15 B, A = 0
-(0b: 41 → 24; эмчийн шийдвэр — `docs/sources/pending-decisions-2026-10.md`) (`bun run evidence:report`
-→ `docs/EVIDENCE-STATUS.md`). Бүх эм `oral`.
-Хэрэгсэл: `/dose`, `/burns`. Offline (service worker) — `docs/DEPLOY.md` §4b.
-V3 (2a/2b/2c) `feat/v3-redesign` branch-д хэрэгжсэн, main руу merge хүлээж буй.
+50 эм (40 active, 10 retired, hydrocortisone draft) — 37 баталгаажсан, 3 `E` дүрэм,
+9 known-gap (`docs/EVIDENCE-STATUS.md`, `docs/roadmap/phase-0-verification.md`).
+Хэрэгсэл: `/dose`, `/burns`. Offline — `docs/DEPLOY.md` §4b. V3 main-д (PR #1).
+Тооцоолуурын бүртгэл: `lib/calculators/registry.ts` (S3).
