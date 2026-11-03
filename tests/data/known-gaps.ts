@@ -20,15 +20,6 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     next: "Starship NZ-ийн астмын зааврыг Chrome-оор нээж дексаметазоны тунг шалгах.",
   },
   {
-    ruleId: "clarithromycin-general",
-    gap:
-      "Ганц эх сурвалж (WHO AWaRe 2022, Table 50.1: 7.5 мг/кг 12 цаг тутам, " +
-      "хоногт дээд 1 г). MSF-д зөвхөн насанд хүрэгчийн тун, RCH-д байхгүй.",
-    next:
-      "Starship эсвэл PCH-ийн хүүхдийн кларитромицины тунг олох; эсвэл " +
-      "зөрүү гарвал BNFc-ээр tie-break (DECISIONS 2026-10-30).",
-  },
-  {
     ruleId: "amoxicillin-clavulanate-general",
     gap:
       "Ганц эх сурвалж (WHO AWaRe 2022: 80–90 мг/кг/хон). MSF (25 мг/кг × 2), " +

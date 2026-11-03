@@ -429,6 +429,27 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn: "Крупын хүнд байдлаар дексаметазоны тун (0.15 / 0.6 мг/кг, дээд 12 мг).",
   },
 
+  "rch-melbourne-whooping-cough": {
+    id: "rch-melbourne-whooping-cough",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Whooping cough (pertussis).",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2025-05)",
+    year: 2025,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Whooping_Cough_Pertussis/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn: "Хөхүүл ханиадад макролидын (азитромицин, кларитромицин) хүүхдийн тун.",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",

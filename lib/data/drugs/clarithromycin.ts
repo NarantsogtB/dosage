@@ -3,13 +3,13 @@ import type { Drug } from "../../domain/drug";
 /**
  * Clarithromycin — Кларитромицин
  *
- * ✅ БАТАЛГААЖСАН, ГАНЦ ЭХ СУРВАЛЖ (2026-10-30) — WHO AWaRe antibiotic book
- * (2022), Table 50.1: 7.5 мг/кг/тун 12 цаг тутам, хоногт дээд 1 г. Тун
- * өөрчлөгдөөгүй. `tests/data/known-gaps.ts`.
+ * ✅ БАТАЛГААЖСАН (2026-10-30, 2 дахь эх сурвалж 2026-11-04) — WHO AWaRe
+ * antibiotic book (2022), Table 50.1: 7.5 мг/кг/тун 12 цаг тутам, хоногт дээд
+ * 1 г + RCH Whooping cough (2025-05): ≥1 сар 7.5 мг/кг (дээд 500 мг) × 2.
+ * Тун өөрчлөгдөөгүй.
  *
- * MSF Essential drugs-д зөвхөн насанд хүрэгчийн тун (H. pylori), RCH-ийн
- * Antimicrobial guidelines-д байхгүй. Насны доод 6 сар — эх сурвалжаас
- * хатуу (AWaRe нас заагаагүй).
+ * MSF Essential drugs-д зөвхөн насанд хүрэгчийн тун (H. pylori). Насны доод
+ * 6 сар — эх сурвалжаас хатуу (RCH ≥1 сар).
  *
  * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
  * availableInMn.
@@ -49,6 +49,11 @@ export const clarithromycin: Drug = {
           sourceId: "who-aware-2022",
           locator: "Ch. 50 Dosing guidance – Children, Table 50.1, p. 646 (PDF p. 662)",
           quotedValue: "Clarithromycin Oral: 7.5 mg/kg/dose given every 12 hours Up to a maximum daily dose of 1 g"
+        },
+        {
+          sourceId: "rch-melbourne-whooping-cough",
+          locator: "Whooping cough (pertussis) — Treatment, antimicrobials (сүүлд шинэчилсэн 2025-05)",
+          quotedValue: "Clarithromycin ≥1 month old: 7.5 mg/kg (max 500 mg) oral bd for 7 days"
         }
       ],
       evidenceLevel: "B_who",
