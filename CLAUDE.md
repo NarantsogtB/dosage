@@ -32,7 +32,8 @@ Next.js 16 статик export → Cloudflare Pages. Bun, Vitest, Tailwind 4, sh
 | `lib/data/labels/`, `lib/data/burns/` | Шошго, түлэгдэлтийн өгөгдөл | — |
 | `lib/calculators/` | Эм бус тооцоолуур (burns, fluid, bsa) + `registry.ts` (тооцоолуурын нэг бүртгэл) | `lib/calculators/CLAUDE.md` |
 | `lib/format/` | Харуулах формат, жорын текст. Тооцоолохгүй | — |
-| `lib/search/` | Эм хайлт (латин + кирилл) | — |
+| `lib/search/` | Эм хайлт (латин + кирилл, өвчин/заалтаар) | — |
+| `lib/share/` | Тооцооллыг линкээр хуваалцах (URL fragment) | — |
 | `lib/analytics/` | Event schema + `track()` | `docs/ANALYTICS.md` |
 | `lib/validation/` | Эх сурвалжийн ref шалгалт | — |
 | `lib/drug-page/`, `app/dose/[slug]` | Эм бүрийн SEO хуудас | — |
