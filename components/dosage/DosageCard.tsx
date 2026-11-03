@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import type { CalculationResult, DosageOutcome } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
@@ -26,27 +25,27 @@ interface Props {
   readonly result: CalculationResult;
   readonly patient: Patient;
   readonly indication?: string;
+  readonly formulation?: string;
   readonly onRemove: (id: string) => void;
   readonly onIndication: (drugId: string, code?: string) => void;
+  readonly onFormulation: (drugId: string, formulationId: string) => void;
 }
 
 /**
  * Сонгосон хэлбэр. Заалт солигдоход өмнөх сонголт шинэ жагсаалтад
- * байхгүй бол анхдагч (эхний шингэн) руу буцна.
+ * байхгүй бол анхдагч (эхний шингэн) руу буцна. Төлөв нь `useChoices`-д.
  */
-const useFormulation = (outcome: DosageOutcome) => {
-  const [id, setId] = useState<string>();
-  const selected =
-    outcome.amounts.find((amount) => amount.formulation.id === id) ??
-    primaryOf(outcome.amounts);
-  return { selected, select: setId };
-};
+const selectedOf = (outcome: DosageOutcome, id?: string) =>
+  outcome.amounts.find((amount) => amount.formulation.id === id) ?? primaryOf(outcome.amounts);
 
 type DosageProps = Omit<Props, "result"> & { readonly outcome: DosageOutcome };
 
 const DosageBody = (props: DosageProps) => {
   const { drug, outcome, patient } = props;
-  const formulation = useFormulation(outcome);
+  const formulation = {
+    selected: selectedOf(outcome, props.formulation),
+    select: (id: string) => props.onFormulation(drug.id, id),
+  };
   return (
     <>
       <DoseBand outcome={outcome} patient={patient} selected={formulation.selected} />

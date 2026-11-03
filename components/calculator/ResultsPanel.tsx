@@ -2,7 +2,7 @@ import type { CalculationResult } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
 import type { InputStatus } from "./blocker";
-import type { IndicationMap } from "./use-indications";
+import type { Choices } from "./use-choices";
 import DosageCard from "@/components/dosage/DosageCard";
 import { blockerFor } from "./blocker";
 import ReadinessChecklist from "./ReadinessChecklist";
@@ -12,9 +12,8 @@ interface Props {
   readonly results: ReadonlyMap<string, CalculationResult>;
   readonly patient: Patient;
   readonly status: InputStatus;
-  readonly indications: IndicationMap;
+  readonly choices: Choices;
   readonly onRemove: (id: string) => void;
-  readonly onIndication: (drugId: string, code?: string) => void;
 }
 
 /** Сонгосон эмүүдийн үр дүн, эсвэл дутуу зүйлийг нэрлэсэн хоосон төлөв. */
@@ -31,9 +30,11 @@ export default function ResultsPanel(props: Props) {
           drug={drug}
           result={results.get(drug.id)!}
           patient={patient}
-          indication={props.indications.get(drug.id)}
+          indication={props.choices.indications.get(drug.id)}
+          formulation={props.choices.formulations.get(drug.id)}
           onRemove={props.onRemove}
-          onIndication={props.onIndication}
+          onIndication={props.choices.onIndication}
+          onFormulation={props.choices.onFormulation}
         />
       ))}
     </div>

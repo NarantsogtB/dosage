@@ -49,6 +49,7 @@ client алдаагаар жин илгээсэн ч хадгалагдахгү�
 | `weight_entered` | хүчинтэй жин, 1 сек тогтсон | `bucket` |
 | `calc_completed` | эмийн тун амжилттай гарч 1.5 сек тогтсон | `drugId`, `formulationId` (анхдагч бэлдмэл — эхний шингэн), `bucket` |
 | `copy_result` | «Хуулах» амжилттай — хуулсан эм бүрд нэг | `drugId` |
+| `share_link_copied` | «Линк хуулах» амжилттай (Шат 5) | — (линкийн агуулга илгээхгүй) |
 | `recent_drug_used` | «Сүүлд хэрэглэсэн» chip-ээр эм НЭМЭХ | `drugId` |
 | `install_prompt_shown` | «Нүүр дэлгэцэд нэмэх» сануулга гарах (нэг удаа) | `platform` (`android` / `ios`) |
 | `install_prompt_result` | сануулгад хариулах | `platform`, `outcome` (`accepted` / `dismissed` — Android; `acknowledged` — iOS «Ойлголоо», суусныг мэдэх боломжгүй) |

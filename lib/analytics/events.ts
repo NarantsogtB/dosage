@@ -55,7 +55,9 @@ export type AnalyticsEvent =
       readonly name: "install_prompt_result";
       readonly platform: InstallPlatform;
       readonly outcome: InstallOutcome;
-    };
+    }
+  /** Линк хуулсан. Агуулга (жин, эм) ИЛГЭЭХГҮЙ — зөвхөн үйлдэл. */
+  | { readonly name: "share_link_copied" };
 
 export type EventName = AnalyticsEvent["name"];
 
@@ -97,6 +99,7 @@ const SCHEMA: Record<EventName, Record<string, Check>> = {
     platform: oneOf(INSTALL_PLATFORMS),
     outcome: oneOf(INSTALL_OUTCOMES),
   },
+  share_link_copied: {},
 };
 
 type Fields = Record<string, Check>;

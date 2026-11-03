@@ -4,7 +4,7 @@ import type { CalculationResult } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
 import type { InputStatus } from "./blocker";
-import type { IndicationMap } from "./use-indications";
+import type { Choices } from "./use-choices";
 import AgeDisplay from "@/components/dosage/AgeDisplay";
 import InstallPrompt from "@/components/pwa/InstallPrompt";
 import ResultsActions from "./ResultsActions";
@@ -16,9 +16,10 @@ interface Props {
   readonly patient: Patient;
   readonly status: InputStatus;
   readonly ready: boolean;
-  readonly indications: IndicationMap;
+  readonly choices: Choices;
+  /** Хуваалцах линкийн fragment (Шат 5). */
+  readonly shareFragment: string;
   readonly onRemove: (id: string) => void;
-  readonly onIndication: (drugId: string, code?: string) => void;
 }
 
 /** Ядаж нэг эмийн тун амжилттай гарсан эсэх — сануулгын нөхцөл. */
@@ -52,7 +53,7 @@ export default function ResultsColumn(props: Props) {
         </h2>
         <Meta patient={patient} ready={props.ready} count={drugs.length} />
         <div className="ml-auto hidden md:block">
-          <ResultsActions drugs={drugs} results={results} patient={patient} />
+          <ResultsActions drugs={drugs} results={results} patient={patient} shareFragment={props.shareFragment} />
         </div>
       </div>
       <ResultsPanel
@@ -60,9 +61,8 @@ export default function ResultsColumn(props: Props) {
         results={results}
         patient={patient}
         status={props.status}
-        indications={props.indications}
+        choices={props.choices}
         onRemove={props.onRemove}
-        onIndication={props.onIndication}
       />
       <InstallPrompt hasCalculated={hasDosage(results)} />
     </section>

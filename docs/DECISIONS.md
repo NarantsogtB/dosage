@@ -18,6 +18,20 @@
 
 ---
 
+## 2026-11-04 — Хуваалцах линк URL fragment-аар (Шат 5)
+
+**Context:** Roadmap-д `/dose?w=14&m=36&d=...` (query) гэсэн. Query нь линк
+нээгдэх үед Cloudflare-ийн серверийн log-д үлдэнэ — root CLAUDE.md-ийн 8-р
+дүрэм (өвчтөний яг жин/нас серверт явуулахгүй)-тэй зөрчилдөнө.
+**Decision:** `/dose#w=14&m=36&d=amoxicillin:pneumonia:250mg-5ml-1,paracetamol` —
+fragment хөтчөөс сервер рүү ОГТ явдаггүй. Ачаалахад сэргээж, fragment-ийг
+`history.replaceState`-ээр арилгана (дахин ачаалахад давтагдахгүй, түүхэнд
+үлдэхгүй). Буруу/хуучирсан хэсгийг алгасаж ил харуулна. Analytics
+`share_link_copied` — агуулгагүй. Бэлдмэлийн сонголтыг `DosageCard`-аас
+`use-choices` руу өргөв.
+**Why:** Нууцлал; сервер/account-гүй хэвээр.
+**Status:** accepted
+
 ## 2026-11-04 — Заалтын бүртгэл (S2)
 
 **Context:** `indication.code` + `labelMn` дүрэм бүрд чөлөөт текстээр — ижил
