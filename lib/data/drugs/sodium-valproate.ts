@@ -3,20 +3,19 @@ import type { Drug } from "../../domain/drug";
 /**
  * Sodium valproate — Натрийн вальпроат
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
- * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
- * олдоогүй тул E хэвээр.
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-11-03) — WHO Model Formulary for Children (2010) +
+ * MSF Essential drugs (VALPROIC acid oral, 2024-10 шинэчилсэн): барих тун
+ * 12.5–15 мг/кг × 2. ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO
+ * 2010-ийн утгаар засав — conflictNote.
+ * ⚠️ НАС ӨӨРЧЛӨГДСӨН (2026-11-03, эмчийн шийдвэр): 1 сар → 2 нас. MSF <2
+ * насанд элэгний хордлогын эрсдэлээс болж хориглосон.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * MSF 2–11 насанд дээд 600 мг/тун гэсэн; дүрмийн 1000 мг/тун, 2500 мг/хон
+ * нь ≥12 насны (MSF: 500 мг–1 г × 2, дээд 2.5 г/хон) хязгаартай таарна.
+ * 15 мг/кг × 40 кг = 600 мг тул 2–11 насанд бодитоор бараг нөлөөгүй.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const sodiumValproate: Drug = {
@@ -29,7 +28,7 @@ export const sodiumValproate: Drug = {
       id: "sodium-valproate-general",
       indication: "general",
       route: "oral",
-      ageMinMonths: 1,
+      ageMinMonths: 24,
       basis: {
         kind: "per_kg_per_dose",
         minMgPerKg: 12.5,
@@ -48,10 +47,21 @@ export const sodiumValproate: Drug = {
           maxMg: 2500
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Sodium valproate — oral, p. 60",
+          quotedValue: "Infant or Child initially 5–7.5 mg/kg twice daily. Usual maintenance dose is 12.5–15 mg/kg twice daily."
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "VALPROIC acid = VPA = SODIUM VALPROATE oral — Epilepsy (2024-10)",
+          quotedValue: "Child 2 to 11 years: start with 10 to 15 mg/kg once daily or 5 to 7.5 mg/kg 2 times daily; increase the daily dose by increments of 5 to 10 mg/kg every week, up to 12.5 to 15 mg/kg 2 times daily if necessary (max. 600 mg 2 times daily)."
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 60: «Infant or Child initially 5–7.5 mg/kg twice daily. Usual maintenance dose is 12.5–15 mg/kg twice daily. Up to 30 mg/kg twice daily in infantile spasms may be required.» Өмнө нь 15–40 мг/кг/хон × 3, 0 сараас. Барих тун л тооцоолно (эхлэх тун, титраци — эмч). 2020+ хоёр дахь эх сурвалжгүй — E."
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 60: «Infant or Child initially 5–7.5 mg/kg twice daily. Usual maintenance dose is 12.5–15 mg/kg twice daily. Up to 30 mg/kg twice daily in infantile spasms may be required.» Өмнө нь 15–40 мг/кг/хон × 3, 0 сараас. Барих тун л тооцоолно (эхлэх тун, титраци — эмч). 2026-11-03: MSF Essential drugs (2024-10) 12.5–15 мг/кг × 2-ыг баталгаажуулав. Эмчийн шийдвэр (2026-11-03): MSF «Do not administer … to children under 2 years (increased risk of hepatotoxicity)» тул 1 сар → 2 наснаас."
     }
   ],
   formulations: [
