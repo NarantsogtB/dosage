@@ -663,6 +663,31 @@ export const SOURCES: Record<string, Source> = {
       "⚠️ 2013 он — 2020+ шаардлагыг хангахгүй (known-gaps.ts).",
   },
 
+  "aemps-acetylcysteine-paediatric-smpc": {
+    id: "aemps-acetylcysteine-paediatric-smpc",
+    citation:
+      "Agencia Española de Medicamentos y Productos Sanitarios (AEMPS), CIMA. " +
+      "Ficha técnica — acetilcisteína 20 mg/ml solución oral pediátrica " +
+      "(nº registro 63512).",
+    publisher: "AEMPS (Испанийн эм, эмнэлгийн хэрэгслийн агентлаг)",
+    edition: "Fecha de la revisión del texto: 09/2020",
+    year: 2020,
+    url: "https://cima.aemps.es/cima/dochtml/ft/63512/FT_63512.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "ЕХ-ны гишүүн улсын зохицуулагчийн нийтийн баримт. Худалдааны нэрийг " +
+        "оруулахгүй; тунгийн утгыг гаргаж монголоор бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "Хүүхдийн амаар салс шингэрүүлэх ацетилцистеины тунг насны мужаар " +
+      "(2–7 нас, 7+) өгсөн, <2 насанд хориглосон зохицуулагчийн шошго. " +
+      "Хүүхдийн эмнэлгийн заавар байхгүй тул эмчийн шийдвэрээр (2026-11-04). " +
+      "⚠️ Ганц эх сурвалж (known-gaps.ts).",
+  },
+
   // ───────────────────────────────────────────────────────────────────────────
   // ЗӨВХӨН ЗӨРҮҮ ШИЙДЭХ (tie-breaker) — ердийн баталгаажуулалтад тоолохгүй.
   // ───────────────────────────────────────────────────────────────────────────

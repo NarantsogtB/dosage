@@ -3,17 +3,21 @@ import type { Drug } from "../../domain/drug";
 /**
  * Acetylcysteine — Ацетилцистеин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * 🟡 ГАНЦ ЭХ СУРВАЛЖ (known-gap, 2026-11-04) — Испанийн эмийн агентлаг
+ * (AEMPS)-ийн баталсан хүүхдийн 20 мг/мл уусмалын SmPC (2020-09 хянасан),
+ * салс шингэрүүлэх: 2–7 нас 100 мг × 3, 7-оос дээш 200 мг × 3; <2 насанд
+ * ХОРИГЛОСОН (амьсгалын зам бөглөрөх эрсдэл).
+ * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-11-04, эмчийн шийдвэр): өмнө нь 10–15 мг/кг/хон
+ * × 2 (15 кг → 150–225 мг/хон). Монголд өргөн хэрэглэгддэг тул эмч 2010+
+ * эх сурвалж хайлгаж оруулав; зохицуулагчийн шошго (tiers 3c).
+ * Хайсан: WHO Formulary 2010 (зөвхөн парацетамолын хордлого), PCH (2026-03:
+ * хордлого, небулайзер, DIOS — амаар салс шингэрүүлэх заалтгүй), MSF.
+ * Монголын бүртгэлийн заавар (druginfo.mohs.mn) скриптээр уншигдаагүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * ⚠️ AEMPS: 5 хоногт сайжрахгүй бол дахин үнэлэх.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const acetylcysteine: Drug = {
@@ -23,31 +27,43 @@ export const acetylcysteine: Drug = {
   category: "mucolytic",
   rules: [
     {
-      id: "acetylcysteine-general",
+      id: "acetylcysteine-2-7y",
       indication: "general",
       route: "oral",
       ageMinMonths: 24,
-      basis: {
-        kind: "per_kg_per_day",
-        minMgPerKg: 10,
-        maxMgPerKg: 15
-      },
-      frequency: "bd",
-      caps: [
+      ageMaxMonths: 95,
+      basis: { kind: "fixed", minMg: 100, maxMg: 100 },
+      frequency: "tds",
+      caps: [],
+      sources: [
         {
-          kind: "absolute",
-          scope: "per_dose",
-          maxMg: 300
-        },
-        {
-          kind: "absolute",
-          scope: "per_day",
-          maxMg: 600
+          sourceId: "aemps-acetylcysteine-paediatric-smpc",
+          locator: "4.2 Posología — Niños (FT 63512, revisión 09/2020)",
+          quotedValue: "Niños de 2 a 7 años: La posología habitual recomendada es de 300 mg de acetilcisteína al día por vía oral, en 3 tomas de 100 mg cada 8 horas."
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): AEMPS SmPC-ийн насны мужаар. Өмнө нь 10–15 мг/кг/хон × 2, дээд 300/600 мг."
+    },
+    {
+      id: "acetylcysteine-over-7y",
+      indication: "general",
+      route: "oral",
+      ageMinMonths: 96,
+      basis: { kind: "fixed", minMg: 200, maxMg: 200 },
+      frequency: "tds",
+      caps: [],
+      sources: [
+        {
+          sourceId: "aemps-acetylcysteine-paediatric-smpc",
+          locator: "4.2 Posología — Niños (FT 63512, revisión 09/2020)",
+          quotedValue: "Adolescentes y niños mayores de 7 años: La posología habitual recomendada es de 600 mg de acetilcisteína al día por vía oral, en 3 tomas de 200 mg cada 8 horas."
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): AEMPS SmPC-ийн насны мужаар. Өмнө нь 10–15 мг/кг/хон × 2, дээд 300/600 мг."
     }
   ],
   formulations: [
