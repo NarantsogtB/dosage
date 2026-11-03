@@ -15,20 +15,6 @@ export interface KnownGap {
 
 export const KNOWN_GAPS: readonly KnownGap[] = [
   {
-    ruleId: "dexamethasone-asthma",
-    gap: "Ганц эх сурвалж (RCH Melbourne). Хоёр дахь нь дутуу.",
-    next: "Starship NZ-ийн астмын зааврыг Chrome-оор нээж дексаметазоны тунг шалгах.",
-  },
-  {
-    ruleId: "clarithromycin-general",
-    gap:
-      "Ганц эх сурвалж (WHO AWaRe 2022, Table 50.1: 7.5 мг/кг 12 цаг тутам, " +
-      "хоногт дээд 1 г). MSF-д зөвхөн насанд хүрэгчийн тун, RCH-д байхгүй.",
-    next:
-      "Starship эсвэл PCH-ийн хүүхдийн кларитромицины тунг олох; эсвэл " +
-      "зөрүү гарвал BNFc-ээр tie-break (DECISIONS 2026-10-30).",
-  },
-  {
     ruleId: "amoxicillin-clavulanate-general",
     gap:
       "Ганц эх сурвалж (WHO AWaRe 2022: 80–90 мг/кг/хон). MSF (25 мг/кг × 2), " +
@@ -72,16 +58,6 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
   },
   {
-    ruleId: "cetirizine-2-6y",
-    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
-    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
-  },
-  {
-    ruleId: "cetirizine-6-18y",
-    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
-    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
-  },
-  {
     ruleId: "acetylcysteine-2-7y",
     gap: "Ганц эх сурвалж (AEMPS SmPC, 2020-09) — зохицуулагчийн шошго. Хүүхдийн эмнэлгийн заавар (WHO, MSF, PCH, RCH)-д амаар салс шингэрүүлэх заалт байхгүй (2026-11-04).",
     next: "Монголын бүртгэлийн заавар (druginfo.mohs.mn)-ыг гараар татаж D_label_only хоёр дахь эх сурвалж болгох.",
@@ -90,11 +66,6 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     ruleId: "acetylcysteine-over-7y",
     gap: "Ганц эх сурвалж (AEMPS SmPC, 2020-09) — зохицуулагчийн шошго. Хүүхдийн эмнэлгийн заавар (WHO, MSF, PCH, RCH)-д амаар салс шингэрүүлэх заалт байхгүй (2026-11-04).",
     next: "Монголын бүртгэлийн заавар (druginfo.mohs.mn)-ыг гараар татаж D_label_only хоёр дахь эх сурвалж болгох.",
-  },
-  {
-    ruleId: "loratadine-general",
-    gap: "Ганц эх сурвалж (MSF Essential drugs, 2024-02). RCH, PCH-д байхгүй (2026-11-04).",
-    next: "WHO Formulary 2010-ийн лоратадины хуудсыг locator-тойгоор шалгаж иш татах.",
   },
   {
     ruleId: "metoclopramide-general",

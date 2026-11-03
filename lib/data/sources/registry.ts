@@ -429,6 +429,27 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn: "Крупын хүнд байдлаар дексаметазоны тун (0.15 / 0.6 мг/кг, дээд 12 мг).",
   },
 
+  "rch-melbourne-whooping-cough": {
+    id: "rch-melbourne-whooping-cough",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Whooping cough (pertussis).",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2025-05)",
+    year: 2025,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Whooping_Cough_Pertussis/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn: "Хөхүүл ханиадад макролидын (азитромицин, кларитромицин) хүүхдийн тун.",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",
@@ -728,6 +749,48 @@ export const SOURCES: Record<string, Source> = {
       "(2–7 нас, 7+) өгсөн, <2 насанд хориглосон зохицуулагчийн шошго. " +
       "Хүүхдийн эмнэлгийн заавар байхгүй тул эмчийн шийдвэрээр (2026-11-04). " +
       "⚠️ Ганц эх сурвалж (known-gaps.ts).",
+  },
+
+  "aemps-loratadine-syrup-smpc": {
+    id: "aemps-loratadine-syrup-smpc",
+    citation:
+      "Agencia Española de Medicamentos y Productos Sanitarios (AEMPS), CIMA. " +
+      "Ficha técnica — loratadina 1 mg/ml jarabe (nº registro 64243).",
+    publisher: "AEMPS (Испанийн эм, эмнэлгийн хэрэгслийн агентлаг)",
+    edition: "Fecha de la revisión del texto: 03/2026",
+    year: 2026,
+    url: "https://cima.aemps.es/cima/dochtml/ft/64243/FT_64243.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "ЕХ-ны гишүүн улсын зохицуулагчийн нийтийн баримт. Худалдааны нэрийг " +
+        "оруулахгүй; тунгийн утгыг гаргаж монголоор бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "Лоратадины хүүхдийн тун жингээр (≤30 кг 5 мг, >30 кг 10 мг). Зохицуулагчийн шошго (tiers 3c) — эмчийн зөвшөөрлөөр (2026-11-04).",
+  },
+
+  "aemps-cetirizine-solution-smpc": {
+    id: "aemps-cetirizine-solution-smpc",
+    citation:
+      "Agencia Española de Medicamentos y Productos Sanitarios (AEMPS), CIMA. " +
+      "Ficha técnica — cetirizina 1 mg/ml solución oral (nº registro 80453).",
+    publisher: "AEMPS (Испанийн эм, эмнэлгийн хэрэгслийн агентлаг)",
+    edition: "Fecha de la revisión del texto: 11/2025",
+    year: 2025,
+    url: "https://cima.aemps.es/cima/dochtml/ft/80453/FT_80453.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "ЕХ-ны гишүүн улсын зохицуулагчийн нийтийн баримт. Худалдааны нэрийг " +
+        "оруулахгүй; тунгийн утгыг гаргаж монголоор бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "Цетиризины хүүхдийн тун насаар (2–6, 6–12, >12 нас). Зохицуулагчийн шошго (tiers 3c) — эмчийн зөвшөөрлөөр (2026-11-04).",
   },
 
   // ───────────────────────────────────────────────────────────────────────────

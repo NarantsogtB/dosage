@@ -3,8 +3,9 @@ import type { Drug } from "../../domain/drug";
 /**
  * Dexamethasone — Дексаметазон
  *
- * ✅ Астмын дүрэм — RCH Melbourne 0.3 мг/кг (дээд 16 мг).
- * ⚠️ Ганц эх сурвалж — known-gaps-д бүртгэсэн.
+ * ✅ Астмын дүрэм — RCH Melbourne 0.3 мг/кг (дээд 16 мг) + MSF Clinical
+ * guidelines (2023-06): 0.15–0.6 мг/кг нэг удаа (дээд 16 мг) — MSF
+ * prednisolone-ыг эхний сонголт болгодог.
  *
  * ✅ Крупын дүрэм (2026-11-04) — MSF Clinical guidelines (Croup, 2024-10) +
  * RCH Croup (2024-09): 0.15–0.6 мг/кг нэг удаа. Өмнө нь «ерөнхий» заалттай
@@ -53,11 +54,16 @@ export const dexamethasone: Drug = {
           sourceId: "rch-melbourne-cpg",
           locator: "Acute asthma — Other management considerations, 2023-07",
           quotedValue: "Dexamethasone causes less vomiting and has a longer half life"
+        },
+        {
+          sourceId: "msf-clinical-guidelines",
+          locator: "Acute asthma (asthma attack) — Severe attack (2023-06)",
+          quotedValue: "If prednisolone is not available, or if the patient cannot take oral treatment, administer: Children: dexamethasone PO/IV/IM, one dose of 0.15 to 0.6 mg/kg (max. 16 mg)"
         }
       ],
       evidenceLevel: "C_international",
       isDefault: false,
-      conflictNote: "⚠️ Ганц эх сурвалж (RCH). Starship-аар хөндлөн шалгах шаардлагатай."
+      conflictNote: "2026-11-04: MSF Clinical guidelines (0.15–0.6 мг/кг, дээд 16 мг) хоёр дахь эх сурвалж — 0.3 мг/кг мужид багтана. MSF prednisolone-ыг эхний сонголт гэж үздэг."
     },
     {
       id: "dexamethasone-croup",

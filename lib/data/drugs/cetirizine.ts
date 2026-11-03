@@ -3,7 +3,7 @@ import type { Drug } from "../../domain/drug";
 /**
  * Cetirizine — Цетиризин
  *
- * 🟡 ГАНЦ ЭХ СУРВАЛЖ (known-gap, 2026-11-04) — RCH Melbourne CPG
+ * 🟡 RCH Melbourne CPG
  * «Urticaria» (2023-03 шинэчилсэн), цочмог чонон хөрвөс: насны мужаар.
  * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-11-04, эмчийн шийдвэр): өмнө нь бүх насанд
  * 0.25 мг/кг өдөрт 1 удаа (дээд 10 мг) — 1-ээс дээш насанд RCH-ээс ~2 дахин
@@ -12,6 +12,9 @@ import type { Drug } from "../../domain/drug";
  *   2–6 нас 5 мг × 1 · 6–18 нас 10 мг × 1.
  * RCH 2–6 насанд 2.5 мг × 2, 6–12 насанд 5 мг × 2 гэсэн хувилбарыг ч
  * зөвшөөрдөг (хоногийн нийт ижил). WHO Formulary 2010, MSF-д байхгүй.
+ * ✅ 2–6 нас, 6–18 нас: + AEMPS SmPC (2025-11, tiers 3c, эмчийн зөвшөөрлөөр)
+ * — хоногийн нийт ижил (2.5 мг × 2; 5 мг × 2 / 10 мг × 1).
+ * ⚠️ 6–11 сар, 1–2 нас: ганц эх сурвалж (known-gap) — AEMPS <2 насанд үгүй.
  *
  * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
  * availableInMn.
@@ -77,6 +80,11 @@ export const cetirizine: Drug = {
           sourceId: "rch-melbourne-urticaria",
           locator: "Urticaria — Treatment, Acute urticaria (сүүлд шинэчилсэн 2023-03)",
           quotedValue: "2-6 years: 5 mg oral daily or 2.5 mg oral twice daily"
+        },
+        {
+          sourceId: "aemps-cetirizine-solution-smpc",
+          locator: "4.2 Posología (FT 80453, revisión 11/2025)",
+          quotedValue: "Niños de 2 a 6 años de edad: 2,5 mg dos veces al día"
         }
       ],
       evidenceLevel: "C_international",
@@ -101,6 +109,11 @@ export const cetirizine: Drug = {
           sourceId: "rch-melbourne-urticaria",
           locator: "Urticaria — Treatment, Acute urticaria (сүүлд шинэчилсэн 2023-03)",
           quotedValue: "12-18 years: 10 mg oral daily"
+        },
+        {
+          sourceId: "aemps-cetirizine-solution-smpc",
+          locator: "4.2 Posología (FT 80453, revisión 11/2025)",
+          quotedValue: "Niños de 6 a 12 años de edad: 5mg dos veces al día. Adultos y adolescentes mayores de 12 años: 10 mg una vez al día"
         }
       ],
       evidenceLevel: "C_international",
