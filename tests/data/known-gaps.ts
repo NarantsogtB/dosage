@@ -15,11 +15,6 @@ export interface KnownGap {
 
 export const KNOWN_GAPS: readonly KnownGap[] = [
   {
-    ruleId: "dexamethasone-asthma",
-    gap: "Ганц эх сурвалж (RCH Melbourne). Хоёр дахь нь дутуу.",
-    next: "Starship NZ-ийн астмын зааврыг Chrome-оор нээж дексаметазоны тунг шалгах.",
-  },
-  {
     ruleId: "amoxicillin-clavulanate-general",
     gap:
       "Ганц эх сурвалж (WHO AWaRe 2022: 80–90 мг/кг/хон). MSF (25 мг/кг × 2), " +
