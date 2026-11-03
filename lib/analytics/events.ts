@@ -1,3 +1,4 @@
+import { CALCULATOR_IDS, type CalculatorId } from "../calculators/registry";
 import { DRUG_BY_ID } from "../data/drugs";
 
 /**
@@ -14,8 +15,9 @@ import { DRUG_BY_ID } from "../data/drugs";
 export const WEIGHT_BUCKETS = ["<10", "10-20", "20-40", ">40"] as const;
 export type WeightBucket = (typeof WEIGHT_BUCKETS)[number];
 
-export const CALCULATORS = ["dose", "burns"] as const;
-export type CalculatorName = (typeof CALCULATORS)[number];
+/** Тооцоолуурын нэрс — `lib/calculators/registry.ts`-ээс. */
+export const CALCULATORS = CALCULATOR_IDS;
+export type CalculatorName = CalculatorId;
 
 /** Нүүр дэлгэцээс (суулгасан апп) эсвэл хөтчөөс нээсэн. */
 export const DISPLAY_MODES = ["browser", "standalone"] as const;

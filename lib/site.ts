@@ -1,3 +1,8 @@
+import {
+  CALCULATOR_REGISTRY,
+  type CalculatorEntry,
+} from "./calculators/registry";
+
 /**
  * Сайтын үндсэн тогтмолууд. ГАНЦ эх сурвалж.
  *
@@ -24,14 +29,16 @@ export interface SiteRoute {
   readonly priority: number;
 }
 
+const toSiteRoute = (entry: CalculatorEntry): SiteRoute => ({
+  path: entry.path,
+  priority: entry.priority,
+});
+
 /**
- * Индексжүүлэх хуудсууд.
- *
- * `components/nav/routes.ts`-ээс ТУСДАА байрлана: тэр нь дүрс зурагтай
- * UI-ийн бүртгэл, энэ нь SEO-гийн бүртгэл. Хоёр зорилго, хоёр файл.
+ * Индексжүүлэх хуудсууд: танилцуулга + тооцоолуурын бүртгэл
+ * (`lib/calculators/registry.ts`).
  */
 export const SITE_ROUTES: readonly SiteRoute[] = [
   { path: "/", priority: 1 },
-  { path: "/dose", priority: 0.9 },
-  { path: "/burns", priority: 0.9 },
+  ...CALCULATOR_REGISTRY.map(toSiteRoute),
 ];

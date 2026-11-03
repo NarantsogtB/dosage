@@ -30,13 +30,13 @@ Next.js 16 статик export → Cloudflare Pages. Bun, Vitest, Tailwind 4, sh
 | `lib/data/drugs/` | Эм бүр нэг файл + `index.ts` (DRUGS) | `lib/data/CLAUDE.md` |
 | `lib/data/sources/registry.ts` | Эх сурвалжийн бүртгэл | `lib/data/CLAUDE.md` |
 | `lib/data/labels/`, `lib/data/burns/` | Шошго, түлэгдэлтийн өгөгдөл | — |
-| `lib/calculators/` | Эм бус тооцоолуур (burns, fluid, bsa) | `lib/calculators/CLAUDE.md` |
+| `lib/calculators/` | Эм бус тооцоолуур (burns, fluid, bsa) + `registry.ts` (тооцоолуурын нэг бүртгэл) | `lib/calculators/CLAUDE.md` |
 | `lib/format/` | Харуулах формат, жорын текст. Тооцоолохгүй | — |
 | `lib/search/` | Эм хайлт (латин + кирилл) | — |
 | `lib/analytics/` | Event schema + `track()` | `docs/ANALYTICS.md` |
 | `lib/validation/` | Эх сурвалжийн ref шалгалт | — |
 | `lib/drug-page/`, `app/dose/[slug]` | Эм бүрийн SEO хуудас | — |
-| `lib/site.ts` | Сайтын route + sitemap priority | — |
+| `lib/site.ts` | Сайтын route (бүртгэлээс) + sitemap | — |
 | `components/` | UI (client). `ui/` = shadcn vendored | `components/CLAUDE.md` |
 | `app/` | Route-ууд: `/`, `/dose`, `/dose/[slug]`, `/burns` | — |
 | `functions/api/e.ts` | Analytics хүлээн авагч (Pages Function) | `docs/ANALYTICS.md` |
