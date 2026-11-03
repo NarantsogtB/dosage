@@ -18,6 +18,19 @@
 
 ---
 
+## 2026-11-04 — Бүлэг 3, 1-р багц: dexamethasone → круп, methylprednisolone хасах
+
+**Context:** Dexamethasone-ийн «ерөнхий» дүрэм (0.15–0.6 мг/кг, дээд 16 мг)
+нь крупын тунтай яг таарч байв (MSF Clinical guidelines 2024-10, RCH Croup
+2024-09). Methylprednisolone-ийн цорын ганц эх сурвалж (PCH 2025-08) зөвхөн
+судсаар, заалт бүрээр өөр тунтай.
+**Decision:** Эмч: dexamethasone «ерөнхий» → «Круп» заалт, тун хэвээр, дээд
+16 мг (MSF; RCH 12 мг-ийг conflictNote-д). Methylprednisolone → `retired`.
+Aciclovir — энэ удаад алгасав (2020+ эх сурвалж хайх).
+**Why:** Заалтгүй «ерөнхий» стероидын тун эмчийг төөрөгдүүлнэ; эх сурвалж
+нь круп. Амаар стероид — prednisolone баталгаажсан.
+**Status:** accepted
+
 ## 2026-11-04 — Бүлэг 2, 3-р багц: ЕХ-ны зохицуулагчийн SmPC (3c); 2 эм хасах
 
 **Context:** Бүлэг 2-ын сүүлийн 4 эм. Diphenhydramine, salbutamol-ийн амаар тун
