@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 interface Props {
   readonly drugs: readonly Drug[];
   readonly selectedIds: readonly string[];
-  readonly onToggle: (id: string) => void;
+  readonly onToggle: (id: string, indicationCode?: string) => void;
 }
 
 const categoriesOf = (drugs: readonly Drug[]): readonly DrugCategory[] =>
@@ -41,15 +41,15 @@ const useDrugStats = (drugs: readonly Drug[]) =>
  * Mobile-д эм НЭМСЭН даруйд жагсаалт хураагдана (V3.1). Desktop-д
  * хураагдсан төлөв CSS-ээр харагдахгүй тул нөлөөгүй.
  */
-const useCollapse = (selectedIds: readonly string[], onToggle: (id: string) => void) => {
+const useCollapse = (selectedIds: readonly string[], onToggle: (id: string, indicationCode?: string) => void) => {
   const [expanded, setExpanded] = useState(false);
   const expand = useCallback(() => {
     setExpanded(true);
     requestAnimationFrame(focusSearchInput);
   }, []);
-  const toggle = (id: string) => {
+  const toggle = (id: string, indicationCode?: string) => {
     if (!selectedIds.includes(id)) setExpanded(false);
-    onToggle(id);
+    onToggle(id, indicationCode);
   };
   return { collapsed: selectedIds.length > 0 && !expanded, expand, toggle };
 };
@@ -72,7 +72,7 @@ function SearchPanel({ drugs, selectedIds, onToggle, collapsed }: PanelProps) {
         болно — тиймээс оролт дээр `aria-label` бичих нь ҮР ДҮНГҮЙ
         (aria-labelledby давамгайлна). Нэрийг ЭНД өгнө.
       */}
-      <Command shouldFilter={false} loop label="Эмийн нэрээр хайх" className="bg-transparent">
+      <Command shouldFilter={false} loop label="Эмийн нэр эсвэл өвчнөөр хайх" className="bg-transparent">
         <SearchHeader
           query={filters.query}
           onQuery={filters.setQuery}
@@ -88,6 +88,7 @@ function SearchPanel({ drugs, selectedIds, onToggle, collapsed }: PanelProps) {
           drugs={filters.visible}
           selectedIds={selectedIds}
           labels={filters.labels}
+          hits={filters.hits}
           onToggle={onToggle}
           onReset={filters.reset}
         />

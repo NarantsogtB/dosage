@@ -1,5 +1,6 @@
 import type { Drug } from "@/lib/domain/drug";
 import type { DosingRule } from "@/lib/domain/dosing-rule";
+import type { Indication } from "@/lib/domain/indication";
 import { formatRange } from "@/lib/format/format-range";
 
 export const defaultRuleOf = (drug: Drug): DosingRule | undefined =>
@@ -38,3 +39,10 @@ export const ruleSummary = (rule: DosingRule): string => {
   const basis = basisLabel(rule);
   return basis ? `${indicationLabel(rule)} · ${basis}` : indicationLabel(rule);
 };
+
+/**
+ * Хайлтын мөрийн тайлбар: өвчнөөр олдсон бол таарсан заалт, эс бөгөөс
+ * үндсэн дүрмийн тайлбар, түүнгүй бол кирилл нэр.
+ */
+export const searchRowDescription = (drug: Drug, matched?: Indication): string =>
+  matched ? `Заалтаар: ${matched.labelMn}` : (drugRowSummary(drug) ?? drug.innMn);
