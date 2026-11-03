@@ -408,6 +408,27 @@ export const SOURCES: Record<string, Source> = {
       "өгнө. ⚠️ Одоогоор ганц эх сурвалж (known-gaps.ts).",
   },
 
+  "rch-melbourne-croup": {
+    id: "rch-melbourne-croup",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Croup (laryngotracheobronchitis).",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2024-09)",
+    year: 2024,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Croup_Laryngotracheobronchitis/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn: "Крупын хүнд байдлаар дексаметазоны тун (0.15 / 0.6 мг/кг, дээд 12 мг).",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",
@@ -603,6 +624,27 @@ export const SOURCES: Record<string, Source> = {
       "хуучин 40мг/кг/ӨДӨР-ийн зэрэгцээ өндөр тунгийн парадигмд нийцэж " +
       "байгаа нь чухал — тоо ойролцоо (80 vs 90), зөвхөн эх сурвалж, орон " +
       "өөр.",
+  },
+
+  "msf-clinical-guidelines": {
+    id: "msf-clinical-guidelines",
+    citation:
+      "Médecins Sans Frontières. Clinical guidelines — diagnosis and treatment manual.",
+    publisher: "Médecins Sans Frontières (MSF)",
+    edition: "цахим, бүлэг бүр «Last updated» огноотой",
+    year: 2024,
+    url: "https://medicalguidelines.msf.org/en/viewport/CG/english/clinical-guidelines-16686604.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, MSF-ийн зохиогчийн эрхтэй. Хүснэгт, өгүүлбэр " +
+        "ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж, монголоор бичиж ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "Өвчнөөр индексэлсэн эмнэлзүйн заавар (Essential drugs-аас тусдаа ном) — " +
+      "круп г.м. заалтад хүүхдийн мг/кг тунг өгнө.",
   },
 
   "msf-essential-drugs": {
