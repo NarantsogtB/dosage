@@ -11,7 +11,11 @@
 4. Бэлдмэл (`formulations`): druginfo.mohs.mn-д бүртгэлтэй концентрацууд,
    `availableInMn`. Худалдааны нэр оруулахгүй.
 5. `lib/data/drugs/index.ts`: импорт + `DRUGS`-д мөр (цагаан толгойгоор).
-6. Шинэ эх сурвалж хэрэгтэй бол `lib/data/sources/registry.ts` —
+6. Заалттай дүрэм (`indication: { code, labelMn }`): код нь
+   `lib/data/labels/indications.ts`-д байх ёстой (шинэ өвчин бол тэнд нэр +
+   синоним нэм); `labelMn` бүртгэлийн нэрээр эхэлж, хаалтад нарийвчлал
+   (жишээ «Уушгины хатгаа (2–59 сар)»).
+7. Шинэ эх сурвалж хэрэгтэй бол `lib/data/sources/registry.ts` —
    `docs/sources/tiers.md`-ээр зөвшөөрөгдсөн эсэхийг шалга.
-7. `/dose/<id>` хуудас, sitemap автоматаар (баталгаажсан бол индексжинэ).
-8. `bun run check`. Commit: `feat(data): <эм> нэмэх`.
+8. `/dose/<id>` хуудас, sitemap автоматаар (баталгаажсан бол индексжинэ).
+9. `bun run check`. Commit: `feat(data): <эм> нэмэх`.
