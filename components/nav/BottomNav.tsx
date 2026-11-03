@@ -12,7 +12,10 @@ export const BOTTOM_NAV_HEIGHT = "4.5rem";
 /**
  * Mobile доод навигац — Figma "Bottom nav" (V3 · 03).
  *
- * Зөвхөн БОДИТ хоёр замтай (Эмийн тун, Түлэгдэлт) — хоосон таб нэмэхгүй.
+ * Зөвхөн БОДИТ замтай (`lib/calculators/registry.ts`) — хоосон таб нэмэхгүй.
+ * Баганын тоо route-ийн тоогоор (`grid-flow-col auto-cols-fr`) — өмнө нь
+ * `grid-cols-2` хатуу байсан тул 3 дахь таб доод мөрөнд унаж байв.
+ * Route 4-өөс олон болоход «Бусад» бүтэц хэрэгтэй (roadmap 2c).
  * Тооцоолуурын хуудсанд л харагдана; landing-д харагдахгүй. Ард нь ижил
  * өндөртэй зай үлдээж, хуудасны төгсгөлийг дарахгүй.
  */
@@ -24,7 +27,7 @@ export default function BottomNav() {
       <div aria-hidden className="h-[calc(4.5rem+env(safe-area-inset-bottom))] md:hidden print:hidden" />
       <nav
         aria-label="Тооцоолуур"
-        className="bg-card/95 supports-[backdrop-filter]:bg-card/85 fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 border-t pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden print:hidden"
+        className="bg-card/95 supports-[backdrop-filter]:bg-card/85 fixed inset-x-0 bottom-0 z-30 grid grid-flow-col auto-cols-fr border-t pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden print:hidden"
       >
         {ROUTES.map((route) => (
           <BottomTab key={route.href} href={route.href} label={route.labelMn} icon={route.icon} active={route === current} />
