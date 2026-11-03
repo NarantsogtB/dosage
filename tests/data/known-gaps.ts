@@ -81,6 +81,13 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "tie-break.",
   },
   {
+    ruleId: "captopril-general",
+    gap:
+      "Ганц эх сурвалж (PCH monograph, 2023-12). WHO Formulary 2010, MSF-д " +
+      "хүүхдийн тун байхгүй (2026-11-04 шалгав).",
+    next: "RCH, Starship эсвэл CHQ-ийн хүүхдийн каптоприлын тунг олох.",
+  },
+  {
     ruleId: "metoclopramide-general",
     gap:
       "Ганц эх сурвалж (EMA Article 31 referral, 2013) — 2020-оос өмнөх, " +

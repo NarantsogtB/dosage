@@ -476,6 +476,29 @@ export const SOURCES: Record<string, Source> = {
       "энд ОРУУЛААГҮЙ.",
   },
 
+  "pch-captopril-monograph": {
+    id: "pch-captopril-monograph",
+    citation:
+      "Perth Children's Hospital, Child and Adolescent Health Service " +
+      "(WA Health). Medication Management Manual — Monograph: Captopril.",
+    publisher: "Perth Children's Hospital (WA Health, Australia)",
+    edition: "сүүлд хянасан 2023-12, батлагдсан 2024-01, endorsed 2024-02, дараагийн review 2026-12",
+    year: 2023,
+    url: "https://www.pch.health.wa.gov.au/~/media/Files/Hospitals/PCH/General-documents/Health-professionals/MedicationMonographs/Captopril.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Western Australia-ийн эрүүл мэндийн албаны албан ёсны заавар, " +
+        "үнэ төлбөргүй PDF. Тодорхой CC лиценз заагаагүй тул cite-only.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "★ ≥4 долоо хоногтой хүүхдийн каптоприлын тунг насны бүлгээр " +
+      "(4 д.х–12 сар, 1–12 нас, 12–18 нас) өгнө. Нярайг 'Neonatal " +
+      "Medication Protocols'-руу чиглүүлдэг. ⚠️ Ганц эх сурвалж (known-gaps.ts).",
+  },
+
   "pch-furosemide-monograph": {
     id: "pch-furosemide-monograph",
     citation:
