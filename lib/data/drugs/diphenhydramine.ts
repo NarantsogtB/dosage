@@ -3,6 +3,12 @@ import type { Drug } from "../../domain/drug";
 /**
  * Diphenhydramine — Дифенгидрамин
  *
+ * ⛔ RETIRED (2026-11-04, эмчийн шийдвэр) — тооцоолуураас ХАССАН.
+ * Шалтгаан: амаар өгөх хүүхдийн тун аль ч эх сурвалжид байхгүй. PCH
+ * monograph (2026-07) зөвхөн судсаар/булчинд, онкологид хязгаарлаж, 2-р
+ * үеийн антигистамин (cetirizine, loratadine)-ыг илүүд үздэг.
+ * Өгөгдлийг түүх болгон үлдээв.
+ *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
@@ -87,5 +93,5 @@ export const diphenhydramine: Drug = {
   contraindicationsMn: [],
   sources: [],
   lastReviewed: "1970-01-01",
-  status: "active"
+  status: "retired"
 };

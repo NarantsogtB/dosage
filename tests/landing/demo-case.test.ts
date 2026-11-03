@@ -59,9 +59,9 @@ describe("танилцуулгын жишээ тохиолдол", () => {
   });
 
   it("танилцуулгын тоо өгөгдлөөс гарна", () => {
-    // 50 эмээс hydrocortisone `draft` (2026-10-30), 7 эм `retired`
+    // 50 эмээс hydrocortisone `draft` (2026-10-30), 9 эм `retired`
     // (2026-11-03/04, Шат 0 Бүлэг 2, 4) — тооцоолуурт харагдахгүй.
-    expect(DRUG_COUNT).toBe(42);
+    expect(DRUG_COUNT).toBe(40);
     expect(VERIFIED_COUNT).toBeGreaterThan(0);
     expect(VERIFIED_COUNT).toBeLessThanOrEqual(DRUG_COUNT);
   });
