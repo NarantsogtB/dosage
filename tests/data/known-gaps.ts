@@ -58,16 +58,6 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
   },
   {
-    ruleId: "cetirizine-2-6y",
-    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
-    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
-  },
-  {
-    ruleId: "cetirizine-6-18y",
-    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
-    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
-  },
-  {
     ruleId: "acetylcysteine-2-7y",
     gap: "Ганц эх сурвалж (AEMPS SmPC, 2020-09) — зохицуулагчийн шошго. Хүүхдийн эмнэлгийн заавар (WHO, MSF, PCH, RCH)-д амаар салс шингэрүүлэх заалт байхгүй (2026-11-04).",
     next: "Монголын бүртгэлийн заавар (druginfo.mohs.mn)-ыг гараар татаж D_label_only хоёр дахь эх сурвалж болгох.",

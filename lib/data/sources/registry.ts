@@ -772,6 +772,27 @@ export const SOURCES: Record<string, Source> = {
       "Лоратадины хүүхдийн тун жингээр (≤30 кг 5 мг, >30 кг 10 мг). Зохицуулагчийн шошго (tiers 3c) — эмчийн зөвшөөрлөөр (2026-11-04).",
   },
 
+  "aemps-cetirizine-solution-smpc": {
+    id: "aemps-cetirizine-solution-smpc",
+    citation:
+      "Agencia Española de Medicamentos y Productos Sanitarios (AEMPS), CIMA. " +
+      "Ficha técnica — cetirizina 1 mg/ml solución oral (nº registro 80453).",
+    publisher: "AEMPS (Испанийн эм, эмнэлгийн хэрэгслийн агентлаг)",
+    edition: "Fecha de la revisión del texto: 11/2025",
+    year: 2025,
+    url: "https://cima.aemps.es/cima/dochtml/ft/80453/FT_80453.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "ЕХ-ны гишүүн улсын зохицуулагчийн нийтийн баримт. Худалдааны нэрийг " +
+        "оруулахгүй; тунгийн утгыг гаргаж монголоор бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "Цетиризины хүүхдийн тун насаар (2–6, 6–12, >12 нас). Зохицуулагчийн шошго (tiers 3c) — эмчийн зөвшөөрлөөр (2026-11-04).",
+  },
+
   // ───────────────────────────────────────────────────────────────────────────
   // ЗӨВХӨН ЗӨРҮҮ ШИЙДЭХ (tie-breaker) — ердийн баталгаажуулалтад тоолохгүй.
   // ───────────────────────────────────────────────────────────────────────────
