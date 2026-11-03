@@ -3,6 +3,10 @@ import type { Drug } from "../../domain/drug";
 /**
  * Loperamide — Лоперамид
  *
+ * ⛔ RETIRED (2026-11-03, эмчийн шийдвэр) — тооцоолуураас ХАССАН.
+ * Шалтгаан: WHO-ийн хүүхдийн суулгалтын заавар суулгалтын эсрэг эм зөвлөдөггүй.
+ * Өгөгдлийг түүх болгон үлдээв; эх сурвалж хайхгүй.
+ *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
  * ⚠️ Зөвшөөрөгдсөн эх сурвалжид (WHO Formulary 2010, MSF, RCH, AWaRe) хүүхдийн тун
  * олдсонгүй (2026-10-30). Жагсаалтад үлдээх эсэх — эмчийн шийдвэр
@@ -86,5 +90,5 @@ export const loperamide: Drug = {
   contraindicationsMn: [],
   sources: [],
   lastReviewed: "1970-01-01",
-  status: "active"
+  status: "retired"
 };
