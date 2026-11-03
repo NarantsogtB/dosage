@@ -3,6 +3,11 @@ import type { Drug } from "../../domain/drug";
 /**
  * Methylprednisolone — Метилпреднизолон
  *
+ * ⛔ RETIRED (2026-11-04, эмчийн шийдвэр) — тооцоолуураас ХАССАН.
+ * Шалтгаан: цорын ганц эх сурвалж PCH (2025-08) зөвхөн судсаар, заалт
+ * бүрээр (0.5–4 мг/кг/хон; импульс 15–30 мг/кг) — амаар уух хүүхдийн тун
+ * олдоогүй. Амаар — prednisolone баталгаажсан. Өгөгдлийг түүх болгон үлдээв.
+ *
  * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
  * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
  * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
@@ -77,5 +82,5 @@ export const methylprednisolone: Drug = {
   contraindicationsMn: [],
   sources: [],
   lastReviewed: "1970-01-01",
-  status: "active"
+  status: "retired"
 };

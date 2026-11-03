@@ -5,7 +5,11 @@ import type { Drug } from "../../domain/drug";
  *
  * ✅ Астмын дүрэм — RCH Melbourne 0.3 мг/кг (дээд 16 мг).
  * ⚠️ Ганц эх сурвалж — known-gaps-д бүртгэсэн.
- * ⚠️ Ерөнхий дүрэм баталгаажаагүй.
+ *
+ * ✅ Крупын дүрэм (2026-11-04) — MSF Clinical guidelines (Croup, 2024-10) +
+ * RCH Croup (2024-09): 0.15–0.6 мг/кг нэг удаа. Өмнө нь «ерөнхий» заалттай
+ * байсан ижил тун — эмчийн шийдвэрээр круп болгов. Тун өөрчлөгдөөгүй.
+ * Дээд 16 мг (MSF); RCH хүнд крупт 12 мг — conflictNote.
  */
 
 export const dexamethasone: Drug = {
@@ -56,8 +60,11 @@ export const dexamethasone: Drug = {
       conflictNote: "⚠️ Ганц эх сурвалж (RCH). Starship-аар хөндлөн шалгах шаардлагатай."
     },
     {
-      id: "dexamethasone-general",
-      indication: "general",
+      id: "dexamethasone-croup",
+      indication: {
+        code: "croup",
+        labelMn: "Круп (ларинготрахеит)"
+      },
       route: "oral",
       ageMinMonths: 0,
       basis: {
@@ -73,10 +80,21 @@ export const dexamethasone: Drug = {
           maxMg: 16
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "msf-clinical-guidelines",
+          locator: "Croup (laryngotracheitis and laryngotracheobronchitis) — Treatment, mild croup (2024-10)",
+          quotedValue: "dexamethasone PO: 0.15 to 0.6 mg/kg (max. 16 mg) single dose"
+        },
+        {
+          sourceId: "rch-melbourne-croup",
+          locator: "Croup (laryngotracheobronchitis) — Medication (2024-09)",
+          quotedValue: "Oral steroids: dexamethasone 0.15 mg/kg oral or prednisolone 1 mg/kg oral ... Dexamethasone 0.6 mg/kg (max 12 mg) PO/IM/IV"
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote: "⚠️ Эх сурвалжгүй."
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): «ерөнхий» → круп заалт, тун хэвээр. MSF: 0.15 мг/кг (эргэж ирэх боломжтой бол) эсвэл 0.6 мг/кг, дээд 16 мг. RCH: хөнгөн/дунд 0.15 мг/кг, хүнд 0.6 мг/кг (дээд 12 мг). Дээд 16 мг (MSF)-ийг үлдээв."
     }
   ],
   formulations: [

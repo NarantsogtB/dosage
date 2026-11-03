@@ -3,16 +3,16 @@
 
 Огноо: 2026-11-03. Эх: `lib/data/drugs/`, `tests/data/known-gaps.ts`.
 
-- Эм: **41**, баталгаажсан (ядаж нэг дүрэм A–D): **37**
-- Дүрэм: **53**
+- Эм: **40**, баталгаажсан (ядаж нэг дүрэм A–D): **37**
+- Дүрэм: **52**
 
 | Түвшин | Код | Дүрэм |
 |---|---|---|
 | A | `A_mn_approved` | 0 |
 | B | `B_who` | 15 |
-| C | `C_international` | 33 |
+| C | `C_international` | 34 |
 | D | `D_label_only` | 0 |
-| E | `E_unverified` | 5 |
+| E | `E_unverified` | 3 |
 
 ## Дүрэм бүр (сул нотолгоо эхэнд)
 
@@ -21,9 +21,7 @@
 | Эм | Заалт · тун | Зам | Түвшин | Эх сурвалж | Хянасан | Цоорхой |
 |---|---|---|---|---|---|---|
 | Aciclovir | Ерөнхий заалт · 20 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
-| Dexamethasone | Ерөнхий заалт · 0.15–0.6 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Hydrocortisone | Ерөнхий заалт · 5–10 мг/кг/хон | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
-| Methylprednisolone | Ерөнхий заалт · 1–2 мг/кг/хон | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
 | Propranolol | Ерөнхий заалт · 0.5–1 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Acetylcysteine | Ерөнхий заалт | Амаар | C | aemps-acetylcysteine-paediatric-smpc | 1970-01-01 | ⚠️ |
 | Acetylcysteine | Ерөнхий заалт | Амаар | C | aemps-acetylcysteine-paediatric-smpc | 1970-01-01 | ⚠️ |
@@ -35,6 +33,7 @@
 | Cetirizine | Ерөнхий заалт · 0.25 мг/кг/тун | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
 | Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria, rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
 | Dexamethasone | Цочмог астма · 0.3 мг/кг/тун | Амаар | C | rch-melbourne-cpg, rch-melbourne-cpg | 1970-01-01 | ⚠️ |
+| Dexamethasone | Круп (ларинготрахеит) · 0.15–0.6 мг/кг/тун | Амаар | C | msf-clinical-guidelines, rch-melbourne-croup | 1970-01-01 |  |
 | Diazepam | Ерөнхий заалт · 0.1 мг/кг/тун | Амаар | C | pch-medication-manual | 1970-01-01 | ⚠️ |
 | Doxycycline | Ерөнхий заалт · 2 мг/кг/тун | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
 | Enalapril | Ерөнхий заалт · 0.1–0.5 мг/кг/тун | Амаар | C | who-formulary-children-2010 | 1970-01-01 | ⚠️ |
