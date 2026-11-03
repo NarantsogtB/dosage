@@ -9,11 +9,18 @@ import {
 } from "@/lib/drug-page/drug-page-meta";
 import { drugSources } from "@/lib/drug-page/drug-sources";
 import type { Drug } from "@/lib/domain/drug";
+import { makeDrug, makeRule } from "../fixtures/make-drug";
 
 const refKey = (ref: { sourceId: string; locator: string }) =>
   `${ref.sourceId}|${ref.locator}`;
 
 const hasNoSources = (drug: Drug) => drugSources(drug).length === 0;
+
+/** Эх сурвалжгүй эм — бодит эм баталгаажих тусам өөрчлөгддөг тул fixture. */
+const UNSOURCED = makeDrug(
+  [makeRule({ id: "unsourced", sources: [], evidenceLevel: "E_unverified" })],
+  { id: "unsourced", inn: "Unsourced", innMn: "Эх сурвалжгүй", sources: [] },
+);
 
 const expectResolvableSources = (drug: Drug) => {
   const refs = drugSources(drug);
@@ -67,7 +74,7 @@ describe("drugPageMeta", () => {
   });
 
   it("эх сурвалжгүй эм: noindex, тайлбарт ил хэлнэ", () => {
-    const meta = drugPageMeta(byId("captopril"));
+    const meta = drugPageMeta(UNSOURCED);
     expect(meta.robots).toEqual({ index: false, follow: true });
     expect(meta.description).toContain("Эх сурвалж баталгаажаагүй");
   });

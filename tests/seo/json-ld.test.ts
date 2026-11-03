@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { DRUG_BY_ID } from "@/lib/data/drugs";
 import { drugPageJsonLd, serializeJsonLd, siteJsonLd } from "@/lib/seo/json-ld";
 import { SITE_URL } from "@/lib/site";
+import { makeDrug, makeRule } from "../fixtures/make-drug";
 
 type Node = Record<string, unknown>;
 
@@ -29,7 +30,12 @@ describe("drugPageJsonLd", () => {
 
   it("эх сурвалжтай эмд citation байна, эх сурвалжгүйд хоосон", () => {
     expect((pageOf("paracetamol").citation as string[]).length).toBeGreaterThan(0);
-    expect(pageOf("captopril").citation).toEqual([]);
+    const unsourced = makeDrug(
+      [makeRule({ sources: [], evidenceLevel: "E_unverified" })],
+      { sources: [] },
+    );
+    const graph = drugPageJsonLd(unsourced)["@graph"] as Node[];
+    expect(graph[0].citation).toEqual([]);
   });
 
   it("хянаагүй (1970-01-01) огноог зарлахгүй", () => {
