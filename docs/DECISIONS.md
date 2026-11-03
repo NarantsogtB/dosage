@@ -18,6 +18,20 @@
 
 ---
 
+## 2026-11-04 — Бүлэг 2, 2-р багц: famotidine-ийг хасах, cetirizine-ийг насны мужаар
+
+**Context:** famotidine-д хүүхдийн эмнэлгийн заавар олдсонгүй (зөвхөн FDA шошго).
+Cetirizine-ийн цорын ганц эх сурвалж (RCH Urticaria 2023-03) 1-ээс дээш насанд
+тогтмол мг өгдөг, манай 0.25 мг/кг ~2 дахин бага гарч байв. Captopril-ийн PCH
+нярайг тусдаа протоколоор өгдөг.
+**Decision:** Эмч: famotidine → `retired` (FDA-г 3c-д нэмэхгүй). Cetirizine →
+RCH-ийн 4 насны дүрэм (`fixed` basis, `ageMaxMonths`), known-gap. Captopril →
+PCH ганц эх сурвалж (known-gap), 1 сараас.
+**Why:** Эх сурвалжгүй эмийг тооцоолуурт үлдээхгүй; omeprazole орлоно.
+Cetirizine-ийн тунг эх сурвалжтайгаа тулгах нь бүтцийн өөрчлөлтөөс чухал —
+engine насны мужийг аль хэдийн дэмждэг (paracetamol, zinc).
+**Status:** accepted
+
 ## 2026-11-03 — Зохицуулагчийн шошго (EMA) эх сурвалж болох; clonazepam-ийг хасах
 
 **Context:** Шат 0 Бүлэг 2-ын 1-р багц. Metoclopramide-д хүүхдийн эмнэлгийн
