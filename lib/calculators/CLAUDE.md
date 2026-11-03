@@ -2,7 +2,7 @@
 
 `<нэр>/` хавтас бүрд томьёо тутамд нэг цэвэр функц. React, I/O байхгүй.
 Одоо: `burns/` (TBSA Lund-Browder, Parkland, Galveston, urine target, ivy limit,
-age band), `fluid/` (maintenance, bolus), `bsa/` (Mosteller).
+age band), `fluid/` (maintenance, bolus, deficit — `/fluids`), `bsa/` (Mosteller).
 
 ## Дүрэм
 
@@ -11,7 +11,8 @@ age band), `fluid/` (maintenance, bolus), `bsa/` (Mosteller).
 - Тест `tests/calculators/<нэр>.test.ts` — нийтлэгдсэн жишээ тооцоогоор,
   хил дээрх утга (0, хамгийн бага/их жин).
 - Түлэгдэлтийн эх сурвалжийн тэмдэглэл: `docs/BURNS-SOURCE-NOTES.md`.
-- `fluid/` нь `/burns`-д ашиглагддаг — өөрчилбөл burns тест давах ёстой.
+- `fluid/` — `/fluids` (RCH IV fluids 2026, WHO Pocket Book 2013). Эмчийн
+  шийдвэр: DECISIONS 2026-11-04.
 - `registry.ts` — тооцоолуурын НЭГ бүртгэл (nav, sitemap, analytics эндээс
   уншина). React-гүй — серверт ч ажилладаг.
 - Шинэ тооцоолуур бүхэлд нь: `docs/recipes/add-calculator.md`.
