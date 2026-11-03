@@ -7,15 +7,15 @@
 
 ## Төлөв (2026-11-03)
 
-45 эм (5 retired) · **31 баталгаажсан** · 14 үлдсэн (15 `E` дүрэм). A түвшин 0.
-Бүлэг 1 ✅, Бүлэг 4 ✅ (2026-11-03).
+44 эм (6 retired) · **33 баталгаажсан** · 11 үлдсэн (12 `E` дүрэм). A түвшин 0.
+Бүлэг 1 ✅, Бүлэг 4 ✅, Бүлэг 2-ын 1-р багц ✅ (2026-11-03).
 
-Үлдсэн 14 эм **2 өөр төрлийн** асуудалтай — бүлэг бүр өөр шийдэлтэй:
+Үлдсэн 11 эм **2 өөр төрлийн** асуудалтай — бүлэг бүр өөр шийдэлтэй:
 
 | Бүлэг | Эм | Асуудал | Хэн | Шийдэл |
 |---|---|---|---|---|
 | ✅ **1. Бараг бэлэн** | furosemide (+PCH 2024), spironolactone (+MSF), sodium-valproate (+MSF 2024, эмч: 2 наснаас), enalapril (known-gap — 2020+ олдсонгүй) | Тунг эмч шийдсэн. Ганц эх сурвалж (WHO Formulary 2010) — «≥2 эх сурвалж, ≥1 нь 2020+» дүрэм биелэхгүй | Агент | 2020+ хоёр дахь эх сурвалж (MSF, PCH, RCH, Starship, CHQ) олж нэм. Олдохгүй бол `known-gaps.ts`-д |
-| **2. Эх сурвалж хайх** | carbamazepine, clonazepam, metoclopramide, captopril, famotidine, cetirizine, loratadine, diphenhydramine, acetylcysteine, salbutamol (амаар) | WHO/MSF/AWaRe-д хүүхдийн тун байхгүй | Агент → зөрвөл эмч | Хүүхдийн эмнэлгийн 2 заавар (PCH, RCH CPG, Starship, CHQ, QCG) → `C_international`. diazepam, ondansetron, phenobarbital, omeprazole-ийг яг ингэж хийсэн |
+| **2. Эх сурвалж хайх** | ~~carbamazepine~~ ✅ (WHO 2010 + MSF), ~~clonazepam~~ retired, ~~metoclopramide~~ ✅ (EMA, known-gap), captopril, famotidine, cetirizine, loratadine, diphenhydramine, acetylcysteine, salbutamol (амаар) | WHO/MSF/AWaRe-д хүүхдийн тун байхгүй | Агент → зөрвөл эмч | Хүүхдийн эмнэлгийн 2 заавар (PCH, RCH CPG, Starship, CHQ, QCG) → `C_international`. diazepam, ondansetron, phenobarbital, omeprazole-ийг яг ингэж хийсэн |
 | **3. Бүтэц өөрчлөх** | aciclovir, hydrocortisone (draft), methylprednisolone, dexamethasone, propranolol | Engine-д тохирох тунгийн хэлбэр байхгүй (насаар тогтмол мг, мг/м²) эсвэл «ерөнхий» дүрмийг заалтаар хуваах шаардлагатай | Эмч (аль заалтыг үлдээх) → агент | Шат S4 (нэгж/basis)-тай хамт. Түр зуур одоогийн байдлаар |
 | ✅ **4. Үлдээх үү, хасах уу** | loperamide, domperidone, ambroxol, promethazine, tramadol — **5-уулаа retired** (DECISIONS 2026-11-03) | Эх сурвалж хайх асуудал биш — эмнэлзүйн шийдвэр | **Зөвхөн эмч** | Эм бүрд: хасах (`status: "retired"`) эсвэл эх сурвалжтайгаар үлдээх |
 

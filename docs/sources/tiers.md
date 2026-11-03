@@ -8,6 +8,7 @@
 | **2. Монголын албан ёсны** | ЭМХТ эмнэлзүйн заавар, эмийн бүртгэл, druginfo.mohs.mn | ✅ Тийм | **Зөрчилдвөл давуу** |
 | **3. Зөвхөн ишлэл** | RCH Melbourne CPG, Starship NZ, CHQ CREDD, NICE | ❌ Үгүй | Cross-check |
 | **3b. Зөвхөн зөрүү шийдэх** | BNFc (`bnfc`) | ❌ Үгүй | Tie-breaker — ердийн баталгаажуулалтад тоолохгүй (2026-10-30) |
+| **3c. Зохицуулагч** | EMA referral / assessment (жишээ `ema-metoclopramide-referral-2013`) | ❌ Үгүй | Хүүхдийн эмнэлгийн заавар байхгүй үед л, эмчийн зөвшөөрлөөр (2026-11-03) |
 | **4. Хориотой** | Nelson, Harriet Lane, UpToDate, Lexicomp, Medscape, drugs.com | ❌ Үгүй | Ашиглахгүй |
 
 ### Үндсэн суурь — 2022–2025, бүгд үнэ төлбөргүй

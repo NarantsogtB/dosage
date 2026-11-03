@@ -3,16 +3,16 @@
 
 Огноо: 2026-11-03. Эх: `lib/data/drugs/`, `tests/data/known-gaps.ts`.
 
-- Эм: **45**, баталгаажсан (ядаж нэг дүрэм A–D): **31**
-- Дүрэм: **53**
+- Эм: **44**, баталгаажсан (ядаж нэг дүрэм A–D): **33**
+- Дүрэм: **52**
 
 | Түвшин | Код | Дүрэм |
 |---|---|---|
 | A | `A_mn_approved` | 0 |
 | B | `B_who` | 15 |
-| C | `C_international` | 23 |
+| C | `C_international` | 25 |
 | D | `D_label_only` | 0 |
-| E | `E_unverified` | 15 |
+| E | `E_unverified` | 12 |
 
 ## Дүрэм бүр (сул нотолгоо эхэнд)
 
@@ -23,19 +23,17 @@
 | Acetylcysteine | Ерөнхий заалт · 10–15 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Aciclovir | Ерөнхий заалт · 20 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Captopril | Ерөнхий заалт · 0.1–0.5 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
-| Carbamazepine | Ерөнхий заалт · 10–20 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Cetirizine | Ерөнхий заалт · 0.25 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
-| Clonazepam | Ерөнхий заалт · 0.01–0.05 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Dexamethasone | Ерөнхий заалт · 0.15–0.6 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Diphenhydramine | Ерөнхий заалт · 1.25 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Famotidine | Ерөнхий заалт · 0.5–1 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Hydrocortisone | Ерөнхий заалт · 5–10 мг/кг/хон | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
 | Loratadine | Ерөнхий заалт · 0.2 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Methylprednisolone | Ерөнхий заалт · 1–2 мг/кг/хон | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
-| Metoclopramide | Ерөнхий заалт · 0.15 мг/кг/тун | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
 | Propranolol | Ерөнхий заалт · 0.5–1 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Salbutamol | Ерөнхий заалт · 0.1–0.15 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Albendazole | Ерөнхий заалт | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
+| Carbamazepine | Ерөнхий заалт · 10–20 мг/кг/хон | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
 | Dexamethasone | Цочмог астма · 0.3 мг/кг/тун | Амаар | C | rch-melbourne-cpg, rch-melbourne-cpg | 1970-01-01 | ⚠️ |
 | Diazepam | Ерөнхий заалт · 0.1 мг/кг/тун | Амаар | C | pch-medication-manual | 1970-01-01 | ⚠️ |
 | Doxycycline | Ерөнхий заалт · 2 мг/кг/тун | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
@@ -46,6 +44,7 @@
 | Gentamicin | Ерөнхий заалт · 4.5–7.5 мг/кг/тун | Судсаар / Булчинд (IV/IM) | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
 | Ibuprofen | Ерөнхий заалт · 5–10 мг/кг/тун | Амаар | C | rch-melbourne-cpg, msf-essential-drugs | 1970-01-01 |  |
 | Mebendazole | Ерөнхий заалт | Амаар | C | msf-essential-drugs, who-formulary-children-2010 | 1970-01-01 |  |
+| Metoclopramide | Ерөнхий заалт · 0.15 мг/кг/тун | Амаар эсвэл судсаар | C | ema-metoclopramide-referral-2013 | 1970-01-01 | ⚠️ |
 | Metronidazole | Анаэроб бактерийн халдвар · 7.5–10 мг/кг/тун | Амаар эсвэл судсаар | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
 | Metronidazole | Гиардиаз (Giardia) · 30 мг/кг/тун | Амаар | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
 | Omeprazole | Ерөнхий заалт · 0.7–1.4 мг/кг/хон | Амаар | C | msf-essential-drugs, qcg-neonatal-omeprazole | 1970-01-01 |  |
