@@ -2,7 +2,8 @@
 
 import { TriangleAlert } from "lucide-react";
 import type { Drug } from "@/lib/domain/drug";
-import { drugRowSummary } from "@/lib/search/drug-row-summary";
+import type { Indication } from "@/lib/domain/indication";
+import { searchRowDescription } from "@/lib/search/drug-row-summary";
 import DrugRowIcon from "./DrugRowIcon";
 import { CommandItem } from "@/components/ui/command";
 import {
@@ -19,7 +20,9 @@ import { rowClass, rowTitleClass } from "./drug-row-style";
 interface Props {
   readonly drug: Drug;
   readonly selected: boolean;
-  readonly onToggle: (id: string) => void;
+  /** Өвчнөөр хайхад таарсан заалт — сонгоход урьдчилан сонгогдоно. */
+  readonly matched?: Indication;
+  readonly onToggle: (id: string, indicationCode?: string) => void;
 }
 
 /**
@@ -32,14 +35,16 @@ interface Props {
  * харуулна — Figma-гийн "Item" дүрмээр эмч мөр бүрээс шууд хэрэгтэй
  * мэдээллээ (аль өвчинд, ямар тунгаар) 3 секундэд олно. Кирилл нэр нь
  * хайлтын түлхүүр үг хэвээр (`keywords`), зөвхөн харагдахаа больсон.
+ *
+ * Өвчнөөр хайж олдсон бол тайлбарт ТААРСАН заалтыг харуулна (Шат 4).
  */
-export default function DrugListItem({ drug, selected, onToggle }: Props) {
-  const summary = drugRowSummary(drug) ?? drug.innMn;
+export default function DrugListItem({ drug, selected, matched, onToggle }: Props) {
+  const summary = searchRowDescription(drug, matched);
   return (
     <CommandItem
       value={drug.id}
       keywords={[drug.inn, drug.innMn]}
-      onSelect={() => onToggle(drug.id)}
+      onSelect={() => onToggle(drug.id, matched?.code)}
       aria-checked={selected}
       className={rowClass(selected)}
     >

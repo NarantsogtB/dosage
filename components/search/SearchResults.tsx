@@ -1,6 +1,7 @@
 "use client";
 
 import type { Drug } from "@/lib/domain/drug";
+import type { Indication } from "@/lib/domain/indication";
 import { CommandList } from "@/components/ui/command";
 import DrugList from "./DrugList";
 import SearchEmpty from "./SearchEmpty";
@@ -10,7 +11,9 @@ interface Props {
   readonly drugs: readonly Drug[];
   readonly selectedIds: readonly string[];
   readonly labels: FilterState;
-  readonly onToggle: (id: string) => void;
+  /** Заалтаар таарсан эмүүд — мөрөнд заалтыг харуулна. */
+  readonly hits: ReadonlyMap<string, Indication>;
+  readonly onToggle: (id: string, indicationCode?: string) => void;
   readonly onReset: () => void;
 }
 
@@ -30,6 +33,7 @@ export default function SearchResults(props: Props) {
         <DrugList
           drugs={props.drugs}
           selectedIds={props.selectedIds}
+          hits={props.hits}
           onToggle={props.onToggle}
         />
       )}

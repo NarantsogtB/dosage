@@ -36,7 +36,7 @@ export default function CalculatorPage({ initialDrugIds, intro, children }: Prop
   const [form, setForm] = usePatientForm();
   const selection = useSelectedDrugs(initialDrugIds);
   const { drugs } = selection;
-  const { indications, select } = useIndications();
+  const { indications, select, onToggle } = useIndications(selection.toggle);
   const { onRemove, onClear } = useUndoableRemoval(selection);
 
   const patient = useMemo(() => toPatient(form), [form]);
@@ -52,7 +52,7 @@ export default function CalculatorPage({ initialDrugIds, intro, children }: Prop
       <Disclaimer />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start lg:grid-cols-12 lg:gap-6 print:hidden">
         <div className="lg:col-span-5">
-          <InputColumn form={form} onForm={setForm} selectedIds={selection.selectedIds} onToggle={selection.toggle} />
+          <InputColumn form={form} onForm={setForm} selectedIds={selection.selectedIds} onToggle={onToggle} />
         </div>
         <div className="lg:col-span-7">
           <ResultsColumn

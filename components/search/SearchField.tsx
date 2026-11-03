@@ -8,7 +8,7 @@ interface Props {
 }
 
 /**
- * Эмийн нэрээр хайх талбар. Латин ба кирилл хоёуланг дэмжинэ.
+ * Эмийн нэр эсвэл өвчнөөр хайх талбар. Латин ба кирилл хоёуланг дэмжинэ.
  *
  * `cmdk`-ийн `CommandInput` — ердийн `<input>` БИШ. Ялгаа нь: талбарт
  * фокустай байхад ↑ ↓ товчоор доорх жагсаалтаар явж, Enter-ээр сонгоно.
@@ -26,7 +26,7 @@ export default function SearchField({ value, onChange }: Props) {
     <CommandInput
       value={value}
       onValueChange={onChange}
-      placeholder="paracetamol / парацетамол"
+      placeholder="парацетамол, amoxicillin эсвэл хатгаа"
       wrapperClassName="border-input rounded-md border shadow-xs focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] transition-[color,box-shadow]"
     />
   );

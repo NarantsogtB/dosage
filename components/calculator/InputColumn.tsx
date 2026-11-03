@@ -9,7 +9,7 @@ interface Props {
   readonly form: PatientForm;
   readonly onForm: (form: PatientForm) => void;
   readonly selectedIds: readonly string[];
-  readonly onToggle: (id: string) => void;
+  readonly onToggle: (id: string, indicationCode?: string) => void;
 }
 
 /** Зүүн багана: өвчтөний мэдээлэл, эм сонгох. */

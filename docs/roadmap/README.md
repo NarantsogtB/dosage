@@ -25,7 +25,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | 7 | `phase-S3-calculator-registry.md` | Тооцоолуурын нэг бүртгэл | 0.5–1 өдөр | — | ☑ |
 | 8 | `phase-3-fluids.md` | `/fluids` | 2–3 өдөр | S3 | ☑ |
 | 9 | `phase-S2-indications.md` | Заалтын бүртгэл + синоним | 1 өдөр | — | ☑ |
-| 10 | `phase-4-indication-search.md` | Өвчин/заалтаар хайх | 1–2 өдөр | S2 | ☐ |
+| 10 | `phase-4-indication-search.md` | Өвчин/заалтаар хайх | 1–2 өдөр | S2 | ☑ |
 | 11 | `phase-5-share-link.md` | Линкээр хуваалцах | 1–2 өдөр | — | ☐ |
 | 12 | `phase-S4-units.md` | Тунгийн нэгж (мкг, ED, ммоль, г) + хурд | 2–3 өдөр | — | ☐ |
 | 13 | `phase-6-iv-im.md` | IV/IM + нунтаг найруулах | ~1.5 долоо хоног | S4 | ☐ |
