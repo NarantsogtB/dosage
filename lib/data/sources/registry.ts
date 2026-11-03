@@ -385,6 +385,29 @@ export const SOURCES: Record<string, Source> = {
       "өгдөг. MSF-тэй хамт хоёр дахь бие даасан баталгаажуулалт болно.",
   },
 
+  "rch-melbourne-urticaria": {
+    id: "rch-melbourne-urticaria",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Urticaria.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2023-03)",
+    year: 2023,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Urticaria/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "★ Цочмог чонон хөрвөсөд цетиризины тунг насны мужаар (6 сар–18 нас) " +
+      "өгнө. ⚠️ Одоогоор ганц эх сурвалж (known-gaps.ts).",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",
@@ -474,6 +497,29 @@ export const SOURCES: Record<string, Source> = {
       "ганц эх сурвалж. Нярайн (<4 долоо хоног) тунг тусад нь заасан " +
       "'Neonatal Medication Protocols'-руу чиглүүлдэг тул нярайн тунг " +
       "энд ОРУУЛААГҮЙ.",
+  },
+
+  "pch-captopril-monograph": {
+    id: "pch-captopril-monograph",
+    citation:
+      "Perth Children's Hospital, Child and Adolescent Health Service " +
+      "(WA Health). Medication Management Manual — Monograph: Captopril.",
+    publisher: "Perth Children's Hospital (WA Health, Australia)",
+    edition: "сүүлд хянасан 2023-12, батлагдсан 2024-01, endorsed 2024-02, дараагийн review 2026-12",
+    year: 2023,
+    url: "https://www.pch.health.wa.gov.au/~/media/Files/Hospitals/PCH/General-documents/Health-professionals/MedicationMonographs/Captopril.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Western Australia-ийн эрүүл мэндийн албаны албан ёсны заавар, " +
+        "үнэ төлбөргүй PDF. Тодорхой CC лиценз заагаагүй тул cite-only.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "★ ≥4 долоо хоногтой хүүхдийн каптоприлын тунг насны бүлгээр " +
+      "(4 д.х–12 сар, 1–12 нас, 12–18 нас) өгнө. Нярайг 'Neonatal " +
+      "Medication Protocols'-руу чиглүүлдэг. ⚠️ Ганц эх сурвалж (known-gaps.ts).",
   },
 
   "pch-furosemide-monograph": {

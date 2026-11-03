@@ -3,9 +3,13 @@ import type { Drug } from "../../domain/drug";
 /**
  * Captopril — Каптоприл
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * 🟡 ГАНЦ ЭХ СУРВАЛЖ (known-gap, 2026-11-04) — Perth Children's Hospital
+ * monograph (2023-12 хянасан): 4 д.х–12 сар ердийн 0.1–0.3 мг/кг/тун,
+ * 1–12 нас 0.3–0.5 мг/кг/тун, 2–3 удаа; дээд 6 мг/кг/хон (150 мг/хон).
+ * Одоогийн 0.1–0.5 мг/кг × 3 хоёр бүлгийг хамарна — тун өөрчлөөгүй.
+ * ⚠️ НАС ӨӨРЧЛӨГДСӨН (2026-11-04, эмчийн шийдвэр): 0 → 1 сараас. PCH
+ * нярайг тусдаа протоколоор өгдөг. WHO Formulary 2010, MSF-д хүүхдийн тун
+ * байхгүй.
  *
  * 2026-08-20: Хэрэглэгч (эмч) насанд хүрэгчид энэ тооцоолуурыг ашиглаж
  * байгааг мэдэгдсэн. Шалгасны дүн:
@@ -23,13 +27,8 @@ import type { Drug } from "../../domain/drug";
  *     captopril биш, ижил төрлийн бусад (enalapril, propranolol,
  *     spironolactone г.м.) эмд ч хамаарна.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас ХҮҮХДИЙН тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const captopril: Drug = {
@@ -42,7 +41,7 @@ export const captopril: Drug = {
       id: "captopril-general",
       indication: "general",
       route: "oral",
-      ageMinMonths: 0,
+      ageMinMonths: 1,
       basis: {
         kind: "per_kg_per_dose",
         minMgPerKg: 0.1,
@@ -61,9 +60,16 @@ export const captopril: Drug = {
           maxMg: 150
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "pch-captopril-monograph",
+          locator: "Dosage — Hypertension, proteinuria in nephritis: 1-12 years (сүүлд хянасан 2023-12)",
+          quotedValue: "Initial (test) dose 0.1 mg/kg (maximum dose 6.25 mg), then if tolerated titrate to response, usual dose 0.3 to 0.5 mg/kg/dose 2 to 3 times daily. Maximum dose: 6 mg/kg/DAY (up to 150 mg/DAY), in 2 or 3 divided doses"
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): PCH-ийг ганц эх сурвалжаар (known-gap) нэмж, 0 → 1 сараас (нярай PCH-д тусдаа протокол). PCH: 4 д.х–12 сар ердийн 0.1–0.3 мг/кг/тун, 1–12 нас 0.3–0.5 мг/кг/тун; 12–18 нас тогтмол 12.5–25 мг/тун. Одоогийн 0.1–0.5 мг/кг × 3, дээд 25 мг/тун, 150 мг/хон хэвээр. Эхлэх (test) тун ба титраци — эмч."
     }
   ],
   formulations: [
@@ -108,7 +114,7 @@ export const captopril: Drug = {
   ],
   contraindicationsMn: [],
   notesMn:
-    "Хоолноос 1 цагийн өмнө уух. Нярайд эхлэх тун 0.1 мг/кг. " +
+    "Хоолноос 1 цагийн өмнө уух. Эхлэх (test) тун 0.1 мг/кг (дээд 6.25 мг), дараа нь титраци. " +
     "⚠️ Энэ бол ХҮҮХДИЙН (кг-аар тооцсон) тун — насанд хүрэгчид ХЭРЭГЛЭХГҮЙ. " +
     "Насанд хүрэгчийн каптоприл ФИКС тунтай (6.25–25мг, титрацаар 50мг " +
     "хүртэл), өдөрт 2–3 удаа (1 БИШ) өгдөг.",

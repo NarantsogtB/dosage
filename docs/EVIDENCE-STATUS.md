@@ -3,16 +3,16 @@
 
 Огноо: 2026-11-03. Эх: `lib/data/drugs/`, `tests/data/known-gaps.ts`.
 
-- Эм: **44**, баталгаажсан (ядаж нэг дүрэм A–D): **33**
-- Дүрэм: **52**
+- Эм: **43**, баталгаажсан (ядаж нэг дүрэм A–D): **35**
+- Дүрэм: **54**
 
 | Түвшин | Код | Дүрэм |
 |---|---|---|
 | A | `A_mn_approved` | 0 |
 | B | `B_who` | 15 |
-| C | `C_international` | 25 |
+| C | `C_international` | 30 |
 | D | `D_label_only` | 0 |
-| E | `E_unverified` | 12 |
+| E | `E_unverified` | 9 |
 
 ## Дүрэм бүр (сул нотолгоо эхэнд)
 
@@ -22,18 +22,20 @@
 |---|---|---|---|---|---|---|
 | Acetylcysteine | Ерөнхий заалт · 10–15 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Aciclovir | Ерөнхий заалт · 20 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
-| Captopril | Ерөнхий заалт · 0.1–0.5 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
-| Cetirizine | Ерөнхий заалт · 0.25 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Dexamethasone | Ерөнхий заалт · 0.15–0.6 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Diphenhydramine | Ерөнхий заалт · 1.25 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
-| Famotidine | Ерөнхий заалт · 0.5–1 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Hydrocortisone | Ерөнхий заалт · 5–10 мг/кг/хон | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
 | Loratadine | Ерөнхий заалт · 0.2 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Methylprednisolone | Ерөнхий заалт · 1–2 мг/кг/хон | Амаар эсвэл судсаар | E | — | 1970-01-01 |  |
 | Propranolol | Ерөнхий заалт · 0.5–1 мг/кг/хон | Амаар | E | — | 1970-01-01 |  |
 | Salbutamol | Ерөнхий заалт · 0.1–0.15 мг/кг/тун | Амаар | E | — | 1970-01-01 |  |
 | Albendazole | Ерөнхий заалт | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
+| Captopril | Ерөнхий заалт · 0.1–0.5 мг/кг/тун | Амаар | C | pch-captopril-monograph | 1970-01-01 | ⚠️ |
 | Carbamazepine | Ерөнхий заалт · 10–20 мг/кг/хон | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
+| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
+| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
+| Cetirizine | Ерөнхий заалт · 0.25 мг/кг/тун | Амаар | C | rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
+| Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria, rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
 | Dexamethasone | Цочмог астма · 0.3 мг/кг/тун | Амаар | C | rch-melbourne-cpg, rch-melbourne-cpg | 1970-01-01 | ⚠️ |
 | Diazepam | Ерөнхий заалт · 0.1 мг/кг/тун | Амаар | C | pch-medication-manual | 1970-01-01 | ⚠️ |
 | Doxycycline | Ерөнхий заалт · 2 мг/кг/тун | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
