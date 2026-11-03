@@ -3,20 +3,20 @@ import type { Drug } from "../../domain/drug";
 /**
  * Enalapril — Эналаприл
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
- * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
- * олдоогүй тул E хэвээр.
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * 🟡 ГАНЦ ЭХ СУРВАЛЖ (known-gap) — WHO Model Formulary for Children (2010):
+ * 0.1 мг/кг-аас эхэлж, хоногт дээд 1 мг/кг. ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30,
+ * эмчийн шийдвэр): WHO 2010-ийн утгаар засав — conflictNote.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * 2026-11-03: 2020+ хоёр дахь эх сурвалж олдсонгүй —
+ *   - MSF Essential drugs: зөвхөн насанд хүрэгчийн тун.
+ *   - PCH Medication Management Manual: эналаприлын monograph байхгүй.
+ *   - RCH CPG Hypertension (2021-06): зөвхөн нифедипин, эналаприл үгүй.
+ *   - Starship «ACE inhibitors in paediatrics»: агуулга нээгдэхгүй, хуучин
+ *     (~2015) бөгөөд 0.05–0.5 мг/кг/тун × 2 гэж өөр давтамжтай.
+ * Дараагийн алхам: tests/data/known-gaps.ts.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const enalapril: Drug = {
@@ -53,10 +53,16 @@ export const enalapril: Drug = {
           maxMg: 40
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Enalapril — oral, p. 314",
+          quotedValue: "Infant or Child initially 100 micrograms/kg once daily ... increased as necessary up to a maximum of 1 mg/kg daily in 1–2 divided doses"
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 314: «Infant or Child initially 100 micrograms/kg once daily ... increased as necessary up to a maximum of 1 mg/kg daily in 1–2 divided doses». Өмнө нь доод 0.08 мг/кг. Дээд 40 мг/хон-ыг эх сурвалж заагаагүй (хэвээр). 2020+ хоёр дахь эх сурвалжгүй — E."
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 314: «Infant or Child initially 100 micrograms/kg once daily ... increased as necessary up to a maximum of 1 mg/kg daily in 1–2 divided doses». Өмнө нь доод 0.08 мг/кг. Дээд 40 мг/хон-ыг эх сурвалж заагаагүй (хэвээр). 2020+ хоёр дахь эх сурвалж олдоогүй — known-gap (2026-11-03)."
     }
   ],
   formulations: [

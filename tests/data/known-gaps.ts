@@ -68,6 +68,18 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "зөвхөн насанд хүрэгчийн тун, RCH-д байхгүй.",
     next: "RCH UTI CPG эсвэл Starship-ийн нитрофурантоины хүүхдийн тунг олох.",
   },
+  {
+    ruleId: "enalapril-general",
+    gap:
+      "Ганц эх сурвалж (WHO Model Formulary for Children 2010: 0.1 мг/кг-аас " +
+      "эхэлж, хоногт дээд 1 мг/кг) — 2020-оос өмнөх. MSF-д зөвхөн насанд " +
+      "хүрэгчийн тун, PCH-д monograph байхгүй, RCH Hypertension CPG-д " +
+      "эналаприл ороогүй (2026-11-03 шалгав).",
+    next:
+      "Starship-ийн «ACE inhibitors in paediatrics» шинэчилсэн хувилбар эсвэл " +
+      "өөр 2020+ хүүхдийн эмнэлгийн заавар (CHQ, SCH) олох; зөрвөл BNFc-ээр " +
+      "tie-break.",
+  },
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));
