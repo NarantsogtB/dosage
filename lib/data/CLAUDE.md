@@ -9,7 +9,8 @@
 - `drugs/index.ts`-д импорт + `DRUGS` массивт мөр нэмнэ (цагаан толгойн дараалал).
 - Файлын толгойн тайлбар = эх сурвалжийн түүх (юуг, юугаар, хэзээ
   баталгаажуулсан, зөрүү). Засахдаа шинэчил.
-- Эм олон `rules`-тэй: заалт (`indication`), нас (сар), жин, `basis`
+- Эм олон `rules`-тэй: заалт (`indication` — код нь `labels/indications.ts`-д
+  бүртгэлтэй, labelMn бүртгэлийн нэрээр эхэлнэ), нас (сар), жин, `basis`
   (`per_kg_per_dose` | `per_kg_per_day` | `weight_band` | `fixed`), `frequency`,
   `duration`, `caps`, `route`, `evidenceLevel`, `sources`, `isDefault`, `conflictNote`.
 - Нэгж: одоогоор **зөвхөн мг**. мкг/ED/ммоль хэрэгтэй бол зогсоод асуу

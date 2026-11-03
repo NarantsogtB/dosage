@@ -24,7 +24,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | 6 | `phase-2c-navigation.md` | V3: bottom nav, action bar, ⌘K | 2–3 өдөр | 2b | ☑ (PR #1; «Бусад» — route 4-өөс олон болоход) |
 | 7 | `phase-S3-calculator-registry.md` | Тооцоолуурын нэг бүртгэл | 0.5–1 өдөр | — | ☑ |
 | 8 | `phase-3-fluids.md` | `/fluids` | 2–3 өдөр | S3 | ☑ |
-| 9 | `phase-S2-indications.md` | Заалтын бүртгэл + синоним | 1 өдөр | — | ☐ |
+| 9 | `phase-S2-indications.md` | Заалтын бүртгэл + синоним | 1 өдөр | — | ☑ |
 | 10 | `phase-4-indication-search.md` | Өвчин/заалтаар хайх | 1–2 өдөр | S2 | ☐ |
 | 11 | `phase-5-share-link.md` | Линкээр хуваалцах | 1–2 өдөр | — | ☐ |
 | 12 | `phase-S4-units.md` | Тунгийн нэгж (мкг, ED, ммоль, г) + хурд | 2–3 өдөр | — | ☐ |
