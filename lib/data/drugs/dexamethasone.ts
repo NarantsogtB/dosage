@@ -7,10 +7,10 @@ import type { Drug } from "../../domain/drug";
  * guidelines (2023-06): 0.15–0.6 мг/кг нэг удаа (дээд 16 мг) — MSF
  * prednisolone-ыг эхний сонголт болгодог.
  *
- * ✅ Крупын дүрэм (2026-11-04) — MSF Clinical guidelines (Croup, 2024-10) +
+ * ✅ Цочмог ларинготрахеит (croup) дүрэм (2026-11-04) — MSF Clinical guidelines (Croup, 2024-10) +
  * RCH Croup (2024-09): 0.15–0.6 мг/кг нэг удаа. Өмнө нь «ерөнхий» заалттай
- * байсан ижил тун — эмчийн шийдвэрээр круп болгов. Тун өөрчлөгдөөгүй.
- * Дээд 16 мг (MSF); RCH хүнд крупт 12 мг — conflictNote.
+ * байсан ижил тун — эмчийн шийдвэрээр энэ заалт болгов. Тун өөрчлөгдөөгүй.
+ * Дээд 16 мг (MSF); RCH хүнд хэлбэрт 12 мг — conflictNote.
  */
 
 export const dexamethasone: Drug = {
@@ -69,7 +69,7 @@ export const dexamethasone: Drug = {
       id: "dexamethasone-croup",
       indication: {
         code: "croup",
-        labelMn: "Круп (ларинготрахеит)"
+        labelMn: "Цочмог ларинготрахеит (croup)"
       },
       route: "oral",
       ageMinMonths: 0,
@@ -100,7 +100,7 @@ export const dexamethasone: Drug = {
       ],
       evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote: "Эмчийн шийдвэр (2026-11-04): «ерөнхий» → круп заалт, тун хэвээр. MSF: 0.15 мг/кг (эргэж ирэх боломжтой бол) эсвэл 0.6 мг/кг, дээд 16 мг. RCH: хөнгөн/дунд 0.15 мг/кг, хүнд 0.6 мг/кг (дээд 12 мг). Дээд 16 мг (MSF)-ийг үлдээв."
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): «ерөнхий» → цочмог ларинготрахеит (croup) заалт, тун хэвээр. MSF: 0.15 мг/кг (эргэж ирэх боломжтой бол) эсвэл 0.6 мг/кг, дээд 16 мг. RCH: хөнгөн/дунд 0.15 мг/кг, хүнд 0.6 мг/кг (дээд 12 мг). Дээд 16 мг (MSF)-ийг үлдээв."
     }
   ],
   formulations: [

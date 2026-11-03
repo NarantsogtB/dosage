@@ -24,8 +24,9 @@ export const INDICATIONS = {
     synonyms: ["астма", "багтраа", "астмын хурц үе", "asthma"],
   },
   croup: {
-    labelMn: "Круп",
-    synonyms: ["хуурамч круп", "ларинготрахеит", "ларинготрахеобронхит", "croup", "laryngotracheitis"],
+    labelMn: "Цочмог ларинготрахеит",
+    // «круп» — оросоор дамжсан нэр; хайлтад л үлдэнэ, дэлгэцэнд гарахгүй.
+    synonyms: ["ларинготрахеобронхит", "круп", "хуурамч круп", "croup", "laryngotracheitis"],
   },
   diarrhoea: {
     labelMn: "Суулгалт",
