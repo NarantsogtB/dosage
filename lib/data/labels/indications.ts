@@ -5,7 +5,8 @@
  * нэмж болно (жишээ «Уушгины хатгаа (2–59 сар)»). Бүртгэлгүй код хориотой —
  * `tests/data/indications.test.ts`.
  *
- * `synonyms` — өвчнөөр хайхад (Шат 4): монгол, латин/англи, товчлол.
+ * `synonyms` — өвчнөөр хайхад (Шат 4, `lib/search/match-indication-query.ts`):
+ * монгол, латин/англи, товчлол.
  * Бүгд жижиг үсгээр.
  */
 export interface IndicationEntry {
