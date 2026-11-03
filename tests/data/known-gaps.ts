@@ -78,11 +78,6 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     next: "Монголын бүртгэлийн заавар (druginfo.mohs.mn)-ыг гараар татаж D_label_only хоёр дахь эх сурвалж болгох.",
   },
   {
-    ruleId: "loratadine-general",
-    gap: "Ганц эх сурвалж (MSF Essential drugs, 2024-02). RCH, PCH-д байхгүй (2026-11-04).",
-    next: "WHO Formulary 2010-ийн лоратадины хуудсыг locator-тойгоор шалгаж иш татах.",
-  },
-  {
     ruleId: "metoclopramide-general",
     gap:
       "Ганц эх сурвалж (EMA Article 31 referral, 2013) — 2020-оос өмнөх, " +

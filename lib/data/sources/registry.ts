@@ -751,6 +751,27 @@ export const SOURCES: Record<string, Source> = {
       "⚠️ Ганц эх сурвалж (known-gaps.ts).",
   },
 
+  "aemps-loratadine-syrup-smpc": {
+    id: "aemps-loratadine-syrup-smpc",
+    citation:
+      "Agencia Española de Medicamentos y Productos Sanitarios (AEMPS), CIMA. " +
+      "Ficha técnica — loratadina 1 mg/ml jarabe (nº registro 64243).",
+    publisher: "AEMPS (Испанийн эм, эмнэлгийн хэрэгслийн агентлаг)",
+    edition: "Fecha de la revisión del texto: 03/2026",
+    year: 2026,
+    url: "https://cima.aemps.es/cima/dochtml/ft/64243/FT_64243.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "ЕХ-ны гишүүн улсын зохицуулагчийн нийтийн баримт. Худалдааны нэрийг " +
+        "оруулахгүй; тунгийн утгыг гаргаж монголоор бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "Лоратадины хүүхдийн тун жингээр (≤30 кг 5 мг, >30 кг 10 мг). Зохицуулагчийн шошго (tiers 3c) — эмчийн зөвшөөрлөөр (2026-11-04).",
+  },
+
   // ───────────────────────────────────────────────────────────────────────────
   // ЗӨВХӨН ЗӨРҮҮ ШИЙДЭХ (tie-breaker) — ердийн баталгаажуулалтад тоолохгүй.
   // ───────────────────────────────────────────────────────────────────────────
