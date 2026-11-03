@@ -12,4 +12,6 @@ age band), `fluid/` (maintenance, bolus), `bsa/` (Mosteller).
   хил дээрх утга (0, хамгийн бага/их жин).
 - Түлэгдэлтийн эх сурвалжийн тэмдэглэл: `docs/BURNS-SOURCE-NOTES.md`.
 - `fluid/` нь `/burns`-д ашиглагддаг — өөрчилбөл burns тест давах ёстой.
+- `registry.ts` — тооцоолуурын НЭГ бүртгэл (nav, sitemap, analytics эндээс
+  уншина). React-гүй — серверт ч ажилладаг.
 - Шинэ тооцоолуур бүхэлд нь: `docs/recipes/add-calculator.md`.

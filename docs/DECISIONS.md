@@ -18,6 +18,18 @@
 
 ---
 
+## 2026-11-04 — Тооцоолуурын нэг бүртгэл (S3)
+
+**Context:** Тооцоолуур нэмэхэд nav, sitemap, analytics — 3 газар засах
+шаардлагатай байв; 10+ тооцоолуурт зөрөх эрсдэлтэй.
+**Decision:** `lib/calculators/registry.ts` (React-гүй) — id, path, нэр,
+бүлэг, sitemap priority. `components/nav/routes.ts` дүрсийг
+`Record<CalculatorId, LucideIcon>`-оор холбоно (дүрсгүй бол typecheck унана);
+`SITE_ROUTES`, analytics `CALCULATORS` бүртгэлээс уншина.
+**Why:** Analytics schema серверт (Pages Function) ажилладаг тул дүрс/React-ийг
+бүртгэлээс салгав; typecheck нь мартсан алхмыг барина.
+**Status:** accepted
+
 ## 2026-11-04 — Бүлэг 3, 1-р багц: dexamethasone → круп, methylprednisolone хасах
 
 **Context:** Dexamethasone-ийн «ерөнхий» дүрэм (0.15–0.6 мг/кг, дээд 16 мг)
