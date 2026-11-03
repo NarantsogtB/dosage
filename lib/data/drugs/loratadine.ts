@@ -3,17 +3,15 @@ import type { Drug } from "../../domain/drug";
 /**
  * Loratadine — Лоратадин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * 🟡 ГАНЦ ЭХ СУРВАЛЖ (known-gap, 2026-11-04) — MSF Essential drugs
+ * (LORATADINE oral, 2024-02 шинэчилсэн): 2-оос дээш нас, <30 кг 5 мг,
+ * ≥30 кг 10 мг өдөрт 1 удаа (жингийн муж; 30 кг яг — 10 мг).
+ * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-11-04, эмчийн шийдвэр): өмнө нь 0.2 мг/кг/хон
+ * (15 кг → 3 мг) — MSF-ийн жингийн мужаас бага гардаг байв.
+ * WHO Formulary 2010-ийг шалгаж иш татаагүй; RCH, PCH-д байхгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const loratadine: Drug = {
@@ -28,26 +26,31 @@ export const loratadine: Drug = {
       route: "oral",
       ageMinMonths: 24,
       basis: {
-        kind: "per_kg_per_day",
-        minMgPerKg: 0.2,
-        maxMgPerKg: 0.2
+        kind: "weight_band",
+        bands: [
+          {
+            minWeightKg: 0,
+            maxWeightKg: 30,
+            doseMg: 5
+          },
+          {
+            minWeightKg: 30,
+            doseMg: 10
+          }
+        ]
       },
       frequency: "od",
-      caps: [
+      caps: [],
+      sources: [
         {
-          kind: "absolute",
-          scope: "per_dose",
-          maxMg: 10
-        },
-        {
-          kind: "absolute",
-          scope: "per_day",
-          maxMg: 10
+          sourceId: "msf-essential-drugs",
+          locator: "LORATADINE oral — Dosage (2024-02)",
+          quotedValue: "Child over 2 years and under 30 kg: 5 mg (5 ml) once daily. Child over 30 kg and adult: 10 mg (1 tab) once daily"
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): MSF-ийн жингийн мужаар (<30 кг 5 мг, ≥30 кг 10 мг × 1). Өмнө нь 0.2 мг/кг/хон, дээд 10 мг."
     }
   ],
   formulations: [
@@ -68,7 +71,7 @@ export const loratadine: Drug = {
   ],
   warnings: [],
   contraindicationsMn: [],
-  notesMn: "<30кг: 5мг/өдөр; ≥30кг: 10мг/өдөр.",
+  notesMn: "Хугацаа аль болох богино (хэдхэн хоног) — MSF.",
   sources: [],
   lastReviewed: "1970-01-01",
   status: "active"
