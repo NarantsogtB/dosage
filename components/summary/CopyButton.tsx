@@ -13,6 +13,9 @@ interface Props {
   readonly variant: ComponentProps<typeof Button>["variant"];
   readonly size: ComponentProps<typeof Button>["size"];
   readonly label: string;
+  /** Зөвхөн дүрс — `label` нь `aria-label` болно. */
+  readonly iconOnly?: boolean;
+  readonly className?: string;
 }
 
 const trackCopied = (drugIds: readonly string[]) =>
@@ -37,6 +40,8 @@ export default function CopyButton({
   variant,
   size,
   label,
+  iconOnly = false,
+  className,
 }: Props) {
   const copy = async () => {
     try {
@@ -48,10 +53,18 @@ export default function CopyButton({
     }
   };
 
+  const content = iconOnly ? { aria: label, text: null } : { aria: undefined, text: label };
   return (
-    <Button type="button" variant={variant} size={size} onClick={copy}>
+    <Button
+      type="button"
+      variant={variant}
+      size={size}
+      className={className}
+      aria-label={content.aria}
+      onClick={copy}
+    >
       <Copy aria-hidden />
-      {label}
+      {content.text}
     </Button>
   );
 }

@@ -19,6 +19,7 @@
 | `wave2-mockup.md` | Mockup-той тулгасан, зориуд зөрүүтэй үлдээсэн зүйлс |
 | `wave3-dose-calc.md` | Dose Calculator-ийн бүтцийн зөрүү, CapAlert нэгжийн алдаа |
 | `burns-diagram.md` | Rule of Nines SVG |
+| `v3-1-atomic.md` | V3.1 atomic redesign — компонентын зураглал, feature flag, Figma-аас зөрүү |
 
 V3 atomic redesign (2026-10-30): Claude Project-ийн `claude/v3-atomic-redesign.md`,
 Figma хуудас 92:3–92:8.

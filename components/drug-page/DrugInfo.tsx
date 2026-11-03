@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
+import { ChevronDown } from "lucide-react";
 import type { Drug } from "@/lib/domain/drug";
 import type { DosingRule } from "@/lib/domain/dosing-rule";
 import { EVIDENCE_LABELS } from "@/lib/domain/source";
 import { FREQUENCY_SHORT } from "@/lib/format/format-frequency-short";
 import { ruleSummary } from "@/lib/search/drug-row-summary";
 import { drugSources } from "@/lib/drug-page/drug-sources";
-import { Card, CardContent } from "@/components/ui/card";
 import ReviewDate from "@/components/dosage/ReviewDate";
 import SectionLabel from "@/components/dosage/SectionLabel";
 import SourceList from "@/components/dosage/SourceList";
@@ -49,12 +49,19 @@ const Sources = ({ drug }: { readonly drug: Drug }): ReactNode => {
  *
  * Шинэ өгөгдөл ЗОХИОХГҮЙ: бүх мөр `lib/data/drugs/*`-ээс шууд.
  * Эх сурвалжийн мөрдөлт (source traceability) нь хуудасны гол утга.
+ *
+ * V3.1 «Drug reference»: хураагдсан `<details>` — тооцоолуурыг доош
+ * түлхэхгүй. Агуулга нь DOM-д бүтнээрээ байгаа тул Google, Ctrl+F,
+ * хэвлэлт бүгд олно.
  */
 export default function DrugInfo({ drug }: { readonly drug: Drug }) {
   return (
-    <Card>
-      <CardContent className="space-y-5">
-        <h2 className="text-lg font-semibold">Эмийн мэдээлэл</h2>
+    <details className="group bg-card text-card-foreground rounded-xl border shadow-sm">
+      <summary className="hover:bg-accent/50 flex min-h-14 cursor-pointer list-none items-center gap-3 rounded-xl px-5 py-3">
+        <h2 className="flex-1 text-lg font-semibold">Эмийн лавлах мэдээлэл</h2>
+        <ChevronDown aria-hidden className="text-muted-foreground size-5 transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="space-y-5 border-t px-5 py-5">
         <ListSection title="Заалт ба тун" items={drug.rules.map(ruleLine)} />
         <ListSection
           title="Бэлдмэл"
@@ -73,7 +80,7 @@ export default function DrugInfo({ drug }: { readonly drug: Drug }) {
             <ReviewDate date={drug.lastReviewed} />
           </p>
         </section>
-      </CardContent>
-    </Card>
+      </div>
+    </details>
   );
 }

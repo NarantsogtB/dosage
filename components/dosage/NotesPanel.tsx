@@ -1,22 +1,12 @@
 import { NotebookPen } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
-import SectionLabel from "./SectionLabel";
+import DisclosureRow from "./DisclosureRow";
 
-/** Эмийн нэмэлт тэмдэглэл. Байхгүй бол харагдахгүй. */
+/** Эмийн нэмэлт тэмдэглэл — дэлгэгдэх мөр. Байхгүй бол харагдахгүй. */
 export default function NotesPanel({ notes }: { readonly notes?: string }) {
   if (!notes) return null;
   return (
-    <>
-      <Separator />
-      <div className="bg-muted/40 px-5 py-3.5">
-        <SectionLabel>
-          <NotebookPen className="size-3.5" />
-          Тэмдэглэл
-        </SectionLabel>
-        <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
-          {notes}
-        </p>
-      </div>
-    </>
+    <DisclosureRow icon={NotebookPen} label="Тэмдэглэл">
+      <p className="text-muted-foreground text-sm leading-relaxed">{notes}</p>
+    </DisclosureRow>
   );
 }

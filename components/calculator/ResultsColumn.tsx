@@ -5,10 +5,8 @@ import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
 import type { InputStatus } from "./blocker";
 import type { IndicationMap } from "./use-indications";
-import SelectedSummary from "@/components/summary/SelectedSummary";
-import UndoBar from "@/components/summary/UndoBar";
+import AgeDisplay from "@/components/dosage/AgeDisplay";
 import InstallPrompt from "@/components/pwa/InstallPrompt";
-import StepHeader from "@/components/step/StepHeader";
 import ResultsActions from "./ResultsActions";
 import ResultsPanel from "./ResultsPanel";
 
@@ -17,47 +15,56 @@ interface Props {
   readonly results: ReadonlyMap<string, CalculationResult>;
   readonly patient: Patient;
   readonly status: InputStatus;
+  readonly ready: boolean;
   readonly indications: IndicationMap;
   readonly onRemove: (id: string) => void;
   readonly onIndication: (drugId: string, code?: string) => void;
-  readonly onClear: () => void;
-  readonly onUndo: () => void;
-  readonly undoCount: number;
 }
 
-/** Баруун багана: наалдамхай хураангуй + дэлгэрэнгүй картууд. Алхам 3. */
 /** Ядаж нэг эмийн тун амжилттай гарсан эсэх — сануулгын нөхцөл. */
 const hasDosage = (results: ReadonlyMap<string, CalculationResult>) =>
   [...results.values()].some((result) => result.type === "dosage");
 
-export default function ResultsColumn(props: Props) {
-  const { drugs, results, patient, status } = props;
-  const done = status.hasWeight && status.hasAge && status.hasDrugs;
+const Meta = ({ patient, ready, count }: { readonly patient: Patient; readonly ready: boolean; readonly count: number }) => (
+  <span className="num text-muted-foreground text-sm">
+    {ready ? (
+      <>
+        {patient.weightKg} кг · <AgeDisplay ageMonths={patient.ageMonths} /> ·{" "}
+      </>
+    ) : null}
+    {count} эм
+  </span>
+);
 
+/**
+ * Баруун багана: «Үр дүн» толгой + картууд. Алхам 3.
+ *
+ * Толгой нь өвчтөнийг давтан хэлнэ (Figma V3.1 · 05 · 7). Хуулах,
+ * хэвлэх нь desktop-д энд; mobile-д `ActionBar`.
+ */
+export default function ResultsColumn(props: Props) {
+  const { drugs, results, patient } = props;
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between gap-3 px-1 pt-1 print:hidden">
-        <StepHeader step={3} label="Үр дүн" done={done} />
-        <ResultsActions drugs={drugs} results={results} patient={patient} />
+    <section aria-labelledby="results-title" className="space-y-3">
+      <div className="flex min-h-11 flex-wrap items-center gap-x-3 gap-y-2 px-1 print:hidden">
+        <h2 id="results-title" className="text-lg font-semibold tracking-tight lg:text-xl">
+          Үр дүн
+        </h2>
+        <Meta patient={patient} ready={props.ready} count={drugs.length} />
+        <div className="ml-auto hidden md:block">
+          <ResultsActions drugs={drugs} results={results} patient={patient} />
+        </div>
       </div>
-      <SelectedSummary
-        drugs={drugs}
-        results={results}
-        patient={patient}
-        onRemove={props.onRemove}
-        onClear={props.onClear}
-      />
-      <UndoBar count={props.undoCount} onUndo={props.onUndo} />
-      <InstallPrompt hasCalculated={hasDosage(results)} />
       <ResultsPanel
         drugs={drugs}
         results={results}
         patient={patient}
-        status={status}
+        status={props.status}
         indications={props.indications}
         onRemove={props.onRemove}
         onIndication={props.onIndication}
       />
-    </div>
+      <InstallPrompt hasCalculated={hasDosage(results)} />
+    </section>
   );
 }

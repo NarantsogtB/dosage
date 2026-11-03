@@ -5,7 +5,7 @@ import type { InputStatus } from "./blocker";
 import type { IndicationMap } from "./use-indications";
 import DosageCard from "@/components/dosage/DosageCard";
 import { blockerFor } from "./blocker";
-import EmptyState from "./EmptyState";
+import ReadinessChecklist from "./ReadinessChecklist";
 
 interface Props {
   readonly drugs: readonly Drug[];
@@ -21,7 +21,7 @@ interface Props {
 export default function ResultsPanel(props: Props) {
   const { drugs, results, patient, status } = props;
   const blocker = blockerFor(status);
-  if (blocker) return <EmptyState {...blocker} />;
+  if (blocker) return <ReadinessChecklist status={status} blocker={blocker} />;
 
   return (
     <div className="space-y-4">

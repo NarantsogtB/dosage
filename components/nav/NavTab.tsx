@@ -17,16 +17,15 @@ export default function NavTab({ route, active }: Props) {
       href={route.href}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "-mb-px flex min-h-11 items-center gap-1.5 border-b-2 px-1 text-sm font-medium transition-colors",
+        "-mb-px flex items-center gap-2 border-b-2 px-3.5 text-[15px] font-medium transition-colors",
         "focus-visible:ring-ring rounded-t-sm focus-visible:ring-2 focus-visible:outline-none",
         active
           ? "border-primary text-primary"
           : "text-muted-foreground hover:text-foreground border-transparent",
       )}
     >
-      <Icon className="size-4" />
-      <span className="hidden sm:inline">{route.labelMn}</span>
-      <span className="sm:hidden">{route.shortMn}</span>
+      <Icon aria-hidden className="size-4.5" />
+      {route.labelMn}
     </Link>
   );
 }

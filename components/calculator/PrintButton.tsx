@@ -12,7 +12,7 @@ interface Props {
 export default function PrintButton({ visible, onPrint }: Props) {
   if (!visible) return null;
   return (
-    <Button type="button" variant="outline" size="sm" onClick={onPrint}>
+    <Button type="button" variant="outline" onClick={onPrint}>
       <Printer />
       Хэвлэх
     </Button>
