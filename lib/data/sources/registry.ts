@@ -476,6 +476,30 @@ export const SOURCES: Record<string, Source> = {
       "энд ОРУУЛААГҮЙ.",
   },
 
+  "pch-furosemide-monograph": {
+    id: "pch-furosemide-monograph",
+    citation:
+      "Perth Children's Hospital, Child and Adolescent Health Service " +
+      "(WA Health). Medication Management Manual — Monograph: Furosemide (Frusemide).",
+    publisher: "Perth Children's Hospital (WA Health, Australia)",
+    edition: "сүүлд хянасан 2024-07, батлагдсан 2026-09, endorsed 2026-10, дараагийн review 2027-07",
+    year: 2024,
+    url: "https://www.pch.health.wa.gov.au/~/media/Files/Hospitals/PCH/General-documents/Health-professionals/MedicationMonographs/Furosemide.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Western Australia-ийн эрүүл мэндийн албаны албан ёсны заавар, " +
+        "үнэ төлбөргүй PDF. Тодорхой CC лиценз заагаагүй тул cite-only.",
+    },
+    lastVerified: "2026-11-03",
+    relevanceMn:
+      "★ ≥4 долоо хоногтой хүүхдийн фуросемидын уух/IV тунг өгнө. Нярайн " +
+      "тунг 'Neonatal Medication Protocols'-руу чиглүүлдэг тул энд " +
+      "ОРУУЛААГҮЙ. WHO Model Formulary for Children (2010)-ийн хоёр дахь " +
+      "2020+ баталгаажуулалт.",
+  },
+
   "qcg-neonatal-omeprazole": {
     id: "qcg-neonatal-omeprazole",
     citation:

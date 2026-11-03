@@ -3,36 +3,19 @@ import type { Drug } from "../../domain/drug";
 /**
  * Furosemide — Фуросемид
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр): WHO Model Formulary for
- * Children 2010-ийн утгаар засав — conflictNote. 2020+ хоёр дахь эх сурвалж
- * олдоогүй тул E хэвээр.
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-11-03) — WHO Model Formulary for Children (2010) +
+ * Perth Children's Hospital monograph (2024-07 хянасан): ≥1 сартай хүүхдэд
+ * амаар 0.5–2 мг/кг/тун. ⚠️ ТУН ӨӨРЧЛӨГДСӨН (2026-10-30, эмчийн шийдвэр):
+ * WHO 2010-ийн утгаар засав — conflictNote. 2026-11-03-нд тунд гар хүрээгүй,
+ * зөвхөн эх сурвалж нэмэв.
  *
- * ⚠️ 2026-08-20: Баталгаажуулах гэж MSF Essential drugs (зөвхөн "Adult:"
- * тун өгсөн, хүүхдийн мөр байхгүй), RCH Paediatric Injectable Guidelines
- * (тун биш зөвхөн IV дилюци/хурдны заавар өгсөн), RCH nephrology хуудас
- * (жор биш, эцэг эхэд зориулсан видео) — эдгээрийг шалгасан боловч ЕРӨНХИЙ
- * (нярай бус) хүүхдийн mg/kg тунг АЛЬ НЬ Ч өгөхгүй байна.
- * Queensland Clinical Guidelines-ийн "Furosemide (frusemide)" НЯРАЙН
- * monograph (2025-03, дараагийн review 2030-03) яг 1–2 мг/кг гэсэн одоо
- * байгаа тоотой давхцсан ч энэ нь ГАНЦХАН эх сурвалж бөгөөд ЗӨВХӨН
- * нярайд (gestational age-аар давтамжилдаг) хамаарна — >1 сартай
- * хүүхдэд шууд ашиглах боломжгүй.
- * ⛔ Тиймээс ЭНЭ ДҮРМИЙГ баталгаажуулаагүй ХЭВЭЭР үлдээв — sources: [].
- * Дараагийн алхам: BNF for Children эсвэл Australian Medicines Handbook
- * Children's Dosing Companion (лицензтэй) -аас ерөнхий хүүхдийн mg/kg
- * тунг олох, эсвэл дүрмийг "нярай" (QLD эх сурвалж) / "ерөнхий" гэж
- * хуваах бол хоёр дахь эх сурвалж хайх шаардлагатай.
+ * PCH нь 6–12 цаг тутам өгөх, хариу муу бол 6 мг/кг/тун хүртэл нэмэхийг
+ * зөвшөөрдөг. Тооцоолуур ердийн 0.5–2 мг/кг-ийг × 2, WHO-гийн хоногийн дээд
+ * хязгаартай (12 мг/кг, 80 мг) өгнө — титраци эмчийн шийдвэр.
+ * ⛔ Судсаар ба нярайн тун энэ дүрэмд ороогүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const furosemide: Drug = {
@@ -69,10 +52,21 @@ export const furosemide: Drug = {
           maxMg: 80
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Furosemide — oral, p. 318",
+          quotedValue: "Infant or Child 0.5–2 mg/kg 2–3 times daily; ... maximum 12 mg/kg (80 mg) daily"
+        },
+        {
+          sourceId: "pch-furosemide-monograph",
+          locator: "Dosage — Children ≥ 4 weeks, Oral (сүүлд хянасан 2024-07)",
+          quotedValue: "Oral: 0.5–2 mg/kg/dose every 6–12 hours. If response is not adequate after 6–8 hours, the dose may be increased by 1–2 mg/kg/dose, up to a maximum of 6 mg/kg/dose."
+        }
+      ],
+      evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 318 (амаар): «Infant or Child 0.5–2 mg/kg 2–3 times daily; ... maximum 12 mg/kg (80 mg) daily». Өмнө нь 1–2 мг/кг, амаар/судсаар, хоногт дээд 600 мг, 0 сараас. Судсаар (0.5–1 мг/кг 8 цаг тутам) ба нярайн (12–24 цаг тутам) тун өөр тул энэ дүрмээс хасав. 2020+ хоёр дахь эх сурвалжгүй — E."
+      conflictNote: "Эмчийн шийдвэр (2026-10-30): ЭМЯ-ны хүүхдийн удирдамж байхгүй тул ДЭМБ-ын утгыг сонгов — WHO Model Formulary for Children 2010, p. 318 (амаар): «Infant or Child 0.5–2 mg/kg 2–3 times daily; ... maximum 12 mg/kg (80 mg) daily». Өмнө нь 1–2 мг/кг, амаар/судсаар, хоногт дээд 600 мг, 0 сараас. Судсаар (0.5–1 мг/кг 8 цаг тутам) ба нярайн (12–24 цаг тутам) тун өөр тул энэ дүрмээс хасав. 2026-11-03: PCH monograph (2024) хоёр дахь эх сурвалжаар 0.5–2 мг/кг/тун-г баталгаажуулав (PCH 6–12 цаг тутам, 6 мг/кг/тун хүртэл титраци зөвшөөрдөг — тооцоолуур ердийн тунг л өгнө)."
     }
   ],
   formulations: [
