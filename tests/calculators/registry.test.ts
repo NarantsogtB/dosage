@@ -11,20 +11,21 @@ const idOf = (entry: { id: string }) => entry.id;
 
 describe("Тооцоолуурын бүртгэл (S3)", () => {
   it("nav нь бүртгэлийн дараалал, нэрээр", () => {
-    expect(ROUTES.map(hrefOf)).toEqual(["/dose", "/burns"]);
-    expect(ROUTES.map(shortOf)).toEqual(["Эм", "Түлэгдэлт"]);
+    expect(ROUTES.map(hrefOf)).toEqual(["/dose", "/burns", "/fluids"]);
+    expect(ROUTES.map(shortOf)).toEqual(["Эм", "Түлэгдэлт", "Шингэн"]);
   });
 
-  it("sitemap-ийн хуудсууд, эрэмбэ өөрчлөгдөөгүй", () => {
+  it("sitemap-ийн хуудсууд, эрэмбэ", () => {
     expect(SITE_ROUTES).toEqual([
       { path: "/", priority: 1 },
       { path: "/dose", priority: 0.9 },
       { path: "/burns", priority: 0.9 },
+      { path: "/fluids", priority: 0.9 },
     ]);
   });
 
-  it("analytics-ийн тооцоолуурын нэрс өөрчлөгдөөгүй", () => {
-    expect([...CALCULATORS]).toEqual(["dose", "burns"]);
+  it("analytics-ийн тооцоолуурын нэрс", () => {
+    expect([...CALCULATORS]).toEqual(["dose", "burns", "fluids"]);
     expect(CALCULATOR_IDS).toEqual(CALCULATOR_REGISTRY.map(idOf));
   });
 
