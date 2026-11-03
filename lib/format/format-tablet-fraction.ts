@@ -10,15 +10,16 @@ const FRACTIONS: readonly FractionRule[] = [
 ];
 
 const FALLBACK: FractionRule = [0, 0, ""];
-const MIN_SYMBOL = "¼";
+/** ¼-ээс бага — «¼» гэж бичвэл бодит тунгаас их харагдана. */
+const BELOW_QUARTER = "<¼";
 
 const pickFraction = (fraction: number): FractionRule =>
   FRACTIONS.find(([threshold]) => fraction >= threshold) ?? FALLBACK;
 
-/** 1.5 → "1½", 0.25 → "¼". Хамгийн ойрын дөрөвний нэгээр тоймлоно. */
+/** 1.5 → "1½", 0.25 → "¼", 0.05 → "<¼". Хамгийн ойрын дөрөвний нэгээр тоймлоно. */
 export const formatTabletFraction = (count: number): string => {
   const whole = Math.floor(count);
   const [, carry, symbol] = pickFraction(count - whole);
   const wholeCount = whole + carry;
-  return wholeCount > 0 ? `${wholeCount}${symbol}` : symbol || MIN_SYMBOL;
+  return wholeCount > 0 ? `${wholeCount}${symbol}` : symbol || BELOW_QUARTER;
 };
