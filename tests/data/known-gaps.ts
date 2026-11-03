@@ -80,6 +80,17 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "өөр 2020+ хүүхдийн эмнэлгийн заавар (CHQ, SCH) олох; зөрвөл BNFc-ээр " +
       "tie-break.",
   },
+  {
+    ruleId: "metoclopramide-general",
+    gap:
+      "Ганц эх сурвалж (EMA Article 31 referral, 2013) — 2020-оос өмнөх, " +
+      "зохицуулагчийн шошго. MSF-д зөвхөн насанд хүрэгч, PCH/RCH-д байхгүй " +
+      "(2026-11-03 шалгав).",
+    next:
+      "WHO Formulary 2010-ийн метоклопрамидын хуудсыг (насаар тогтмол мг, " +
+      "дээд 500 мкг/кг/хон) locator-тойгоор иш татах; 2020+ хүүхдийн " +
+      "эмнэлгийн заавар (Starship, CHQ) олох.",
+  },
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));

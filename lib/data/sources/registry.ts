@@ -589,6 +589,35 @@ export const SOURCES: Record<string, Source> = {
   },
 
   // ───────────────────────────────────────────────────────────────────────────
+  // ЗОХИЦУУЛАГЧ — хүүхдийн эмнэлгийн заавар байхгүй үед (эмчийн шийдвэр 2026-11-03)
+  // ───────────────────────────────────────────────────────────────────────────
+
+  "ema-metoclopramide-referral-2013": {
+    id: "ema-metoclopramide-referral-2013",
+    citation:
+      "European Medicines Agency. Metoclopramide-containing medicines — " +
+      "Article 31 referral, Annex III: amendments to the summary of product " +
+      "characteristics and package leaflet.",
+    publisher: "European Medicines Agency (EMA) / CMDh",
+    edition: "Article 31 referral, CMDh-ийн байр суурь 2013-12",
+    year: 2013,
+    url: "https://www.ema.europa.eu/en/documents/referral/metoclopramide-article-31-referral-annex-iii_en.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "EMA-ийн нийтийн баримт. Эх сурвалжийг заан ишлэнэ; хүснэгт, өгүүлбэр " +
+        "хуулахгүй — тунгийн утгыг гаргаж монголоор бичнэ.",
+    },
+    lastVerified: "2026-11-03",
+    relevanceMn:
+      "★ ЕХ-ны бүх метоклопрамидын бүтээгдэхүүний шошгыг нэгтгэсэн " +
+      "зохицуулагчийн шийдвэр: 1–18 насанд 0.1–0.15 мг/кг × 3 хүртэл, хоногт " +
+      "дээд 0.5 мг/кг, <1 насанд хориглосон, хоёрдугаар сонголт. " +
+      "⚠️ 2013 он — 2020+ шаардлагыг хангахгүй (known-gaps.ts).",
+  },
+
+  // ───────────────────────────────────────────────────────────────────────────
   // ЗӨВХӨН ЗӨРҮҮ ШИЙДЭХ (tie-breaker) — ердийн баталгаажуулалтад тоолохгүй.
   // ───────────────────────────────────────────────────────────────────────────
 

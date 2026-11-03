@@ -3,17 +3,22 @@ import type { Drug } from "../../domain/drug";
 /**
  * Metoclopramide — Метоклопрамид
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * 🟡 ГАНЦ ЭХ СУРВАЛЖ (known-gap, 2026-11-03) — EMA Article 31 referral
+ * (2013), Annex III: 1–18 насанд 0.1–0.15 мг/кг × 3 хүртэл, хоногт дээд
+ * 0.5 мг/кг, <1 насанд хориглосон. Одоогийн тун (0.15 мг/кг × 3 = 0.45
+ * мг/кг/хон, 1 наснаас, дээд 10/30 мг) таарна — өөрчлөөгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Эмчийн шийдвэр (2026-11-03): хүүхдийн эмнэлгийн заавар байхгүй тул
+ * зохицуулагчийн (EMA) шошгыг эх сурвалжаар зөвшөөрөв (DECISIONS).
+ * Хайсан: MSF (2024-02) — зөвхөн насанд хүрэгч; PCH, RCH — байхгүй;
+ * WHO Formulary 2010 — насаар тогтмол мг (хуудсыг шалгаж иш татаагүй).
+ *
+ * ⚠️ EMA: хүүхдэд ХОЁРДУГААР сонголт (химийн эмчилгээний хожуу бөөлжилт,
+ * мэс заслын дараах бөөлжилт), ≤5 хоног (мэс засал ≤48 цаг), тун хооронд
+ * ≥6 цаг. Экстрапирамидын урвал хүүхдэд түгээмэл.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const metoclopramide: Drug = {
@@ -45,9 +50,16 @@ export const metoclopramide: Drug = {
           maxMg: 30
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "ema-metoclopramide-referral-2013",
+          locator: "Annex III, SmPC 4.2 — paediatric patients aged 1–18 years (IV ба oral CINV)",
+          quotedValue: "The recommended dose is 0.1 to 0.15 mg/kg body weight, repeated up to three times daily by oral route. The maximum dose in 24 hours is 0.5 mg/kg body weight."
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "Эмчийн шийдвэр (2026-11-03): EMA-ийн шошгыг эх сурвалжаар зөвшөөрөв. EMA 0.1–0.15 мг/кг × 3, дээд 0.5 мг/кг/хон, <1 насанд хориглосон — одоогийн 0.15 мг/кг × 3 (0.45 мг/кг/хон), 1 наснаас таарна. EMA хүүхдэд хоёрдугаар сонголт, ≤5 хоног гэж хязгаарласан."
     }
   ],
   formulations: [
