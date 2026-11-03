@@ -88,6 +88,26 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
     next: "RCH, Starship эсвэл CHQ-ийн хүүхдийн каптоприлын тунг олох.",
   },
   {
+    ruleId: "cetirizine-6-11m",
+    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
+    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
+  },
+  {
+    ruleId: "cetirizine-1-2y",
+    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
+    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
+  },
+  {
+    ruleId: "cetirizine-2-6y",
+    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
+    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
+  },
+  {
+    ruleId: "cetirizine-6-18y",
+    gap: "Ганц эх сурвалж (RCH Urticaria, 2023-03). WHO Formulary 2010, MSF-д байхгүй (2026-11-04).",
+    next: "Starship, PCH эсвэл CHQ-ийн хүүхдийн цетиризины тунг олох.",
+  },
+  {
     ruleId: "metoclopramide-general",
     gap:
       "Ганц эх сурвалж (EMA Article 31 referral, 2013) — 2020-оос өмнөх, " +

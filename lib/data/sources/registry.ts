@@ -385,6 +385,29 @@ export const SOURCES: Record<string, Source> = {
       "өгдөг. MSF-тэй хамт хоёр дахь бие даасан баталгаажуулалт болно.",
   },
 
+  "rch-melbourne-urticaria": {
+    id: "rch-melbourne-urticaria",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Urticaria.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2023-03)",
+    year: 2023,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Urticaria/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "★ Цочмог чонон хөрвөсөд цетиризины тунг насны мужаар (6 сар–18 нас) " +
+      "өгнө. ⚠️ Одоогоор ганц эх сурвалж (known-gaps.ts).",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",
