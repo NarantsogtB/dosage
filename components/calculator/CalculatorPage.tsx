@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useMemo } from "react";
 import Disclaimer from "@/components/Disclaimer";
 import PrintTemplate from "@/components/print/PrintTemplate";
 import ActionBar from "./ActionBar";
@@ -9,13 +8,8 @@ import AppFooter from "./AppFooter";
 import InputColumn from "./InputColumn";
 import PatientBar from "./PatientBar";
 import ResultsColumn from "./ResultsColumn";
-import { hasWeight, inputStatus, isReady, toPatient } from "./patient-form";
-import { usePatientForm } from "./patient-store";
-import { useCalculatorTracking } from "./use-calculator-tracking";
-import { useDosageResults } from "./use-dosage-results";
-import { useIndications } from "./use-indications";
-import { useSelectedDrugs } from "./use-selected-drugs";
-import { useUndoableRemoval } from "./use-undoable-removal";
+import SharedNotice from "./SharedNotice";
+import { useCalculatorState } from "./use-calculator-state";
 
 interface Props {
   /** Урьдчилан сонгох эмүүд (эмийн хуудаснаас). */
@@ -33,41 +27,33 @@ interface Props {
  * desktop (≥1024) 5/7 сүлжээ — зүүн талд оролт, баруун талд үр дүн.
  */
 export default function CalculatorPage({ initialDrugIds, intro, children }: Props) {
-  const [form, setForm] = usePatientForm();
-  const selection = useSelectedDrugs(initialDrugIds);
-  const { drugs } = selection;
-  const { indications, select, onToggle } = useIndications(selection.toggle);
-  const { onRemove, onClear } = useUndoableRemoval(selection);
-
-  const patient = useMemo(() => toPatient(form), [form]);
-  const ready = isReady(form);
-  const results = useDosageResults({ drugs, patient, indications, ready });
-  const status = inputStatus(form, drugs.length > 0);
-  useCalculatorTracking({ patient, hasWeight: hasWeight(form), results });
+  const state = useCalculatorState(initialDrugIds);
+  const { drugs, results, patient, ready, share } = state;
 
   return (
     <main className="mx-auto w-full max-w-4xl space-y-4 px-4 py-6 sm:px-6 lg:max-w-[1440px] lg:px-20">
-      <PatientBar patient={patient} ready={ready} drugs={drugs} results={results} onClear={onClear} />
+      <PatientBar patient={patient} ready={ready} drugs={drugs} results={results} onClear={state.onClear} />
+      <SharedNotice notice={share.notice} onDismiss={share.dismiss} />
       {intro}
       <Disclaimer />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start lg:grid-cols-12 lg:gap-6 print:hidden">
         <div className="lg:col-span-5">
-          <InputColumn form={form} onForm={setForm} selectedIds={selection.selectedIds} onToggle={onToggle} />
+          <InputColumn form={state.form} onForm={state.setForm} selectedIds={state.selectedIds} onToggle={state.onToggle} />
         </div>
         <div className="lg:col-span-7">
           <ResultsColumn
             drugs={drugs}
             results={results}
             patient={patient}
-            status={status}
+            status={state.status}
             ready={ready}
-            indications={indications}
-            onRemove={onRemove}
-            onIndication={select}
+            choices={state.choices}
+            shareFragment={share.fragment}
+            onRemove={state.onRemove}
           />
         </div>
       </div>
-      <ActionBar drugs={drugs} results={results} patient={patient} />
+      <ActionBar drugs={drugs} results={results} patient={patient} shareFragment={share.fragment} />
       <PrintTemplate drugs={drugs} results={results} patient={patient} />
       {children}
       <AppFooter />

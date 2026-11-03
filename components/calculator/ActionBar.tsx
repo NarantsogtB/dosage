@@ -7,11 +7,13 @@ import type { Patient } from "@/lib/domain/patient";
 import { prescriptionText } from "@/lib/format/format-prescription";
 import { Button } from "@/components/ui/button";
 import CopyButton from "@/components/summary/CopyButton";
+import ShareLinkButton from "./ShareLinkButton";
 
 interface Props {
   readonly drugs: readonly Drug[];
   readonly results: ReadonlyMap<string, CalculationResult>;
   readonly patient: Patient;
+  readonly shareFragment: string;
 }
 
 const dosageIds = (drugs: readonly Drug[], results: Props["results"]): readonly string[] =>
@@ -25,7 +27,7 @@ const dosageIds = (drugs: readonly Drug[], results: Props["results"]): readonly 
  * Хуулах тун байхгүй бол харагдахгүй — хийх үйлдэлгүй товч сатааруулна.
  * Desktop-д `ResultsActions` үр дүнгийн толгойд.
  */
-export default function ActionBar({ drugs, results, patient }: Props) {
+export default function ActionBar({ drugs, results, patient, shareFragment }: Props) {
   const ids = dosageIds(drugs, results);
   if (ids.length === 0) return null;
   return (
@@ -40,6 +42,7 @@ export default function ActionBar({ drugs, results, patient }: Props) {
           label={`Жор хуулах · ${ids.length} эм`}
           className="flex-1"
         />
+        <ShareLinkButton fragment={shareFragment} size="icon-lg" iconOnly />
         <Button type="button" variant="outline" size="icon-lg" aria-label="Хэвлэх" onClick={() => window.print()}>
           <Printer />
         </Button>

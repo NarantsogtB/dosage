@@ -6,11 +6,13 @@ import type { Patient } from "@/lib/domain/patient";
 import { prescriptionText } from "@/lib/format/format-prescription";
 import CopyButton from "@/components/summary/CopyButton";
 import PrintButton from "./PrintButton";
+import ShareLinkButton from "./ShareLinkButton";
 
 interface Props {
   readonly drugs: readonly Drug[];
   readonly results: ReadonlyMap<string, CalculationResult>;
   readonly patient: Patient;
+  readonly shareFragment: string;
 }
 
 /**
@@ -21,7 +23,7 @@ interface Props {
  * Calculator (node 20:125) энэ хоёр үйлдлийг үр дүнгийн ХАМГИЙН ДЭЭД
  * талд, "Үр дүн" гарчгийн хажууд байрлуулдаг тул нүүлгэв.
  */
-export default function ResultsActions({ drugs, results, patient }: Props) {
+export default function ResultsActions({ drugs, results, patient, shareFragment }: Props) {
   if (drugs.length === 0) return null;
   return (
     <div className="flex items-center gap-2 print:hidden">
@@ -32,6 +34,7 @@ export default function ResultsActions({ drugs, results, patient }: Props) {
         size="default"
         label="Жор хуулах"
       />
+      <ShareLinkButton fragment={shareFragment} size="default" />
       <PrintButton visible onPrint={() => window.print()} />
     </div>
   );
