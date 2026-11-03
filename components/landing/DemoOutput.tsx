@@ -22,7 +22,7 @@ export default function DemoOutput({
   }
 
   const outcome = result.data;
-  const per = doseParts(outcome.perDose);
+  const per = doseParts(outcome.perDose, outcome.doseUnit);
   const tone = EVIDENCE_TONES[outcome.rule.evidenceLevel].rule;
 
   return (

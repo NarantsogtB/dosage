@@ -14,7 +14,7 @@ calculateDosage(drug, patient, options)
     buildOutcome     build-outcome.ts
       applyCaps      caps/         бүх cap-ийг per-dose болгож min
       round/scale    math/         тоймлол, өдрийн нийт
-      amounts        formulation/  мл / шахмал (хуваах эсэх)
+      amounts        formulation/  мл / шахмал; бэлдмэлийн хүчийг дүрмийн нэгж рүү (units/)
       buildTrace     trace/        эмчид харагдах алхмууд
 ```
 
@@ -24,4 +24,6 @@ calculateDosage(drug, patient, options)
   `basis/` эсвэл `caps/`-д нэг файл + dispatch хүснэгтэд нэг мөр + `trace/`
   тайлбар. `switch` бичихгүй (complexity 3).
 - Тоо бүр trace-д харагдах ёстой — black box болгохгүй.
+- Нэгж (S4): тоо бүр дүрмийн `doseUnit`-ээр; хөрвүүлэлт зөвхөн `units/convert-unit.ts`
+  (г↔мг↔мкг). Нийцэхгүй бэлдмэлийг алгасна, нэгж хольж тооцоолохгүй.
 - Тест: `tests/engine/`. Туслах: `tests/fixtures/make-drug.ts`, `patients.ts`.

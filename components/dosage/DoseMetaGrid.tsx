@@ -2,6 +2,7 @@ import type { DosageOutcome } from "@/lib/domain/calculation-result";
 import { FREQUENCY_LABELS } from "@/lib/data/labels/frequency-labels";
 import DurationValue from "./DurationValue";
 import SectionLabel from "./SectionLabel";
+import { formatDose } from "@/lib/format/format-dose";
 
 /**
  * Гурван баганат мета мөр — Figma "Dose readout" (node 14:76) "Meta".
@@ -28,10 +29,7 @@ export default function DoseMetaGrid({
       <div>
         <SectionLabel>Өдрийн нийт</SectionLabel>
         <p className="num mt-0.5 text-sm font-medium">
-          {outcome.perDay.minMg === outcome.perDay.maxMg
-            ? outcome.perDay.maxMg
-            : `${outcome.perDay.minMg}–${outcome.perDay.maxMg}`}{" "}
-          мг
+          {formatDose(outcome.perDay, outcome.doseUnit)}
         </p>
       </div>
     </div>

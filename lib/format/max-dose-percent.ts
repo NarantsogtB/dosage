@@ -12,6 +12,6 @@ export const maxDosePercent = (outcome: DosageOutcome): number | undefined => {
   return Math.round((outcome.perDose.maxMg / outcome.limitMg) * 100);
 };
 
-/** Идэвхтэй хязгаарыг ХОНОГИЙН нийт дүнгээр илэрхийлнэ (мг). */
+/** Идэвхтэй хязгаарыг ХОНОГИЙН нийт дүнгээр илэрхийлнэ (дүрмийн нэгжээр). */
 export const dailyLimitMg = (outcome: DosageOutcome): number =>
   outcome.limitMg * outcome.dosesPerDay;

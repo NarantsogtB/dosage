@@ -22,12 +22,17 @@ interface Props {
 const NUMBER = "text-4xl leading-none sm:text-[44px] sm:leading-[48px]";
 const UNIT = "text-xl font-semibold sm:text-[22px]";
 
-/** Одоогийн хэлбэр: мг том, хөрвүүлэлт доор нь бүдэг мөрөөр. */
+/** Мкг/мг давхар бичиглэл (Шат S4) — 10× алдаанаас сэргийлнэ. */
+const Alternate = ({ text }: { readonly text?: string }) =>
+  text ? <p className="num text-muted-foreground text-sm font-semibold">({text})</p> : null;
+
+/** Одоогийн хэлбэр: тун том, хөрвүүлэлт доор нь бүдэг мөрөөр. */
 const ClassicReadout = ({ outcome, selected }: Omit<Props, "patient">) => {
-  const per = doseParts(outcome.perDose);
+  const per = doseParts(outcome.perDose, outcome.doseUnit);
   return (
     <>
       <DoseReadout value={per.value} unit={per.unit} className={NUMBER} unitClassName={UNIT} />
+      <Alternate text={per.alternate} />
       {selected ? (
         <p className="text-muted-foreground text-[15px] leading-6 font-semibold sm:text-[17px]">
           {formulationLine(selected)}
@@ -42,7 +47,7 @@ const ClassicReadout = ({ outcome, selected }: Omit<Props, "patient">) => {
  * хүлээж байна (`FLAGS.mlFocal`) — зөвхөн шингэн хэлбэрт.
  */
 const FocalReadout = ({ outcome, selected }: Omit<Props, "patient"> & { readonly selected: FormulationAmount }) => {
-  const per = doseParts(outcome.perDose);
+  const per = doseParts(outcome.perDose, outcome.doseUnit);
   return (
     <>
       <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">

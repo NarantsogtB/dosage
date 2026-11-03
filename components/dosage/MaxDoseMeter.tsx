@@ -5,6 +5,7 @@ import { maxDoseTone, type MaxDoseTone } from "@/lib/format/max-dose-tone";
 import { roundDose } from "@/lib/engine/math/round-dose";
 import { Meter } from "@/components/ui/meter";
 import { cn } from "@/lib/utils";
+import { DOSE_UNIT_LABELS } from "@/lib/format/dose-unit-label";
 
 const BOX: Record<MaxDoseTone, string> = {
   neutral: "border-border bg-muted/40",
@@ -25,10 +26,11 @@ const TITLE: Record<MaxDoseTone, string> = {
  */
 const detailOf = (outcome: DosageOutcome): string => {
   const limit = roundDose(dailyLimitMg(outcome));
+  const unit = DOSE_UNIT_LABELS[outcome.doseUnit];
   if (outcome.cappedAtMax) {
-    return `Тооцоолсон тун өдөрт ${limit} мг хязгаарт таслагдсан. «Яаж бодсон бэ?»-ээс дэлгэрэнгүйг үзнэ үү.`;
+    return `Тооцоолсон тун өдөрт ${limit} ${unit} хязгаарт таслагдсан. «Яаж бодсон бэ?»-ээс дэлгэрэнгүйг үзнэ үү.`;
   }
-  return `${roundDose(outcome.perDay.maxMg)} / ${limit} мг хоногт`;
+  return `${roundDose(outcome.perDay.maxMg)} / ${limit} ${unit} хоногт`;
 };
 
 /**

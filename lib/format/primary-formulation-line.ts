@@ -1,6 +1,8 @@
 import type { FormulationAmount } from "../domain/calculation-result";
 import { formatAmount } from "./format-amount";
 import { formatNumber } from "./format-number";
+import { DEFAULT_DOSE_UNIT } from "../domain/dose-unit";
+import { DOSE_UNIT_LABELS } from "./dose-unit-label";
 
 export const primaryOf = (
   amounts: readonly FormulationAmount[],
@@ -10,7 +12,7 @@ export const primaryOf = (
 
 export const concentrationOf = (amount: FormulationAmount): string | undefined =>
   amount.formulation.kind === "liquid"
-    ? `${formatNumber(amount.formulation.mgPerMl * 5)} мг / 5 мл`
+    ? `${formatNumber(amount.formulation.mgPerMl * 5)} ${DOSE_UNIT_LABELS[amount.formulation.strengthUnit ?? DEFAULT_DOSE_UNIT]} / 5 мл`
     : undefined;
 
 /** Нэг хэлбэрийн хөрвүүлгийн мөр: "= 7.5 мл · 250 мг / 5 мл". */

@@ -1,4 +1,5 @@
 import type { DoseRange } from "./dose-range";
+import type { DoseUnit } from "./dose-unit";
 import type { DosingRule } from "./dosing-rule";
 import type { Formulation } from "./formulation";
 import type { FrequencyCode } from "./frequency";
@@ -16,6 +17,8 @@ export interface FormulationAmount {
 /** Амжилттай тооцооллын үр дүн. */
 export interface DosageOutcome {
   readonly rule: DosingRule;
+  /** `perDose`, `perDay`, `limitMg`-ийн нэгж — дүрмийн `doseUnit` (Шат S4). */
+  readonly doseUnit: DoseUnit;
   readonly perDose: DoseRange;
   readonly perDay: DoseRange;
   readonly frequency: FrequencyCode;
