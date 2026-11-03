@@ -3,17 +3,16 @@ import type { Drug } from "../../domain/drug";
 /**
  * Carbamazepine — Карбамазепин
  *
- * ⚠️ ЭХ СУРВАЛЖ БАТАЛГААЖААГҮЙ (evidenceLevel: "E_unverified").
- * MVP-ийн lib/drugs.ts-ээс автоматаар хөрвүүлсэн. Тунгийн утга нь
- * анхны хувилбартай ЯГ ИЖИЛ — өөрчлөөгүй.
+ * ✅ БАТАЛГААЖСАН (2026-11-03) — WHO Model Formulary for Children (2010) +
+ * MSF Essential drugs (CARBAMAZEPINE oral, 2024-10 шинэчилсэн): барих тун
+ * 5 мг/кг × 2–3 (10–15 мг/кг/хон), хоногт дээд 20 мг/кг. Тун өөрчлөгдөөгүй.
  *
- * Хийх ажил (docs/SOURCES.md, 5-р хэсэг):
- *   1. WHO AWaRe / 2024 заавраас тунг баталгаажуулах
- *   2. sources[] бөглөх, evidenceLevel шинэчлэх
- *   3. lastReviewed, reviewedBy бөглөх
- *   4. contraindicationsMn нэмэх (druginfo.mohs.mn)
- *   5. formulation бүрд availableInMn тэмдэглэх
- *   6. warnings[].level-ийг эргэн харах (бүгд "warn" гэж хөрвүүлсэн)
+ * Эх сурвалжаас консерватив хэвээр үлдээсэн (conflictNote): 2 наснаас (эх
+ * сурвалж 1 сараас), дээд 1000 мг/хон (MSF ≥12 насанд 1800 мг). Эхлэх тун
+ * (5 мг/кг/хон) ба титрацийг тооцоолуур харуулахгүй — эмчийн шийдвэр.
+ *
+ * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
+ * availableInMn.
  */
 
 export const carbamazepine: Drug = {
@@ -45,9 +44,21 @@ export const carbamazepine: Drug = {
           maxMg: 1000
         }
       ],
-      sources: [],
-      evidenceLevel: "E_unverified",
-      isDefault: true
+      sources: [
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Carbamazepine — Epilepsy, oral, p. 50",
+          quotedValue: "usual maintenance dose 5 mg/kg 2–3 times daily (up to 20 mg/kg daily may be needed)"
+        },
+        {
+          sourceId: "msf-essential-drugs",
+          locator: "CARBAMAZEPINE oral — Epilepsy (2024-10)",
+          quotedValue: "Child 1 month to 11 years: start with 5 mg/kg once daily or 2.5 mg/kg 2 times daily; increase the daily dose by increments of 2.5 to 5 mg/kg every 3 to 7 days, up to 5 mg/kg 2 or 3 times daily if necessary (max. 20 mg/kg daily)."
+        }
+      ],
+      evidenceLevel: "C_international",
+      isDefault: true,
+      conflictNote: "2026-11-03: WHO Formulary 2010 + MSF (2024-10) барих тун 10–15 мг/кг/хон, дээд 20 мг/кг/хон — одоогийн 10–20 мг/кг/хон таарна. Дүрэм эх сурвалжаас консерватив: 2 наснаас (эх сурвалж 1 сараас), дээд 1000 мг/хон (MSF ≥12 нас 1800 мг/хон). Эхлэх тун (5 мг/кг/хон) ба титраци — эмч."
     }
   ],
   formulations: [
