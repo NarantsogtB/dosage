@@ -9,9 +9,9 @@ import type { Drug } from "../../domain/drug";
  * Харин Perth Children's Hospital-ийн Эмийн менежментийн гарын авлага
  * (2026-01 хянасан, 2026-03 батлагдсан) заалт тус бүрээр нарийн тунтай
  * — "Muscle spasms" заалтын дагуу энэ дүрмийг шинэчлэв.
- * ⛔ ГАНЦХАН эх сурвалж (PCH) тул known-gaps.ts-д бүртгэв — хоёр дахь
- * эх сурвалж (жишээ нь AMH Children's Dosing Companion, BNFc) хараахан
- * олдоогүй тул evidenceLevel-ийг зөвшөөрөгдсөнөөр л ахиулав.
+ * ✅ 2026-11-04: хоёр дахь эх сурвалж — WHO Formulary for Children 2010
+ * (p. 285, булчингийн татталт/түгшүүр): амаар 0.05–0.3 мг/кг/тун 8–12 цаг
+ * тутам. Одоогийн 0.1 мг/кг × 3 мужид багтана. Known-gap-аас хасав.
  */
 
 export const diazepam: Drug = {
@@ -43,6 +43,11 @@ export const diazepam: Drug = {
           sourceId: "pch-medication-manual",
           locator: "Dosage & Dosage Adjustments — Muscle spasms, Oral (2026-01 хянасан)",
           quotedValue: "4 weeks to 12 years: Initially 0.1 mg/kg/dose up to 3 times daily. Adjust dose to response. Usual maximum 15 mg daily."
+        },
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Diazepam — Muscle spasm and anxiety, oral, p. 285",
+          quotedValue: "Oral: Child all ages 0.05–0.3 mg/kg/dose 8–12 hourly."
         }
       ],
       evidenceLevel: "C_international",
