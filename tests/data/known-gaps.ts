@@ -15,11 +15,6 @@ export interface KnownGap {
 
 export const KNOWN_GAPS: readonly KnownGap[] = [
   {
-    ruleId: "ceftriaxone-dysentery",
-    gap: "Ганц эх сурвалжтай (WHO 2024). Хоёр дахь нь дутуу.",
-    next: "IMCI chart booklet эсвэл WHO AWaRe (2022)-оос цефтриаксоны тунг олох.",
-  },
-  {
     ruleId: "dexamethasone-asthma",
     gap: "Ганц эх сурвалж (RCH Melbourne). Хоёр дахь нь дутуу.",
     next: "Starship NZ-ийн астмын зааврыг Chrome-оор нээж дексаметазоны тунг шалгах.",

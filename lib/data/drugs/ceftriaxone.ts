@@ -3,7 +3,9 @@ import type { Drug } from "../../domain/drug";
 /**
  * Ceftriaxone — Цефтриаксон
  *
- * ✅ Цусан суулгын дүрэм БАТАЛГААЖСАН — WHO 2024 (2-р эгнээ, 50–80 мг/кг).
+ * ✅ Цусан суулгын дүрэм БАТАЛГААЖСАН — WHO 2024 (2-р эгнээ, 50–80 мг/кг) +
+ *    MSF Clinical guidelines (Shigellosis) + WHO Formulary 2010. ⚠️ ДЭЭД ТУН
+ *    ӨӨРЧЛӨГДСӨН (2026-11-04, эмчийн шийдвэр): 4 г → хоногт 1 г (MSF, WHO 2010).
  * ✅ Ерөнхий дүрэм БАТАЛГААЖСАН (2026-10-30) — WHO AWaRe (2022) + MSF:
  *    80–100 мг/кг өдөрт 1 удаа, дээд 3 г, 1 сараас. ⚠️ ТУН ӨӨРЧЛӨГДСӨН: өмнө
  *    50–100 мг/кг, дээд 4 г, 0 сараас. Эмчийн шийдвэр — ДЭМБ (conflictNote).
@@ -38,7 +40,7 @@ export const ceftriaxone: Drug = {
         {
           kind: "absolute",
           scope: "per_dose",
-          maxMg: 4000
+          maxMg: 1000
         }
       ],
       sources: [
@@ -46,9 +48,20 @@ export const ceftriaxone: Drug = {
           sourceId: "who-pneumonia-diarrhoea-2024",
           locator: "Diarrhoea — antibiotics, Remarks",
           quotedValue: "second line: Ceftriaxone: 50–80 mg/kg daily for three days"
+        },
+        {
+          sourceId: "msf-clinical-guidelines",
+          locator: "Shigellosis — Antibiotherapy (хуудсанд огноо заагаагүй)",
+          quotedValue: "ceftriaxone IM for 3 days Children: 50 to 100 mg/kg once daily (max. 1 g daily)"
+        },
+        {
+          sourceId: "who-formulary-children-2010",
+          locator: "Ceftriaxone — Dose (заалтад shigellosis орно), p. 89",
+          quotedValue: "Infant and Child under 50 kg 50–100 mg/kg daily (maximum dose 1 g); higher dose reserved for severe infections."
         }
       ],
-      evidenceLevel: "B_who"
+      evidenceLevel: "B_who",
+      conflictNote: "Эмчийн шийдвэр (2026-11-04): дээд тун 4 г → хоногт 1 г (MSF Shigellosis, WHO Formulary 2010 хоёулаа «max 1 g»). 50–80 мг/кг (WHO 2024) хэвээр."
     },
     {
       id: "ceftriaxone-general",
