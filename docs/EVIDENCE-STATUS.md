@@ -34,7 +34,7 @@
 | Cetirizine | Ерөнхий заалт | Амаар | C | rch-melbourne-urticaria, rch-melbourne-urticaria | 1970-01-01 | ⚠️ |
 | Dexamethasone | Цочмог астма · 0.3 мг/кг/тун | Амаар | C | rch-melbourne-cpg, rch-melbourne-cpg | 1970-01-01 | ⚠️ |
 | Dexamethasone | Круп (ларинготрахеит) · 0.15–0.6 мг/кг/тун | Амаар | C | msf-clinical-guidelines, rch-melbourne-croup | 1970-01-01 |  |
-| Diazepam | Ерөнхий заалт · 0.1 мг/кг/тун | Амаар | C | pch-medication-manual | 1970-01-01 | ⚠️ |
+| Diazepam | Ерөнхий заалт · 0.1 мг/кг/тун | Амаар | C | pch-medication-manual, who-formulary-children-2010 | 1970-01-01 |  |
 | Doxycycline | Ерөнхий заалт · 2 мг/кг/тун | Амаар | C | who-formulary-children-2010, msf-essential-drugs | 1970-01-01 |  |
 | Enalapril | Ерөнхий заалт · 0.1–0.5 мг/кг/тун | Амаар | C | who-formulary-children-2010 | 1970-01-01 | ⚠️ |
 | Ferrous sulfate (элементар төмөр) | Ерөнхий заалт · 3–6 мг/кг/хон | Амаар | C | msf-essential-drugs, who-formulary-children-2010 | 1970-01-01 |  |
@@ -48,7 +48,7 @@
 | Metronidazole | Анаэроб бактерийн халдвар · 7.5–10 мг/кг/тун | Амаар эсвэл судсаар | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
 | Metronidazole | Гиардиаз (Giardia) · 30 мг/кг/тун | Амаар | C | msf-essential-drugs, chq-antibiocard | 1970-01-01 |  |
 | Omeprazole | Ерөнхий заалт · 0.7–1.4 мг/кг/хон | Амаар | C | msf-essential-drugs, qcg-neonatal-omeprazole | 1970-01-01 |  |
-| Omeprazole | Ерөнхий заалт | Амаар | C | msf-essential-drugs | 1970-01-01 | ⚠️ |
+| Omeprazole | Ерөнхий заалт | Амаар | C | msf-essential-drugs, who-formulary-children-2010 | 1970-01-01 |  |
 | Ondansetron | Ерөнхий заалт · 0.1–0.15 мг/кг/тун | Амаар | C | msf-essential-drugs, rch-melbourne-gastroenteritis | 1970-01-01 |  |
 | Paracetamol | Ерөнхий заалт · 15 мг/кг/тун | Амаар | C | rch-melbourne-cpg, msf-essential-drugs | 1970-01-01 |  |
 | Paracetamol | Ерөнхий заалт · 10 мг/кг/тун | Амаар | C | msf-essential-drugs, rch-melbourne-cpg | 1970-01-01 |  |
@@ -61,7 +61,7 @@
 | Amoxicillin | Уушгины хатгаа (2–59 сар) · 40 мг/кг/тун | Амаар | B | who-pneumonia-diarrhoea-2024, who-imci-chartbook-2014, childrens-mn-cap-2025 | 1970-01-01 |  |
 | Amoxicillin-clavulanate | Ерөнхий заалт · 80–90 мг/кг/хон | Амаар | B | who-aware-2022 | 1970-01-01 | ⚠️ |
 | Azithromycin | Ерөнхий заалт · 10 мг/кг/тун | Амаар | B | msf-essential-drugs, who-aware-2022 | 1970-01-01 |  |
-| Ceftriaxone | Цусан суулга (2-р эгнээ) · 50–80 мг/кг/тун | Судсаар / Булчинд (IV/IM) | B | who-pneumonia-diarrhoea-2024 | 1970-01-01 | ⚠️ |
+| Ceftriaxone | Цусан суулга (2-р эгнээ) · 50–80 мг/кг/тун | Судсаар / Булчинд (IV/IM) | B | who-pneumonia-diarrhoea-2024, msf-clinical-guidelines, who-formulary-children-2010 | 1970-01-01 |  |
 | Ceftriaxone | Ерөнхий заалт · 80–100 мг/кг/тун | Судсаар / Булчинд (IV/IM) | B | who-aware-2022, msf-essential-drugs | 1970-01-01 |  |
 | Cephalexin | Ерөнхий заалт · 25 мг/кг/тун | Амаар | B | who-aware-2022, msf-essential-drugs | 1970-01-01 |  |
 | Ciprofloxacin | Цусан суулга (баасанд цус) · 15 мг/кг/тун | Амаар | B | who-pneumonia-diarrhoea-2024, who-imci-chartbook-2014 | 1970-01-01 |  |

@@ -10,7 +10,7 @@
 40 эм (10 retired) · **37 баталгаажсан** · 3 үлдсэн (3 `E` дүрэм). A түвшин 0.
 Бүлэг 1, 2, 4 ✅; Бүлэг 3-ын 1-р багц ✅ (2026-11-04). Үлдсэн: aciclovir, propranolol, hydrocortisone (draft).
 
-⚠️ Баталгаажсан дүрмийн олонх нь **known-gap** (ганц эх сурвалж) — `tests/data/known-gaps.ts`.
+⚠️ **Known-gap** (ганц эх сурвалж): 17 → **14** (2026-11-04, 1-р давалгаа: ceftriaxone-dysentery, diazepam, omeprazole) — `tests/data/known-gaps.ts`.
 
 | Бүлэг | Эм | Асуудал | Хэн | Шийдэл |
 |---|---|---|---|---|
