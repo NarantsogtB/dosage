@@ -11,6 +11,8 @@ const ROUTE_GROUPS: Record<Route, readonly Route[]> = {
   pr: ["pr"],
   neb: ["neb"],
   sc: ["sc"],
+  io: ["io"],
+  iv_io: ["iv", "io"],
 };
 
 const ORAL: readonly Route[] = ["oral"];

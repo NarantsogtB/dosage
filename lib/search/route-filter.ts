@@ -7,7 +7,7 @@ export type RouteFilter = "oral" | "injection";
 
 const TARGETS: Record<RouteFilter, readonly Route[]> = {
   oral: ["oral"],
-  injection: ["iv", "im", "sc"],
+  injection: ["iv", "im", "sc", "io"],
 };
 
 export const ROUTE_FILTER_LABELS: Record<RouteFilter, string> = {
