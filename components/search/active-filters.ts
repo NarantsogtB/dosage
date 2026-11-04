@@ -1,6 +1,7 @@
 export interface FilterState {
   readonly query: string;
   readonly categoryLabel?: string;
+  readonly routeLabel?: string;
   readonly verifiedOnly: boolean;
 }
 
@@ -17,6 +18,7 @@ const isText = (value: string | null): value is string => value !== null;
 const READERS: readonly ((state: FilterState) => string | null)[] = [
   (state) => (state.query === "" ? null : `«${state.query}»`),
   (state) => state.categoryLabel ?? null,
+  (state) => state.routeLabel ?? null,
   (state) => (state.verifiedOnly ? "зөвхөн баталгаажсан" : null),
 ];
 

@@ -9,6 +9,7 @@ import { Command } from "@/components/ui/command";
 import { Separator } from "@/components/ui/separator";
 import RecentDrugs from "@/components/recent/RecentDrugs";
 import CategoryFilter from "./CategoryFilter";
+import RouteFilter from "./RouteFilter";
 import SearchFooter from "./SearchFooter";
 import SearchHeader from "./SearchHeader";
 import SearchResults from "./SearchResults";
@@ -82,6 +83,7 @@ function SearchPanel({ drugs, selectedIds, onToggle, collapsed }: PanelProps) {
           onVerified={filters.toggleVerified}
         />
         <RecentDrugs selectedIds={selectedIds} onToggle={onToggle} hidden={filters.query !== ""} />
+        <RouteFilter selected={filters.route} onSelect={filters.setRoute} />
         <CategoryFilter categories={categories} selected={filters.category} onSelect={filters.setCategory} />
         <Separator />
         <SearchResults
