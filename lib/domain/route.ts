@@ -7,4 +7,7 @@ export type Route =
   | "oral_iv"
   | "pr"
   | "neb"
-  | "sc";
+  | "sc"
+  /** Ясны хөндийд (intraosseous) — яаралтай тусламж (Шат 7). */
+  | "io"
+  | "iv_io";

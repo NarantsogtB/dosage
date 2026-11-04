@@ -9,4 +9,6 @@ export const ROUTE_LABELS: Record<Route, string> = {
   pr: "Шулуун гэдсээр (PR)",
   neb: "Амьсгалаар (небулайзер)",
   sc: "Арьсан дор (SC)",
+  io: "Ясны хөндийд (IO)",
+  iv_io: "Судсаар / Ясны хөндийд (IV/IO)",
 };

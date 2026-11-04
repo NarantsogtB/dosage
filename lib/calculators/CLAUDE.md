@@ -13,6 +13,8 @@ age band), `fluid/` (maintenance, bolus, deficit — `/fluids`), `bsa/` (Mostell
 - Түлэгдэлтийн эх сурвалжийн тэмдэглэл: `docs/BURNS-SOURCE-NOTES.md`.
 - `fluid/` — `/fluids` (RCH IV fluids 2026, WHO Pocket Book 2013). Эмчийн
   шийдвэр: DECISIONS 2026-11-04.
+- `emergency/items.ts` — `/emergency`-ийн эм бус мөр (одоогоор хоосон; эх
+  сурвалж + эмчийн баталгаагүй бол нэмэхгүй — Шат 7b).
 - `registry.ts` — тооцоолуурын НЭГ бүртгэл (nav, sitemap, analytics эндээс
   уншина). React-гүй — серверт ч ажилладаг.
 - Шинэ тооцоолуур бүхэлд нь: `docs/recipes/add-calculator.md`.
