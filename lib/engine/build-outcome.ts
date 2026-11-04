@@ -9,6 +9,7 @@ import { calculateAmounts } from "./formulation/calculate-amounts";
 import { roundRange } from "./math/round-range";
 import { scaleRange } from "./math/scale-range";
 import { doseUnitOf } from "./units/convert-unit";
+import { reconstitutionTraceSteps } from "./trace/reconstitution-trace-steps";
 
 export interface OutcomeInput {
   readonly drug: Drug;
@@ -25,6 +26,7 @@ export const buildOutcome = (input: OutcomeInput): DosageOutcome => {
   const perDose = roundRange(capped.range);
   const perDay = roundRange(scaleRange(perDose, dosesPerDay));
   const doseUnit = doseUnitOf(rule);
+  const amounts = calculateAmounts(drug.formulations, { range: perDose, doseUnit, route: rule.route });
 
   return {
     rule,
@@ -33,11 +35,14 @@ export const buildOutcome = (input: OutcomeInput): DosageOutcome => {
     perDay,
     frequency: rule.frequency,
     dosesPerDay,
-    amounts: calculateAmounts(drug.formulations, perDose, doseUnit),
+    amounts,
     cappedAtMax: capped.cappedAtMax,
     limitMg: capped.limitMg,
     warnings: drug.warnings,
-    trace: buildTrace({ rule, patient, capped, perDose, perDay, dosesPerDay, doseUnit }),
+    trace: [
+      ...buildTrace({ rule, patient, capped, perDose, perDay, dosesPerDay, doseUnit }),
+      ...reconstitutionTraceSteps(amounts),
+    ],
     sources: [...drug.sources, ...rule.sources],
   };
 };

@@ -9,4 +9,4 @@ export const MIN_TABLET_FRACTION = 0.125;
  * ойлгогдоно (эмчийн шийдвэр 2026-11-04).
  */
 export const isMeasurable = (amount: FormulationAmount): boolean =>
-  amount.formulation.kind === "liquid" ? amount.max > 0 : amount.max >= MIN_TABLET_FRACTION;
+  amount.formulation.kind === "solid" ? amount.max >= MIN_TABLET_FRACTION : amount.max > 0;
