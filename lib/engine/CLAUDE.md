@@ -14,7 +14,8 @@ calculateDosage(drug, patient, options)
     buildOutcome     build-outcome.ts
       applyCaps      caps/         бүх cap-ийг per-dose болгож min
       round/scale    math/         тоймлол, өдрийн нийт
-      amounts        formulation/  мл / шахмал; бэлдмэлийн хүчийг дүрмийн нэгж рүү (units/)
+      amounts        formulation/  замаар шүүх (route-match), мл / шахмал / найруулсан
+                                   нунтаг; хүчийг дүрмийн нэгж рүү (units/)
       buildTrace     trace/        эмчид харагдах алхмууд
 ```
 

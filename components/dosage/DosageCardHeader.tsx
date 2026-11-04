@@ -3,6 +3,7 @@ import type { Route } from "@/lib/domain/route";
 import { CATEGORY_LABELS } from "@/lib/data/labels/category-labels";
 import { ROUTE_LABELS } from "@/lib/data/labels/route-labels";
 import { drugEvidence } from "@/lib/engine/rule/drug-evidence";
+import { Badge } from "@/components/ui/badge";
 import { CardHeader, CardTitle } from "@/components/ui/card";
 import RemoveButton from "@/components/summary/RemoveButton";
 import EvidenceChip from "./EvidenceChip";
@@ -14,7 +15,7 @@ interface Props {
 }
 
 /**
- * Картын толгой: эмийн нэр, ангилал · хэрэглэх зам, нотолгоо, хасах.
+ * Картын толгой: эмийн нэр + замын badge (Шат 6), ангилал, нотолгоо, хасах.
  *
  * Өвчтөний жин/нас толгойноос тунгийн зурвасын гарчиг руу шилжсэн —
  * тоо, түүнийг бодсон жин хоёр нэг дор байх ёстой. Энд харагдах
@@ -26,9 +27,12 @@ export default function DosageCardHeader({ drug, route, onRemove }: Props) {
     <CardHeader className="pb-3">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 space-y-1">
-          <CardTitle className="text-xl tracking-tight">{drug.inn}</CardTitle>
+          <CardTitle className="flex flex-wrap items-center gap-2 text-xl tracking-tight">
+            {drug.inn}
+            <Badge variant="outline">{ROUTE_LABELS[route]}</Badge>
+          </CardTitle>
           <p className="text-muted-foreground text-sm">
-            {drug.innMn} · {CATEGORY_LABELS[drug.category]} · {ROUTE_LABELS[route]}
+            {drug.innMn} · {CATEGORY_LABELS[drug.category]}
           </p>
         </div>
         <div className="flex shrink-0 items-center gap-2">

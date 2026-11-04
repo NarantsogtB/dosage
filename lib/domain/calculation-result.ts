@@ -1,7 +1,7 @@
 import type { DoseRange } from "./dose-range";
 import type { DoseUnit } from "./dose-unit";
 import type { DosingRule } from "./dosing-rule";
-import type { Formulation } from "./formulation";
+import type { Formulation, Reconstitution } from "./formulation";
 import type { FrequencyCode } from "./frequency";
 import type { SourceRef } from "./source";
 import type { TraceStep } from "../engine/trace/trace-step";
@@ -12,6 +12,10 @@ export interface FormulationAmount {
   readonly formulation: Formulation;
   readonly min: number;
   readonly max: number;
+  /** Нунтаг бол аль найруулгаар (Шат 6). */
+  readonly reconstitution?: Reconstitution;
+  /** Нунтаг бол хэдэн шил хэрэгтэй (дээд тунгаар). */
+  readonly vials?: number;
 }
 
 /** Амжилттай тооцооллын үр дүн. */

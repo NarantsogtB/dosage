@@ -19,10 +19,15 @@ export const primaryOf = (
 ): FormulationAmount | undefined =>
   preferLiquid(amounts.filter(isMeasurable)) ?? preferLiquid(amounts);
 
-export const concentrationOf = (amount: FormulationAmount): string | undefined =>
-  amount.formulation.kind === "liquid"
-    ? `${formatNumber(amount.formulation.mgPerMl * 5)} ${DOSE_UNIT_LABELS[amount.formulation.strengthUnit ?? DEFAULT_DOSE_UNIT]} / 5 мл`
-    : undefined;
+const unitOf = (amount: FormulationAmount): string =>
+  DOSE_UNIT_LABELS[amount.formulation.strengthUnit ?? DEFAULT_DOSE_UNIT];
+
+/** «250 мг / 5 мл» (шингэн), «100 мг/мл» (найруулсан нунтаг), хатууд undefined. */
+export const concentrationOf = (amount: FormulationAmount): string | undefined => {
+  const { formulation, reconstitution } = amount;
+  if (formulation.kind === "liquid") return `${formatNumber(formulation.mgPerMl * 5)} ${unitOf(amount)} / 5 мл`;
+  return reconstitution ? `${formatNumber(reconstitution.finalMgPerMl)} ${unitOf(amount)}/мл` : undefined;
+};
 
 /** Нэг хэлбэрийн хөрвүүлгийн мөр: "= 7.5 мл · 250 мг / 5 мл". */
 export const formulationLine = (amount: FormulationAmount): string => {

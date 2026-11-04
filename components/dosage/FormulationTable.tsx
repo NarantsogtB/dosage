@@ -4,6 +4,7 @@ import { useId } from "react";
 import { Circle, CircleCheck } from "lucide-react";
 import type { FormulationAmount } from "@/lib/domain/calculation-result";
 import { formatAmount } from "@/lib/format/format-amount";
+import { amountKey, reconstitutionText } from "@/lib/format/reconstitution";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -22,6 +23,12 @@ interface RowProps {
 const SELECTED = { Icon: CircleCheck, row: "bg-primary/10 text-primary", icon: "" };
 const IDLE = { Icon: Circle, row: "hover:bg-accent", icon: "text-muted-foreground/60" };
 
+/** Нунтаг бол найруулгын мөр (Шат 6). */
+const Reconstituted = ({ amount }: { readonly amount: FormulationAmount }) => {
+  const text = reconstitutionText(amount);
+  return text ? <span className="text-muted-foreground block text-xs">{text}</span> : null;
+};
+
 const Row = ({ amount, name, selected, onSelect }: RowProps) => {
   const { Icon, row, icon } = selected ? SELECTED : IDLE;
   return (
@@ -36,10 +43,13 @@ const Row = ({ amount, name, selected, onSelect }: RowProps) => {
         name={name}
         className="sr-only"
         checked={selected}
-        onChange={() => onSelect(amount.formulation.id)}
+        onChange={() => onSelect(amountKey(amount))}
       />
       <Icon aria-hidden className={cn("size-4.5 shrink-0", icon)} />
-      <span className="flex-1">{amount.formulation.labelMn}</span>
+      <span className="flex-1">
+        {amount.formulation.labelMn}
+        <Reconstituted amount={amount} />
+      </span>
       <span className="num text-right font-semibold">{formatAmount(amount)}</span>
     </label>
   );
@@ -65,10 +75,10 @@ export default function FormulationTable({ amounts, selectedId, onSelect }: Prop
       <div className="space-y-0.5">
         {amounts.map((amount) => (
           <Row
-            key={amount.formulation.id}
+            key={amountKey(amount)}
             amount={amount}
             name={name}
-            selected={amount.formulation.id === selectedId}
+            selected={amountKey(amount) === selectedId}
             onSelect={onSelect}
           />
         ))}

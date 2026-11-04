@@ -17,6 +17,10 @@
   бэлдмэлд `strengthUnit` — анхдагч мг. Дүрмийн basis/cap-ийн БҮХ тоо `doseUnit`-ээр
   (талбарын нэр `minMgPerKg` түүхэн). Бэлдмэл дүрмийн нэгж рүү хөрвөх ёстой
   (`tests/data/units.test.ts`). Бодит эмд мг-ээс өөр нэгж нэмэхийн өмнө эмчээс асуу.
+- Бэлдмэл (Шат 6): `liquid` | `solid` | `powder`. `routes` (анхдагч амаар; ампул —
+  `["iv","im"]`). Нунтаг: `mgPerVial` + `reconstitutions` (зам, шингэн, мл,
+  `finalMgPerMl` — ЭХ СУРВАЛЖИЙН эцсийн концентрац, тооцоолохгүй). Бэлдмэл бүр
+  ядаж нэг дүрмийн замтай тохирно (`validateFormulations`).
 - Худалдааны нэр (brand) ОРУУЛАХГҮЙ — зөвхөн INN (`inn`, `innMn`).
 - `status`: `active` | `draft` | `retired`.
 

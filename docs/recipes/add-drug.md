@@ -9,7 +9,9 @@
    `status: "draft"` — тун оруулахгүй, хэрэглэгчээс асуу. Эх сурвалжтай бол
    `recipes/verify-drug.md`-ийн дагуу.
 4. Бэлдмэл (`formulations`): druginfo.mohs.mn-д бүртгэлтэй концентрацууд,
-   `availableInMn`. Худалдааны нэр оруулахгүй.
+   `availableInMn`. Худалдааны нэр оруулахгүй. Тарилга: ампул = `liquid` +
+   `routes`; нунтаг = `powder` + `reconstitutions` (эцсийн концентрацыг
+   бүтээгдэхүүний зааварчилгаанаас, тооцоолохгүй).
 5. `lib/data/drugs/index.ts`: импорт + `DRUGS`-д мөр (цагаан толгойгоор).
 6. Заалттай дүрэм (`indication: { code, labelMn }`): код нь
    `lib/data/labels/indications.ts`-д байх ёстой (шинэ өвчин бол тэнд нэр +

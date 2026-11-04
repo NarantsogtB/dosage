@@ -4,6 +4,7 @@ import type { CalculationResult, DosageOutcome } from "@/lib/domain/calculation-
 import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
 import { primaryOf } from "@/lib/format/primary-formulation-line";
+import { amountKey } from "@/lib/format/reconstitution";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { drugAnchorId } from "@/components/summary/drug-anchor";
@@ -36,7 +37,7 @@ interface Props {
  * байхгүй бол анхдагч (эхний шингэн) руу буцна. Төлөв нь `useChoices`-д.
  */
 const selectedOf = (outcome: DosageOutcome, id?: string) =>
-  outcome.amounts.find((amount) => amount.formulation.id === id) ?? primaryOf(outcome.amounts);
+  outcome.amounts.find((amount) => amountKey(amount) === id) ?? primaryOf(outcome.amounts);
 
 type DosageProps = Omit<Props, "result"> & { readonly outcome: DosageOutcome };
 
@@ -51,7 +52,7 @@ const DosageBody = (props: DosageProps) => {
       <DoseBand outcome={outcome} patient={patient} selected={formulation.selected} />
       <FormulationTable
         amounts={outcome.amounts}
-        selectedId={formulation.selected?.formulation.id}
+        selectedId={formulation.selected ? amountKey(formulation.selected) : undefined}
         onSelect={formulation.select}
       />
       <div className="space-y-3 px-5 pb-4">

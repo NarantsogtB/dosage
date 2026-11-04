@@ -4,12 +4,15 @@ import type { Indication } from "../domain/indication";
 import { isVerified } from "../engine/rule/drug-evidence";
 import { matchDrugQuery } from "./match-drug-query";
 import { indicationCodesFor, matchedIndication } from "./match-indication-query";
+import { matchRouteFilter, type RouteFilter } from "./route-filter";
 
 export interface DrugFilter {
   readonly query: string;
   readonly category?: DrugCategory;
   /** Зөвхөн эх сурвалж баталгаажсан эмийг харуулах. */
   readonly verifiedOnly?: boolean;
+  /** Амаар / тарилга (Шат 6). */
+  readonly route?: RouteFilter;
 }
 
 const matchCategory = (drug: Drug, category?: DrugCategory): boolean =>
@@ -54,7 +57,7 @@ export const filterDrugs = (
   const codes = indicationCodesFor(filter.query);
   return drugs
     .filter((drug) => matchCategory(drug, filter.category) && matchQuery(drug, filter.query, codes))
-    .filter((drug) => matchVerified(drug, filter.verifiedOnly))
+    .filter((drug) => matchVerified(drug, filter.verifiedOnly) && matchRouteFilter(drug, filter.route))
     .slice()
     .sort(byRank(filter.query));
 };

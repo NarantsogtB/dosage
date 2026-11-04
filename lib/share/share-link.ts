@@ -87,8 +87,9 @@ const checked = (
 const hasIndication = (drug: Drug, code: string): boolean =>
   drug.rules.some((rule) => rule.indication !== "general" && rule.indication.code === code);
 
-const hasFormulation = (drug: Drug, id: string): boolean =>
-  drug.formulations.some((formulation) => formulation.id === id);
+/** `id` эсвэл нунтагийн `id@зам` (Шат 6). */
+const hasFormulation = (drug: Drug, key: string): boolean =>
+  drug.formulations.some((formulation) => formulation.id === key.split("@")[0]);
 
 const part = (
   drug: Drug,
