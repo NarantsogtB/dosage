@@ -12,4 +12,5 @@ export const FREQUENCY_LABELS: Record<FrequencyCode, string> = {
   q4_6h: "4–6 цаг тутам",
   q6_8h: "6–8 цаг тутам",
   q8_12h: "8–12 цаг тутам",
+  stat: "нэг удаа (шаардлагатай бол давтана)",
 };

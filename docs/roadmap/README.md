@@ -29,7 +29,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | 11 | `phase-5-share-link.md` | Линкээр хуваалцах | 1–2 өдөр | — | ☑ |
 | 12 | `phase-S4-units.md` | Тунгийн нэгж (мкг, ED, ммоль, г) + хурд | 2–3 өдөр | — | ☑ (хурд — зөвхөн төрөл) |
 | 13 | `phase-6-iv-im.md` | IV/IM + нунтаг найруулах | ~1.5 долоо хоног | S4 | ☑ (schema + engine + UI; бодит өгөгдөл — эмчийн баталгаатай) |
-| 14 | `phase-7-emergency.md` | `/emergency` | ~2 долоо хоног | 1, 6 | 7a ☑ (дэд бүтэц) · 7b ☐ (эх сурвалж → эмчийн баталгаа) |
+| 14 | `phase-7-emergency.md` | `/emergency` | ~2 долоо хоног | 1, 6 | 7a ☑ (дэд бүтэц) · 7b ☑ (adrenaline, glucose, diazepam, болюс) · 7c ☐ (amiodarone, дефибрилляци, midazolam, ETT — 2 дахь эх сурвалж) |
 | 15 | `phase-8-scores.md` | GCS, Schwartz, corrected Na/Ca, AG | ~1 долоо хоног | S3 | ☐ |
 | — | `phase-S5-lazy-drugs.md` | Хайлтын индекс + эмийг хойшлуулж ачаалах | 2–3 өдөр | trigger: ~150 эм эсвэл chunk >100KB gz | ☐ |
 

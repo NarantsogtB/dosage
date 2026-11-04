@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Calculator, Droplet, Droplets } from "lucide-react";
+import { Calculator, Droplet, Droplets, Siren } from "lucide-react";
 import {
   CALCULATOR_REGISTRY,
   type CalculatorId,
@@ -20,6 +20,7 @@ const ICONS: Record<CalculatorId, LucideIcon> = {
   dose: Calculator,
   burns: Droplets,
   fluids: Droplet,
+  emergency: Siren,
 };
 
 const toRoute = (entry: (typeof CALCULATOR_REGISTRY)[number]): CalculatorRoute => ({

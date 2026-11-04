@@ -1,4 +1,5 @@
 import type { Drug } from "../../domain/drug";
+import type { DosingRule } from "../../domain/dosing-rule";
 
 /**
  * Diazepam — Диазепам
@@ -12,7 +13,45 @@ import type { Drug } from "../../domain/drug";
  * ✅ 2026-11-04: хоёр дахь эх сурвалж — WHO Formulary for Children 2010
  * (p. 285, булчингийн татталт/түгшүүр): амаар 0.05–0.3 мг/кг/тун 8–12 цаг
  * тутам. Одоогийн 0.1 мг/кг × 3 мужид багтана. Known-gap-аас хасав.
+ * ✅ 2026-11-04 (Шат 7b): эмч баталсан — таталт: IV/IO 0.3 мг/кг (дээд 10 мг),
+ * шулуун гэдсээр 0.5 мг/кг (<12 нас дээд 10 мг, ≥12 нас дээд 20 мг). MSF 2024
+ * + WHO Pocket Book 2013. `/emergency`-д харагдана.
  */
+
+const MSF_SEIZURE = {
+  sourceId: "msf-paediatric-care-2024",
+  locator: "Seizures — Management of convulsive seizures, p. 235",
+  quotedValue:
+    "rectal (PR) diazepam 0.5 mg/kg (< 12 years: max. 10 mg/dose; ≥ 12 years: max. 20 mg/dose). " +
+    "– IV/IO access: diazepam IV 0.3 mg/kg (max. 10 mg/dose).",
+} as const;
+
+const WHO_SEIZURE = {
+  sourceId: "who-pocketbook-2",
+  locator: "Drug dosages quick reference (front matter) — Diazepam, convulsions",
+  quotedValue: "Diazepam (for convulsions): Rectal: 0.5 mg/kg, IV: 0.2–0.3 mg/kg (p. 15)",
+} as const;
+
+const SEIZURE = { code: "status_epilepticus", labelMn: "Таталт" } as const;
+
+const seizureRule = (
+  id: string,
+  route: "iv_io" | "pr",
+  mgPerKg: number,
+  ages: { readonly min: number; readonly max?: number; readonly capMg: number },
+) => ({
+  id,
+  indication: SEIZURE,
+  route,
+  ageMinMonths: ages.min,
+  ageMaxMonths: ages.max,
+  basis: { kind: "per_kg_per_dose", minMgPerKg: mgPerKg, maxMgPerKg: mgPerKg },
+  frequency: "stat",
+  caps: [{ kind: "absolute", scope: "per_dose", maxMg: ages.capMg }],
+  sources: [MSF_SEIZURE, WHO_SEIZURE],
+  evidenceLevel: "C_international",
+  conflictNote: "WHO Pocket Book 2013 — IV 0.2–0.3 мг/кг; эмч MSF 2024-ийн 0.3 мг/кг-ийг баталсан.",
+} as const satisfies DosingRule);
 
 export const diazepam: Drug = {
   id: "diazepam",
@@ -52,14 +91,11 @@ export const diazepam: Drug = {
       ],
       evidenceLevel: "C_international",
       isDefault: true,
-      conflictNote:
-        "⚠️ ГАНЦ эх сурвалж (Perth Children's Hospital). Хоёр дахь эх " +
-        "сурвалж дутуу — MSF зөвхөн насанд хүрэгчийн уух диазепамын " +
-        "тунтай, RCH-ийн одоогийн premedication заавар midazolam-ыг " +
-        "илүүд үздэг тул оюутны диазепамын тун онцгойлон заагаагүй. " +
-        "AMH Children's Dosing Companion эсвэл BNFc-ээс хоёр дахь эх " +
-        "сурвалж хайх шаардлагатай (лиценз шаардана)."
-    }
+      conflictNote: "PCH: тунг хариу урвалаар тохируулна, ердийн дээд 15 мг/өдөр."
+    },
+    seizureRule("diazepam-seizure-iv", "iv_io", 0.3, { min: 1, capMg: 10 }),
+    seizureRule("diazepam-seizure-pr-under-12", "pr", 0.5, { min: 1, max: 143, capMg: 10 }),
+    seizureRule("diazepam-seizure-pr-12-plus", "pr", 0.5, { min: 144, capMg: 20 }),
   ],
   formulations: [
     {
@@ -108,11 +144,6 @@ export const diazepam: Drug = {
     }
   ],
   contraindicationsMn: [],
-  notesMn:
-    "Таталтын яаралтай тусламж (тооцоолуур энд тунг ГАРГАХГҮЙ, зөвхөн " +
-    "лавлагаа): PCH-ийн дагуу 4 долоо хоног–12 нас: IV/IO 0.1–0.3 мг/кг " +
-    "(дээд 10 мг), аарцгаар 0.3–0.5 мг/кг (дээд 10 мг), шаардлагатай " +
-    "бол 10–15 минутын дараа нэг удаа давтаж болно.",
   sources: [],
   lastReviewed: "1970-01-01",
   status: "active"

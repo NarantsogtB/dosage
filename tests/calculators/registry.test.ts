@@ -11,8 +11,8 @@ const idOf = (entry: { id: string }) => entry.id;
 
 describe("Тооцоолуурын бүртгэл (S3)", () => {
   it("nav нь бүртгэлийн дараалал, нэрээр", () => {
-    expect(ROUTES.map(hrefOf)).toEqual(["/dose", "/burns", "/fluids"]);
-    expect(ROUTES.map(shortOf)).toEqual(["Эм", "Түлэгдэлт", "Шингэн"]);
+    expect(ROUTES.map(hrefOf)).toEqual(["/dose", "/burns", "/fluids", "/emergency"]);
+    expect(ROUTES.map(shortOf)).toEqual(["Эм", "Түлэгдэлт", "Шингэн", "Яаралтай"]);
   });
 
   it("sitemap-ийн хуудсууд, эрэмбэ", () => {
@@ -21,11 +21,12 @@ describe("Тооцоолуурын бүртгэл (S3)", () => {
       { path: "/dose", priority: 0.9 },
       { path: "/burns", priority: 0.9 },
       { path: "/fluids", priority: 0.9 },
+      { path: "/emergency", priority: 0.8 },
     ]);
   });
 
   it("analytics-ийн тооцоолуурын нэрс", () => {
-    expect([...CALCULATORS]).toEqual(["dose", "burns", "fluids"]);
+    expect([...CALCULATORS]).toEqual(["dose", "burns", "fluids", "emergency"]);
     expect(CALCULATOR_IDS).toEqual(CALCULATOR_REGISTRY.map(idOf));
   });
 

@@ -13,4 +13,5 @@ export const FREQUENCY_SHORT: Record<FrequencyCode, string> = {
   q4_6h: "4–6 ц тутам",
   q6_8h: "6–8 ц тутам",
   q8_12h: "8–12 ц тутам",
+  stat: "нэг удаа",
 };

@@ -450,6 +450,69 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn: "Хөхүүл ханиадад макролидын (азитромицин, кларитромицин) хүүхдийн тун.",
   },
 
+  "rch-melbourne-resuscitation": {
+    id: "rch-melbourne-resuscitation",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Resuscitation.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2025-12)",
+    year: 2025,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/resuscitation/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn: "Сэхээн амьдруулалтын үндсэн эм (адреналин 10 мкг/кг, глюкоз, болюс), дефибрилляци.",
+  },
+
+  "rch-melbourne-hypoglycaemia": {
+    id: "rch-melbourne-hypoglycaemia",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Hypoglycaemia.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2025-08)",
+    year: 2025,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Hypoglycaemia/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn: "Гипогликемид глюкоз 10% 2 мл/кг.",
+  },
+
+  "rch-melbourne-iv-fluids": {
+    id: "rch-melbourne-iv-fluids",
+    citation:
+      "The Royal Children's Hospital Melbourne. Clinical Practice Guidelines " +
+      "— Intravenous fluids.",
+    publisher: "RCH Melbourne",
+    edition: "цахим, тогтмол шинэчлэгддэг (сүүлд шинэчилсэн 2026-01)",
+    year: 2026,
+    url: "https://www.rch.org.au/clinicalguide/guideline_index/Intravenous_fluids/",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй харна, гэхдээ RCH-ийн зохиогчийн эрхтэй. " +
+        "Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — тунгийн УТГЫГ гаргаж авч, өөрийн " +
+        "монгол текстээр бичиж, эх сурвалжийг ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn: "Шокийн болюс 10–20 мл/кг (0.9% NaCl), maintenance шингэн.",
+  },
+
   "starship-nz": {
     id: "starship-nz",
     citation: "Starship Child Health. Clinical Guidelines. Auckland, New Zealand.",
@@ -666,6 +729,27 @@ export const SOURCES: Record<string, Source> = {
     relevanceMn:
       "Өвчнөөр индексэлсэн эмнэлзүйн заавар (Essential drugs-аас тусдаа ном) — " +
       "круп г.м. заалтад хүүхдийн мг/кг тунг өгнө.",
+  },
+
+  "msf-paediatric-care-2024": {
+    id: "msf-paediatric-care-2024",
+    citation:
+      "Médecins Sans Frontières. Paediatric care — clinical and therapeutic guidelines. 2024 edition.",
+    publisher: "Médecins Sans Frontières (MSF)",
+    edition: "2024 edition (1st ed. 2023)",
+    year: 2024,
+    url: "https://medicalguidelines.msf.org/sites/default/files/2024-10/MSF_Paediatric%20care_2024.pdf",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "Үнэ төлбөргүй PDF, MSF-ийн зохиогчийн эрхтэй. Хүснэгт, өгүүлбэр ХУУЛАХГҮЙ — " +
+        "тунгийн утгыг гаргаж монголоор бичиж ишлэнэ.",
+    },
+    lastVerified: "2026-11-04",
+    relevanceMn:
+      "★ Хүүхдийн яаралтай тусламж, сэхээн амьдруулалт (адреналин, глюкоз, таталт, " +
+      "анафилакси) — мг/кг тун, 2020+ (Шат 7).",
   },
 
   "msf-essential-drugs": {

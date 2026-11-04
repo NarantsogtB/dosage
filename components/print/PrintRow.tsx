@@ -1,9 +1,18 @@
-import type { CalculationResult } from "@/lib/domain/calculation-result";
+import type { CalculationResult, DosageOutcome } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import { FREQUENCY_LABELS } from "@/lib/data/labels/frequency-labels";
 import { formatDose } from "@/lib/format/format-dose";
+import { showsDailyTotal } from "@/lib/format/daily-total";
 import PrintFormulations from "./PrintFormulations";
 import PrintWarnings from "./PrintWarnings";
+
+/** «Өдрийн нийт» — нэг удаагийн (`stat`) тунд харуулахгүй. */
+const PrintDailyTotal = ({ outcome }: { readonly outcome: DosageOutcome }) =>
+  showsDailyTotal(outcome.frequency) ? (
+    <p className="text-xs text-slate-500">
+      Өдрийн нийт: {formatDose(outcome.perDay, outcome.doseUnit)}
+    </p>
+  ) : null;
 
 interface Props {
   readonly drug: Drug;
@@ -13,7 +22,7 @@ interface Props {
 /** Нэг эмийн мөр, хэвлэх хувилбар. */
 export default function PrintRow({ drug, result }: Props) {
   if (result?.type !== "dosage") return null;
-  const { perDose, perDay, frequency, doseUnit } = result.data;
+  const { perDose, frequency, doseUnit } = result.data;
 
   return (
     <div className="break-inside-avoid border-b border-slate-200 py-2.5">
@@ -23,9 +32,7 @@ export default function PrintRow({ drug, result }: Props) {
           {formatDose(perDose, doseUnit)} · {FREQUENCY_LABELS[frequency]}
         </span>
       </div>
-      <p className="text-xs text-slate-500">
-        Өдрийн нийт: {formatDose(perDay, doseUnit)}
-      </p>
+      <PrintDailyTotal outcome={result.data} />
       <PrintFormulations amounts={result.data.amounts} />
       <PrintWarnings warnings={result.data.warnings} />
     </div>

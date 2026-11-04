@@ -1,5 +1,6 @@
 import type { Drug } from "../../domain/drug";
 import { acetylcysteine } from "./acetylcysteine";
+import { adrenaline } from "./adrenaline";
 import { aciclovir } from "./aciclovir";
 import { albendazole } from "./albendazole";
 import { ambroxol } from "./ambroxol";
@@ -26,6 +27,7 @@ import { ferrousSulfate } from "./ferrous-sulfate";
 import { fluconazole } from "./fluconazole";
 import { furosemide } from "./furosemide";
 import { gentamicin } from "./gentamicin";
+import { glucose } from "./glucose";
 import { hydrocortisone } from "./hydrocortisone";
 import { ibuprofen } from "./ibuprofen";
 import { isoniazid } from "./isoniazid";
@@ -57,6 +59,7 @@ import { zincSulfate } from "./zinc-sulfate";
 export const ALL_DRUGS: readonly Drug[] = [
   acetylcysteine,
   aciclovir,
+  adrenaline,
   albendazole,
   ambroxol,
   amoxicillin,
@@ -82,6 +85,7 @@ export const ALL_DRUGS: readonly Drug[] = [
   fluconazole,
   furosemide,
   gentamicin,
+  glucose,
   hydrocortisone,
   ibuprofen,
   isoniazid,

@@ -3,6 +3,7 @@ import { FREQUENCY_LABELS } from "@/lib/data/labels/frequency-labels";
 import DurationValue from "./DurationValue";
 import SectionLabel from "./SectionLabel";
 import { formatDose } from "@/lib/format/format-dose";
+import { showsDailyTotal } from "@/lib/format/daily-total";
 
 /**
  * Гурван баганат мета мөр — Figma "Dose readout" (node 14:76) "Meta".
@@ -26,12 +27,14 @@ export default function DoseMetaGrid({
         </p>
       </div>
       <DurationValue duration={outcome.rule.duration} />
-      <div>
-        <SectionLabel>Өдрийн нийт</SectionLabel>
-        <p className="num mt-0.5 text-sm font-medium">
-          {formatDose(outcome.perDay, outcome.doseUnit)}
-        </p>
-      </div>
+      {showsDailyTotal(outcome.frequency) ? (
+        <div>
+          <SectionLabel>Өдрийн нийт</SectionLabel>
+          <p className="num mt-0.5 text-sm font-medium">
+            {formatDose(outcome.perDay, outcome.doseUnit)}
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

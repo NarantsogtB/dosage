@@ -40,6 +40,22 @@ export const INDICATIONS = {
     labelMn: "Анаэроб бактерийн халдвар",
     synonyms: ["анаэроб", "anaerobic"],
   },
+  cardiac_arrest: {
+    labelMn: "Зүрх зогсолт",
+    synonyms: ["зүрх зогсох", "сэхээн амьдруулалт", "cpr", "cardiac arrest", "asystole"],
+  },
+  anaphylaxis: {
+    labelMn: "Анафилакси",
+    synonyms: ["анафилаксийн шок", "харшлын шок", "anaphylaxis"],
+  },
+  status_epilepticus: {
+    labelMn: "Таталт",
+    synonyms: ["эпилепсийн статус", "уналт таталт", "convulsion", "seizure", "status epilepticus"],
+  },
+  hypoglycaemia: {
+    labelMn: "Гипогликеми",
+    synonyms: ["цусны сахар бага", "hypoglycaemia", "hypoglycemia"],
+  },
   giardiasis: {
     labelMn: "Гиардиаз",
     synonyms: ["лямблиоз", "giardia", "giardiasis"],
