@@ -34,6 +34,7 @@ Next.js 16 статик export → Cloudflare Pages. Bun, Vitest, Tailwind 4, sh
 | `lib/format/` | Харуулах формат, жорын текст. Тооцоолохгүй | — |
 | `lib/search/` | Эм хайлт (латин + кирилл, өвчин/заалтаар) | — |
 | `lib/share/` | Тооцооллыг линкээр хуваалцах (URL fragment) | — |
+| `lib/emergency/` | `/emergency`: зөвхөн эх сурвалжтай эм/мөр (Шат 7) | — |
 | `lib/analytics/` | Event schema + `track()` | `docs/ANALYTICS.md` |
 | `lib/validation/` | Эх сурвалжийн ref шалгалт | — |
 | `lib/drug-page/`, `app/dose/[slug]` | Эм бүрийн SEO хуудас | — |
