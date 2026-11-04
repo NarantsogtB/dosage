@@ -3,6 +3,7 @@ import type { DosageOutcome } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import { DRUGS } from "@/lib/data/drugs";
 import { calculateDosage } from "@/lib/engine";
+import { matchesRoute } from "@/lib/engine/formulation/route-match";
 import { SAMPLE_PATIENTS } from "../fixtures/patients";
 
 /*
@@ -47,8 +48,9 @@ const overLimit = ({ out }: Case): boolean => out.perDose.maxMg > out.limitMg + 
 const badDaily = ({ out }: Case): boolean =>
   Math.abs(out.perDay.maxMg - out.perDose.maxMg * out.dosesPerDay) > 1;
 
+/** Дүрмийн замд тохирох бэлдмэл бүрд (Шат 6/7: IM ампул IV дүрэмд орохгүй). */
 const missingAmounts = ({ drug, out }: Case): boolean =>
-  out.amounts.length !== drug.formulations.length;
+  out.amounts.length < drug.formulations.filter((f) => matchesRoute(f, out.rule.route)).length;
 
 const ids = (): readonly string[] => DRUGS.map((drug) => drug.id);
 
@@ -75,7 +77,7 @@ describe("бодит эмийн инвариант", () => {
     expect(failing(badDaily)).toEqual([]);
   });
 
-  it("бэлдмэл бүрд хэмжээ гарна", () => {
+  it("замд тохирох бэлдмэл бүрд хэмжээ гарна", () => {
     expect(failing(missingAmounts)).toEqual([]);
   });
 });

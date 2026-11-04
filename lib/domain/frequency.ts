@@ -15,7 +15,9 @@ export type FrequencyCode =
   | "q12h"
   | "q4_6h"
   | "q6_8h"
-  | "q8_12h";
+  | "q8_12h"
+  /** Нэг удаа, шаардлагатай бол давтана — яаралтай тусламж (Шат 7). Өдрийн тоо 1. */
+  | "stat";
 
 /** Код бүрийн өдрийн тунгийн тоо. Тооцоолол зөвхөн энэ хүснэгтээс уншина. */
 export const DOSES_PER_DAY: Record<FrequencyCode, number> = {
@@ -30,4 +32,5 @@ export const DOSES_PER_DAY: Record<FrequencyCode, number> = {
   q4_6h: 4,
   q6_8h: 3,
   q8_12h: 2,
+  stat: 1,
 };

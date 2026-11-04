@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { EMERGENCY_DRUGS, EMERGENCY_SHOWN_ITEMS } from "@/lib/emergency";
 import { emergencyDrugRows, emergencyItemRows } from "@/lib/emergency/emergency-rows";
 import PatientInput from "@/components/calculator/PatientInput";
+import { useTrackOpened } from "@/components/analytics/use-track-opened";
 import { isReady, toPatient } from "@/components/calculator/patient-form";
 import { usePatientForm } from "@/components/calculator/patient-store";
 import EmergencyDisclaimer from "./EmergencyDisclaimer";
@@ -15,6 +16,7 @@ import EmergencyRows from "./EmergencyRows";
  * `/dose`-той нэг (sessionStorage) — шилжихэд дахин бичихгүй.
  */
 export default function EmergencyPage() {
+  useTrackOpened("emergency");
   const [form, setForm] = usePatientForm();
   const patient = useMemo(() => toPatient(form), [form]);
   const ready = isReady(form);

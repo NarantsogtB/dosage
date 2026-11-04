@@ -48,6 +48,14 @@ export const CALCULATOR_REGISTRY = [
     group: "fluids",
     priority: 0.9,
   },
+  {
+    id: "emergency",
+    path: "/emergency",
+    labelMn: "Яаралтай тусламж",
+    shortMn: "Яаралтай",
+    group: "emergency",
+    priority: 0.8,
+  },
 ] as const satisfies readonly CalculatorEntry[];
 
 export type CalculatorId = (typeof CALCULATOR_REGISTRY)[number]["id"];

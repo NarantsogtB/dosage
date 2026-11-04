@@ -14,11 +14,14 @@ const isUnverified = (rule: DosingRule) => rule.evidenceLevel === "E_unverified"
 const rulesOf = (drug: { rules: readonly DosingRule[] }) => drug.rules;
 const keyOf = (row: { key: string }) => row.key;
 const idOf = (drug: { id: string }) => drug.id;
+const valueOf = (row: { value: { value: number } }) => row.value.value;
 
 /** Fixture — бодит тун БИШ. */
 const AMPOULE: Formulation = { kind: "liquid", id: "amp", labelMn: "0.1 мг/мл", mgPerMl: 0.1, routes: ["iv", "io"] };
+const ARREST = { code: "cardiac_arrest", labelMn: "Зүрх зогсолт" };
 const verified = makeRule({
   id: "v",
+  indication: ARREST,
   route: "iv_io",
   doseUnit: "mcg",
   basis: { kind: "per_kg_per_dose", minMgPerKg: 10, maxMgPerKg: 10 },
@@ -26,13 +29,16 @@ const verified = makeRule({
 const unverified = makeRule({ id: "e", evidenceLevel: "E_unverified", sources: [], indication: { code: "x", labelMn: "X" } });
 
 describe("/emergency — зөвхөн эх сурвалжтай (Шат 7)", () => {
-  it("E дүрмийг хасна, зөвхөн E-тэй эм болон emergency биш эм орохгүй", () => {
+  it("E дүрэм, яаралтай биш заалтыг хасна; ангиллаас үл хамааран заалтаар сонгоно", () => {
+    const routine = makeRule({ id: "r" });
     const drugs = emergencyDrugs([
-      makeDrug([verified, unverified], { id: "a", category: "emergency", formulations: [AMPOULE] }),
+      makeDrug([verified, unverified, routine], { id: "a", category: "emergency", formulations: [AMPOULE] }),
       makeDrug([unverified], { id: "b", category: "emergency" }),
-      makeDrug([verified], { id: "c", category: "antibiotic" }),
+      makeDrug([verified], { id: "c", category: "cns" }),
+      makeDrug([routine], { id: "d", category: "emergency" }),
     ]);
-    expect(drugs.map(idOf)).toEqual(["a"]);
+    expect(drugs.map(idOf)).toEqual(["a", "c"]);
+    expect(drugs[0].rules.map(idOf)).toEqual(["v"]);
     expect(drugs.flatMap(rulesOf).filter(isUnverified)).toEqual([]);
   });
 
@@ -50,10 +56,15 @@ describe("/emergency — зөвхөн эх сурвалжтай (Шат 7)", () 
     expect(matchesRoute(AMPOULE, "oral")).toBe(false);
   });
 
-  it("заалт бүрд мөр (зүрх зогсолт, анафилакси маягийн)", () => {
-    const arrest = makeRule({ ...verified, id: "arrest", indication: { code: "asthma", labelMn: "A" }, isDefault: false });
-    const drug = makeDrug([verified, arrest], { id: "a", category: "emergency", formulations: [AMPOULE] });
-    expect(emergencyDrugRows([drug], patient).map(keyOf)).toEqual(["a:general", "a:asthma"]);
+  it("заалт × зам бүрд мөр (зүрх зогсолт IV/IO, анафилакси IM, таталт PR)", () => {
+    const im = makeRule({ ...verified, id: "im", route: "im", indication: { code: "anaphylaxis", labelMn: "A" } });
+    const pr = makeRule({ ...verified, id: "pr", route: "pr", indication: ARREST });
+    const drug = makeDrug([verified, im, pr], { id: "a", category: "emergency", formulations: [AMPOULE] });
+    expect(emergencyDrugRows([drug], patient).map(keyOf)).toEqual([
+      "a:cardiac_arrest:iv_io",
+      "a:anaphylaxis:im",
+      "a:cardiac_arrest:pr",
+    ]);
   });
 });
 
@@ -81,7 +92,8 @@ describe("/emergency — эм бус мөр (Шат 7)", () => {
     expect(emergencyItemRows([item(TWO_SOURCES)], patient)[0].value.value).toBe(64);
   });
 
-  it("одоогоор бодит item байхгүй — эмчийн баталгаа хүлээж байна (7b)", () => {
-    expect(EMERGENCY_SHOWN_ITEMS).toEqual([]);
+  it("бодит item бүр эх сурвалжийн шаардлага хангана (7b — болюс)", () => {
+    expect(EMERGENCY_SHOWN_ITEMS.map(idOf)).toEqual(["bolus-10", "bolus-20"]);
+    expect(emergencyItemRows(EMERGENCY_SHOWN_ITEMS, patient).map(valueOf)).toEqual([160, 320]);
   });
 });
