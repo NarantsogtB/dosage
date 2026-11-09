@@ -6,11 +6,12 @@ import { cn } from "@/lib/utils";
 import { activeTab } from "./active-route";
 import { TABS, type Tab } from "./routes";
 
-/** Доод навигацын өндөр — action bar, toast үүнээс дээш суурилна. */
-export const BOTTOM_NAV_HEIGHT = "4.5rem";
+/** Доод навигацын эзлэх өндөр (72 + доод зай 22) — action bar, toast үүнээс дээш суурилна. */
+export const BOTTOM_NAV_HEIGHT = "94px";
 
 /**
- * Mobile доод навигац — Figma "Bottom nav" (V3 · 03).
+ * Mobile доод навигац — Figma «V4/Tab bar» (120:39): хөвөгч pill, зүүн/баруун 16, доороос 22,
+ * 72 өндөр, r 36, surface/card + 1px хүрээ, p 6 g 4; идэвхтэй таб — bg/ink, teal 13 SemiBold.
  *
  * V4: 3 таб — Нүүр · Эмүүд · Тохиргоо (Figma 123:263). Тооцоолуур хооронд
  * нүүрний 4 товчоор шилжинэ; «Яаралтай» толгойд байнга. Баганын тоо табын
@@ -22,10 +23,10 @@ export default function BottomNav() {
   if (!current) return null;
   return (
     <>
-      <div aria-hidden className="h-[calc(4.5rem+env(safe-area-inset-bottom))] md:hidden print:hidden" />
+      <div aria-hidden className="h-[calc(94px+env(safe-area-inset-bottom))] md:hidden print:hidden" />
       <nav
         aria-label="Үндсэн навигац"
-        className="bg-card/95 supports-[backdrop-filter]:bg-card/85 fixed inset-x-0 bottom-0 z-30 grid grid-flow-col auto-cols-fr border-t pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden print:hidden"
+        className="bg-card fixed inset-x-4 bottom-[calc(22px+env(safe-area-inset-bottom))] z-30 grid h-[72px] auto-cols-fr grid-flow-col gap-1 rounded-[36px] border border-border dark:border-white/10 p-1.5 md:hidden print:hidden"
       >
         {TABS.map((tab) => (
           <BottomTab key={tab.href} href={tab.href} label={tab.labelMn} icon={tab.icon} active={tab === current} />
@@ -42,8 +43,8 @@ interface TabProps {
   readonly active: boolean;
 }
 
-const ACTIVE = { current: "page", link: "text-primary", pill: "bg-accent" } as const;
-const IDLE = { current: undefined, link: "text-muted-foreground", pill: "" } as const;
+const ACTIVE = { current: "page", link: "bg-background text-primary font-semibold" } as const;
+const IDLE = { current: undefined, link: "text-foreground font-medium" } as const;
 
 const BottomTab = ({ href, label, icon: Icon, active }: TabProps) => {
   const tone = active ? ACTIVE : IDLE;
@@ -52,13 +53,11 @@ const BottomTab = ({ href, label, icon: Icon, active }: TabProps) => {
       href={href}
       aria-current={tone.current}
       className={cn(
-        "focus-visible:ring-ring/50 flex h-[4.5rem] flex-col items-center justify-center gap-1 text-xs font-medium outline-none focus-visible:ring-[3px]",
+        "focus-visible:ring-ring/50 flex h-[58px] flex-col items-center justify-center gap-[3px] rounded-[30px] text-[13px]/[17px] outline-none focus-visible:ring-[3px]",
         tone.link,
       )}
     >
-      <span className={cn("flex h-8 w-14 items-center justify-center rounded-full", tone.pill)}>
-        <Icon aria-hidden className="size-5" />
-      </span>
+      <Icon aria-hidden className="size-6" />
       {label}
     </Link>
   );

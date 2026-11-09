@@ -1,18 +1,13 @@
-import { TriangleAlert } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import NoticeBox from "@/components/v4/NoticeBox";
 
-/** Түлэгдэлтийн тооцоолуурын анхааруулга. */
+/** Түлэгдэлтийн анхааруулга (Figma 138:1708) — саармаг (шар биш): аюул биш, хэрэглээний хязгаар. */
 export default function BurnsDisclaimer() {
   return (
-    <Alert variant="warning">
-      <TriangleAlert />
-      <AlertTitle>Зөвхөн сэхээний шингэн</AlertTitle>
-      <AlertDescription>
-        Эдгээр томьёо нь <strong>тэтгэх шингэнийг оруулаагүй</strong> — түүнийг
-        нэмж тооцоолно. Хугацааг <strong>осол болсон цагаас</strong> тоолно,
-        эмнэлэгт ирсэн цагаас биш. Эх сурвалж: Түлэгдэлт (Эрүүл Үрс Гэрэлт
-        Ирээдүй ТББ, 2015) — Естийн дүрэм х.41, шингэн сэлбэлт х.70–73, 155.
-      </AlertDescription>
-    </Alert>
+    <NoticeBox tone="plain" title="Зөвхөн сэхээний шингэн">
+      <p className="text-[13px]/[17px]">
+        Тэтгэх шингэнийг оруулаагүй — нэмж тооцоолно. Хугацааг осол болсон цагаас тоолно, эмнэлэгт ирсэн цагаас биш.
+      </p>
+      <p>Эх сурвалж: Түлэгдэлт (Эрүүл Үрс Гэрэлт Ирээдүй ТББ, 2015) — х.41, 70–73, 155.</p>
+    </NoticeBox>
   );
 }

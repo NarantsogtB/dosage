@@ -1,10 +1,6 @@
 import type { ReactNode } from "react";
 
-/** Хэсгийн жижиг тэмдэглэгээ. Mono — бүтээгдэхүүний тоон шинжийг үргэлжлүүлнэ. */
+/** Хэсгийн жижиг тэмдэглэгээ (Figma 154:1859): 12 SemiBold teal, том үсэг. */
 export default function Eyebrow({ children }: { readonly children: ReactNode }) {
-  return (
-    <p className="num text-primary text-xs font-semibold uppercase tracking-[0.16em]">
-      {children}
-    </p>
-  );
+  return <p className="text-primary text-xs/[15px] font-semibold tracking-[0.06em] uppercase">{children}</p>;
 }

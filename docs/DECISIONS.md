@@ -18,6 +18,20 @@
 
 ---
 
+## 2026-11-09 — V4 хэрэгслийн бүрхүүл + landing, pixel-perfect шалгалт (Шат 9h, 9i)
+
+**Context:** `/burns`, `/fluids`, `/emergency`, landing хуучин (V3) хэлбэртэй үлдсэн; CLI Figma-гийн утгыг ойролцоогоор буулгаж байсан (gradient, radius, бөөрөнхийлсөн класс).
+**Decision:**
+- `components/v4/` — хуваалцсан бүрхүүл (`ToolScreen`: mobile gradient hero + sheet, desktop зүүн багана + замын мөр + hero карт) ба атомууд (`ResultCard`, `ValueTile`, `NoticeBox`, `DangerRow`, `SectionTabs`, `EvidenceChip` …). Гурван хэрэгсэл ижил компонентоор.
+- Хэрэгслүүд **идэвхтэй өвчтөнөөс** (`useToolPatient`) — тусдаа маягт (`PatientInput`) устсан; жин/насыг өвчтөний цэс/`PatientSheet`-ээр. Өндөр зөвхөн түлэгдэлтэд (Гальвестоны картанд).
+- Токен `--sheet`, `--hero-top`, `--hero-mid`, `--hero-bottom`. BottomNav → Figma 120:39 хөвөгч pill.
+- Landing хэрэгслүүд `CALCULATOR_REGISTRY`-ээс (Яаралтай тусламж дутуу байсан) + тест.
+- Pixel гэрээ: `docs/design/v4/HANDOFF.md`, лавлах PNG `docs/design/v4/ref/`, `bun run visual` (playwright + pixelmatch, босго 4%).
+**Why:** нэг загварын эх (Figma) → нэг шалгах хэрэгсэл; «ойролцоо» гэдгийг тоогоор хэмжинэ. Өгөгдлийн текст (зам, давтамж, ишлэл) Figma-гийн товчлолоос давамгай — HANDOFF §7.
+**Status:** accepted
+
+---
+
 ## 2026-11-09 — Desktop 3 багана, өвчтөн нэмэх modal, ⌘K palette (Шат 9g)
 
 **Context:** Figma 126:354, 127:426, 127:725, 129:823, 129:948. Roadmap: ≥1280 3 багана (296 · 520 · aside), 1024–1279 2 багана, <1024 mobile.

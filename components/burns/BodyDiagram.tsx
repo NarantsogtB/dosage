@@ -14,6 +14,8 @@ interface Props {
   readonly band: AgeBand;
   readonly selections: SelectionMap;
   readonly onToggle: (region: BodyRegionId, depth?: BurnDepth) => void;
+  /** Хэмжээ (V4): mobile 480 өндөр, desktop 200×410. */
+  readonly className?: string;
 }
 
 /**
@@ -109,14 +111,17 @@ const byHit = (a: BodyPath, b: BodyPath): number => hitOf(a.region) - hitOf(b.re
  * G4: мөч хоёр талаас дарагдана, гэхдээ сонголт бүсээр (`BodyRegionId`) хадгалагддаг
  * тул нэг бүс — давхар тооцогдохгүй; сонгосон бүс хоёр талд ижил өнгөтэй.
  */
-export default function BodyDiagram({ view, band, selections, onToggle }: Props) {
-  const paths = [...(view === "front" ? FRONT_PATHS : BACK_PATHS)].sort(byHit);
+const VIEW_PATHS = { front: FRONT_PATHS, back: BACK_PATHS } as const;
+const VIEW_LABELS = { front: "Биеийн урд тал", back: "Биеийн ар тал" } as const;
+
+export default function BodyDiagram({ view, band, selections, onToggle, className = "mx-auto h-auto w-full max-w-[240px]" }: Props) {
+  const paths = [...VIEW_PATHS[view]].sort(byHit);
   return (
     <svg
       viewBox="0 0 200 410"
       role="group"
-      aria-label={view === "front" ? "Биеийн урд тал" : "Биеийн ар тал"}
-      className="mx-auto h-auto w-full max-w-[240px]"
+      aria-label={VIEW_LABELS[view]}
+      className={className}
     >
       {paths.map((path) => (
         <Region

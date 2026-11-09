@@ -1,5 +1,6 @@
 "use client";
 
+import { ChartColumn } from "lucide-react";
 import type { Patient } from "@/lib/domain/patient";
 import {
   deficitMl,
@@ -8,10 +9,11 @@ import {
   rehydrationPlan,
   type RehydrationDay,
 } from "@/lib/calculators/fluid/deficit";
-import { Card } from "@/components/ui/card";
-import NumberField from "@/components/calculator/NumberField";
-import FluidRow from "@/components/burns/FluidRow";
 import { ml, mlPerHour } from "@/components/burns/burn-format";
+import NoteRow from "@/components/v4/NoteRow";
+import ResultCard from "@/components/v4/ResultCard";
+import ValueTile, { TileGrid } from "@/components/v4/ValueTile";
+import DeficitInput from "./DeficitInput";
 
 interface Props {
   readonly patient: Patient;
@@ -19,46 +21,36 @@ interface Props {
   readonly onPercent: (value: string) => void;
 }
 
-const DayRow = ({ day }: { readonly day: RehydrationDay }) => (
-  <FluidRow
-    label={`${day.day}-р 24 цаг`}
-    hint={`maintenance + ${day.deficitPercent}% (${ml(day.deficitMl)}) / 24 цаг`}
-    value={mlPerHour(day.rateMlPerHour)}
-  />
+const DayTile = ({ day }: { readonly day: RehydrationDay }) => (
+  <ValueTile accent label={`${day.day}-р 24 цаг · (тэтгэх + ${day.deficitPercent}%) / 24`} value={mlPerHour(day.rateMlPerHour)} />
 );
+
+const Senior = ({ patient }: { readonly patient: Patient }) =>
+  needsSeniorConsult(patient) ? <NoteRow tone="warning">&lt;4 кг — ахлах эмчтэй зөвлөлдөнө (RCH).</NoteRow> : null;
 
 const Plan = ({ patient, percent }: { readonly patient: Patient; readonly percent: number }) => (
   <>
-    <FluidRow label="Дутагдал" hint={`${patient.weightKg} кг × ${percent}% × 10`} value={ml(deficitMl(patient, percent))} />
-    {rehydrationPlan(patient, percent).map((day) => (
-      <DayRow key={day.day} day={day} />
-    ))}
-    {needsSeniorConsult(patient) ? (
-      <p className="text-muted-foreground mt-2 text-xs">&lt;4 кг — ахлах эмчтэй зөвлөлдөнө (RCH).</p>
-    ) : null}
+    <TileGrid>
+      <ValueTile label={`Дутагдал · ${patient.weightKg} кг × ${percent}% × 10`} value={ml(deficitMl(patient, percent))} />
+      {rehydrationPlan(patient, percent).map((day) => <DayTile key={day.day} day={day} />)}
+    </TileGrid>
+    <Senior patient={patient} />
   </>
 );
 
-/** Шингэний дутагдал, судсаар нөхөх хурд — RCH Dehydration / IV fluids. */
+/** Шингэний дутагдал, судсаар нөхөх хурд — RCH Dehydration / IV fluids. Figma «Deficit». */
 export default function DeficitCard({ patient, percent, onPercent }: Props) {
   const value = Number(percent);
   const valid = isValidDeficitPercent(value);
   return (
-    <Card className="gap-0 px-5 py-4">
-      <p className="text-sm font-semibold">Шингэний дутагдал (судсаар)</p>
-      <p className="text-muted-foreground mb-3 text-xs">
-        Хөнгөн &lt;5%, дунд 5–9%, хүнд ≥10%. Өдөрт ≤5% нөхнө. Жин — өвчний өмнөх.
-      </p>
-      <NumberField
-        label="Шингэн алдалт"
-        suffix="%"
-        placeholder="жишээ: 5"
-        value={percent}
-        onChange={onPercent}
-        invalid={percent !== "" && !valid}
-        error="1–10 хооронд бүхэл тоо"
-      />
+    <ResultCard
+      id="deficit"
+      icon={ChartColumn}
+      title="Шингэний дутагдал (судсаар)"
+      sub="Хөнгөн <5%, дунд 5–9%, хүнд ≥10%. Өдөрт ≤5% нөхнө. Жин — өвчний өмнөх."
+    >
+      <DeficitInput value={percent} onChange={onPercent} invalid={percent !== "" && !valid} />
       {valid ? <Plan patient={patient} percent={value} /> : null}
-    </Card>
+    </ResultCard>
   );
 }

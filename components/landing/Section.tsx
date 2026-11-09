@@ -7,32 +7,18 @@ interface Props {
   readonly eyebrow: string;
   readonly title: string;
   readonly lede?: string;
-  readonly raised?: boolean;
+  readonly className?: string;
   readonly children: ReactNode;
 }
 
-/**
- * Хуудасны нэг хэсэг.
- *
- * Хэмнэл нь ГАДАРГУУГААС гарна — цайвар цаас ба цагаан ээлжилнэ.
- * Хар зурвас, өнгөт дэвсгэр нэмэхгүй: бүтээгдэхүүн өөрөө нам гүм тул
- * танилцуулга нь түүнээс чанга байж болохгүй.
- */
-export default function Section({ id, raised, children, ...head }: Props) {
+/** Хуудасны нэг хэсэг (Figma): eyebrow · гарчиг 28 Bold · lede 15 muted · агуулга, g 14. */
+export default function Section({ id, className, children, ...head }: Props) {
   return (
-    <section id={id} className={cn("border-b py-14", raised && "bg-card")}>
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <Eyebrow>{head.eyebrow}</Eyebrow>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
-          {head.title}
-        </h2>
-        {head.lede ? (
-          <p className="text-muted-foreground mt-2.5 max-w-2xl text-sm leading-relaxed sm:text-base">
-            {head.lede}
-          </p>
-        ) : null}
-        <div className="mt-8">{children}</div>
-      </div>
+    <section id={id} aria-label={head.title} className={cn("flex min-w-0 flex-col gap-3.5", className)}>
+      <Eyebrow>{head.eyebrow}</Eyebrow>
+      <h2 className="text-[28px]/9 font-bold">{head.title}</h2>
+      {head.lede ? <p className="text-muted-foreground text-[15px]/[19px]">{head.lede}</p> : null}
+      {children}
     </section>
   );
 }
