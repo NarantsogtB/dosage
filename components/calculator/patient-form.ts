@@ -81,7 +81,8 @@ const isUnit = (value: unknown): value is WeightUnit =>
 const text = (value: unknown): string =>
   typeof value === "string" ? value : "";
 
-const fromRecord = (value: Record<string, unknown> | null): PatientForm => {
+/** Үл итгэх объектоос хэлбэр. Бүтэц буруу бол хоосон. */
+export const formFromRecord = (value: Record<string, unknown> | null): PatientForm => {
   if (!value || !isUnit(value.weightUnit)) return EMPTY_FORM;
   return {
     weight: text(value.weight),
@@ -97,7 +98,7 @@ const fromRecord = (value: Record<string, unknown> | null): PatientForm => {
  */
 export const parsePatientForm = (raw: string | null): PatientForm => {
   try {
-    return fromRecord(JSON.parse(raw ?? "null"));
+    return formFromRecord(JSON.parse(raw ?? "null"));
   } catch {
     return EMPTY_FORM;
   }

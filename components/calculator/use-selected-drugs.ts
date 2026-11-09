@@ -1,10 +1,12 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import type { Drug } from "@/lib/domain/drug";
 import { DRUG_BY_ID } from "@/lib/data/drugs";
 import { track } from "@/lib/analytics/track";
 import { rememberDrug } from "@/components/recent/recent-store";
+import { changeActivePatient, newPatientId, updatePatients, usePatients } from "./patient-store";
+import { activeOf, changeActive, type PatientsState } from "./patients";
 
 const isDrug = (drug?: Drug): drug is Drug => drug !== undefined;
 
@@ -15,6 +17,31 @@ const without = (ids: readonly string[], id: string): readonly string[] =>
 const onAdded = (id: string): void => {
   track({ name: "drug_selected", drugId: id });
   rememberDrug(id);
+};
+
+const NONE: readonly string[] = [];
+
+const setIds = (drugIds: readonly string[]): void => changeActivePatient({ drugIds });
+
+const drugIdsOf = (state: PatientsState): readonly string[] => activeOf(state)?.drugIds ?? NONE;
+
+const withDrugs = (state: PatientsState, ids: readonly string[]): PatientsState => {
+  const current = drugIdsOf(state);
+  const missing = ids.filter((id) => !current.includes(id));
+  return missing.length === 0 ? state : changeActive(state, { drugIds: [...current, ...missing] }, newPatientId());
+};
+
+/**
+ * Урьдчилсан эмийг идэвхтэй өвчтөнд НЭГ удаа нэмнэ. Hydration-ы үеэр
+ * render-ийн утга хоосон байж болох тул store-ийн сүүлийн төлвөөс нэмнэ.
+ */
+const usePreselect = (initialIds: readonly string[]) => {
+  const done = useRef(false);
+  useEffect(() => {
+    if (done.current || initialIds.length === 0) return;
+    done.current = true;
+    updatePatients((state) => withDrugs(state, initialIds));
+  }, [initialIds]);
 };
 
 const toggleId = (ids: readonly string[], id: string): readonly string[] =>
@@ -35,27 +62,27 @@ const toggleId = (ids: readonly string[], id: string): readonly string[] =>
  * `initialIds` — эмийн хуудас (`/dose/[slug]`) тухайн эмийг урьдчилан
  * сонгоно. Урьдчилсан сонголт `drug_selected` event үүсгэхгүй,
  * «сүүлд хэрэглэсэн»-д ч нэмэгдэхгүй.
+ *
+ * Шат 9b: жагсаалт ИДЭВХТЭЙ өвчтөнийх (store), өвчтөн солиход солигдоно.
  */
-export const useSelectedDrugs = (initialIds: readonly string[] = []) => {
-  const [selectedIds, setSelectedIds] = useState<readonly string[]>(initialIds);
+export const useSelectedDrugs = (initialIds: readonly string[] = NONE) => {
+  const selectedIds = drugIdsOf(usePatients());
+  usePreselect(initialIds);
 
   const toggle = useCallback(
     (id: string) => {
       if (!selectedIds.includes(id)) onAdded(id);
-      setSelectedIds(toggleId(selectedIds, id));
+      setIds(toggleId(selectedIds, id));
     },
     [selectedIds],
   );
 
-  const remove = useCallback(
-    (id: string) => setSelectedIds(without(selectedIds, id)),
-    [selectedIds],
-  );
+  const remove = useCallback((id: string) => setIds(without(selectedIds, id)), [selectedIds]);
 
-  const clear = useCallback(() => setSelectedIds([]), []);
+  const clear = useCallback(() => setIds(NONE), []);
 
   /** Буцаах: хасахаас өмнөх жагсаалтыг сэргээнэ (`useUndoableRemoval`). */
-  const restore = useCallback((ids: readonly string[]) => setSelectedIds(ids), []);
+  const restore = useCallback((ids: readonly string[]) => setIds(ids), []);
 
   const drugs = useMemo(
     () => selectedIds.map((id) => DRUG_BY_ID.get(id)).filter(isDrug),
