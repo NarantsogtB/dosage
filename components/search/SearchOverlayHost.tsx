@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { OPEN_SEARCH_EVENT, type OpenSearchDetail, type SearchMode } from "./search-open";
+import { isSearchShortcut } from "./search-focus";
+import { OPEN_SEARCH_EVENT, openSearch, type OpenSearchDetail, type SearchMode } from "./search-open";
 import type { DrugCategory } from "@/lib/domain/category";
 
 /** Эмийн өгөгдөл (`DRUGS`) нүүр хуудасны bundle-д орохгүй — анх нээхэд л ачаална. */
@@ -18,14 +19,23 @@ const stateOf = (event: Event): State => {
   return { mode: detail.mode ?? "pick", category: detail.category };
 };
 
-/** Layout-д нэг удаа: `openSearch()` event-ийг сонсож бүтэн дэлгэцийн хайлтыг нээнэ. */
+/** Layout-д нэг удаа: `openSearch()` event, `/` болон ⌘K товчлолыг сонсож хайлтыг (mobile бүтэн дэлгэц, desktop palette) нээнэ. */
 export default function SearchOverlayHost() {
   const [state, setState] = useState<State | null>(null);
 
   useEffect(() => {
     const onOpen = (event: Event) => setState(stateOf(event));
+    const onKey = (event: KeyboardEvent) => {
+      if (!isSearchShortcut(event)) return;
+      event.preventDefault();
+      openSearch();
+    };
     window.addEventListener(OPEN_SEARCH_EVENT, onOpen);
-    return () => window.removeEventListener(OPEN_SEARCH_EVENT, onOpen);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener(OPEN_SEARCH_EVENT, onOpen);
+      window.removeEventListener("keydown", onKey);
+    };
   }, []);
 
   if (state === null) return null;

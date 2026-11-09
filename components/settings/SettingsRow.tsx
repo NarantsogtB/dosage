@@ -43,14 +43,21 @@ const Inner = ({ icon: Icon, label, value, danger, control, chevron }: Props & {
   );
 };
 
-/** Тохиргооны нэг мөр: холбоос, товч, эсвэл өөрийн хяналттай. */
+const isExternal = (href?: string): boolean => href !== undefined && href.startsWith("http");
+
+const Linked = (props: Props & { readonly href: string }) =>
+  isExternal(props.href) ? (
+    <a href={props.href} target="_blank" rel="noopener noreferrer" className={ROW}><Inner {...props} chevron /></a>
+  ) : (
+    <Link href={props.href} className={ROW}><Inner {...props} chevron /></Link>
+  );
+
+/** Тохиргооны нэг мөр: холбоос (дотоод/гадаад), товч, эсвэл өөрийн хяналттай. */
 export default function SettingsRow(props: Props) {
   if (props.control) {
     return <div className="flex min-h-14 items-center gap-3 px-3 py-2 text-sm font-medium"><Inner {...props} chevron={false} /></div>;
   }
-  if (props.href) {
-    return <Link href={props.href} className={ROW}><Inner {...props} chevron /></Link>;
-  }
+  if (props.href) return <Linked {...props} href={props.href} />;
   return (
     <button type="button" className={ROW} disabled={props.disabled} onClick={props.onClick}>
       <Inner {...props} chevron />

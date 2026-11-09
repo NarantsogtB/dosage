@@ -1,8 +1,8 @@
 import { DRUGS } from "@/lib/data/drugs";
+import { FEEDBACK_URL } from "@/lib/site";
 import { isVerified } from "@/lib/engine/rule/drug-evidence";
 import { Separator } from "@/components/ui/separator";
 
-const FEEDBACK_URL = "https://www.instagram.com/natso_010/";
 
 const verifiedCount = DRUGS.filter(isVerified).length;
 

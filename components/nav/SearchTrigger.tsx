@@ -1,41 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
-import { requestSearchFocus } from "@/components/search/search-focus";
-import { isActive } from "./active-route";
+import { openSearch } from "@/components/search/search-open";
 
-const Content = () => (
-  <>
-    <Search aria-hidden className="text-muted-foreground" />
-    <span className="text-muted-foreground">Эм хайх</span>
-    <Kbd>/</Kbd>
-  </>
-);
-
-const CLASS = "hidden h-11 gap-2.5 md:inline-flex";
-
-/**
- * «Эм хайх /» — desktop толгойд (Figma "App header", V3 · 03).
- *
- * Тооцоолуур дээр хайлтыг фокуслана (`/` ба ⌘K-тэй ижил); бусад хуудаснаас
- * `/dose` руу аваачна.
- */
+/** «Эм хайх ⌘K» — desktop толгойд. Хайлтын palette-ыг нээнэ (бүх хуудсанд). */
 export default function SearchTrigger() {
-  const onDose = isActive(usePathname(), "/dose");
-  if (!onDose) {
-    return (
-      <Button asChild variant="outline" className={CLASS}>
-        <Link href="/dose"><Content /></Link>
-      </Button>
-    );
-  }
   return (
-    <Button type="button" variant="outline" className={CLASS} onClick={requestSearchFocus}>
-      <Content />
+    <Button type="button" variant="outline" className="hidden h-11 gap-2.5 rounded-full md:inline-flex" onClick={() => openSearch()}>
+      <Search aria-hidden className="text-muted-foreground" />
+      <span className="text-muted-foreground">Эм хайх</span>
+      <Kbd>⌘K</Kbd>
     </Button>
   );
 }

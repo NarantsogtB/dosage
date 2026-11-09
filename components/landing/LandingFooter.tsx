@@ -1,8 +1,8 @@
+import { FEEDBACK_URL } from "@/lib/site";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SOURCE_COUNT } from "./landing-stats";
 
-const FEEDBACK_URL = "https://www.instagram.com/natso_010/";
 
 /** Хаалтын үйлдэл ба холбоо барих. */
 export default function LandingFooter() {

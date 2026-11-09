@@ -8,13 +8,8 @@ export const FOCUS_SEARCH_EVENT = "dosage:focus-search";
 /** `DrugSearch`-ийн Card-ийн id. Доторх cmdk оролт руу хүрэх зам. */
 export const DRUG_SEARCH_ID = "drug-search";
 
-const isMobile = (): boolean => window.matchMedia("(max-width: 767px)").matches;
-
-/** <md: бүтэн дэлгэцийн хайлт (V4); ≥md: хуудас доторх хайлтыг фокуслана. */
-export const requestSearchFocus = (): void => {
-  if (isMobile()) openSearch();
-  else window.dispatchEvent(new Event(FOCUS_SEARCH_EVENT));
-};
+/** Хайлтыг нээнэ — mobile-д бүтэн дэлгэц, desktop-д ⌘K palette (V4, `SearchOverlay`). */
+export const requestSearchFocus = (): void => openSearch();
 
 /**
  * cmdk нь оролтод өөрийн `id`-г хүчээр тавьдаг тул id-аар биш,

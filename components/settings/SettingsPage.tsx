@@ -41,7 +41,7 @@ export default function SettingsPage() {
       <Section title="Эх сурвалж ба тухай">
         <EvidenceLadderRow />
         <SettingsRow icon={Info} label="dosage.mn тухай" href="/" />
-        {FEEDBACK_URL ? <SettingsRow icon={MessageSquare} label="Санал хүсэлт" href={FEEDBACK_URL} /> : null}
+        <SettingsRow icon={MessageSquare} label="Санал хүсэлт" href={FEEDBACK_URL} />
       </Section>
     </main>
   );
