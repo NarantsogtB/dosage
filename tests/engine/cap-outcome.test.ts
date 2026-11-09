@@ -50,4 +50,17 @@ describe("дээд хязгаар — бүхэл гаралт", () => {
     );
     expect(out.perDose.maxMg).toBe(200);
   });
+
+  it("тоймлол хязгаарыг давуулахгүй — хязгаарыг 2 орноор харуулна (G2)", () => {
+    // 15 кг × 40 мг/кг = 600; хязгаар 0.25 мг/кг → 3.75 мг. roundDose(3.75) = 3.8 байсан.
+    const out = outcome([{ kind: "per_kg", scope: "per_dose", maxMgPerKg: 0.25 }], 15);
+    expect(out.perDose.maxMg).toBe(3.75);
+    expect(out.perDose.maxMg).toBeLessThanOrEqual(out.limitMg);
+  });
+
+  it("2 орноос урт хязгаарыг доош тасална", () => {
+    // 1.335 мг/өдөр ÷ 2 удаа = 0.6675 → roundDose 0.67 давна → 0.66.
+    const out = outcome([{ kind: "absolute", scope: "per_day", maxMg: 1.335 }], 10);
+    expect(out.perDose.maxMg).toBe(0.66);
+  });
 });

@@ -11,4 +11,3 @@
 | ~~`PrintTemplate.tsx` 562 мөр~~ | `components/print/` | ✅ 5 файл болов |
 | Нас тохирохгүй үед мессеж ерөнхий | `calculate-dosage.ts` | 6 |
 | ~~Хуучин engine + 492KB snapshot~~ | — | ✅ S1 (2026-10-30) |
-| Тоймлол хязгаараас ≤0.05 мг давж болно (domperidone 15 кг: 3.75 → 3.8 мг, per_kg хязгаар 3.75) | `math/round-dose.ts` → `build-outcome.ts` | Эмнэлзүйн шийдвэр: таслалтын дараа доош тоймлох уу? `real-drug-invariants.test.ts` хүлцэл 0.05 |

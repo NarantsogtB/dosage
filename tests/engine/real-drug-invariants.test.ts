@@ -13,14 +13,6 @@ import { SAMPLE_PATIENTS } from "../fixtures/patients";
  */
 const EPSILON = 0.01;
 
-/**
- * `roundDose` нь ≥1 мг тунг 0.1 мг-аар тоймлодог тул тасраагүй тун
- * хязгаараас хагас алхмаар (0.05 мг) давж болно — жишээ: domperidone
- * 15 кг: 0.25 × 15 = 3.75 → 3.8 мг, per_kg хязгаар 3.75 мг. Хуучин
- * engine-ээс өвлөгдсөн; өөрчлөх нь эмнэлзүйн шийдвэр (docs/architecture/
- * tech-debt.md). Хүлцлийг тоймлолоос илүү сулруулахгүй.
- */
-const ROUNDING = 0.05 + EPSILON;
 
 interface Case {
   readonly drug: Drug;
@@ -43,7 +35,7 @@ const isValidAmount = (value: number): boolean => Number.isFinite(value) && valu
 const badRange = ({ out }: Case): boolean =>
   !isValidAmount(out.perDose.minMg) || out.perDose.minMg > out.perDose.maxMg + EPSILON;
 
-const overLimit = ({ out }: Case): boolean => out.perDose.maxMg > out.limitMg + ROUNDING;
+const overLimit = ({ out }: Case): boolean => out.perDose.maxMg > out.limitMg + EPSILON;
 
 const badDaily = ({ out }: Case): boolean =>
   Math.abs(out.perDay.maxMg - out.perDose.maxMg * out.dosesPerDay) > 1;
@@ -69,7 +61,7 @@ describe("бодит эмийн инвариант", () => {
     expect(failing(badRange)).toEqual([]);
   });
 
-  it("нэг удаагийн тун идэвхтэй хязгаараас давахгүй (тоймлолоос бусад)", () => {
+  it("нэг удаагийн тун идэвхтэй хязгаараас давахгүй (тоймлол ч давуулахгүй)", () => {
     expect(failing(overLimit)).toEqual([]);
   });
 

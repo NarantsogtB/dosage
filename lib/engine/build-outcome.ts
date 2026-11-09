@@ -6,7 +6,9 @@ import type { Patient } from "../domain/patient";
 import { applyCaps } from "./caps/apply-caps";
 import { buildTrace } from "./trace/build-trace";
 import { calculateAmounts } from "./formulation/calculate-amounts";
+import { limitRange } from "./math/limit-range";
 import { roundRange } from "./math/round-range";
+import { floorTo } from "./math/round-to";
 import { scaleRange } from "./math/scale-range";
 import { doseUnitOf } from "./units/convert-unit";
 import { reconstitutionTraceSteps } from "./trace/reconstitution-trace-steps";
@@ -23,7 +25,8 @@ export interface OutcomeInput {
 export const buildOutcome = (input: OutcomeInput): DosageOutcome => {
   const { drug, rule, patient, base, dosesPerDay } = input;
   const capped = applyCaps(base, rule.caps, patient, dosesPerDay);
-  const perDose = roundRange(capped.range);
+  // Тоймлол хязгаарыг давбал хязгаарыг 2 орноор (доош) харуулна: 3.75 → 3.8 биш, 3.75 (G2).
+  const perDose = limitRange(roundRange(capped.range), floorTo(capped.limitMg, 2));
   const perDay = roundRange(scaleRange(perDose, dosesPerDay));
   const doseUnit = doseUnitOf(rule);
   const amounts = calculateAmounts(drug.formulations, { range: perDose, doseUnit, route: rule.route });
