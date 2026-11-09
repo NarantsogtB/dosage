@@ -1,13 +1,19 @@
 "use client";
 
+import { openSearch } from "./search-open";
+
 /** Хайлтыг нээж, фокуслах хүсэлт — толгойн товч, `/`, ⌘K. */
 export const FOCUS_SEARCH_EVENT = "dosage:focus-search";
 
 /** `DrugSearch`-ийн Card-ийн id. Доторх cmdk оролт руу хүрэх зам. */
 export const DRUG_SEARCH_ID = "drug-search";
 
+const isMobile = (): boolean => window.matchMedia("(max-width: 767px)").matches;
+
+/** <md: бүтэн дэлгэцийн хайлт (V4); ≥md: хуудас доторх хайлтыг фокуслана. */
 export const requestSearchFocus = (): void => {
-  window.dispatchEvent(new Event(FOCUS_SEARCH_EVENT));
+  if (isMobile()) openSearch();
+  else window.dispatchEvent(new Event(FOCUS_SEARCH_EVENT));
 };
 
 /**

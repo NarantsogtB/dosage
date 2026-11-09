@@ -9,6 +9,7 @@
 | `summary/` | Сонгосон эмийн наалдамхай хураангуй, хуулах |
 | `print/` | Зөвхөн хэвлэх загвар |
 | `home/` | Mobile нүүр (<lg): өвчтөн hero + карусель, нэмэх 2 алхам, «Энэ өвчтөнд». Store: `calculator/patient-store.ts` |
+| `drugs/`, `settings/` | `/drugs` (Миний эмүүд, ангилал), `/settings`. Хайлтын бүтэн дэлгэц: `search/SearchOverlay` |
 | `burns/` | `/burns` бүхэлдээ |
 | `fluids/` | `/fluids` (FluidRow, burn-format-ийг burns-ээс ашиглана) |
 | `landing/`, `nav/`, `drug-page/`, `recent/`, `pwa/`, `theme/`, `brand/`, `analytics/` | нэрээрээ |

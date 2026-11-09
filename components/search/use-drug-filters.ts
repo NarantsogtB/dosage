@@ -8,10 +8,10 @@ import { filterDrugs, indicationHits } from "@/lib/search/filter-drugs";
 import { ROUTE_FILTER_LABELS, type RouteFilter } from "@/lib/search/route-filter";
 import { useTrackSearchMisses } from "./use-track-search-misses";
 
-/** Хайлт, ангилал, баталгаажилтын шүүлтүүрийн төлөв. */
-export const useDrugFilters = (drugs: readonly Drug[]) => {
+/** Хайлт, ангилал, баталгаажилтын шүүлтүүрийн төлөв. `initialCategory` — ангиллын картаас нээхэд. */
+export const useDrugFilters = (drugs: readonly Drug[], initialCategory?: DrugCategory) => {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<DrugCategory | undefined>();
+  const [category, setCategory] = useState<DrugCategory | undefined>(initialCategory);
   const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [route, setRoute] = useState<RouteFilter | undefined>();
 

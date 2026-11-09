@@ -20,11 +20,10 @@ export default function InputColumn(props: Props) {
       <div className="hidden lg:block">
         <PatientInput form={props.form} onChange={props.onForm} />
       </div>
-      <DrugSearch
-        drugs={DRUGS}
-        selectedIds={props.selectedIds}
-        onToggle={props.onToggle}
-      />
+      {/* <md: бүтэн дэлгэцийн хайлт (`search/SearchOverlay`). */}
+      <div className="hidden md:block">
+        <DrugSearch drugs={DRUGS} selectedIds={props.selectedIds} onToggle={props.onToggle} />
+      </div>
     </div>
   );
 }

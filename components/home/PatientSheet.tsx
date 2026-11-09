@@ -16,7 +16,9 @@ import {
   hasValidAge,
   hasWeight,
   type PatientForm,
+  type WeightUnit,
 } from "@/components/calculator/patient-form";
+import { usePrefs } from "@/components/settings/prefs-store";
 import { AgeStep, WeightStep, type StepProps } from "./PatientSteps";
 import { newPatientId, updatePatients } from "@/components/calculator/patient-store";
 import {
@@ -41,8 +43,10 @@ const save = (editing: StoredPatient | undefined, form: PatientForm, label: stri
       : (addPatient(state, { ...newPatient(newPatientId(), form), label: cleanLabel(label) }) ?? state),
   );
 
-const initialOf = (editing?: StoredPatient) =>
-  editing ? { form: editing.form, label: editing.label } : { form: EMPTY_FORM, label: "" };
+const initialOf = (editing: StoredPatient | undefined, weightUnit: WeightUnit) =>
+  editing
+    ? { form: editing.form, label: editing.label }
+    : { form: { ...EMPTY_FORM, weightUnit }, label: "" };
 
 const isStepOk = (step: 1 | 2, form: PatientForm): boolean =>
   step === 1 ? hasWeight(form) : hasValidAge(form);
@@ -100,7 +104,7 @@ const Fields = (props: FieldsProps) =>
   );
 
 const Body = ({ editing, onClose }: Pick<Props, "editing" | "onClose">) => {
-  const initial = initialOf(editing);
+  const initial = initialOf(editing, usePrefs().weightUnit);
   const [step, setStep] = useState<1 | 2>(1);
   const [form, setForm] = useState<PatientForm>(initial.form);
   const [label, setLabel] = useState(initial.label);
