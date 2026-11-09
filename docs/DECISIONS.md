@@ -18,6 +18,22 @@
 
 ---
 
+## 2026-11-09 — V4 dark токен, Onest, dark анхдагч (Шат 9a)
+
+**Context:** V4 redesign (2026-11-04 шийдвэр): dark анхдагч, фонт Onest.
+**Decision:** `.dark` токеныг Figma «V4 Dark (draft)»-оор: background = bg/ink, card =
+surface/card, muted/secondary/popover = surface/raised, border = line/subtle, текст =
+text/primary, text/muted, evidence-c. Teal/danger/warning одоогийнхтой яг тэнцүү байсан.
+Hex-ийг oklch болгосон (бусад токентой нэг хэлбэр, `scripts/contrast.mjs` oklch уншдаг).
+`.dark` нь `@media screen` дотор — хэвлэх загвар үргэлж цайвар. `defaultTheme="dark"`.
+Фонт `next/font/google` Onest (latin + cyrillic), `tabular-nums` ажиллана (хэмжсэн).
+bg/sheet, accent/tile — 9b-д хэрэглэгдэх үед нэмнэ.
+**Why:** Light токен хөндөөгүй; семантик нэр хэвээр тул компонент өөрчлөгдөхгүй.
+Contrast dark: текст ≥5.77, тэмдэг ≥6.19, input 3.12.
+**Status:** accepted
+
+---
+
 ## 2026-11-09 — Тоймлол хязгаарыг давуулахгүй (G2)
 
 **Context:** `roundDose` тасарсан тунг 0.1 мг-аар тоймлоход хязгаараас ≤0.05 мг давж
