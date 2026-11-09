@@ -17,11 +17,8 @@ export const SITE_URL =
 
 export const SITE_NAME = "dosage.mn";
 
-/**
- * Санал хүсэлтийн хаяг. Тохируулаагүй бол Тохиргооны «Санал хүсэлт» мөр
- * харагдахгүй (хаяг зохиохгүй). Build үед `NEXT_PUBLIC_FEEDBACK_URL`-аар.
- */
-export const FEEDBACK_URL = process.env.NEXT_PUBLIC_FEEDBACK_URL;
+/** Санал хүсэлтийн хаяг — footer, Тохиргоо хоёр нэг эхээс. */
+export const FEEDBACK_URL = "https://www.instagram.com/natso_010/";
 
 export const SITE_TAGLINE_MN = "Монгол эмчийн эмнэлзүйн тооцоолуур";
 

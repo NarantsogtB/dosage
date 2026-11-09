@@ -30,6 +30,13 @@ interface Props {
   readonly onRemove: (id: string) => void;
   readonly onIndication: (drugId: string, code?: string) => void;
   readonly onFormulation: (drugId: string, formulationId: string) => void;
+  /**
+   * `detail` — desktop дэлгэрэнгүй (Figma 127:426): «Яаж бодсон бэ?», тэмдэглэл, эх сурвалж
+   * картаас гарч баруун aside-д (`desk/DetailAside`); устгах товч, жорын мөр байхгүй.
+   */
+  readonly variant?: "list" | "detail";
+  /** Шилэн толгойн доорх үйлдлүүд (Жор хуулах, Хэвлэх) — зөвхөн `detail`. */
+  readonly headerActions?: React.ReactNode;
 }
 
 type DosageProps = Omit<Props, "result"> & { readonly outcome: DosageOutcome };
@@ -37,15 +44,29 @@ type DosageProps = Omit<Props, "result"> & { readonly outcome: DosageOutcome };
 /** Шилэн толгой — нэр, нотолгоо, тун (Figma 123:100). Хэвлэхэд энгийн цайвар. */
 const GlassHeader = (props: DosageProps & { readonly selected?: FormulationAmount }) => {
   const { drug, outcome, patient, selected, onRemove } = props;
+  const detail = props.variant === "detail";
   return (
     <div className="from-tile/25 bg-linear-to-b to-transparent p-3 print:bg-none">
       <div className="bg-card/55 rounded-2xl border p-4 backdrop-blur-md print:bg-transparent print:backdrop-blur-none">
-        <DosageCardHeader drug={drug} route={outcome.rule.route} level={outcome.rule.evidenceLevel} onRemove={onRemove} />
+        <DosageCardHeader drug={drug} route={outcome.rule.route} level={outcome.rule.evidenceLevel} onRemove={detail ? undefined : onRemove} />
         <DoseBand outcome={outcome} patient={patient} selected={selected} reviewed={drug.lastReviewed} />
+        {props.headerActions}
       </div>
     </div>
   );
 };
+
+/** Яаж бодсон, тэмдэглэл, эх сурвалж — mobile/жагсаалтад картын дотор; `detail`-д aside-д. */
+const Disclosures = ({ props, outcome }: { readonly props: Props; readonly outcome: DosageOutcome }) =>
+  props.variant === "detail" ? <div className="h-4" /> : (
+    <>
+      <div className="mt-2">
+        <TraceDetails trace={outcome.trace} />
+        <NotesPanel notes={props.drug.notesMn} />
+      </div>
+      <SourceFooter outcome={outcome} />
+    </>
+  );
 
 /**
  * Нэг эмийн тооцооллын үр дүн — V4 «баримт» (Figma 123:100, 130:1234, 130:1413).
@@ -81,11 +102,7 @@ export default function DosageCard(props: Props) {
       </div>
       <WarningList warnings={outcome.warnings} />
       <RxLine drug={drug} outcome={outcome} selected={selected} />
-      <div className="mt-2">
-        <TraceDetails trace={outcome.trace} />
-        <NotesPanel notes={drug.notesMn} />
-      </div>
-      <SourceFooter outcome={outcome} />
+      <Disclosures props={props} outcome={outcome} />
     </Card>
   );
 }

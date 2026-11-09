@@ -12,7 +12,8 @@ interface Props {
   readonly route: Route;
   /** Идэвхтэй дүрмийн түвшин — харагдаж буй тоо яг тэр дүрмээс гарсан. */
   readonly level: EvidenceLevel;
-  readonly onRemove: (id: string) => void;
+  /** Байхгүй бол хасах товч харагдахгүй (desktop дэлгэрэнгүй). */
+  readonly onRemove?: (id: string) => void;
 }
 
 /**
@@ -35,9 +36,11 @@ export default function DosageCardHeader({ drug, route, level, onRemove }: Props
       </div>
       <div className="flex shrink-0 items-center gap-2">
         <EvidenceChip level={level} />
-        <div className="print:hidden">
-          <RemoveButton label={drug.inn} onRemove={() => onRemove(drug.id)} />
-        </div>
+        {onRemove ? (
+          <div className="print:hidden">
+            <RemoveButton label={drug.inn} onRemove={() => onRemove(drug.id)} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

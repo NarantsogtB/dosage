@@ -8,10 +8,14 @@ export const isActive = (pathname: string, href: string): boolean =>
 export const activeRoute = (pathname: string): CalculatorRoute | undefined =>
   ROUTES.find((route) => isActive(pathname, route.href));
 
+const matchesPrefix = (pathname: string, prefix: string): boolean =>
+  prefix.endsWith("/") ? pathname.startsWith(prefix) : isActive(pathname, prefix);
+
 const HOME_TAB = TABS[0]!;
 
-/** Табын дор орох замууд. `/history` нь Тохиргооны дэд хуудас. */
+/** `/dose/amoxicillin` (эмийн хуудас) нь Эмүүд табын дор; `/history` нь Тохиргооны дэд хуудас. */
 const TAB_PATHS: readonly (readonly [string, Tab])[] = [
+  ["/dose/", TABS[1]!],
   ["/drugs", TABS[1]!],
   ["/settings", TABS[2]!],
   ["/history", TABS[2]!],
@@ -24,4 +28,4 @@ const homeTab = (pathname: string): Tab | undefined => (activeRoute(pathname) ? 
  * хуудсанд (landing) undefined — навигац харагдахгүй.
  */
 export const activeTab = (pathname: string): Tab | undefined =>
-  TAB_PATHS.find(([prefix]) => isActive(pathname, prefix))?.[1] ?? homeTab(pathname);
+  TAB_PATHS.find(([prefix]) => matchesPrefix(pathname, prefix))?.[1] ?? homeTab(pathname);

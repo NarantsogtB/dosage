@@ -11,6 +11,7 @@
 | `home/` | Mobile нүүр (<lg): өвчтөн hero + карусель, нэмэх 2 алхам, «Энэ өвчтөнд». Store: `calculator/patient-store.ts` |
 | `drugs/`, `settings/` | `/drugs` (Миний эмүүд, ангилал), `/settings`. Хайлтын бүтэн дэлгэц: `search/SearchOverlay` |
 | `history/` | `/history`: түүхийн store, мөр, дахин нээх. Логик `lib/history/` |
+| `desk/` | Desktop (≥1024): `DeskPage` (dashboard/дэлгэрэнгүй), `PatientColumn`, `DeskShell` 3 багана. Mobile нь `calculator/CalculatorMobile` |
 | `burns/` | `/burns` бүхэлдээ |
 | `fluids/` | `/fluids` (FluidRow, burn-format-ийг burns-ээс ашиглана) |
 | `landing/`, `nav/`, `drug-page/`, `recent/`, `pwa/`, `theme/`, `brand/`, `analytics/` | нэрээрээ |
