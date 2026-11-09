@@ -9,7 +9,7 @@
 |---|---|
 | `component-rules.md` | ★ Компонент бичих 9 дүрэм |
 | `tokens.md` | Token architecture |
-| `typography.md` | Бичиглэл, Source Sans 3, шат |
+| `typography.md` | Бичиглэл, Onest (V4), шат |
 | `shadcn-mapping.md` | Figma variant → cva, нэмэх / shadcn болгохгүй компонент |
 | `shadcn-placement.md` | Аль shadcn компонент хаана, command.tsx-ийн ганц засвар |
 | `tab-height.md` | Тагтны өндөр — shadcn-ийг дахин бичсэн |
