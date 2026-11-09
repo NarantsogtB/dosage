@@ -3,11 +3,11 @@
 import type { CalculationResult, DosageOutcome, FormulationAmount } from "@/lib/domain/calculation-result";
 import type { Drug } from "@/lib/domain/drug";
 import type { Patient } from "@/lib/domain/patient";
-import { primaryOf } from "@/lib/format/primary-formulation-line";
 import { amountKey } from "@/lib/format/reconstitution";
 import { Card } from "@/components/ui/card";
 import { drugAnchorId } from "@/components/summary/drug-anchor";
 import BetterEvidenceHint from "./BetterEvidenceHint";
+import { selectedAmount } from "./selected-amount";
 import DosageCardHeader from "./DosageCardHeader";
 import DoseBand from "./DoseBand";
 import DoseTiles from "./DoseTiles";
@@ -31,13 +31,6 @@ interface Props {
   readonly onIndication: (drugId: string, code?: string) => void;
   readonly onFormulation: (drugId: string, formulationId: string) => void;
 }
-
-/**
- * Сонгосон хэлбэр. Заалт солигдоход өмнөх сонголт шинэ жагсаалтад
- * байхгүй бол анхдагч (эхний шингэн) руу буцна. Төлөв нь `useChoices`-д.
- */
-const selectedOf = (outcome: DosageOutcome, id?: string) =>
-  outcome.amounts.find((amount) => amountKey(amount) === id) ?? primaryOf(outcome.amounts);
 
 type DosageProps = Omit<Props, "result"> & { readonly outcome: DosageOutcome };
 
@@ -69,7 +62,7 @@ export default function DosageCard(props: Props) {
   }
 
   const outcome = result.data;
-  const selected = selectedOf(outcome, props.formulation);
+  const selected = selectedAmount(outcome, props.formulation);
   return (
     <Card id={drugAnchorId(drug.id)} className="scroll-mt-20 gap-0 overflow-hidden py-0 print:shadow-none">
       <GlassHeader {...props} outcome={outcome} selected={selected} />

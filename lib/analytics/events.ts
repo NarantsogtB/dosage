@@ -57,7 +57,11 @@ export type AnalyticsEvent =
       readonly outcome: InstallOutcome;
     }
   /** Линк хуулсан. Агуулга (жин, эм) ИЛГЭЭХГҮЙ — зөвхөн үйлдэл. */
-  | { readonly name: "share_link_copied" };
+  | { readonly name: "share_link_copied" }
+  /** Түүхийн хуудас нээсэн. Агуулга ИЛГЭЭХГҮЙ. */
+  | { readonly name: "history_opened" }
+  /** Түүхээс мөр дахин нээсэн — зөвхөн эм (жин, нас, шошго ИЛГЭЭХГҮЙ). */
+  | { readonly name: "history_entry_opened"; readonly drugId: string };
 
 export type EventName = AnalyticsEvent["name"];
 
@@ -100,6 +104,8 @@ const SCHEMA: Record<EventName, Record<string, Check>> = {
     outcome: oneOf(INSTALL_OUTCOMES),
   },
   share_link_copied: {},
+  history_opened: {},
+  history_entry_opened: { drugId: isDrugId },
 };
 
 type Fields = Record<string, Check>;

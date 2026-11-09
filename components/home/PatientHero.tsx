@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import { ChevronDown, Pencil, Plus, Search, Trash2 } from "lucide-react";
+import Link from "next/link";
+import { ChevronDown, History, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import AgeDisplay from "@/components/dosage/AgeDisplay";
@@ -109,6 +110,11 @@ export default function PatientHero({ state, onAdd, ...menu }: Props) {
   return (
     <section aria-label="Өвчтөн" className="from-tile/30 -mx-4 bg-linear-to-b to-transparent px-4 pt-3 pb-2 sm:-mx-6 sm:px-6">
       <div className="flex justify-end gap-2">
+        <Button asChild variant="secondary" size="icon">
+          <Link href="/history" aria-label="Түүх">
+            <History aria-hidden />
+          </Link>
+        </Button>
         <Button type="button" variant="secondary" size="icon" aria-label="Эм хайх" onClick={requestSearchFocus}>
           <Search aria-hidden />
         </Button>

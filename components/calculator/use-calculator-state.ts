@@ -2,7 +2,10 @@
 
 import { useMemo } from "react";
 import { hasWeight, inputStatus, isReady, toPatient } from "./patient-form";
-import { usePatientForm } from "./patient-store";
+import { usePatientForm, usePatients } from "./patient-store";
+import { activeOf } from "./patients";
+import { useAppliedPendingChoices } from "@/components/history/use-applied-pending-choices";
+import { useRecordHistory } from "./use-record-history";
 import { useCalculatorTracking } from "./use-calculator-tracking";
 import { useChoices } from "./use-choices";
 import { useDosageResults } from "./use-dosage-results";
@@ -20,6 +23,7 @@ export const useCalculatorState = (initialDrugIds?: readonly string[]) => {
   const { drugs } = selection;
   const { choices, onToggle } = useChoices(selection.toggle);
   const { onRemove, onClear } = useUndoableRemoval(selection);
+  useAppliedPendingChoices(choices);
   const share = useShare({
     form,
     setForm,
@@ -32,6 +36,7 @@ export const useCalculatorState = (initialDrugIds?: readonly string[]) => {
   const ready = isReady(form);
   const results = useDosageResults({ drugs, patient, indications: choices.indications, ready });
   useCalculatorTracking({ patient, hasWeight: hasWeight(form), results });
+  useRecordHistory({ label: activeOf(usePatients())?.label ?? "", patient, drugs, results, choices });
 
   return {
     form,
