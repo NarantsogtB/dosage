@@ -40,7 +40,7 @@ export default function ActionBar({ drugs, results, patient, shareFragment }: Pr
           variant="default"
           size="lg"
           label={`Жор хуулах · ${ids.length} эм`}
-          className="flex-1"
+          className="bg-tile text-tile-foreground hover:bg-tile/90 flex-1 rounded-full"
         />
         <ShareLinkButton fragment={shareFragment} size="icon-lg" iconOnly />
         <Button type="button" variant="outline" size="icon-lg" aria-label="Хэвлэх" onClick={() => window.print()}>

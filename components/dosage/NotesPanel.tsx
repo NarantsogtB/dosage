@@ -5,7 +5,7 @@ import DisclosureRow from "./DisclosureRow";
 export default function NotesPanel({ notes }: { readonly notes?: string }) {
   if (!notes) return null;
   return (
-    <DisclosureRow icon={NotebookPen} label="Тэмдэглэл">
+    <DisclosureRow icon={NotebookPen} label="Тэмдэглэл" summary="1">
       <p className="text-muted-foreground text-sm leading-relaxed">{notes}</p>
     </DisclosureRow>
   );

@@ -52,7 +52,7 @@ export default function MaxDoseMeter({
   const Icon = tone === "neutral" ? ShieldCheck : TriangleAlert;
 
   return (
-    <div className={cn("space-y-2 rounded-lg border px-4 py-3", BOX[tone])}>
+    <div className={cn("space-y-2 rounded-2xl border px-4 py-3", BOX[tone])}>
       <div className="flex items-start justify-between gap-3">
         <p className="flex items-start gap-2 text-sm font-semibold">
           <Icon aria-hidden className="mt-0.5 size-4 shrink-0" />

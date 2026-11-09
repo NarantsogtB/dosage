@@ -38,7 +38,7 @@ const linesOf = ({ drug, outcome, selected }: Props): readonly string[] => [
 export default function RxLine(props: Props) {
   const lines = linesOf(props);
   return (
-    <div className="mx-5 mb-4 flex items-start gap-3 rounded-lg border bg-muted/50 p-3.5">
+    <div className="mx-4 mt-3 flex items-start gap-3 rounded-2xl border bg-muted/50 p-3.5">
       <p className="flex-1 text-sm leading-relaxed">
         <span className="font-semibold">{lines[0]}</span>
         {lines.slice(1).map((line) => (
