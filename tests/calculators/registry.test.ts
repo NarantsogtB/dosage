@@ -12,7 +12,7 @@ const idOf = (entry: { id: string }) => entry.id;
 describe("Тооцоолуурын бүртгэл (S3)", () => {
   it("nav нь бүртгэлийн дараалал, нэрээр", () => {
     expect(ROUTES.map(hrefOf)).toEqual(["/dose", "/burns", "/fluids", "/emergency"]);
-    expect(ROUTES.map(shortOf)).toEqual(["Эм", "Түлэгдэлт", "Шингэн", "Яаралтай"]);
+    expect(ROUTES.map(shortOf)).toEqual(["Эмийн тун", "Түлэгдэлт", "Шингэн", "Яаралтай"]);
   });
 
   it("sitemap-ийн хуудсууд, эрэмбэ", () => {

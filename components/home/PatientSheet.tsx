@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { ChevronLeft } from "lucide-react";import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,20 +13,16 @@ import {
 import { FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import {
-  EMPTY_FORM,
   hasValidAge,
   hasWeight,
   type PatientForm,
-  type WeightUnit,
 } from "@/components/calculator/patient-form";
+import { useIsDesktop } from "@/components/use-media-query";
 import { usePrefs } from "@/components/settings/prefs-store";
+import WideBody from "./PatientDialogForm";
+import { initialOf, save } from "./patient-draft";
 import { AgeStep, WeightStep, type StepProps } from "./PatientSteps";
-import { newPatientId, updatePatients } from "@/components/calculator/patient-store";
 import {
-  addPatient,
-  cleanLabel,
-  newPatient,
-  updatePatient,
   type StoredPatient,
 } from "@/components/calculator/patients";
 
@@ -35,18 +32,6 @@ interface Props {
   readonly editing?: StoredPatient;
   readonly onClose: () => void;
 }
-
-const save = (editing: StoredPatient | undefined, form: PatientForm, label: string): void =>
-  updatePatients((state) =>
-    editing
-      ? updatePatient(state, editing.id, { form, label: cleanLabel(label) })
-      : (addPatient(state, { ...newPatient(newPatientId(), form), label: cleanLabel(label) }) ?? state),
-  );
-
-const initialOf = (editing: StoredPatient | undefined, weightUnit: WeightUnit) =>
-  editing
-    ? { form: editing.form, label: editing.label }
-    : { form: { ...EMPTY_FORM, weightUnit }, label: "" };
 
 const isStepOk = (step: 1 | 2, form: PatientForm): boolean =>
   step === 1 ? hasWeight(form) : hasValidAge(form);
@@ -103,7 +88,7 @@ const Fields = (props: FieldsProps) =>
     </>
   );
 
-const Body = ({ editing, onClose }: Pick<Props, "editing" | "onClose">) => {
+const StepBody = ({ editing, onClose }: Pick<Props, "editing" | "onClose">) => {
   const initial = initialOf(editing, usePrefs().weightUnit);
   const [step, setStep] = useState<1 | 2>(1);
   const [form, setForm] = useState<PatientForm>(initial.form);
@@ -124,7 +109,7 @@ const Body = ({ editing, onClose }: Pick<Props, "editing" | "onClose">) => {
       <Fields
         step={step}
         form={form}
-        set={(patch) => setForm({ ...form, ...patch })}
+        set={(patch) => setForm((prev) => ({ ...prev, ...patch }))}
         label={label}
         onLabel={setLabel}
         onBack={() => setStep(1)}
@@ -135,6 +120,9 @@ const Body = ({ editing, onClose }: Pick<Props, "editing" | "onClose">) => {
     </form>
   );
 };
+
+/** Desktop (≥lg) — нэг алхамтай modal (Figma 129:823); mobile — 2 алхам. */
+const Body = (props: Pick<Props, "editing" | "onClose">) => (useIsDesktop() ? <WideBody {...props} /> : <StepBody {...props} />);
 
 const keyOf = (editing?: StoredPatient): string => editing?.id ?? "new";
 

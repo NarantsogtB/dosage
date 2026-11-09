@@ -2,24 +2,8 @@
 
 import { openSearch } from "./search-open";
 
-/** Хайлтыг нээж, фокуслах хүсэлт — толгойн товч, `/`, ⌘K. */
-export const FOCUS_SEARCH_EVENT = "dosage:focus-search";
-
-/** `DrugSearch`-ийн Card-ийн id. Доторх cmdk оролт руу хүрэх зам. */
-export const DRUG_SEARCH_ID = "drug-search";
-
 /** Хайлтыг нээнэ — mobile-д бүтэн дэлгэц, desktop-д ⌘K palette (V4, `SearchOverlay`). */
 export const requestSearchFocus = (): void => openSearch();
-
-/**
- * cmdk нь оролтод өөрийн `id`-г хүчээр тавьдаг тул id-аар биш,
- * `[cmdk-input]` атрибутаар олно.
- */
-export const focusSearchInput = (): void => {
-  const input = document.querySelector<HTMLInputElement>(`#${DRUG_SEARCH_ID} [cmdk-input]`);
-  input?.focus();
-  input?.scrollIntoView({ block: "center", behavior: "smooth" });
-};
 
 const TYPING = new Set(["INPUT", "TEXTAREA", "SELECT"]);
 

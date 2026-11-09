@@ -2,19 +2,17 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ChevronDown, History, Pencil, Plus, Search, Trash2 } from "lucide-react";
+import { History, Plus, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import AgeDisplay from "@/components/dosage/AgeDisplay";
-import { hasAge, hasWeight, toPatient } from "@/components/calculator/patient-form";
+import { hasWeight, toPatient } from "@/components/calculator/patient-form";
 import { updatePatients } from "@/components/calculator/patient-store";
 import {
   MAX_PATIENTS,
-  labelOf,
   setActive,
   type PatientsState,
   type StoredPatient,
 } from "@/components/calculator/patients";
+import PatientMenu from "./PatientMenu";
 import { requestSearchFocus } from "@/components/search/search-focus";
 import { cn } from "@/lib/utils";
 
@@ -50,31 +48,6 @@ const useCarousel = (state: PatientsState) => {
 
   return { ref, onScroll };
 };
-
-const MenuItem = (props: React.ComponentProps<typeof Button>) => (
-  <Button type="button" variant="ghost" className="w-full justify-start" {...props} />
-);
-
-const Menu = ({ state, patient, index, onEdit, onRemove }: Omit<Props, "onAdd"> & { patient: StoredPatient; index: number }) => (
-  <Popover>
-    <PopoverTrigger asChild>
-      <Button type="button" variant="ghost" className="text-muted-foreground rounded-full">
-        {labelOf(patient, index)}
-        {hasAge(patient.form) ? <> · <AgeDisplay ageMonths={toPatient(patient.form).ageMonths} /></> : null}
-        <ChevronDown aria-hidden />
-      </Button>
-    </PopoverTrigger>
-    <PopoverContent className="w-64 p-1.5">
-      {state.patients.map((item, at) => (
-        <MenuItem key={item.id} aria-current={item.id === state.activeId} onClick={() => updatePatients((s) => setActive(s, item.id))}>
-          {labelOf(item, at)} · <span className="num">{item.form.weight || "—"}</span>
-        </MenuItem>
-      ))}
-      <MenuItem onClick={() => onEdit(patient)}><Pencil aria-hidden /> Засах</MenuItem>
-      <MenuItem className="text-destructive" onClick={() => onRemove(patient)}><Trash2 aria-hidden /> Устгах</MenuItem>
-    </PopoverContent>
-  </Popover>
-);
 
 const Weight = ({ patient }: { readonly patient: StoredPatient }) => (
   <p className="num text-6xl font-bold">
@@ -128,7 +101,7 @@ export default function PatientHero({ state, onAdd, ...menu }: Props) {
         <div ref={ref} onScroll={onScroll} className="flex snap-x snap-mandatory overflow-x-auto [scrollbar-width:none]">
           {state.patients.map((patient, index) => (
             <div key={patient.id} className="flex min-w-full snap-center flex-col items-center gap-1">
-              <Menu state={state} patient={patient} index={index} {...menu} />
+              <PatientMenu state={state} patient={patient} index={index} {...menu} />
               <Weight patient={patient} />
             </div>
           ))}

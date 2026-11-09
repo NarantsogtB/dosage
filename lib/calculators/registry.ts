@@ -28,7 +28,7 @@ export const CALCULATOR_REGISTRY = [
     id: "dose",
     path: "/dose",
     labelMn: "Эмийн тун",
-    shortMn: "Эм",
+    shortMn: "Эмийн тун",
     group: "dose",
     priority: 0.9,
   },

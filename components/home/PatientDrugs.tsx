@@ -16,7 +16,13 @@ import { drugAnchorId } from "@/components/summary/drug-anchor";
 interface Props {
   readonly drugs: readonly Drug[];
   readonly results: ReadonlyMap<string, CalculationResult>;
+  /** Мөрийн холбоос. Анхдагч — тухайн хуудсан дахь картын anchor (mobile). */
+  readonly hrefOf?: (drug: Drug) => string;
+  /** `compact` — desktop зүүн багана: дүрс tile-гүй, хавтгай мөр (Figma 126:354). */
+  readonly compact?: boolean;
 }
+
+const anchorOf = (drug: Drug): string => `#${drugAnchorId(drug.id)}`;
 
 /** «500 мг = 20 мл» — мг, мл хоёр ижил жинтэй (9c-ийн дүрэм). */
 const Amount = ({ data }: { readonly data: DosageOutcome }) => {
@@ -36,14 +42,31 @@ const Body = ({ result }: { readonly result?: CalculationResult }) =>
     <p className="text-muted-foreground text-sm">тооцоолол боломжгүй</p>
   );
 
-const DrugRow = ({ drug, result }: { readonly drug: Drug; readonly result?: CalculationResult }) => {
+interface RowProps {
+  readonly drug: Drug;
+  readonly result?: CalculationResult;
+  readonly href: string;
+  readonly compact: boolean;
+}
+
+const SHELL = {
+  card: "bg-card flex items-center gap-3 rounded-2xl p-3",
+  compact: "flex items-center gap-3 py-1.5",
+} as const;
+
+const RowTile = ({ show }: { readonly show: boolean }) =>
+  show ? (
+    <span className="bg-tile text-tile-foreground grid size-11 shrink-0 place-items-center rounded-xl">
+      <Pill aria-hidden className="size-5" />
+    </span>
+  ) : null;
+
+const DrugRow = ({ drug, result, href, compact }: RowProps) => {
   const line = prescriptionLine(drug, result);
   return (
-    <li className="bg-card flex items-center gap-3 rounded-2xl p-3">
-      <span className="bg-tile text-tile-foreground grid size-11 shrink-0 place-items-center rounded-xl">
-        <Pill aria-hidden className="size-5" />
-      </span>
-      <a href={`#${drugAnchorId(drug.id)}`} className="min-w-0 flex-1">
+    <li className={SHELL[compact ? "compact" : "card"]}>
+      <RowTile show={!compact} />
+      <a href={href} className="min-w-0 flex-1">
         <span className="flex items-center gap-2">
           <span className="truncate font-semibold">{drug.innMn}</span>
           <EvidenceDot drug={drug} />
@@ -57,8 +80,19 @@ const DrugRow = ({ drug, result }: { readonly drug: Drug; readonly result?: Calc
   );
 };
 
+const List = ({ drugs, results, hrefOf, compact }: Required<Props>) =>
+  drugs.length === 0 ? (
+    <p className="text-muted-foreground text-sm">Эм сонгоогүй байна. «+» дарж хайж нэмнэ үү.</p>
+  ) : (
+    <ul className={compact ? "divide-border/60 divide-y" : "space-y-2"}>
+      {drugs.map((drug) => (
+        <DrugRow key={drug.id} drug={drug} result={results.get(drug.id)} href={hrefOf(drug)} compact={compact} />
+      ))}
+    </ul>
+  );
+
 /** «Энэ өвчтөнд» — идэвхтэй өвчтөний эмүүд, нэг мөр = нэг эм. */
-export default function PatientDrugs({ drugs, results }: Props) {
+export default function PatientDrugs(props: Props) {
   return (
     <section aria-labelledby="patient-drugs" className="space-y-3">
       <div className="flex items-center justify-between">
@@ -69,15 +103,7 @@ export default function PatientDrugs({ drugs, results }: Props) {
           <Plus aria-hidden />
         </Button>
       </div>
-      {drugs.length === 0 ? (
-        <p className="text-muted-foreground text-sm">Эм сонгоогүй байна. Доороос хайж нэмнэ үү.</p>
-      ) : (
-        <ul className="space-y-2">
-          {drugs.map((drug) => (
-            <DrugRow key={drug.id} drug={drug} result={results.get(drug.id)} />
-          ))}
-        </ul>
-      )}
+      <List drugs={props.drugs} results={props.results} hrefOf={props.hrefOf ?? anchorOf} compact={props.compact ?? false} />
     </section>
   );
 }
