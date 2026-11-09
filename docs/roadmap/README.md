@@ -31,7 +31,7 @@ docs/roadmap/<файл>.md-ийг хэрэгжүүл.
 | 13 | `phase-6-iv-im.md` | IV/IM + нунтаг найруулах | ~1.5 долоо хоног | S4 | ☑ (schema + engine + UI; бодит өгөгдөл — эмчийн баталгаатай) |
 | 14 | `phase-7-emergency.md` | `/emergency` | ~2 долоо хоног | 1, 6 | 7a ☑ (дэд бүтэц) · 7b ☑ (adrenaline, glucose, diazepam, болюс) · 7c ☐ (amiodarone, дефибрилляци, midazolam, ETT — 2 дахь эх сурвалж) |
 | 15 | `phase-8-scores.md` | GCS, Schwartz, corrected Na/Ca, AG | ~1 долоо хоног | S3 | ☐ |
-| 16 | `phase-9-v4-redesign.md` | Төлөвийн шалгалт (2026-11-09) + G1 жингийн таслал + V4 dark redesign (9a–9h) | ~3 долоо хоног | 2a–2c | ☐ |
+| 16 | `phase-9-v4-redesign.md` | Төлөвийн шалгалт (2026-11-09) + G1 жингийн таслал + V4 dark redesign (9a–9i, landing орно) | ~3 долоо хоног | 2a–2c | ☐ |
 | — | `phase-S5-lazy-drugs.md` | Хайлтын индекс + эмийг хойшлуулж ачаалах | 2–3 өдөр | trigger: ~150 эм эсвэл chunk >100KB gz | ☐ |
 
 S-шатууд = бүтэц тэлэх засвар. Үндэслэл: `docs/architecture/scalability-2026-10.md`.
