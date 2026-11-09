@@ -63,3 +63,6 @@ next-env.d.ts
 
 # Obsidian vault-local тохиргоо (хувийн, төхөөрөмж бүрт өөр)
 /.obsidian/
+
+# V4 визуал шалгалтын гаралт (scripts/visual-diff.mjs)
+/.visual/
