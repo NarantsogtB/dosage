@@ -4,19 +4,23 @@ import { FLAGS } from "@/lib/flags";
 import { formatRange } from "@/lib/format/format-range";
 import { concentrationOf, formulationLine } from "@/lib/format/primary-formulation-line";
 import { doseParts } from "@/lib/format/dose-parts";
+import { EVIDENCE_LABELS, type EvidenceLevel } from "@/lib/domain/source";
 import { cn } from "@/lib/utils";
 import AgeDisplay from "./AgeDisplay";
-import { EVIDENCE_TONES } from "./evidence-tone";
-import DoseMetaGrid from "./DoseMetaGrid";
 import DoseReadout from "./DoseReadout";
-import EvidenceChip from "./EvidenceChip";
-import SectionLabel from "./SectionLabel";
+import ReviewDate from "./ReviewDate";
+import { CROSS_CHECK_NOTE } from "./unverified-note";
 
 interface Props {
   readonly outcome: DosageOutcome;
   readonly patient: Patient;
   /** Хэлбэрийн хүснэгтэд сонгосон мөр — «= … мл»-ийг удирдана. */
   readonly selected?: FormulationAmount;
+}
+
+interface BandProps extends Props {
+  /** `drug.lastReviewed` — хяналтын огноо. */
+  readonly reviewed: string;
 }
 
 const NUMBER = "text-4xl leading-none sm:text-[44px] sm:leading-[48px]";
@@ -75,30 +79,43 @@ const Readout = ({ outcome, selected }: Omit<Props, "patient">) =>
     <ClassicReadout outcome={outcome} selected={selected} />
   );
 
+const indicationOf = (outcome: DosageOutcome): string =>
+  outcome.rule.indication === "general" ? "Ерөнхий заалт" : outcome.rule.indication.labelMn;
+
+/** E: цорын ганц шар мөр. Өгүүлбэрийн хоёр дахь хагас нь `Disclaimer`-тэй НЭГ эх. */
+const Unverified = () => (
+  <p className="border-warning/35 bg-warning-muted text-warning-text mt-3 rounded-xl border px-3 py-2 text-sm">
+    {EVIDENCE_LABELS.E_unverified}. {CROSS_CHECK_NOTE}
+  </p>
+);
+
+const Provenance = ({ level, reviewed }: { readonly level: EvidenceLevel; readonly reviewed: string }) =>
+  level === "E_unverified" ? (
+    <Unverified />
+  ) : (
+    <p className="mt-3 text-xs">
+      <span className="text-muted-foreground">{EVIDENCE_LABELS[level]} · </span>
+      <ReviewDate date={reviewed} />
+    </p>
+  );
+
 /**
- * ★ ГАРЫН ҮСЭГ — тунгийн зурвас. Figma "Dose readout v3" (V3 · 02).
+ * ★ ГАРЫН ҮСЭГ — шилэн толгойн тунгийн зурвас (Figma 123:100).
  *
- * Хуудасны цорын ганц чанга элемент: нэг удаад хэдийг өгөх вэ. Зүүн
- * ирмэгийн зураас ба гарчгийн хажуугийн чип хоёулаа ИДЭВХТЭЙ дүрмийн
- * нотолгоо — харагдаж буй тоо яг тэр дүрмээс гарсан. Гарчиг нь өвчтөнийг
- * давтан хэлнэ: тоог хэний жингээр бодсон нь тоотой нэг дор.
+ * Хуудасны цорын ганц чанга элемент: нэг удаад хэдийг өгөх вэ. Тоог ХЭНИЙ
+ * жингээр, ЮУНЫ заалтаар бодсон нь тоотой нэг дор (мета мөр). Эх сурвалж
+ * баталгаажсан бол түвшин + хяналтын огноо; E бол шар мөр (нэг л өнгө).
  */
-export default function DoseBand({ outcome, patient, selected }: Props) {
-  const level = outcome.rule.evidenceLevel;
+export default function DoseBand({ outcome, patient, selected, reviewed }: BandProps) {
   return (
-    <div className="relative space-y-3 py-4 pr-5 pl-6">
-      <span aria-hidden className={cn("absolute inset-y-0 left-0 w-[3px]", EVIDENCE_TONES[level].rule)} />
-      <div className="flex items-center gap-2">
-        <SectionLabel>
-          Нэг удаагийн тун · <span className="num">{patient.weightKg}</span> кг ·{" "}
-          <AgeDisplay ageMonths={patient.ageMonths} />
-        </SectionLabel>
-        <EvidenceChip level={level} />
+    <div className="mt-3">
+      <p className="num text-muted-foreground text-sm">
+        {patient.weightKg} кг · <AgeDisplay ageMonths={patient.ageMonths} /> · {indicationOf(outcome)}
+      </p>
+      <div className="mt-3 space-y-1">
+        <Readout outcome={outcome} selected={selected} />
       </div>
-      <Readout outcome={outcome} selected={selected} />
-      <div className="border-border/70 border-t pt-3">
-        <DoseMetaGrid outcome={outcome} />
-      </div>
+      <Provenance level={outcome.rule.evidenceLevel} reviewed={reviewed} />
     </div>
   );
 }

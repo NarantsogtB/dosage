@@ -1,7 +1,7 @@
 "use client";
 
 import { useId } from "react";
-import { Circle, CircleCheck } from "lucide-react";
+import { CircleCheck, Pill } from "lucide-react";
 import type { FormulationAmount } from "@/lib/domain/calculation-result";
 import { formatAmount } from "@/lib/format/format-amount";
 import { amountKey, reconstitutionText } from "@/lib/format/reconstitution";
@@ -20,8 +20,8 @@ interface RowProps {
   readonly onSelect: (formulationId: string) => void;
 }
 
-const SELECTED = { Icon: CircleCheck, row: "bg-primary/10 text-primary", icon: "" };
-const IDLE = { Icon: Circle, row: "hover:bg-accent", icon: "text-muted-foreground/60" };
+const SELECTED = { row: "bg-primary/10", tile: "bg-tile text-tile-foreground", amount: "text-primary" };
+const IDLE = { row: "hover:bg-accent", tile: "bg-muted text-muted-foreground", amount: "" };
 
 /** Нунтаг бол найруулгын мөр (Шат 6). */
 const Reconstituted = ({ amount }: { readonly amount: FormulationAmount }) => {
@@ -30,11 +30,11 @@ const Reconstituted = ({ amount }: { readonly amount: FormulationAmount }) => {
 };
 
 const Row = ({ amount, name, selected, onSelect }: RowProps) => {
-  const { Icon, row, icon } = selected ? SELECTED : IDLE;
+  const { row, tile, amount: tone } = selected ? SELECTED : IDLE;
   return (
     <label
       className={cn(
-        "has-[:focus-visible]:ring-ring/50 flex min-h-11 cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors has-[:focus-visible]:ring-[3px]",
+        "has-[:focus-visible]:ring-ring/50 flex min-h-14 cursor-pointer items-center gap-3 rounded-xl px-2.5 py-2 text-sm transition-colors has-[:focus-visible]:ring-[3px]",
         row,
       )}
     >
@@ -45,12 +45,15 @@ const Row = ({ amount, name, selected, onSelect }: RowProps) => {
         checked={selected}
         onChange={() => onSelect(amountKey(amount))}
       />
-      <Icon aria-hidden className={cn("size-4.5 shrink-0", icon)} />
-      <span className="flex-1">
+      <span className={cn("grid size-10 shrink-0 place-items-center rounded-lg", tile)}>
+        <Pill aria-hidden className="size-4.5" />
+      </span>
+      <span className="flex-1 font-medium">
         {amount.formulation.labelMn}
         <Reconstituted amount={amount} />
       </span>
-      <span className="num text-right font-semibold">{formatAmount(amount)}</span>
+      <span className={cn("num text-right font-semibold", tone)}>{formatAmount(amount)}</span>
+      {selected ? <CircleCheck aria-label="Сонгосон" className="text-primary size-4.5 shrink-0" /> : null}
     </label>
   );
 };
@@ -68,11 +71,11 @@ export default function FormulationTable({ amounts, selectedId, onSelect }: Prop
   const name = useId();
   if (amounts.length === 0) return null;
   return (
-    <fieldset className="px-5 pb-3">
-      <legend className="text-muted-foreground pb-2 text-xs font-semibold tracking-widest uppercase">
-        Хэлбэр тус бүрд (нэг удаа)
+    <fieldset className="px-4">
+      <legend className="pb-2 text-lg font-bold">
+        Хэлбэрүүд <span className="text-muted-foreground text-xs font-medium">нэг удаа</span>
       </legend>
-      <div className="space-y-0.5">
+      <div className="bg-muted/50 space-y-0.5 rounded-2xl p-1.5">
         {amounts.map((amount) => (
           <Row
             key={amountKey(amount)}

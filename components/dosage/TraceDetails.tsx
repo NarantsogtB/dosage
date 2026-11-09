@@ -10,7 +10,7 @@ interface Props {
 export default function TraceDetails({ trace }: Props) {
   if (trace.length === 0) return null;
   return (
-    <DisclosureRow icon={Calculator} label="Яаж бодсон бэ?">
+    <DisclosureRow icon={Calculator} label="Яаж бодсон бэ?" summary={trace[0]?.expression}>
       <dl className="space-y-1.5">
         {trace.map((step) => (
           <div key={step.labelMn} className="flex justify-between gap-3 text-sm">

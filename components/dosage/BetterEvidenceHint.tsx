@@ -35,7 +35,7 @@ export default function BetterEvidenceHint(props: Props) {
   if (!better) return null;
 
   return (
-    <div className="bg-primary/5 border-primary/20 mx-5 mb-3 flex gap-2.5 rounded-md border px-3 py-2.5 print:hidden">
+    <div className="bg-primary/5 border-primary/20 mx-4 mt-3 flex gap-2.5 rounded-xl border px-3 py-2.5 print:hidden">
       <Info aria-hidden className="text-primary mt-0.5 size-4 shrink-0" />
       <div>
       <p className="text-muted-foreground text-sm">

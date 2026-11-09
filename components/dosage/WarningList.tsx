@@ -1,6 +1,5 @@
 import { TriangleAlert } from "lucide-react";
 import type { Warning } from "@/lib/domain/warning";
-import { Separator } from "@/components/ui/separator";
 import SectionLabel from "./SectionLabel";
 
 interface Props {
@@ -11,9 +10,7 @@ interface Props {
 export default function WarningList({ warnings }: Props) {
   if (warnings.length === 0) return null;
   return (
-    <>
-      <Separator />
-      <div className="bg-warning-muted/60 px-5 py-4">
+    <div className="bg-warning-muted/60 mx-4 mt-3 rounded-2xl p-4">
         <SectionLabel className="text-warning-text">
           <TriangleAlert className="size-3.5" />
           Анхааруулга
@@ -26,7 +23,6 @@ export default function WarningList({ warnings }: Props) {
             </li>
           ))}
         </ul>
-      </div>
-    </>
+    </div>
   );
 }

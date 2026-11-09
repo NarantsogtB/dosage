@@ -1,6 +1,7 @@
 import { ChevronDown, Info } from "lucide-react";
 import { FLAGS } from "@/lib/flags";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CROSS_CHECK_NOTE } from "@/components/dosage/unverified-note";
 
 const TITLE = "Эмчид зориулсан туслах хэрэгсэл";
 const LEAD = "Тооцооллын үр дүн нь эмнэлгийн мэргэжилтний эмнэлзүйн шийдвэрийг орлохгүй.";
@@ -9,8 +10,7 @@ const Detail = () => (
   <p>
     Эм тус бүрийн доор <b>эх сурвалжийн түвшин</b> болон{" "}
     <b>сүүлд хянасан огноог</b> харуулсан. Тунг хэрэглэхийн өмнө шалгана
-    уу. «Эх сурвалж баталгаажаагүй» гэсэн эмийн тунг ЭМЯ-ны заавар эсвэл
-    ДЭМБ-ын удирдамжтай заавал тулгана уу.
+    уу. «Эх сурвалж баталгаажаагүй» гэсэн эмийн тунг {CROSS_CHECK_NOTE}
   </p>
 );
 
