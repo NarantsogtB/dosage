@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Disclaimer from "@/components/Disclaimer";
 import PrintTemplate from "@/components/print/PrintTemplate";
+import PatientHome from "@/components/home/PatientHome";
 import ActionBar from "./ActionBar";
 import AppFooter from "./AppFooter";
 import InputColumn from "./InputColumn";
@@ -32,8 +33,11 @@ export default function CalculatorPage({ initialDrugIds, intro, children }: Prop
 
   return (
     <main className="mx-auto w-full max-w-4xl space-y-4 px-4 py-6 sm:px-6 lg:max-w-[1440px] lg:px-20">
-      <PatientBar patient={patient} ready={ready} drugs={drugs} results={results} onClear={state.onClear} />
+      <div className="hidden lg:block">
+        <PatientBar patient={patient} ready={ready} drugs={drugs} results={results} onClear={state.onClear} />
+      </div>
       <SharedNotice notice={share.notice} onDismiss={share.dismiss} />
+      <PatientHome drugs={drugs} results={results} ready={ready} />
       {intro}
       <Disclaimer />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-start lg:grid-cols-12 lg:gap-6 print:hidden">

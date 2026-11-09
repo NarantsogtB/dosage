@@ -8,6 +8,7 @@
 | `dosage/` | Үр дүнгийн карт. Угсрагч `DosageCard.tsx` |
 | `summary/` | Сонгосон эмийн наалдамхай хураангуй, хуулах |
 | `print/` | Зөвхөн хэвлэх загвар |
+| `home/` | Mobile нүүр (<lg): өвчтөн hero + карусель, нэмэх 2 алхам, «Энэ өвчтөнд». Store: `calculator/patient-store.ts` |
 | `burns/` | `/burns` бүхэлдээ |
 | `fluids/` | `/fluids` (FluidRow, burn-format-ийг burns-ээс ашиглана) |
 | `landing/`, `nav/`, `drug-page/`, `recent/`, `pwa/`, `theme/`, `brand/`, `analytics/` | нэрээрээ |

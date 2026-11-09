@@ -18,6 +18,20 @@
 
 ---
 
+## 2026-11-09 — Олон өвчтөн, mobile нүүр dashboard (Шат 9b)
+
+**Context:** Эмч нэг ээлжинд хэд хэдэн хүүхэд үздэг; V4 нүүр dashboard (Figma 120:62 …).
+**Decision:** `patient-store.ts` → `Patient[]` + `activeId` (max 6), sessionStorage
+`dosage.patients.v2`; хуучин `dosage.patient.v1` нэг өвчтөн болж шилжинэ. Цэвэр логик
+`patients.ts`. Сонгосон эмийн жагсаалт **өвчтөн бүрд тусдаа**. `usePatientForm()` API
+хэвээр (идэвхтэй өвчтөн) → `/emergency`, хуваалцах линк өөрчлөгдөөгүй. Нэмэх 2 алхам
+(Жин → Нас) утасны тоон гараар (`inputMode`), Figma-гийн keypad хийгээгүй. UI `components/home/`,
+`/dose`-ийн <lg хэсэгт; `/` landing, desktop (9g хүртэл) хөндөгдөөгүй. Токен `--tile`.
+**Why:** Өвчтөн солиход тун дахин тооцоологдож эм алдагдахгүй; sessionStorage → жин төхөөрөмж дээр үлдэхгүй.
+**Status:** accepted. Нээлттэй: заалт/бэлдмэл (`useChoices`) өвчтөнүүдэд хуваалцагдана.
+
+---
+
 ## 2026-11-09 — V4 dark токен, Onest, dark анхдагч (Шат 9a)
 
 **Context:** V4 redesign (2026-11-04 шийдвэр): dark анхдагч, фонт Onest.

@@ -51,19 +51,20 @@ glass (`backdrop-filter`) зөвхөн tab bar / hero товч / hero карт.
 
 ## 4. Дэд шатууд
 
-Дараалал: G1 → 9a → 9b → 9c → 9d → 9e → 9f → 9g → 9h. Том шат бүрийг plan mode-оор.
+Дараалал: G1 → 9a → 9b → 9c → 9d → 9e → 9f → 9g → 9h → 9i (9i-г 9a-гийн дараа хэзээ ч хийж болно). Том шат бүрийг plan mode-оор.
 Шат бүрийн дараа: `bun run check`, 390px + 1440px + 1366px screenshot, энэ файлд ☑.
 
 | # | Ажил | Figma node | Хугацаа | Төлөв |
 |---|---|---|---|---|
 | 9a | Token + фонт + dark анхдагч | `119:22` фонт, collection «V4 Dark (draft)» | 1 өдөр | ☑ |
-| 9b | Нүүр dashboard + олон өвчтөн | `120:62`, `131:1359`, `128:792`, `128:858` | 3–4 өдөр | ☐ |
+| 9b | Нүүр dashboard + олон өвчтөн | `120:62`, `131:1359`, `128:792`, `128:858` | 3–4 өдөр | ☑ |
 | 9c | Үр дүнгийн «баримт» | `123:100`, `130:1234`, `130:1413` | 2–3 өдөр | ☐ |
 | 9d | Эмүүд таб + бүтэн дэлгэцийн хайлт + Тохиргоо | `123:263`, `128:917`, `131:1511` | 2–3 өдөр | ☐ |
 | 9e | Түүх | `139:1636` | 2 өдөр | ☐ |
 | 9f | Түлэгдэлт + хүн шиг диаграм | `138:1549`, comp `137:1584`, `140:1675` | 2 өдөр | ☐ |
 | 9g | Desktop 3 багана, modal, ⌘K | `126:354`, `127:426`, `127:725`, `129:823`, `129:948` | 3 өдөр | ☐ |
 | 9h | `/fluids`, `/emergency` V4 загварт | **Figma-д алга** — эхлээд зурж батлуулна | — | ☐ |
+| 9i | Landing V4 + Яаралтай картыг нэмэх | `154:1859` mobile, `156:1911` desktop 1440 | 1–1.5 өдөр | ☐ |
 
 **9a.** `app/globals.css`-ийн `.dark` токеныг Figma «V4 Dark (draft)»-ийн утгаар
 (bg/ink #05070D, sheet #0A0D14, card #1B1F27, raised #272C36, teal #5DBCC1,
@@ -107,6 +108,27 @@ indication, formulation, цаг) — **үр дүнг хадгалахгүй**, �
 
 **9h.** Fluids, Emergency-д V4 дэлгэц Figma-д байхгүй — эхлээд зур, хэрэглэгчээр батлуул.
 Emergency: E мөр хэзээ ч харагдахгүй (одоогийн дүрэм).
+
+**9i. Landing V4** (`app/page.tsx`, `components/landing/*`). Бүтэц, агуулга хэвээр — зөвхөн загвар + 1 алдаа.
+1. **Алдаа:** `tools.ts` 3 хэрэгсэлтэй, `/emergency` алга. `TOOLS`-ийг `CALCULATOR_REGISTRY`-ээс
+   үүсгэ (path, labelMn); тайлбар (`bodyMn`) ба дүрсийг id-аар map хийнэ (`components/nav/routes.ts`
+   шиг). Emergency тайлбар = тухайн хуудасны meta description. Тест: landing хэрэгслийн тоо ===
+   registry-ийн `live` тоо (шинэ тооцоолуур нэмэхэд landing автоматаар шинэчлэгдэнэ).
+2. **Hero** — gradient (`bg/hero-top` → `bg/ink`), H1 3 мөр (3 дахь нь `accent/teal`), цагаан pill
+   CTA «Тун тооцоолох» + glass CTA. Mobile: CTA доошоо, desktop: хажуу. Статистик 3 chip
+   (`landing-stats.ts`-ээс — тоог гараар бичихгүй).
+3. **HeroDemo** — glass «баримт» карт: эмийн нэр + evidence chip, жингийн талбар ±, том мг, teal мл,
+   эх сурвалж + ишлэл. `demo-case.ts` болон engine-ийн дуудлага хэвээр; зөвхөн CSS.
+   Desktop ≥1024: hero 2 багана (зүүн текст, баруун 440px demo).
+4. **ToolGrid** — mobile жагсаалт (tile 48 + chevron), desktop 4 багана. Дүрс: calculator, flame,
+   droplet, siren.
+5. **EvidenceLadder** — нэг `surface/card` дотор A–E мөр, хуваагч шугамтай. **SafetyPoints** — 4 glass
+   карт (Баталгаажаагүй = `signal/warning` дүрс). Desktop: хоёулаа зэрэгцэн 2 багана.
+6. **LandingFooter** — teal gradient CTA карт («Туршаад үз»), доор нь эх сурвалж · INN · санал · Instagram.
+7. Copy-г кодоос авна. Figma дахь «жинг өөрчлөөд үз», «Нүүр дэлгэцэд нэмж апп шиг ашиглана»,
+   evidence-ийн lede — **санал болгосон шинэ copy**; хэрэглэгчээр батлуулаагүй бол оруулахгүй.
+Шалгуур: `bun run check`; landing 390/1440 screenshot Figma-тай; 4 хэрэгсэл харагдана; demo тоо
+14 кг → 560 мг, 22.4 мл (`landing.test` хэвээр ногоон); Lighthouse a11y ≥ 95, LCP өөрчлөгдөхгүй.
 
 ## 5. Хийхгүй / эмчийн шийдвэр хүлээж буй
 

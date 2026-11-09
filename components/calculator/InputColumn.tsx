@@ -16,7 +16,10 @@ interface Props {
 export default function InputColumn(props: Props) {
   return (
     <div className="space-y-4">
-      <PatientInput form={props.form} onChange={props.onForm} />
+      {/* <lg: өвчтөнийг нүүрний hero (`home/`) засна. */}
+      <div className="hidden lg:block">
+        <PatientInput form={props.form} onChange={props.onForm} />
+      </div>
       <DrugSearch
         drugs={DRUGS}
         selectedIds={props.selectedIds}
