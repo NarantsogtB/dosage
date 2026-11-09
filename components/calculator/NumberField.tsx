@@ -9,13 +9,13 @@ import {
   InputGroupText,
 } from "@/components/ui/input-group";
 import FieldNote, { noteKindOf, shownError } from "./FieldNote";
+import { normalizeDecimal } from "./patient-form";
 
 interface Props {
   readonly label: string;
   readonly suffix: string;
   /** Дагаварын оронд — жишээ нь нэгж сонгогч. Байвал `suffix`-ийг дэлгэцэнд харуулахгүй. */
   readonly addon?: React.ReactNode;
-  readonly step: string;
   readonly value: string;
   readonly onChange: (value: string) => void;
   readonly invalid?: boolean;
@@ -55,15 +55,13 @@ export default function NumberField(props: Props) {
       <InputGroup>
         <InputGroupInput
           id={id}
-          type="number"
+          type="text"
           inputMode="decimal"
-          min="0"
-          step={props.step}
           placeholder={props.placeholder}
           value={props.value}
           aria-invalid={props.invalid}
           aria-describedby={noteId}
-          onChange={(event) => props.onChange(event.target.value)}
+          onChange={(event) => props.onChange(normalizeDecimal(event.target.value))}
           className="num text-[22px] leading-7 font-semibold tracking-[-0.006em] md:text-[22px]"
         />
         <InputGroupAddon align="inline-end">

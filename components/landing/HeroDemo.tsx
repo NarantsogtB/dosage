@@ -43,7 +43,6 @@ export default function HeroDemo() {
         <NumberField
           label="Жин"
           suffix="кг"
-          step="0.5"
           value={weight}
           onChange={setWeight}
         />
