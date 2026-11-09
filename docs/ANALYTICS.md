@@ -32,7 +32,7 @@ UI hook / handler ──► lib/analytics/track.ts ──sendBeacon──► POS
 | Хайлтын үг (normalize, ≤ 40 тэмдэгт) | Нас |
 | Улсын код (`request.cf.country`) | IP, User-Agent, cookie, хэрэглэгчийн ID |
 
-«Сүүлд хэрэглэсэн» эм (`dosage.recent.v1`) болон сануулгыг хаасан
+«Сүүлд хэрэглэсэн» эм (`dosage.recent.v1`), «Миний эмүүд» (`dosage.favorites.v1`), тооцооны түүх (`dosage.history.v1` — жин, нас, шошго, эм; 30 хоног, ≤100 мөр) болон сануулгыг хаасан
 тэмдэг (`dosage.install-prompt.v1`) нь зөвхөн төхөөрөмжийн localStorage-д
 — серверт явахгүй, хэрэглэгчийг танихад ашиглахгүй.
 
@@ -51,6 +51,8 @@ client алдаагаар жин илгээсэн ч хадгалагдахгү�
 | `copy_result` | «Хуулах» амжилттай — хуулсан эм бүрд нэг | `drugId` |
 | `share_link_copied` | «Линк хуулах» амжилттай (Шат 5) | — (линкийн агуулга илгээхгүй) |
 | `recent_drug_used` | «Сүүлд хэрэглэсэн» chip-ээр эм НЭМЭХ | `drugId` |
+| `history_opened` | `/history` нээгдэх (хуудас бүрд нэг удаа) | — |
+| `history_entry_opened` | Түүхийн мөрийг дахин нээх | `drugId` (жин, нас, шошго ИЛГЭЭХГҮЙ) |
 | `install_prompt_shown` | «Нүүр дэлгэцэд нэмэх» сануулга гарах (нэг удаа) | `platform` (`android` / `ios`) |
 | `install_prompt_result` | сануулгад хариулах | `platform`, `outcome` (`accepted` / `dismissed` — Android; `acknowledged` — iOS «Ойлголоо», суусныг мэдэх боломжгүй) |
 
