@@ -4,6 +4,8 @@ import type { Patient } from "../domain/patient";
 import { checkEligibility } from "./eligibility/check-eligibility";
 import { computeDose } from "./compute-dose";
 import { ineligible, wrapIneligible } from "./ineligible";
+import { ageMismatchReason } from "./rule/age-mismatch-reason";
+import { matchIndication } from "./rule/match-indication";
 import { selectRule } from "./rule/select-rule";
 
 export interface CalculationOptions {
@@ -13,15 +15,18 @@ export interface CalculationOptions {
 
 const NO_RULE = "Энэ эмийг өвчтөний нас, жинд тохируулан тооцоолох дүрэм алга.";
 
+const noRule = (drug: Drug, patient: Patient, indicationCode?: string): CalculationResult => {
+  const candidates = drug.rules.filter((rule) => matchIndication(rule, indicationCode));
+  return ineligible("no_matching_rule", ageMismatchReason(candidates, patient) ?? NO_RULE);
+};
+
 const withMatchingRule = (
   drug: Drug,
   patient: Patient,
   indicationCode?: string,
 ): CalculationResult => {
   const rule = selectRule(drug, patient, indicationCode);
-  return rule
-    ? computeDose(drug, rule, patient)
-    : ineligible("no_matching_rule", NO_RULE);
+  return rule ? computeDose(drug, rule, patient) : noRule(drug, patient, indicationCode);
 };
 
 /**
