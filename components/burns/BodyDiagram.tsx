@@ -4,15 +4,8 @@ import type { KeyboardEvent } from "react";
 import type { AgeBand, BodyRegionId, BurnDepth } from "@/lib/domain/body-region";
 import { LUND_BROWDER } from "@/lib/data/burns/lund-browder";
 import { DEPTH_LABELS, REGION_LABELS } from "@/lib/data/burns/region-labels";
-import { cn } from "@/lib/utils";
 import type { SelectionMap } from "./use-burn-selections";
-import {
-  BACK_PART_REGION,
-  BODY_PARTS,
-  FRONT_PART_REGION,
-  type BodyPartKey,
-  type PartShape,
-} from "./body-parts";
+import { BACK_PATHS, FRONT_PATHS, type BodyPath } from "./body-paths";
 import { nextDepth } from "./next-depth";
 import { regionColors } from "./region-style";
 
@@ -23,137 +16,115 @@ interface Props {
   readonly onToggle: (region: BodyRegionId, depth?: BurnDepth) => void;
 }
 
-const depthText = (depth?: BurnDepth): string =>
-  depth ? DEPTH_LABELS[depth] : "Сонгоогүй";
+/**
+ * Жижиг, нарийн бүсийн хүрэх талбайг томруулах тунгалаг хүрээний өргөн (SVG нэгж).
+ * Хүрэх талбай ≥44px байх ёстой (хуруугаар); том бүсэд хэрэггүй. Эдгээр нь DOM-д
+ * ДАРААГАА (дээгүүр) зурагдана — хөрш том бүсийг бага зэрэг давхарлана.
+ */
+const HIT_STROKE: Partial<Record<BodyRegionId, number>> = {
+  neck: 18,
+  genitalia: 22,
+  buttock_left: 8,
+  buttock_right: 8,
+  hand_left: 18,
+  hand_right: 18,
+  foot_left: 14,
+  foot_right: 14,
+  thigh_left: 4,
+  thigh_right: 4,
+  leg_left: 17,
+  leg_right: 17,
+  upper_arm_left: 8,
+  upper_arm_right: 8,
+  forearm_left: 13,
+  forearm_right: 13,
+};
+
+const hitOf = (region: BodyRegionId): number => HIT_STROKE[region] ?? 0;
+
+const depthText = (depth?: BurnDepth): string => (depth ? DEPTH_LABELS[depth] : "Сонгоогүй");
+
+/** Хувь нь НАСНЫ АНГИЛАЛААС хамаарна — 14 настайн толгой 11%, 19% БИШ. */
+const percentOf = (region: BodyRegionId, band: AgeBand): number => LUND_BROWDER[region][band];
 
 const labelFor = (region: BodyRegionId, depth: BurnDepth | undefined, percent: number): string =>
   `${REGION_LABELS[region]} — ${depthText(depth)} · ${percent}%`;
 
-/** Хувь нь НАСНЫ АНГИЛАЛААС хамаарна — 14 настайн толгой 11%, 19% БИШ. */
-const percentOf = (region: BodyRegionId, band: AgeBand): number =>
-  LUND_BROWDER[region][band];
-
-const SHAPE_CLASSNAME = cn(
-  "cursor-pointer outline-none transition-colors",
-  "focus-visible:stroke-[var(--ring)] focus-visible:stroke-[3px]",
-);
-
-const DECORATIVE_PROPS = {
-  "aria-hidden": true as const,
-  className: "fill-[var(--muted)] opacity-70 stroke-[var(--border)]",
-  strokeWidth: 1.5,
+const onKeyDown = (onActivate: () => void) => (event: KeyboardEvent<SVGElement>) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  onActivate();
 };
 
-function DecorativeShape({ shape }: { readonly shape: PartShape }) {
-  if (shape.kind === "ellipse") {
-    return (
-      <ellipse cx={shape.cx} cy={shape.cy} rx={shape.rx} ry={shape.ry} {...DECORATIVE_PROPS} />
-    );
-  }
-  return (
-    <rect
-      x={shape.x}
-      y={shape.y}
-      width={shape.width}
-      height={shape.height}
-      rx={shape.rx}
-      {...DECORATIVE_PROPS}
-    />
-  );
-}
-
-const onShapeKeyDown =
-  (onActivate: () => void) => (event: KeyboardEvent<SVGElement>) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    onActivate();
-  };
-
-interface InteractiveProps {
-  readonly shape: PartShape;
-  readonly region: BodyRegionId;
+interface RegionProps {
+  readonly path: BodyPath;
   readonly band: AgeBand;
   readonly depth?: BurnDepth;
   readonly onActivate: () => void;
 }
 
-function InteractiveShape(props: InteractiveProps) {
-  const { shape, region, band, depth, onActivate } = props;
-  const percent = percentOf(region, band);
+/**
+ * Нэг бүс: харагдах хэлбэр + (жижиг бол) тунгалаг томруулсан hit-path + фокусын цагираг.
+ * Товч нь `<g>` — хоёр path-ийн аль нэг дээр дарсан ижил.
+ */
+function Region({ path, band, depth, onActivate }: RegionProps) {
   const colors = regionColors(depth);
-  const shared = {
-    role: "button" as const,
-    tabIndex: 0,
-    "aria-pressed": depth !== undefined,
-    "aria-label": labelFor(region, depth, percent),
-    style: { fill: colors.fill, stroke: colors.stroke },
-    strokeWidth: 2,
-    className: SHAPE_CLASSNAME,
-    onClick: onActivate,
-    onKeyDown: onShapeKeyDown(onActivate),
-  };
-  if (shape.kind === "ellipse") {
-    return <ellipse cx={shape.cx} cy={shape.cy} rx={shape.rx} ry={shape.ry} {...shared} />;
-  }
   return (
-    <rect x={shape.x} y={shape.y} width={shape.width} height={shape.height} rx={shape.rx} {...shared} />
+    <g
+      role="button"
+      tabIndex={0}
+      aria-pressed={depth !== undefined}
+      aria-label={labelFor(path.region, depth, percentOf(path.region, band))}
+      className="group cursor-pointer outline-none"
+      onClick={onActivate}
+      onKeyDown={onKeyDown(onActivate)}
+    >
+      <path
+        d={path.d}
+        strokeWidth={1.5}
+        strokeLinejoin="round"
+        strokeDasharray={colors.dash}
+        style={{ fill: colors.fill, stroke: colors.stroke }}
+      />
+      {hitOf(path.region) > 0 ? (
+        <path d={path.d} fill="transparent" stroke="transparent" strokeWidth={hitOf(path.region)} strokeLinejoin="round" />
+      ) : null}
+      <path
+        d={path.d}
+        fill="none"
+        strokeWidth={3}
+        strokeLinejoin="round"
+        className="stroke-[var(--ring)] opacity-0 group-focus-visible:opacity-100"
+        pointerEvents="none"
+      />
+    </g>
   );
 }
 
-function RegionShape({
-  shape,
-  band,
-  selections,
-  onToggle,
-  partMap,
-}: {
-  readonly shape: PartShape;
-  readonly band: AgeBand;
-  readonly selections: SelectionMap;
-  readonly onToggle: Props["onToggle"];
-  readonly partMap: Partial<Record<BodyPartKey, BodyRegionId>>;
-}) {
-  const region = partMap[shape.part];
-  if (!region) return <DecorativeShape shape={shape} />;
-  const depth = selections.get(region);
-  return (
-    <InteractiveShape
-      shape={shape}
-      region={region}
-      band={band}
-      depth={depth}
-      onActivate={() => onToggle(region, nextDepth(depth))}
-    />
-  );
-}
-
-const partMapFor = (view: Props["view"]) =>
-  view === "front" ? FRONT_PART_REGION : BACK_PART_REGION;
+const byHit = (a: BodyPath, b: BodyPath): number => hitOf(a.region) - hitOf(b.region);
 
 /**
- * Lund-Browder-ийн диаграм — нэг тал (урд эсвэл ар).
+ * Lund-Browder-ийн диаграм — нэг тал (урд эсвэл ар), Figma-н хүн шиг дүрс.
  *
- * Тухайн талаас ТЭМДЭГЛЭДЭГГҮЙ мөчид (жишээ: урд талд хөл) саарал,
- * товшигдохгүй дүрс зурна — бие бүтэн харагдана, гэхдээ буруу газар
- * товшиж болохгүй.
+ * G4: мөч хоёр талаас дарагдана, гэхдээ сонголт бүсээр (`BodyRegionId`) хадгалагддаг
+ * тул нэг бүс — давхар тооцогдохгүй; сонгосон бүс хоёр талд ижил өнгөтэй.
  */
 export default function BodyDiagram({ view, band, selections, onToggle }: Props) {
-  const partMap = partMapFor(view);
+  const paths = [...(view === "front" ? FRONT_PATHS : BACK_PATHS)].sort(byHit);
   return (
     <svg
-      viewBox="0 0 220 460"
+      viewBox="0 0 200 410"
       role="group"
       aria-label={view === "front" ? "Биеийн урд тал" : "Биеийн ар тал"}
-      className="mx-auto h-auto w-full max-w-[200px]"
+      className="mx-auto h-auto w-full max-w-[240px]"
     >
-      {BODY_PARTS.map((shape) => (
-        <RegionShape
-          key={shape.part}
-          shape={shape}
+      {paths.map((path) => (
+        <Region
+          key={path.region}
+          path={path}
           band={band}
-          selections={selections}
-          onToggle={onToggle}
-          partMap={partMap}
+          depth={selections.get(path.region)}
+          onActivate={() => onToggle(path.region, nextDepth(selections.get(path.region)))}
         />
       ))}
     </svg>

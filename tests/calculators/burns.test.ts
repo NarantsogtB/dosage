@@ -5,10 +5,7 @@ import { parkland } from "@/lib/calculators/burns/parkland";
 import { totalBsaPercent } from "@/lib/calculators/burns/tbsa";
 import { LUND_BROWDER, totalPercent } from "@/lib/data/burns/lund-browder";
 import { REGION_LABELS } from "@/lib/data/burns/region-labels";
-import {
-  BACK_PART_REGION,
-  FRONT_PART_REGION,
-} from "@/components/burns/body-parts";
+import { BACK_REGIONS, FRONT_REGIONS } from "@/components/burns/body-paths";
 
 const BANDS: readonly AgeBand[] = ["infant", "y1", "y5", "y10", "y15", "adult"];
 
@@ -22,10 +19,12 @@ const EVERY_REGION_BURNED = ALL_REGIONS.map((region) => ({
   fraction: 1,
 }));
 
-const MAPPED_REGIONS = [
-  ...Object.values(FRONT_PART_REGION),
-  ...Object.values(BACK_PART_REGION),
-];
+const MAPPED_REGIONS = [...new Set([...FRONT_REGIONS, ...BACK_REGIONS])];
+
+/** Хоёр талаас сонгогдох мөчүүд (G4). Сонголт `BodyRegionId`-аар (`SelectionMap`) тул нэг бүс — давхар тоологдохгүй. */
+const LIMB_REGIONS = ALL_REGIONS.filter((region) => /arm|hand|thigh|leg|foot/.test(region));
+const LIMBS_IN_FRONT = LIMB_REGIONS.every((region) => FRONT_REGIONS.includes(region));
+const LIMBS_IN_BACK = LIMB_REGIONS.every((region) => BACK_REGIONS.includes(region));
 
 const yearsToMonths = (years: number) => years * 12;
 
@@ -169,9 +168,15 @@ describe("Диаграмын хамрах хүрээ", () => {
     }
   });
 
-  it("бүс бүр ЯГ нэг талд — давхар тоологдох эрсдэлгүй", () => {
-    expect(new Set(MAPPED_REGIONS).size).toBe(MAPPED_REGIONS.length);
-    expect(MAPPED_REGIONS).toHaveLength(ALL_REGIONS.length);
+  it("нэг талд бүс давхардахгүй", () => {
+    expect(new Set(FRONT_REGIONS).size).toBe(FRONT_REGIONS.length);
+    expect(new Set(BACK_REGIONS).size).toBe(BACK_REGIONS.length);
+  });
+
+  it("мөч хоёр талаас сонгогдоно (G4)", () => {
+    expect(LIMB_REGIONS).toHaveLength(12);
+    expect(LIMBS_IN_FRONT).toBe(true);
+    expect(LIMBS_IN_BACK).toBe(true);
   });
 
   it("бүс бүр монгол шошготой", () => {

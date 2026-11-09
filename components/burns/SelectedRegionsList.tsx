@@ -3,6 +3,7 @@ import type { AgeBand, BodyRegionId, BurnDepth } from "@/lib/domain/body-region"
 import { LUND_BROWDER } from "@/lib/data/burns/lund-browder";
 import { DEPTH_LABELS, REGION_LABELS } from "@/lib/data/burns/region-labels";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import type { SelectionMap } from "./use-burn-selections";
 
 interface Props {
@@ -18,6 +19,12 @@ interface RowProps {
   readonly onToggle: Props["onToggle"];
 }
 
+const DOT: Record<BurnDepth, string> = {
+  superficial: "border-muted-foreground border border-dashed",
+  partial: "bg-warning",
+  full: "bg-destructive",
+};
+
 const percentOf = (region: BodyRegionId, band: AgeBand): number =>
   LUND_BROWDER[region][band];
 
@@ -31,7 +38,8 @@ const percentOf = (region: BodyRegionId, band: AgeBand): number =>
  */
 const Row = ({ region, depth, band, onToggle }: RowProps) => (
   <li className="flex items-center justify-between gap-2 py-1.5 text-sm">
-    <span className="min-w-0 truncate">
+    <span className="flex min-w-0 items-center gap-2 truncate">
+      <span aria-hidden className={cn("size-2.5 shrink-0 rounded-full", DOT[depth])} />
       <span className="font-medium">{REGION_LABELS[region]}</span>{" "}
       <span className="text-muted-foreground">{DEPTH_LABELS[depth]}</span>
     </span>
