@@ -143,3 +143,7 @@ export const changeActive = (
   if (active) return updatePatient(state, active.id, change);
   return addPatient(state, { ...newPatient(newId), ...change }) ?? state;
 };
+
+/** Шошго хоосон бол дугаараар: «Өвчтөн 2». */
+export const labelOf = (patient: StoredPatient, index: number): string =>
+  patient.label || `Өвчтөн ${index + 1}`;
