@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { activeRoute } from "./active-route";
-import { ROUTES } from "./routes";
+import { activeTab } from "./active-route";
+import { TABS, type Tab } from "./routes";
 
 /** Доод навигацын өндөр — action bar, toast үүнээс дээш суурилна. */
 export const BOTTOM_NAV_HEIGHT = "4.5rem";
@@ -12,25 +12,23 @@ export const BOTTOM_NAV_HEIGHT = "4.5rem";
 /**
  * Mobile доод навигац — Figma "Bottom nav" (V3 · 03).
  *
- * Зөвхөн БОДИТ замтай (`lib/calculators/registry.ts`) — хоосон таб нэмэхгүй.
- * Баганын тоо route-ийн тоогоор (`grid-flow-col auto-cols-fr`) — өмнө нь
- * `grid-cols-2` хатуу байсан тул 3 дахь таб доод мөрөнд унаж байв.
- * Route 4-өөс олон болоход «Бусад» бүтэц хэрэгтэй (roadmap 2c).
- * Тооцоолуурын хуудсанд л харагдана; landing-д харагдахгүй. Ард нь ижил
+ * V4: 3 таб — Нүүр · Эмүүд · Тохиргоо (Figma 123:263). Тооцоолуур хооронд
+ * нүүрний 4 товчоор шилжинэ; «Яаралтай» толгойд байнга. Баганын тоо табын
+ * тоогоор (`grid-flow-col auto-cols-fr`). Landing-д харагдахгүй. Ард нь ижил
  * өндөртэй зай үлдээж, хуудасны төгсгөлийг дарахгүй.
  */
 export default function BottomNav() {
-  const current = activeRoute(usePathname());
+  const current = activeTab(usePathname());
   if (!current) return null;
   return (
     <>
       <div aria-hidden className="h-[calc(4.5rem+env(safe-area-inset-bottom))] md:hidden print:hidden" />
       <nav
-        aria-label="Тооцоолуур"
+        aria-label="Үндсэн навигац"
         className="bg-card/95 supports-[backdrop-filter]:bg-card/85 fixed inset-x-0 bottom-0 z-30 grid grid-flow-col auto-cols-fr border-t pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden print:hidden"
       >
-        {ROUTES.map((route) => (
-          <BottomTab key={route.href} href={route.href} label={route.labelMn} icon={route.icon} active={route === current} />
+        {TABS.map((tab) => (
+          <BottomTab key={tab.href} href={tab.href} label={tab.labelMn} icon={tab.icon} active={tab === current} />
         ))}
       </nav>
     </>
@@ -40,7 +38,7 @@ export default function BottomNav() {
 interface TabProps {
   readonly href: string;
   readonly label: string;
-  readonly icon: (typeof ROUTES)[number]["icon"];
+  readonly icon: Tab["icon"];
   readonly active: boolean;
 }
 

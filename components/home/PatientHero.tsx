@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
-import { ChevronDown, Pencil, Plus, Trash2 } from "lucide-react";
+import { ChevronDown, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import AgeDisplay from "@/components/dosage/AgeDisplay";
@@ -14,6 +14,7 @@ import {
   type PatientsState,
   type StoredPatient,
 } from "@/components/calculator/patients";
+import { requestSearchFocus } from "@/components/search/search-focus";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -107,7 +108,10 @@ export default function PatientHero({ state, onAdd, ...menu }: Props) {
   const { ref, onScroll } = useCarousel(state);
   return (
     <section aria-label="Өвчтөн" className="from-tile/30 -mx-4 bg-linear-to-b to-transparent px-4 pt-3 pb-2 sm:-mx-6 sm:px-6">
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-2">
+        <Button type="button" variant="secondary" size="icon" aria-label="Эм хайх" onClick={requestSearchFocus}>
+          <Search aria-hidden />
+        </Button>
         <Button type="button" variant="secondary" size="icon" aria-label="Өвчтөн нэмэх" disabled={state.patients.length >= MAX_PATIENTS} onClick={onAdd}>
           <Plus aria-hidden />
         </Button>

@@ -5,7 +5,7 @@ import type { Drug } from "@/lib/domain/drug";
 import { DRUG_BY_ID } from "@/lib/data/drugs";
 import { track } from "@/lib/analytics/track";
 import { rememberDrug } from "@/components/recent/recent-store";
-import { changeActivePatient, newPatientId, updatePatients, usePatients } from "./patient-store";
+import { changeActivePatient, newPatientId, snapshotState, updatePatients, usePatients } from "./patient-store";
 import { activeOf, changeActive, type PatientsState } from "./patients";
 
 const isDrug = (drug?: Drug): drug is Drug => drug !== undefined;
@@ -29,6 +29,15 @@ const withDrugs = (state: PatientsState, ids: readonly string[]): PatientsState 
   const current = drugIdsOf(state);
   const missing = ids.filter((id) => !current.includes(id));
   return missing.length === 0 ? state : changeActive(state, { drugIds: [...current, ...missing] }, newPatientId());
+};
+
+/**
+ * Идэвхтэй өвчтөнд эм нэмнэ (хайлт, «Миний эмүүд»). Эмч өөрөө нэмсэн тул
+ * analytics + «сүүлд хэрэглэсэн». Аль хэдийн байвал юу ч хийхгүй.
+ */
+export const addDrugToActive = (id: string): void => {
+  if (!drugIdsOf(snapshotState()).includes(id)) onAdded(id);
+  updatePatients((state) => withDrugs(state, [id]));
 };
 
 /**

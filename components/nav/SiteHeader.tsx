@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CalculatorNav from "./CalculatorNav";
 import OfflineBadge from "./OfflineBadge";
+import EmergencyLink from "./EmergencyLink";
 import SearchTrigger from "./SearchTrigger";
 import Logo from "@/components/brand/Logo";
 import ThemeToggle from "@/components/theme/ThemeToggle";
@@ -30,6 +31,7 @@ export default function SiteHeader() {
         <div className="flex-1" />
         <SearchTrigger />
         <OfflineBadge />
+        <EmergencyLink />
         <ThemeToggle />
       </div>
     </header>

@@ -44,6 +44,9 @@ const read = (): PatientsState => {
 };
 
 const snapshot = (): PatientsState => (cache ??= read());
+
+/** Одоогийн төлөв (hook-гүй) — үйлдлийн функцүүдэд. */
+export const snapshotState = snapshot;
 const serverSnapshot = (): PatientsState => NO_PATIENTS;
 
 const subscribe = (listener: () => void) => {

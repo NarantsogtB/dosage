@@ -3,6 +3,7 @@
 import type { Drug } from "@/lib/domain/drug";
 import type { Indication } from "@/lib/domain/indication";
 import { CommandList } from "@/components/ui/command";
+import { cn } from "@/lib/utils";
 import DrugList from "./DrugList";
 import SearchEmpty from "./SearchEmpty";
 import type { FilterState } from "./active-filters";
@@ -15,6 +16,8 @@ interface Props {
   readonly hits: ReadonlyMap<string, Indication>;
   readonly onToggle: (id: string, indicationCode?: string) => void;
   readonly onReset: () => void;
+  /** Жагсаалтын өндөр — бүтэн дэлгэцийн хайлтад `max-h-none flex-1`. */
+  readonly className?: string;
 }
 
 /**
@@ -26,7 +29,7 @@ interface Props {
  */
 export default function SearchResults(props: Props) {
   return (
-    <CommandList className="max-h-72">
+    <CommandList className={cn("max-h-72", props.className)}>
       {props.drugs.length === 0 ? (
         <SearchEmpty filters={props.labels} onReset={props.onReset} />
       ) : (

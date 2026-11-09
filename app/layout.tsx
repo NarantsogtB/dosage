@@ -10,6 +10,7 @@ import {
   SITE_URL,
 } from "@/lib/site";
 import ThemeProvider from "@/components/theme/ThemeProvider";
+import SearchOverlayHost from "@/components/search/SearchOverlayHost";
 import ServiceWorkerUpdate from "@/components/pwa/ServiceWorkerUpdate";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SiteHeader />
           {children}
           <BottomNav />
+          <SearchOverlayHost />
           {/* Mobile-д доод навигац + action bar-аас дээш. */}
           <Toaster
             position="bottom-center"
