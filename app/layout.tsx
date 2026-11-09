@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Source_Sans_3 } from "next/font/google";
+import { Onest } from "next/font/google";
 import "./globals.css";
 import BottomNav from "@/components/nav/BottomNav";
 import SiteHeader from "@/components/nav/SiteHeader";
@@ -14,21 +14,14 @@ import ServiceWorkerUpdate from "@/components/pwa/ServiceWorkerUpdate";
 import { Toaster } from "@/components/ui/sonner";
 
 /**
- * Source Sans 3 — Adobe-ийн хүмүүнлэг бичиглэл, кирилл үсэг бүрэн.
+ * Onest — V4 (2026-11-04). Кирилл үсэгт зориулж зурсан геометр-хүмүүнлэг
+ * бичиглэл, variable font. Source Sans 3-аас солив: V4 dark загвар Onest-оор
+ * зурагдсан (Figma node 119:22).
  *
- * IBM Plex-ээс ЗОРИУД буцав. Plex бол техникийн баримт бичигт зохиосон
- * бичиглэл; бүх тоог Plex Mono-гоор бичихэд энэ хэрэгсэл эмчийн биш,
- * хөгжүүлэгчийн зэвсэг мэт харагдаж байв. Source Sans нь шинжлэх ухаан,
- * эмнэлгийн хэвлэлд өргөн хэрэглэгддэг — мэргэжлийн боловч хүйтэн биш.
- *
- * Тоог баганаар жигдрүүлэх ШААРДЛАГА хэвээрээ. Гэхдээ үүнийг mono
- * бичиглэлээр биш, OpenType-ийн `tabular-nums`-аар шийдэв: үр дүн яг
- * ижил — 2.5 ба 25 хоёр өөр урттай харагдана. BNF, Nelson зэрэг
- * эмнэлзүйн лавлахууд ч mono ашигладаггүй. globals.css → .num-ыг үз.
- *
- * Variable font тул weight заахгүй — 400–700 бүгд боломжтой.
+ * Тоог баганаар жигдрүүлэх шаардлага хэвээр — `tabular-nums`-аар
+ * (globals.css → .num). Variable font тул weight заахгүй.
  */
-const sans = Source_Sans_3({
+const sans = Onest({
   variable: "--font-sans",
   subsets: ["latin", "cyrillic"],
   display: "swap",
@@ -79,7 +72,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#162024" },
+    { media: "(prefers-color-scheme: dark)", color: "#05070d" },
   ],
 };
 
