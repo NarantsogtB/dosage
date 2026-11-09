@@ -3,7 +3,7 @@
 import { MAX_WEIGHT_KG, MIN_WEIGHT_KG } from "@/lib/engine/eligibility/limits";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import NumberField from "./NumberField";
-import type { WeightUnit } from "./patient-form";
+import { isNumeric, type WeightUnit } from "./patient-form";
 
 interface Props {
   readonly value: string;
@@ -22,10 +22,14 @@ const RANGES: Record<WeightUnit, string> = {
   g: `${MIN_WEIGHT_KG * GRAMS}–${MAX_WEIGHT_KG * GRAMS} г`,
 };
 
-const UNIT_FIELD: Record<WeightUnit, { step: string; placeholder: string; suffix: string }> = {
-  kg: { step: "0.1", placeholder: "жишээ: 15", suffix: "кг" },
-  g: { step: "1", placeholder: "жишээ: 3200", suffix: "г" },
+const UNIT_FIELD: Record<WeightUnit, { placeholder: string; suffix: string }> = {
+  kg: { placeholder: "жишээ: 15", suffix: "кг" },
+  g: { placeholder: "жишээ: 3200", suffix: "г" },
 };
+
+/** Тоо биш бол юуг засахыг хэлнэ, үгүй бол хязгаар. */
+const errorOf = ({ value, unit }: Props): string =>
+  isNumeric(value) ? RANGES[unit] : `Зөвхөн тоо, жишээ: 12.5 · ${RANGES[unit]}`;
 
 const SEGMENT =
   "data-[state=on]:bg-card h-9 min-w-11 rounded-sm data-[state=on]:shadow-xs";
@@ -76,11 +80,10 @@ export default function WeightField(props: Props) {
       label="Жин"
       suffix={field.suffix}
       addon={<UnitToggle unit={props.unit} onUnit={props.onUnit} />}
-      step={field.step}
       placeholder={field.placeholder}
       value={props.value}
       invalid={props.invalid}
-      error={RANGES[props.unit]}
+      error={errorOf(props)}
       description={echoOf(props)}
       onChange={props.onChange}
     />

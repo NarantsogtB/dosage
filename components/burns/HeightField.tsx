@@ -22,7 +22,6 @@ export default function HeightField({ value, onChange }: Props) {
         <NumberField
           label="Өндөр"
           suffix="см"
-          step="1"
           placeholder="жишээ: 110"
           value={value}
           description="Заавал биш. Оруулбал Гальвестоны томьёо нэмж тооцоолно."

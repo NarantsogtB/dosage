@@ -44,6 +44,16 @@ export const toPatient = (form: PatientForm): Patient => ({
   ageMonths: num(form.years) * MONTHS_PER_YEAR + num(form.months),
 });
 
+/**
+ * «12,5» → «12.5». mn/ru гар таслал гаргадаг; `type="number"` үед хөтөч
+ * үүнийг чимээгүй `""` болгож «жин алга» гэж ойлгогдох байв (G1).
+ */
+export const normalizeDecimal = (raw: string): string => raw.replaceAll(",", ".");
+
+/** Хоосон биш, бүхэлдээ тоо эсэх. «1.2.3», «12кг» → false. */
+export const isNumeric = (value: string): boolean =>
+  value.trim() !== "" && Number.isFinite(Number(value));
+
 const scaleTo = (value: number, to: WeightUnit): number =>
   to === "g" ? Math.round(value * GRAMS_PER_KG) : Number((value / GRAMS_PER_KG).toFixed(3));
 
@@ -54,13 +64,15 @@ const scaleTo = (value: number, to: WeightUnit): number =>
  * хязгаараас гарах тул алдаа гарах ч эмч юу болсныг ойлгохгүй.
  */
 export const convertWeight = (value: string, to: WeightUnit): string =>
-  value === "" ? value : `${scaleTo(Number(value), to)}`;
+  isNumeric(value) ? `${scaleTo(Number(value), to)}` : value;
 
-/** Жин оруулсан бөгөөд зөвшөөрөгдсөн хязгаараас гарсан эсэх. */
+const isOutOfRange = (kg: number): boolean =>
+  kg < MIN_WEIGHT_KG || kg > MAX_WEIGHT_KG;
+
+/** Жин оруулсан бөгөөд тоо биш, эсвэл зөвшөөрөгдсөн хязгаараас гарсан эсэх. */
 export const isWeightInvalid = (form: PatientForm): boolean => {
   if (form.weight === "") return false;
-  const weight = toKg(Number(form.weight), form.weightUnit);
-  return weight < MIN_WEIGHT_KG || weight > MAX_WEIGHT_KG;
+  return !isNumeric(form.weight) || isOutOfRange(toKg(Number(form.weight), form.weightUnit));
 };
 
 const isUnit = (value: unknown): value is WeightUnit =>

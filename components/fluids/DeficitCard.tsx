@@ -52,7 +52,6 @@ export default function DeficitCard({ patient, percent, onPercent }: Props) {
       <NumberField
         label="Шингэн алдалт"
         suffix="%"
-        step="1"
         placeholder="жишээ: 5"
         value={percent}
         onChange={onPercent}

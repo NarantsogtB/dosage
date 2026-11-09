@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   EMPTY_FORM,
   convertWeight,
+  hasWeight,
   isWeightInvalid,
+  normalizeDecimal,
   parsePatientForm,
   toPatient,
   weightKgOf,
@@ -32,6 +34,31 @@ describe("жингийн нэгж", () => {
     expect(convertWeight("3200", "kg")).toBe("3.2");
     expect(convertWeight("3333", "kg")).toBe("3.333");
     expect(convertWeight("", "g")).toBe("");
+  });
+});
+
+describe("аравтын таслал (G1)", () => {
+  it("таслалыг цэг болгоно", () => {
+    expect(normalizeDecimal("12,5")).toBe("12.5");
+    expect(normalizeDecimal("12.5")).toBe("12.5");
+    expect(normalizeDecimal("1,2,3")).toBe("1.2.3");
+  });
+
+  it("«12,5» кг-аар хүчинтэй жин болно", () => {
+    const form = kilos(normalizeDecimal("12,5"));
+    expect(hasWeight(form)).toBe(true);
+    expect(weightKgOf(form)).toBe(12.5);
+  });
+
+  it("тоо биш утгыг алдаа гэж үзнэ, «жин алга» биш", () => {
+    const form = kilos(normalizeDecimal("1,2,3"));
+    expect(isWeightInvalid(form)).toBe(true);
+    expect(hasWeight(form)).toBe(false);
+    expect(isWeightInvalid(kilos("12кг"))).toBe(true);
+  });
+
+  it("тоо биш утгыг нэгж солиход хөрвүүлэхгүй", () => {
+    expect(convertWeight("1.2.3", "g")).toBe("1.2.3");
   });
 });
 
