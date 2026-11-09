@@ -72,6 +72,14 @@
   /* V4 tile (Figma accent/tile): hero товч, эмийн дүрс. */
   --tile: oklch(0.48 0.098 207);
   --tile-foreground: oklch(0.995 0.002 197);
+  /*
+   * V4 дэлгэцийн бүрхүүл (9h, HANDOFF §3). Цайвар горимыг Figma-д хараахан
+   * зураагүй — түр утга: sheet = дэвсгэр, hero = зөөлөн номин → дэвсгэр.
+   */
+  --sheet: oklch(0.976 0.004 197);
+  --hero-top: oklch(0.9 0.035 205);
+  --hero-mid: oklch(0.95 0.015 200);
+  --hero-bottom: oklch(0.976 0.004 197);
 
   /*
    * Нотолгооны түвшний суваг. Эрэмбэ нь ханалтаар илэрнэ: батлагдсан нь
@@ -138,6 +146,11 @@
     /* V4 tile (Figma accent/tile): hero товч, эмийн дүрс. */
     --tile: oklch(0.549 0.089 205);
     --tile-foreground: oklch(0.995 0.002 197);
+    /* Figma bg/sheet #0A0D14, bg/hero-top #0F4A52, landing 70% #0A1C24, bg/hero-bottom #05080D. */
+    --sheet: oklch(0.159 0.016 267);
+    --hero-top: oklch(0.377 0.059 209);
+    --hero-mid: oklch(0.215 0.029 229);
+    --hero-bottom: oklch(0.133 0.013 255);
 
     --evidence-a: oklch(0.74 0.12 158);
     --evidence-b: oklch(0.74 0.09 200);
@@ -181,6 +194,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-tile: var(--tile);
+  --color-sheet: var(--sheet);
+  --color-hero-top: var(--hero-top);
+  --color-hero-mid: var(--hero-mid);
+  --color-hero-bottom: var(--hero-bottom);
   --color-tile-foreground: var(--tile-foreground);
 
   --radius-sm: calc(var(--radius) - 3px);

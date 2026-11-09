@@ -12,8 +12,9 @@
 | `drugs/`, `settings/` | `/drugs` (Миний эмүүд, ангилал), `/settings`. Хайлтын бүтэн дэлгэц: `search/SearchOverlay` |
 | `history/` | `/history`: түүхийн store, мөр, дахин нээх. Логик `lib/history/` |
 | `desk/` | Desktop (≥1024): `DeskPage` (dashboard/дэлгэрэнгүй), `PatientColumn`, `DeskShell` 3 багана. Mobile нь `calculator/CalculatorMobile` |
+| `v4/` | V4 хэрэгслийн бүрхүүл (`ToolScreen`) ба атомууд — burns/fluids/emergency. Загварын гэрээ `docs/design/v4/HANDOFF.md`, шалгалт `bun run visual` |
 | `burns/` | `/burns` бүхэлдээ |
-| `fluids/` | `/fluids` (FluidRow, burn-format-ийг burns-ээс ашиглана) |
+| `fluids/` | `/fluids` (`burn-format`-ийг burns-ээс ашиглана) |
 | `landing/`, `nav/`, `drug-page/`, `recent/`, `pwa/`, `theme/`, `brand/`, `analytics/` | нэрээрээ |
 
 ## Дүрэм

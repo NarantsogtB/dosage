@@ -33,7 +33,7 @@ export default function ActionBar({ drugs, results, patient, shareFragment }: Pr
   return (
     <>
       <div aria-hidden className="h-20 md:hidden print:hidden" />
-      <div className="bg-card/95 supports-[backdrop-filter]:bg-card/85 fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-30 flex gap-2 border-t p-3 backdrop-blur md:hidden print:hidden">
+      <div className="bg-card/95 supports-[backdrop-filter]:bg-card/85 fixed inset-x-0 bottom-[calc(94px+env(safe-area-inset-bottom))] z-30 flex gap-2 border-t p-3 backdrop-blur md:hidden print:hidden">
         <CopyButton
           text={prescriptionText(drugs, results, patient)}
           drugIds={ids}

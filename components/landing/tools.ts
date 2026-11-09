@@ -1,39 +1,42 @@
 import type { LucideIcon } from "lucide-react";
-import { Calculator, Droplet, Droplets } from "lucide-react";
+import { CALCULATOR_REGISTRY, type CalculatorId } from "@/lib/calculators/registry";
+import { ROUTES } from "@/components/nav/routes";
 
 export interface Tool {
   readonly href: string;
   readonly titleMn: string;
   readonly bodyMn: string;
   readonly icon: LucideIcon;
-  /** Одоо ажиллаж байгаа эсэх. Төлөвлөж буйг ил тэмдэглэнэ. */
-  readonly live: boolean;
 }
 
 /**
- * ⚠️ Байхгүй хэрэгслийг байгаа мэт харуулахгүй. Төлөвлөж буй зүйлийг
- * `live: false` гэж тэмдэглээд «удахгүй» гэж бичнэ.
+ * Танилцуулгын тайлбар — тооцоолуур бүрд. `Record` тул бүртгэлд шинэ тооцоолуур
+ * нэмэхэд тайлбар бичээгүй бол typecheck унана (landing чимээгүй хоцрохгүй).
  */
-export const TOOLS: readonly Tool[] = [
-  {
-    href: "/dose",
+const COPY: Record<CalculatorId, { readonly titleMn: string; readonly bodyMn: string }> = {
+  dose: {
     titleMn: "Эмийн тун",
     bodyMn: "Жин, наснаас нэг удаагийн тун, хоногийн нийт тун, мл рүү хөрвүүлэлт. Дээд хязгаар давсныг шалгана.",
-    icon: Calculator,
-    live: true,
   },
-  {
-    href: "/burns",
+  burns: {
     titleMn: "Түлэгдэлтийн шингэн",
     bodyMn: "Биеийн гадаргуугийн талбай, Паркланд ба Гальвестоны томьёо, шээсний гарцын зорилт, шингэн хэтрэлтийн хязгаар.",
-    icon: Droplets,
-    live: true,
   },
-  {
-    href: "/fluids",
+  fluids: {
     titleMn: "Шингэн",
     bodyMn: "Тэтгэх шингэн (мл/хон, мл/цаг, ⅔), шокийн болюс, шингэний дутагдлыг 24 цаг тутам нөхөх хурд.",
-    icon: Droplet,
-    live: true,
   },
-];
+  emergency: {
+    titleMn: "Яаралтай тусламж",
+    bodyMn: "Нэг жингээр яаралтай тусламжийн эм, утгууд — зөвхөн эх сурвалжтай мөр.",
+  },
+};
+
+const iconOf = (path: string): LucideIcon => ROUTES.find((route) => route.href === path)!.icon;
+
+/** Ажиллаж буй БҮХ тооцоолуур — `lib/calculators/registry.ts`-ээс (9i: өмнө нь гараар 3 байсан). */
+export const TOOLS: readonly Tool[] = CALCULATOR_REGISTRY.map((entry) => ({
+  href: entry.path,
+  icon: iconOf(entry.path),
+  ...COPY[entry.id],
+}));

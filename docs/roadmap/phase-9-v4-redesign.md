@@ -1,6 +1,6 @@
 # Шат 9 — Төлөвийн шалгалт (2026-11-09) + V4 dark redesign заавар
 
-> Агент: эхлээд §1–2-ыг уншаад, зөвхөн өгөгдсөн дэд шатаа (9a…9h) хий.
+> Агент: эхлээд §1–2-ыг уншаад, зөвхөн өгөгдсөн дэд шатаа (9a…9i) хий. **9h-ээс эхлэн UI ажил бүр `docs/design/v4/HANDOFF.md`-ийг дагаж, `bun run visual`-аар шалгагдана.**
 > Ерөнхий дүрэм: root `CLAUDE.md`, `components/CLAUDE.md`. Figma: `W1la5Yp9xqZwQmUnuJZyXZ`,
 > хуудас **«V4 · Dark (Golomt-style) — draft»** (node `119:2`). Дизайны тайлбар:
 > Claude Project-ийн `claude/v3-atomic-redesign.md`.
@@ -61,10 +61,10 @@ glass (`backdrop-filter`) зөвхөн tab bar / hero товч / hero карт.
 | 9c | Үр дүнгийн «баримт» | `123:100`, `130:1234`, `130:1413` | 2–3 өдөр | ☑ |
 | 9d | Эмүүд таб + бүтэн дэлгэцийн хайлт + Тохиргоо | `123:263`, `128:917`, `131:1511` | 2–3 өдөр | ☑ |
 | 9e | Түүх | `139:1636` | 2 өдөр | ☑ |
-| 9f | Түлэгдэлт + хүн шиг диаграм | `138:1549`, comp `137:1584`, `140:1675` | 2 өдөр | ☑ |
+| 9f | Түлэгдэлт + хүн шиг диаграм | `138:1549`, comp `137:1584`, `140:1675` | 2 өдөр | ☑ (зөвхөн диаграм — дэлгэцийн бүрхүүл 9h-д) |
 | 9g | Desktop 3 багана, modal, ⌘K | `126:354`, `127:426`, `127:725`, `129:823`, `129:948` | 3 өдөр | ☑ |
-| 9h | `/fluids`, `/emergency` V4 загварт | **Figma-д алга** — эхлээд зурж батлуулна | — | ☐ |
-| 9i | Landing V4 + Яаралтай картыг нэмэх | `154:1859` mobile, `156:1911` desktop 1440 | 1–1.5 өдөр | ☐ |
+| 9h | `/burns`, `/fluids`, `/emergency` V4 бүрхүүл + pixel-perfect шалгалт | `138:1549`/`140:1675`, `163:1961`/`163:2510`, `163:2232`/`163:2855` | 4–5 өдөр | ☑ |
+| 9i | Landing V4 + Яаралтай картыг нэмэх | `154:1859` mobile, `156:1911` desktop 1440 | 1–1.5 өдөр | ☑ |
 
 **9a.** `app/globals.css`-ийн `.dark` токеныг Figma «V4 Dark (draft)»-ийн утгаар
 (bg/ink #05070D, sheet #0A0D14, card #1B1F27, raised #272C36, teal #5DBCC1,
@@ -106,8 +106,26 @@ indication, formulation, цаг) — **үр дүнг хадгалахгүй**, �
 1024–1279: 2 багана. <1024: mobile. Дээд pill nav. Өвчтөн нэмэх = modal (Enter/Esc).
 ⌘K palette одоогийн `SearchTrigger`-ийг өргөтгөнө.
 
-**9h.** Fluids, Emergency-д V4 дэлгэц Figma-д байхгүй — эхлээд зур, хэрэглэгчээр батлуул.
-Emergency: E мөр хэзээ ч харагдахгүй (одоогийн дүрэм).
+**9h. Burns, Fluids, Emergency — V4 бүрхүүл** (2026-11-09 шалгалт: 3 дэлгэц хуучин `PatientInput`
++ `Card` хэлбэртэй, `bun run visual` 20–32% зөрүүтэй). Гэрээ: `docs/design/v4/HANDOFF.md` — §2 хориг,
+§3 дутуу токен, §4 анатоми, §5 дэлгэц тус бүр.
+0. **Хэрэгсэл (эхлээд, тусдаа commit):** `bun add -d playwright pngjs pixelmatch` (CLAUDE.md §6 —
+   шинэ dependency тул эхлээд хэрэглэгчээс асуу); `bunx playwright install chromium`. `package.json`-д
+   `"visual": "node scripts/visual-diff.mjs"`. Одоогийн кодоор ажиллуулж report-ыг PR-д «өмнө» гэж хавсарга.
+1. Токен: `--sheet`, `--hero-top`, `--hero-bottom` (HANDOFF §3).
+2. Хуваалцсан компонент (`components/v4/`): `ScreenHero`, `Sheet`, `ResultCard` (толгой+том тоо),
+   `ValueTile`, `NoteRow`, `NoticeBox` (warning/danger), `SectionTabs`, `ListCard`. Burns, Fluids,
+   Emergency гурвуулаа эднийг ашиглана — дэлгэц бүрт тусдаа хуулахгүй.
+3. Fluids, Emergency → идэвхтэй өвчтөн (`usePatientForm`). Fluids-ийн дотоод `useState(EMPTY_FORM)` устгана.
+4. Дэлгэц тус бүрээр: emergency → fluids → burns. Тус бүр `bun run visual <x>-m <x>-d` ≤4% (босгыг тохируулсан — HANDOFF §6).
+Шалгуур: `bun run check` + `bun run visual` 6 дэлгэц ✅; PR-д `.visual/report.md`, HANDOFF §7 хүснэгт.
+Emergency: E мөр хэзээ ч харагдахгүй (одоогийн дүрэм) — хэвээр.
+
+✅ **Хийгдсэн (2026-11-09):** `components/v4/` (ToolScreen, ScreenTopBar, ToolHero, PatientLine,
+PatientSummary, ResultCard, BigValue, ValueTile, NoteRow, NoticeBox, DangerRow, SectionTabs,
+EvidenceChip, NeedPatient, use-tool-patient, use-patient-drug-results). Burns/Fluids/Emergency — идэвхтэй
+өвчтөнөөр, тусдаа маягтгүй (`PatientInput` устсан). BottomNav → V4 хөвөгч pill (Figma 120:39).
+Визуал үр дүн, зөрүүний хүснэгт: HANDOFF §7.
 
 **9i. Landing V4** (`app/page.tsx`, `components/landing/*`). Бүтэц, агуулга хэвээр — зөвхөн загвар + 1 алдаа.
 1. **Алдаа:** `tools.ts` 3 хэрэгсэлтэй, `/emergency` алга. `TOOLS`-ийг `CALCULATOR_REGISTRY`-ээс
@@ -127,7 +145,7 @@ Emergency: E мөр хэзээ ч харагдахгүй (одоогийн дү�
 6. **LandingFooter** — teal gradient CTA карт («Туршаад үз»), доор нь эх сурвалж · INN · санал · Instagram.
 7. Copy-г кодоос авна. Figma дахь «жинг өөрчлөөд үз», «Нүүр дэлгэцэд нэмж апп шиг ашиглана»,
    evidence-ийн lede — **санал болгосон шинэ copy**; хэрэглэгчээр батлуулаагүй бол оруулахгүй.
-Шалгуур: `bun run check`; landing 390/1440 screenshot Figma-тай; 4 хэрэгсэл харагдана; demo тоо
+Шалгуур: `bun run check`; `bun run visual landing-m landing-d` ≤4%; 4 хэрэгсэл харагдана; demo тоо
 14 кг → 560 мг, 22.4 мл (`landing.test` хэвээр ногоон); Lighthouse a11y ≥ 95, LCP өөрчлөгдөхгүй.
 
 ## 5. Хийхгүй / эмчийн шийдвэр хүлээж буй
