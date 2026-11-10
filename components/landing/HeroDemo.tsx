@@ -35,7 +35,7 @@ const WeightField = ({ value, onChange }: { readonly value: string; readonly onC
 };
 
 /**
- * ★ Амьд жишээ — бодит engine. Эмч жинг өөрчлөхөд тун шууд өөрчлөгдөж, доор нь ДЭМБ-ын
+ * ★ Бодит жишээ — бодит engine. Эмч жинг өөрчлөхөд тун шууд өөрчлөгдөж, доор нь ДЭМБ-ын
  * эх бичвэрийн ишлэл гарна. Зураг биш тул өгөгдөл өөрчлөгдөхөд танилцуулга хуучрахгүй.
  */
 export default function HeroDemo() {
@@ -46,8 +46,8 @@ export default function HeroDemo() {
   );
   return (
     <div className="flex flex-col gap-2.5">
-      <Eyebrow>Амьд жишээ · жинг өөрчлөөд үз</Eyebrow>
-      <section aria-label="Амьд жишээ" className="flex flex-col gap-3 rounded-[28px] border border-border bg-card dark:border-white/14 dark:bg-white/6 p-5">
+      <Eyebrow>Бодит жишээ · жинг өөрчлөөд үз</Eyebrow>
+      <section aria-label="Бодит жишээ" className="flex flex-col gap-3 rounded-[28px] border border-border bg-card dark:border-white/14 dark:bg-white/6 p-5">
         <div className="flex items-center gap-2">
           <h2 className="flex-1 text-lg/[23px] font-semibold">{DEMO.drug.innMn}</h2>
           <EvidenceChip drug={DEMO.drug} />

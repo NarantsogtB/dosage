@@ -30,7 +30,7 @@ const heroOf = (tool: ToolPatient): HeroData => ({
   value: tool.ready && tool.patient ? tool.patient.weightKg : "—",
   unit: "кг",
   label: "Тун бүр энэ жингээс — насаар жин тооцохгүй",
-  chips: <HeroChip tone="warning">Жинг жигнэсэн үү?</HeroChip>,
+  chips: <HeroChip tone="warning">Жинг хэмжсэн үү?</HeroChip>,
 });
 
 /** «7 мөр · зөвхөн эх сурвалжтай» + хэвлэх (Figma 163:2232). */
