@@ -43,7 +43,7 @@ const useEscape = (onEscape: () => void) => {
 const Spotlight = ({ box }: { readonly box: Box }) => (
   <div
     aria-hidden
-    className="outline-primary absolute rounded-2xl shadow-[0_0_0_9999px_rgb(0_0_0/0.6)] outline-2 motion-safe:transition-all motion-safe:duration-200"
+    className="outline-primary absolute rounded-2xl shadow-[0_0_0_9999px_var(--scrim)] outline-2"
     style={{ top: box.top - PAD, left: box.left - PAD, width: box.width + 2 * PAD, height: box.height + 2 * PAD }}
   />
 );
@@ -61,7 +61,7 @@ const TourView = ({ steps, onClose }: { readonly steps: readonly TourStep[]; rea
   return (
     /* Бүтэн дэлгэцийн давхарга: заавар дуусах хүртэл ард нь дарагдахгүй. */
     <div className="fixed inset-0 z-50 print:hidden">
-      {box ? <Spotlight box={box} /> : <div aria-hidden className="absolute inset-0 bg-black/60" />}
+      {box ? <Spotlight box={box} /> : <div aria-hidden className="absolute inset-0 bg-scrim" />}
       {box ? <TourCard step={step} index={index} total={steps.length} box={box} onStep={go} onFinish={finish} onClose={onClose} /> : null}
     </div>
   );

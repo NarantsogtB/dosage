@@ -49,7 +49,7 @@ const SkipButton = ({ show, onFinish }: { readonly show: boolean; readonly onFin
 
 const PrevButton = ({ show, onStep }: { readonly show: boolean; readonly onStep: Props["onStep"] }) =>
   show ? (
-    <Button type="button" variant="outline" size="icon" aria-label="Өмнөх" onClick={() => onStep(-1)}>
+    <Button type="button" variant="outline" size="icon" className="shadow-none" aria-label="Өмнөх" onClick={() => onStep(-1)}>
       <ChevronLeft aria-hidden />
     </Button>
   ) : null;
@@ -80,7 +80,7 @@ export default function TourCard({ step, box, ...nav }: Props) {
       aria-modal="true"
       aria-labelledby="tour-title"
       aria-describedby="tour-body"
-      className="bg-card text-card-foreground absolute space-y-2 rounded-2xl border p-4 shadow-lg"
+      className="bg-card text-card-foreground absolute space-y-2 rounded-2xl border p-4"
       style={placeCard(box, window.innerWidth, window.innerHeight)}
     >
       <Header index={nav.index} total={nav.total} onClose={nav.onClose} />
