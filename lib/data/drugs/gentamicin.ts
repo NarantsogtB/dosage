@@ -23,6 +23,9 @@ import type { Drug } from "../../domain/drug";
  * Дараагийн алхам: DosingRule-д ageMinDays/ageMaxDays талбар нэмэх
  * эсэхийг архитектурын түвшинд шийдэх, дараа нь MSF-ийн нярайн 3
  * мужийг хоёр дахь эх сурвалжтай (ANMF шууд унших) баталгаажуулах.
+ *
+ * 💉 2026-11-10: Монголд худалдаалагддаг тарилгын бэлдмэл emonos.mn-ээс
+ * (эмчийн шийдвэр — бэлдмэлийн эх сурвалж): «Гентамицин 80мг/2мл №10» → 40 мг/мл ампул.
  */
 
 export const gentamicin: Drug = {
@@ -71,7 +74,16 @@ export const gentamicin: Drug = {
         "консерватив гарч болзошгүй."
     }
   ],
-  formulations: [],
+  formulations: [
+    {
+      kind: "liquid",
+      id: "40mg-ml-0",
+      labelMn: "40 мг/мл (80 мг/2 мл) ампул",
+      mgPerMl: 40,
+      routes: ["iv", "im"],
+      availableInMn: true,
+    },
+  ],
   warnings: [
     {
       level: "warn",

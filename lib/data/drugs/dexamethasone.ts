@@ -11,6 +11,13 @@ import type { Drug } from "../../domain/drug";
  * RCH Croup (2024-09): 0.15–0.6 мг/кг нэг удаа. Өмнө нь «ерөнхий» заалттай
  * байсан ижил тун — эмчийн шийдвэрээр энэ заалт болгов. Тун өөрчлөгдөөгүй.
  * Дээд 16 мг (MSF); RCH хүнд хэлбэрт 12 мг — conflictNote.
+ *
+ * 🔧 2026-11-10 (эмчийн засвар): бэлдмэл «2mg/5ml уусмал» (0.4 мг/мл) БУРУУ
+ * байсан — Монголд худалдаалагддаг тарилгын уусмал 4 мг/мл, 1 мл ампул
+ * (emonos.mn/product/7609 «Дексаметазон 4мг/1мл No.25»; 0.5 мг шахмал
+ * мөн emonos-д). Ампулын замд «oral» багтсан нь RCH-ийн
+ * «IV preparation can be administered orally» болон MSF-ийн PO/IV/IM-д
+ * тулгуурлана (дүрмүүд одоогоор зөвхөн oral).
  */
 
 export const dexamethasone: Drug = {
@@ -106,9 +113,11 @@ export const dexamethasone: Drug = {
   formulations: [
     {
       kind: "liquid",
-      id: "2mg-5ml-0",
-      labelMn: "2mg/5ml уусмал",
-      mgPerMl: 0.4
+      id: "4mg-ml-0",
+      labelMn: "4 мг/мл 1 мл ампул",
+      mgPerMl: 4,
+      routes: ["oral", "iv", "im"],
+      availableInMn: true
     },
     {
       kind: "solid",

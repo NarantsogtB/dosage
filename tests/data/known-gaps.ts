@@ -78,6 +78,13 @@ export const KNOWN_GAPS: readonly KnownGap[] = [
       "дээд 500 мкг/кг/хон) locator-тойгоор иш татах; 2020+ хүүхдийн " +
       "эмнэлгийн заавар (Starship, CHQ) олох.",
   },
+  ...["metoclopramide-ponv", "metoclopramide-ponv-adolescent", "metoclopramide-gerd"].map((ruleId) => ({
+    ruleId,
+    gap:
+      "Ганц эх сурвалж — drugs.com (tiers.md-д хориотой; эмчийн шийдвэрээр " +
+      "2026-11-10 үл хамаарал). Хүүхдэд FDA-аар батлагдаагүй заалт.",
+    next: "Хүүхдийн эмнэлгийн заавар (Starship, CHQ, PCH) эсвэл Монголын бүртгэлийн зааврыг олж хоёр дахь эх сурвалж болгох.",
+  })),
 ];
 
 const GAP_IDS = new Set(KNOWN_GAPS.map((item) => item.ruleId));

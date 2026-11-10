@@ -10,6 +10,9 @@ import type { Drug } from "../../domain/drug";
  *
  * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
  * availableInMn.
+ *
+ * 💉 2026-11-10: Монголд худалдаалагддаг тарилгын бэлдмэл emonos.mn-ээс
+ * (эмчийн шийдвэр — бэлдмэлийн эх сурвалж): «Проканазол 100мл /Флуконазол 0.2%/» → 2 мг/мл IV.
  */
 
 export const fluconazole: Drug = {
@@ -59,6 +62,14 @@ export const fluconazole: Drug = {
     }
   ],
   formulations: [
+    {
+      kind: "liquid",
+      id: "2mg-ml-iv",
+      labelMn: "2 мг/мл (0.2%) 100 мл судсаар дусаах уусмал",
+      mgPerMl: 2,
+      routes: ["iv"],
+      availableInMn: true
+    },
     {
       kind: "liquid",
       id: "50mg-5ml-0",

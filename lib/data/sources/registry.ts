@@ -810,6 +810,27 @@ export const SOURCES: Record<string, Source> = {
       "⚠️ 2013 он — 2020+ шаардлагыг хангахгүй (known-gaps.ts).",
   },
 
+  "drugs-com-metoclopramide": {
+    id: "drugs-com-metoclopramide",
+    citation: "Drugs.com. Metoclopramide: Uses, Dosage, Side Effects — Usual Pediatric Dose.",
+    publisher: "Drugs.com",
+    edition: "Last updated 2026-08-25 (medically reviewed by Philip Thornton, DipPharm)",
+    year: 2026,
+    url: "https://www.drugs.com/metoclopramide.html",
+    tier: "cite-only",
+    reuse: {
+      kind: "cite-only",
+      note:
+        "⚠️ tiers.md-д «4. Хориотой» — зөвхөн метоклопрамидад эмчийн шийдвэрээр " +
+        "(2026-11-10) ашиглав. Хүснэгт, өгүүлбэр хуулахгүй.",
+    },
+    lastVerified: "2026-11-10",
+    relevanceMn:
+      "Эмчийн шийдвэр (2026-11-10): метоклопрамидын PONV (0.1–0.2 мг/кг/тун, " +
+      "дээд 10 мг; >14 нас 10 мг) ба GERD (0.4–0.8 мг/кг/хон, 4 хуваана). " +
+      "CINV-ийн өндөр тунг (1–2 мг/кг) EMA-тай зөрдөг тул оруулаагүй.",
+  },
+
   "aemps-acetylcysteine-paediatric-smpc": {
     id: "aemps-acetylcysteine-paediatric-smpc",
     citation:

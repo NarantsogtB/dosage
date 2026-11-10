@@ -9,7 +9,7 @@
 | **3. Зөвхөн ишлэл** | RCH Melbourne CPG, Starship NZ, CHQ CREDD, NICE | ❌ Үгүй | Cross-check |
 | **3b. Зөвхөн зөрүү шийдэх** | BNFc (`bnfc`) | ❌ Үгүй | Tie-breaker — ердийн баталгаажуулалтад тоолохгүй (2026-10-30) |
 | **3c. Зохицуулагч** | EMA referral / assessment, ЕХ-ны гишүүн улсын зохицуулагчийн SmPC (жишээ `ema-metoclopramide-referral-2013`, `aemps-acetylcysteine-paediatric-smpc`) | ❌ Үгүй | Хүүхдийн эмнэлгийн заавар байхгүй үед л, эм тус бүрд эмчийн зөвшөөрлөөр (2026-11-03, 11-04) |
-| **4. Хориотой** | Nelson, Harriet Lane, UpToDate, Lexicomp, Medscape, drugs.com | ❌ Үгүй | Ашиглахгүй |
+| **4. Хориотой** | Nelson, Harriet Lane, UpToDate, Lexicomp, Medscape, drugs.com | ❌ Үгүй | Ашиглахгүй. Үл хамаарал: метоклопрамидын PONV/GERD — drugs.com (эмчийн шийдвэр 2026-11-10, `drugs-com-metoclopramide`) |
 
 ### Үндсэн суурь — 2022–2025, бүгд үнэ төлбөргүй
 
