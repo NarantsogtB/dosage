@@ -25,6 +25,7 @@ export default function BottomNav() {
     <>
       <div aria-hidden className="h-[calc(94px+env(safe-area-inset-bottom))] md:hidden print:hidden" />
       <nav
+        data-tour="nav"
         aria-label="Үндсэн навигац"
         className="bg-card fixed inset-x-4 bottom-[calc(22px+env(safe-area-inset-bottom))] z-30 grid h-[72px] auto-cols-fr grid-flow-col gap-1 rounded-[36px] border border-border dark:border-white/10 p-1.5 md:hidden print:hidden"
       >

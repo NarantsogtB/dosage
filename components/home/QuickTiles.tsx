@@ -33,10 +33,12 @@ interface TileProps {
   readonly label: string;
   readonly icon: LucideIcon;
   readonly tone: Tone;
+  /** Яаралтай тусламжийн tile — заавар үүнийг тодруулна (Figma tour-*-4). */
+  readonly tour?: string;
 }
 
-const Tile = ({ href, label, icon: Icon, tone }: TileProps) => (
-  <Link href={href} aria-current={tone === "current" ? "page" : undefined} className="flex flex-col items-center gap-2 text-center">
+const Tile = ({ href, label, icon: Icon, tone, tour }: TileProps) => (
+  <Link href={href} data-tour={tour} aria-current={tone === "current" ? "page" : undefined} className="flex flex-col items-center gap-2 text-center">
     <span className={cn("grid place-items-center border", TILE[tone])}>
       <Icon aria-hidden className={ICON[tone]} />
     </span>
@@ -48,7 +50,7 @@ const Tile = ({ href, label, icon: Icon, tone }: TileProps) => (
 export default function QuickTiles({ compact = false }: Props) {
   const pathname = usePathname();
   return (
-    <nav aria-label="Тооцоолуурууд" className="grid grid-cols-4 gap-2">
+    <nav data-tour="tools" aria-label="Тооцоолуурууд" className="grid grid-cols-4 gap-2">
       {ROUTES.map((route) => (
         <Tile
           key={route.href}
@@ -56,6 +58,7 @@ export default function QuickTiles({ compact = false }: Props) {
           icon={route.icon}
           label={compact ? route.shortMn : route.labelMn}
           tone={toneOf(compact, isActive(pathname, route.href))}
+          tour={route.href === "/emergency" ? "emergency" : undefined}
         />
       ))}
     </nav>

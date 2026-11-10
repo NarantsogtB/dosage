@@ -15,6 +15,7 @@ Figma файл: `W1la5Yp9xqZwQmUnuJZyXZ` · хуудас `119:2` «V4 · Dark (G
 | Түлэгдэлт | `/burns` | `138:1549` | `140:1675` | `ref/burns-{m,d}.png` |
 | Шингэн | `/fluids` | `163:1961` | `163:2510` | `ref/fluids-{m,d}.png` |
 | Яаралтай | `/emergency` | `163:2232` | `163:2855` | `ref/emergency-{m,d}.png` |
+| Tour (5 алхам) | `/dose` | `178:2646` `178:2726` `178:2809` `178:2892` `178:2975` | `178:3055` `178:3153` `178:3254` `178:4984` `178:3456` | `ref/tour-{m,d}-{1..5}.png` |
 
 Дараалал: **Figma node > лавлах PNG > энэ файл > бусад баримт**. Зөрвөл Figma зөв.
 Figma MCP байгаа бол хэсэг бүрийг бичихийн өмнө `get_design_context(fileKey, nodeId)` дууд — тоог
@@ -112,6 +113,11 @@ breadcrumb (r 20, `bg-sheet`, p 14/18) → hero карт (r 28, p 24/28, linear 
   Шээсний зорилт, disclaimer `white/5` (шар биш).
 - Desktop: төв 520 (хоёр талыг зэрэг) + aside 288 (БГТ gradient карт, томьёо бүр компакт).
 
+**Tour `/dose`** (section «V4 · Tour» `178:2372`, карт = component `V4/Tour card` `178:2502`) — `TOUR.md`.
+- Давхарга: `scrim` токен (`--scrim`), spotlight pad 6 · r 16 · outline 2 teal, карт ≤360 / ирмэгээс 16 / зай 14.
+- Shadow, animation байхгүй. 4-р алхам = «Яаралтай» tile (`data-tour="emergency"` `QuickTiles` дээр).
+- `tour-d-*` = 1440×900 (суурь Figma frame 940-өөс тайрсан, visual viewport-той ижил).
+
 **Landing `/`** — `phase-9-v4-redesign.md` §9i.
 
 ## 6. Ажлын урсгал (дэлгэц бүрд)
@@ -146,6 +152,9 @@ landing-d 4.99% · landing-m 14.73% (+108px). Хэтэрсэн бүгд доор
 | landing | Eyebrow, section aria-label | «Амьд жишээ · жинг өөрчлөөд үз» | «Бодит жишээ · жинг өөрчлөөд үз» | Хэрэглэгч (эмч) copy-г өөрчилсөн | ✅ |
 | emergency | Hero chip | «Жинг жигнэсэн үү?» | «Жинг хэмжсэн үү?» | Хэрэглэгч (эмч) copy-г өөрчилсөн | ✅ |
 | бүх mobile | Tab bar | хөвөгч pill (120:39) | **код Figma руу шилжсэн** (өмнө нь бүтэн өргөнтэй мөр байсан) | 9b-ийн зөрүүг засав; `ActionBar` 94px дээр | — |
+| tour-m/d-1…5 | Суурь дэлгэц (Нүүр, Dashboard) | Figma суурь: «Ор 3 · 12.5 кг», хуучин толгой/hero, disclaimer байхгүй | Кодын /dose: «Ор 5 · 20 кг», 9b/9g-ийн толгой, hero товчнууд, disclaimer | Tour-оос өмнөх Нүүр/Dashboard дэлгэц Figma-тай пиксел түвшинд тулгагдаагүй — давхарга (spotlight, карт) бүтэц нь таарч, зөрүү бүгд суурьнаас. Хэмжилт: tour-m 4.4–12.9% · tour-d 4.2–5.3% | ☐ |
+| tour-m/d-1…4 | «Дараах» товч | focus ring байхгүй | `focus-visible:ring-[3px]` (анхны alхамд автоматаар focus) | a11y — keyboard focus харагдах ёстой | ☐ |
+| tour | Яаралтай алхам | Figma-д толгойн товч байхгүй, tile тодруулсан | `data-tour="emergency"` толгойн `EmergencyLink`-ээс tile руу шилжсэн | Figma-тай нийцүүлэв | ☐ |
 | бүх тоо | `.num` | пропорциональ | tabular-nums («1 500» мэт өргөн) | Дизайн системийн дүрэм: эмнэлзүйн тоо баганаар | ☐ |
 | desktop | Зүүн багана | Figma sidebar (r 24) | 9g-ийн `PatientColumn` (r 16) | 9g-ийн хүрээ, энд өөрчлөөгүй | ☐ |
 

@@ -13,7 +13,7 @@ import { TABS } from "./routes";
 export default function PillNav() {
   const current = activeTab(usePathname());
   return (
-    <nav aria-label="Үндсэн навигац" className="bg-muted/60 hidden gap-1 rounded-full border p-1 md:flex">
+    <nav data-tour="nav" aria-label="Үндсэн навигац" className="bg-muted/60 hidden gap-1 rounded-full border p-1 md:flex">
       {TABS.map((tab) => (
         <Link
           key={tab.href}

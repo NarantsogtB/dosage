@@ -5,6 +5,7 @@ import type { Drug } from "@/lib/domain/drug";
 import { DRUG_BY_ID } from "@/lib/data/drugs";
 import { useIsDesktop } from "@/components/use-media-query";
 import DeskPage from "@/components/desk/DeskPage";
+import Tour from "@/components/tour/Tour";
 import CalculatorMobile from "./CalculatorMobile";
 import { useCalculatorState } from "./use-calculator-state";
 
@@ -31,6 +32,16 @@ const detailDrug = (ids?: readonly string[]): Drug | undefined => (ids?.length ?
 export default function CalculatorPage({ initialDrugIds, intro, children }: Props) {
   const calc = useCalculatorState(initialDrugIds);
   const desktop = useIsDesktop();
-  if (!desktop) return <CalculatorMobile calc={calc} intro={intro}>{children}</CalculatorMobile>;
-  return <DeskPage calc={calc} drug={detailDrug(initialDrugIds)}>{children}</DeskPage>;
+  const body = desktop ? (
+    <DeskPage calc={calc} drug={detailDrug(initialDrugIds)}>{children}</DeskPage>
+  ) : (
+    <CalculatorMobile calc={calc} intro={intro}>{children}</CalculatorMobile>
+  );
+  return (
+    <>
+      {body}
+      {/* «Хэрхэн ашиглах» — анх удаа л (components/tour). */}
+      <Tour />
+    </>
+  );
 }

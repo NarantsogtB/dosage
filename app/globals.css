@@ -72,6 +72,7 @@
   /* V4 tile (Figma accent/tile): hero товч, эмийн дүрс. */
   --tile: oklch(0.48 0.098 207);
   --tile-foreground: oklch(0.995 0.002 197);
+  --scrim: rgb(0 0 0 / 0.6);
   /*
    * V4 дэлгэцийн бүрхүүл (9h, HANDOFF §3). Цайвар горимыг Figma-д хараахан
    * зураагүй — түр утга: sheet = дэвсгэр, hero = зөөлөн номин → дэвсгэр.
@@ -146,6 +147,7 @@
     /* V4 tile (Figma accent/tile): hero товч, эмийн дүрс. */
     --tile: oklch(0.549 0.089 205);
     --tile-foreground: oklch(0.995 0.002 197);
+    --scrim: rgb(0 0 0 / 0.6);
     /* Figma bg/sheet #0A0D14, bg/hero-top #0F4A52, landing 70% #0A1C24, bg/hero-bottom #05080D. */
     --sheet: oklch(0.159 0.016 267);
     --hero-top: oklch(0.377 0.059 209);
@@ -194,6 +196,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-tile: var(--tile);
+  --color-scrim: var(--scrim);
   --color-sheet: var(--sheet);
   --color-hero-top: var(--hero-top);
   --color-hero-mid: var(--hero-mid);

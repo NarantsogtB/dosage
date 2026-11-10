@@ -8,6 +8,7 @@ import { useHistory } from "@/components/history/history-store";
 import ClearHistoryRow from "./ClearHistoryRow";
 import ClearPatientsRow from "./ClearPatientsRow";
 import EvidenceLadderRow from "./EvidenceLadderRow";
+import RestartTourRow from "./RestartTourRow";
 import Section from "./Section";
 import SettingsRow from "./SettingsRow";
 import ThemeSetting from "./ThemeSetting";
@@ -40,6 +41,7 @@ export default function SettingsPage() {
       </Section>
       <Section title="Эх сурвалж ба тухай">
         <EvidenceLadderRow />
+        <RestartTourRow />
         <SettingsRow icon={Info} label="dosage.mn тухай" href="/" />
         <SettingsRow icon={MessageSquare} label="Санал хүсэлт" href={FEEDBACK_URL} />
       </Section>

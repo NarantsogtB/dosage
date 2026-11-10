@@ -62,6 +62,21 @@ const fluidsSetup = async (page) => {
 };
 
 /**
+ * «Хэрхэн ашиглах» заавар (docs/design/v4/TOUR.md): давхарга `fixed` тул viewport-оор зурна,
+ * `top: 0` — 4-р алхам толгойд тул frame-д толгой зурагдсан. «Дараах»-ыг дарж n-р алхамд хүрнэ.
+ */
+const tourSetup = (step) => async (page) => {
+  await page.getByRole("dialog").waitFor();
+  for (let i = 1; i < step; i += 1) await page.getByRole("button", { name: "Дараах" }).click();
+};
+const TOUR_SCREENS = Object.fromEntries(
+  [1, 2, 3, 4, 5].flatMap((step) => [
+    [`tour-m-${step}`, { top: 0, path: "/dose", w: 390, h: 844, radius: 40, tour: true, setup: tourSetup(step) }],
+    [`tour-d-${step}`, { top: 0, path: "/dose", w: 1440, h: 900, radius: 16, tour: true, setup: tourSetup(step) }],
+  ]),
+);
+
+/**
  * Figma frame ↔ route. Хоёр mask:
  *   radius — frame-ийн дугуй булан (mobile 40, desktop 16).
  *   top    — дээд зурвас: mobile 56px = Figma-д утасны status bar, кодод `SiteHeader`;
@@ -77,6 +92,7 @@ const SCREENS = {
   "fluids-d": { top: TOP.d, path: "/fluids", w: 1440, radius: 16, setup: fluidsSetup },
   "emergency-m": { top: TOP.m, path: "/emergency", w: 390, radius: 40 },
   "emergency-d": { top: TOP.d, path: "/emergency", w: 1440, radius: 16 },
+  ...TOUR_SCREENS,
 };
 
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".png": "image/png", ".svg": "image/svg+xml", ".woff2": "font/woff2", ".json": "application/json", ".txt": "text/plain", ".ico": "image/x-icon", ".webmanifest": "application/manifest+json" };
@@ -122,9 +138,11 @@ const maskCorners = (png, radius, top = 0) => {
 
 const capture = async (browser, name, screen, height) => {
   const context = await browser.newContext({ viewport: { width: screen.w, height }, deviceScaleFactor: 1, colorScheme: "dark", reducedMotion: "reduce" });
-  await context.addInitScript((state) => {
+  await context.addInitScript(({ state, tourScreen }) => {
     sessionStorage.setItem("dosage.patients.v2", JSON.stringify(state));
-  }, PATIENTS);
+    // «Хэрхэн ашиглах» заавар Figma-тай харьцуулах зурагт гарахгүй.
+    if (!tourScreen) localStorage.setItem("dosage.tour.v1", "done");
+  }, { state: PATIENTS, tourScreen: Boolean(screen.tour) });
   const page = await context.newPage();
   await page.goto(`http://localhost:${PORT}${screen.path}`, { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
@@ -138,7 +156,7 @@ const capture = async (browser, name, screen, height) => {
     }
   }
   await page.waitForTimeout(300);
-  const buffer = await page.screenshot({ fullPage: true, animations: "disabled" });
+  const buffer = await page.screenshot({ fullPage: !screen.tour, animations: "disabled" });
   await context.close();
   return { png: PNG.sync.read(buffer), setupError };
 };
