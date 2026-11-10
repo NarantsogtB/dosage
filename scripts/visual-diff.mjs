@@ -124,6 +124,8 @@ const capture = async (browser, name, screen, height) => {
   const context = await browser.newContext({ viewport: { width: screen.w, height }, deviceScaleFactor: 1, colorScheme: "dark", reducedMotion: "reduce" });
   await context.addInitScript((state) => {
     sessionStorage.setItem("dosage.patients.v2", JSON.stringify(state));
+    // «Хэрхэн ашиглах» заавар Figma-тай харьцуулах зурагт гарахгүй.
+    localStorage.setItem("dosage.tour.v1", "done");
   }, PATIENTS);
   const page = await context.newPage();
   await page.goto(`http://localhost:${PORT}${screen.path}`, { waitUntil: "networkidle" });

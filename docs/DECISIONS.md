@@ -18,6 +18,13 @@
 
 ---
 
+## 2026-11-10 — «Хэрхэн ашиглах» заавар (onboarding tour)
+
+**Context:** Анх орсон эмч жин → эм → тооцоолуур гэсэн урсгалыг шууд ойлгохгүй байж болно.
+**Decision:** `components/tour/` — dependency-гүй spotlight tour. Элементүүд `data-tour="patient|search|tools|emergency|nav"`; тухайн өргөнд харагдахгүй алхам алгасагдана (mobile/desktop ижил алхмууд). «Дахиж харуулахгүй» / «Ойлголоо» → `localStorage["dosage.tour.v1"]`; «×»/Esc → зөвхөн энэ удаа. Тохиргоо → «Хэрхэн ашиглах заавар» дахин эхлүүлнэ. `CalculatorPage`-д mount. `bun run visual` зааврыг унтраасан.
+**Why:** driver.js/react-joyride зэрэг dependency 5 алхамд илүүдэл; тохиргооны байрлал цэвэр функц (`place-card.ts`), тестлэгдсэн.
+**Status:** accepted
+
 ## 2026-11-09 — V4 хэрэгслийн бүрхүүл + landing, pixel-perfect шалгалт (Шат 9h, 9i)
 
 **Context:** `/burns`, `/fluids`, `/emergency`, landing хуучин (V3) хэлбэртэй үлдсэн; CLI Figma-гийн утгыг ойролцоогоор буулгаж байсан (gradient, radius, бөөрөнхийлсөн класс).

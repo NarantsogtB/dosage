@@ -42,7 +42,7 @@ const PatientCard = ({ actions }: { readonly actions: Actions }) => {
   const active = activeOf(state);
   const index = state.patients.findIndex((patient) => patient.id === state.activeId);
   return (
-    <section aria-label="Одоогийн өвчтөн" className="bg-card space-y-3 rounded-2xl p-4">
+    <section data-tour="patient" aria-label="Одоогийн өвчтөн" className="bg-card space-y-3 rounded-2xl p-4">
       <div className="flex items-center justify-between">
         <p className="text-muted-foreground text-xs">Одоогийн өвчтөн</p>
         <AddButton state={state} onAdd={actions.onAdd} />

@@ -48,7 +48,7 @@ const Tile = ({ href, label, icon: Icon, tone }: TileProps) => (
 export default function QuickTiles({ compact = false }: Props) {
   const pathname = usePathname();
   return (
-    <nav aria-label="Тооцоолуурууд" className="grid grid-cols-4 gap-2">
+    <nav data-tour="tools" aria-label="Тооцоолуурууд" className="grid grid-cols-4 gap-2">
       {ROUTES.map((route) => (
         <Tile
           key={route.href}

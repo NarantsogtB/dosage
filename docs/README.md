@@ -10,6 +10,7 @@
 | Шинэ эм нэмэх | `recipes/add-drug.md` |
 | Эм баталгаажуулах | `EVIDENCE-STATUS.md` (аль нь дутуу), `sources/pending-decisions-2026-10.md` (эмчийн шийдвэр хүлээж буй) → `recipes/verify-drug.md` → шаардлагатай бол `sources/tiers.md` |
 | Шинэ тооцоолуур/хуудас | `recipes/add-calculator.md` |
+| «Хэрхэн ашиглах» заавар (tour) Figma-д тааруулах | `design/v4/HANDOFF.md` → `design/v4/TOUR.md` |
 | Roadmap-ийн шат хэрэгжүүлэх | `roadmap/README.md` → тухайн `roadmap/phase-*.md` |
 | Engine өөрчлөх | `lib/engine/CLAUDE.md` (+ `architecture/calculation-flow.md`) |
 | UI / дизайн | `components/CLAUDE.md` → `design-system/README.md` |

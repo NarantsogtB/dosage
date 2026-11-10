@@ -14,7 +14,7 @@ import { isActive } from "./active-route";
 export default function EmergencyLink() {
   if (isActive(usePathname(), "/emergency")) return null;
   return (
-    <Button asChild variant="outline" size="icon">
+    <Button asChild variant="outline" size="icon" data-tour="emergency">
       <Link href="/emergency" aria-label="Яаралтай тусламж">
         <Siren aria-hidden />
       </Link>

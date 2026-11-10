@@ -19,6 +19,7 @@ const RECENT_COUNT = 5;
 const SearchBar = () => (
   <button
     type="button"
+    data-tour="search"
     onClick={() => openSearch()}
     className="bg-card hover:bg-accent focus-visible:ring-ring/50 flex h-14 w-full items-center gap-3 rounded-full border px-5 text-left outline-none focus-visible:ring-[3px]"
   >
