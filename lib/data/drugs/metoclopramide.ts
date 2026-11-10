@@ -17,6 +17,10 @@ import type { Drug } from "../../domain/drug";
  * мэс заслын дараах бөөлжилт), ≤5 хоног (мэс засал ≤48 цаг), тун хооронд
  * ≥6 цаг. Экстрапирамидын урвал хүүхдэд түгээмэл.
  *
+ * 🔧 2026-11-10 (эмчийн засвар): бэлдмэл «5mg/5ml уусмал» (1 мг/мл) БУРУУ
+ * байсан — Монголд худалдаалагддаг тарилгын уусмал 0.5% = 5 мг/мл, 2 мл
+ * ампул (hpoint.mn/products/11607). Ампулаар (IV/IM) солив.
+ *
  * Үлдсэн: lastReviewed/reviewedBy (эмчийн хяналт), contraindicationsMn,
  * availableInMn.
  */
@@ -65,9 +69,11 @@ export const metoclopramide: Drug = {
   formulations: [
     {
       kind: "liquid",
-      id: "5mg-5ml-0",
-      labelMn: "5mg/5ml уусмал",
-      mgPerMl: 1
+      id: "5mg-ml-0",
+      labelMn: "5 мг/мл (0.5%) 2 мл ампул",
+      mgPerMl: 5,
+      routes: ["iv", "im"],
+      availableInMn: true
     },
     {
       kind: "solid",
