@@ -56,6 +56,14 @@ export const INDICATIONS = {
     labelMn: "Гипогликеми",
     synonyms: ["цусны сахар бага", "hypoglycaemia", "hypoglycemia"],
   },
+  ponv: {
+    labelMn: "Мэс заслын дараах дотор муухайрах, бөөлжих",
+    synonyms: ["мэс заслын дараах бөөлжилт", "бөөлжилт", "дотор муухайрах", "ponv", "postoperative nausea", "postoperative vomiting"],
+  },
+  gerd: {
+    labelMn: "Ходоод улаан хоолойн сөөргөө",
+    synonyms: ["сөөргөө", "рефлюкс", "гэрө", "gerd", "gord", "reflux", "gastroesophageal reflux"],
+  },
   giardiasis: {
     labelMn: "Гиардиаз",
     synonyms: ["лямблиоз", "giardia", "giardiasis"],
